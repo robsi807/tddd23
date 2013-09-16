@@ -7,6 +7,7 @@ public class GameInput implements InputProcessor {
 
 	private Blokz game;
 	private Player player;
+	private boolean walkRight = false, walkLeft = false;
 
 	public GameInput(Player player, Blokz game) {
 		this.player = player;
@@ -17,13 +18,11 @@ public class GameInput implements InputProcessor {
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
 		case 29:
-			player.state = State.WALKING;
-			player.facingLeft = true;
-			return true;
+			walkLeft = true;
+			return processMove();
 		case 32:
-			player.state = State.WALKING;
-			player.facingLeft = false;
-			return true;
+			walkRight = true;
+			return processMove();
 		case 131:
 			game.exitGame();
 			return true;
@@ -36,13 +35,31 @@ public class GameInput implements InputProcessor {
 	public boolean keyUp(int keycode) {
 		switch (keycode) {
 		case 29:
-			player.state = State.IDLE;
-			return true;
+			walkLeft = false;
+			return processMove();
 		case 32:
+			walkRight = false;
+			return processMove();
+		}
+		return false;
+	}
+
+	private boolean processMove() {
+		if (walkLeft && walkRight) {
 			player.state = State.IDLE;
 			return true;
 		}
-		return false;
+		if (walkLeft) {
+			player.state = State.WALKING;
+			player.facingLeft = true;
+		}
+		if (walkRight) {
+			player.state = State.WALKING;
+			player.facingLeft = false;
+		}
+		if (!walkRight && !walkLeft)
+			player.state = State.IDLE;
+		return true;
 	}
 
 	@Override

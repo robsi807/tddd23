@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Player extends GameObject {
 
-	public Player(Vector2 position) {
-		super(position);
+	public Player(Vector2 position, World world) {
+		super(position, world);
 	}
 
 }
