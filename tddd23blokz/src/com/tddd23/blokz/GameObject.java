@@ -73,6 +73,17 @@ public class GameObject {
 			}else{
 				position.y = collidingBlock.position.y + collidingBlock.bounds.height;
 			}
+			if(velocity.x > 0){
+				position.x = collidingBlock.position.x - bounds.width;
+				
+			}else{
+				position.x = collidingBlock.position.x + collidingBlock.bounds.width;
+			}
+			
+			
+			
+			
+			
 
 		} else {
 			position.add(velocity);
