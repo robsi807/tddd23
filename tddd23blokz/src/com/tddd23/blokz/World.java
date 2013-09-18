@@ -2,6 +2,7 @@ package com.tddd23.blokz;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class World {
@@ -9,6 +10,8 @@ public class World {
 	private ArrayList<GameObject> dynamicObjects;
 
 	private Player player;
+	
+	Rectangle collisionRect = null;
 
 	public ArrayList<GameObject> getDynamicObjects() {
 		return dynamicObjects;
