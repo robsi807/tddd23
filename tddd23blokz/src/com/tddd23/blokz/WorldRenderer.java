@@ -1,9 +1,12 @@
 package com.tddd23.blokz;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Rectangle;
 
 public class WorldRenderer {
 
@@ -25,13 +28,52 @@ public class WorldRenderer {
 	public void render() {
 		if (!zoomDone)
 			doTestZoom();
-		
-		debugRenderer.setProjectionMatrix(cam.combined);
-		debugRenderer.begin(ShapeType.Filled);
 
+		debugRenderer.setProjectionMatrix(cam.combined);
+
+		renderPlayer();
+		renderDynamicObjects();
+
+		debugRenderer.end();
+	}
+
+	private void renderDynamicObjects() {
+		ArrayList<GameObject> dynamicObjects = world.getDynamicObjects();
+		for (GameObject object : dynamicObjects) {
+			debugRenderer.begin(ShapeType.Line);
+			debugRenderer.setColor(new Color(1, 1, 1, 0));
+			debugRenderer.rect(object.position.x, object.position.y,
+					object.bounds.width, object.bounds.height);
+			debugRenderer.end();
+		}
+
+		// For determining collision detection
+		debugRenderer.begin(ShapeType.Line);
+		debugRenderer.setColor(new Color(1, 1, 1, 1));
+		debugRenderer
+				.rect(world.getPlayer().position.x
+						+ world.getPlayer().velocity.x,
+						world.getPlayer().position.y
+						+ world.getPlayer().velocity.y,
+						world.getPlayer().bounds.width,
+						world.getPlayer().bounds.height);
+
+
+	
+		debugRenderer.end();
+
+	}
+
+	/*
+	 * Renders the player
+	 */
+	private void renderPlayer() {
+
+		Player player = world.getPlayer();
+		debugRenderer.begin(ShapeType.Filled);
 		debugRenderer.setColor(new Color(1, 0, 0, 1));
-		debugRenderer.rect(world.getPlayer().position.x,
-				world.getPlayer().position.y, 2, 2);
+		debugRenderer.rect(player.position.x, player.position.y,
+				player.bounds.width, player.bounds.height);
 		debugRenderer.end();
 	}
 

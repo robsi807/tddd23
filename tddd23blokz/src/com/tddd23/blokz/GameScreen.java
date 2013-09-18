@@ -22,7 +22,7 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		updateGame();
 
-		fpsLog.log();
+//		fpsLog.log();
 
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);

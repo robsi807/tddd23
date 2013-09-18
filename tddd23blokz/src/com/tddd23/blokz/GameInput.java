@@ -1,5 +1,7 @@
 package com.tddd23.blokz;
 
+import javax.swing.JEditorPane;
+
 import com.badlogic.gdx.InputProcessor;
 import com.tddd23.blokz.GameObject.State;
 
@@ -33,6 +35,7 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
+		
 		switch (keycode) {
 		case 29:
 			walkLeft = false;
@@ -40,6 +43,8 @@ public class GameInput implements InputProcessor {
 		case 32:
 			walkRight = false;
 			return processMove();
+		case 62:
+			player.flipGravity();
 		}
 		return false;
 	}

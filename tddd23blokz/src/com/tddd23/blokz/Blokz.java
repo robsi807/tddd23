@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 
 public class Blokz extends Game {
 
-	@Override
 	public void create() {
 		setScreen(new GameScreen(this));
 	}
