@@ -105,6 +105,8 @@ public class GameObject {
 		
 			if (velocity.y > 0){
 				grounded = true;
+			}else{ //Collision with block above player, 
+				acceleration.y =0;
 			}
 			
 			
