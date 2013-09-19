@@ -21,7 +21,7 @@ public class GameObject {
 	Vector2 velocity = new Vector2();
 	Rectangle bounds = new Rectangle();
 	State state = State.IDLE;
-	int tick;
+
 
 	private boolean hasCollidedX, hasCollidedY;
 	protected boolean grounded;
@@ -39,20 +39,11 @@ public class GameObject {
 	}
 
 	public void update() {
-		
 		if(!(this instanceof Player))
 			return;
 		world.collisionRects.clear();
-//		tick++;
-//		if(tick % 60 == 0){
-//			System.out.println();
-//			System.out.println(tick /60);
-//			System.out.println("PlayerAcceleration: X: "+ acceleration.x+" Y: "+acceleration.y);
-//			System.out.println("PlayerVelocity: X: "+ velocity.x+" Y: "+velocity.y);
-//			System.out.println("PlayerPosition: X: "+ position.x+" Y: "+position.y);
-//			System.out.println("På marken: "+grounded);
-//			
-//		}
+//		playerPositionDebugText()
+		
 		
 		acceleration.y += world.getGravity().y;
 		if (state == State.IDLE) {
@@ -78,7 +69,7 @@ public class GameObject {
 		boolean hasCollidedX = false;
 		boolean hasCollidedY = false;
 
-		// Displacement in X
+		// X axis collision handling
 		displacementBox = new Rectangle(world.getPlayer().position.x
 				+ world.getPlayer().velocity.x, world.getPlayer().position.y,
 				world.getPlayer().bounds.width, world.getPlayer().bounds.height);
@@ -100,7 +91,7 @@ public class GameObject {
 
 		}
 
-		// Displacement in Y
+		// Y axis collision handling
 		displacementBox = new Rectangle(world.getPlayer().position.x,
 				world.getPlayer().position.y + world.getPlayer().velocity.y,
 				world.getPlayer().bounds.width, world.getPlayer().bounds.height);
@@ -111,14 +102,13 @@ public class GameObject {
 			world.collisionRects.add(collidingBlock.getPositionRectangle());
 			hasCollidedY = true;
 			collidingRect = collidingBlock.getPositionRectangle();
-			// state = State.IDLE;
 		
 			if (velocity.y > 0){
 				grounded = true;
-				
-			}else{
-				acceleration.y = world.getGravity().y;
 			}
+			
+			
+			
 			if (velocity.y < 0) {
 				position.y = collidingBlock.position.y + bounds.height;
 
@@ -126,7 +116,6 @@ public class GameObject {
 				position.y = collidingBlock.position.y
 						- collidingBlock.bounds.height;
 			}
-
 		}else{
 			grounded = false;
 		}
@@ -136,29 +125,8 @@ public class GameObject {
 		if (hasCollidedY)
 			velocity.y = 0;
 
-
 		position.add(velocity);
 	}
-
-	// private Rectangle getIntersectionRectangle(Rectangle playerRect,
-	// Rectangle collidingRect) {
-	//
-	// Rectangle intersection = new Rectangle();
-	//
-	// intersection.x = Math.max(playerRect.x, collidingRect.x);
-	// intersection.width = Math.min((playerRect.x + playerRect.width),
-	// collidingRect.x + collidingRect.width) - intersection.x;
-	// intersection.y = Math.max(playerRect.y, collidingRect.y);
-	// intersection.height = Math.min(playerRect.y + playerRect.height,
-	// collidingRect.y + collidingRect.height) - intersection.y;
-	//
-	// if (world.getPlayer().position.x < collidingRect.x)
-	// intersection.width = -intersection.width;
-	// if (world.getPlayer().position.y < collidingRect.y)
-	// intersection.height = -intersection.height;
-	// return intersection;
-	//
-	// }
 
 	private Block getCollidingBlock(Rectangle rect) {
 		for (GameObject object : world.getDynamicObjects()) {
@@ -176,12 +144,22 @@ public class GameObject {
 		return new Rectangle(position.x, position.y, bounds.width,
 				bounds.height);
 	}
+	
+	private int tick;
+	private void playerPositionDebugText(){
+		tick++;
+		if(tick % 60 == 0){
+			System.out.println();
+			System.out.println(tick /60);
+			System.out.println("PlayerAcceleration: X: "+ acceleration.x+" Y: "+acceleration.y);
+			System.out.println("PlayerVelocity: X: "+ velocity.x+" Y: "+velocity.y);
+			System.out.println("PlayerPosition: X: "+ position.x+" Y: "+position.y);
+			System.out.println("På marken: "+grounded);
+			
+		}
+	}
 
 	/*
 	 * Used for testing collision detection
 	 */
-	public void flipGravity() {
-		world.flipGravity();
-	}
-
 }
