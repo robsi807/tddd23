@@ -10,7 +10,7 @@ public class World {
 	private ArrayList<GameObject> dynamicObjects;
 
 	private Player player;
-	
+
 	Rectangle collisionRect = null;
 
 	public ArrayList<GameObject> getDynamicObjects() {
@@ -19,7 +19,6 @@ public class World {
 
 	private Vector2 gravity;
 
-	
 	public World() {
 		gravity = new Vector2(0, -0.05f);
 		this.dynamicObjects = new ArrayList<GameObject>();
@@ -34,29 +33,43 @@ public class World {
 	 * dynamicobjects
 	 */
 	private void createDynamicObjects() {
-		for(int y=0;y<39;y++){
+		for (int y = 0; y < 39; y++) {
 			dynamicObjects.add(BlockFactory.createBlock(56, y, this));
 			dynamicObjects.add(BlockFactory.createBlock(0, y, this));
 		}
-		for(int x=0;x<57;x++){
+		for (int x = 0; x < 57; x++) {
 			dynamicObjects.add(BlockFactory.createBlock(x, 38, this));
 			dynamicObjects.add(BlockFactory.createBlock(x, 0, this));
 		}
-		dynamicObjects.add(BlockFactory.createBlock(32, 12, this));
-		dynamicObjects.add(BlockFactory.createBlock(43, 3, this));
-		dynamicObjects.add(BlockFactory.createBlock(12, 23, this));
-		dynamicObjects.add(BlockFactory.createBlock(43, 22, this));
-		dynamicObjects.add(BlockFactory.createBlock(2, 12, this));
-		dynamicObjects.add(BlockFactory.createBlock(21, 22, this));
-		dynamicObjects.add(BlockFactory.createBlock(12, 33, this));
-		dynamicObjects.add(BlockFactory.createBlock(32, 1, this));
+
+		// Maze
+
+		for (int y = 3; y < 30; y += 3) {
+			int startX = 1;
+			int endX = 50;
+			if (y % 2 == 0) {
+				startX += 6;
+				endX += 6;
+			}
+			for (int x = startX; x < endX; x++)
+				dynamicObjects.add(BlockFactory.createBlock(x, y, this));
+
+		}
+		dynamicObjects.add(BlockFactory.createBlock(4, 35, this));
+		dynamicObjects.add(BlockFactory.createBlock(15, 35, this));
+		dynamicObjects.add(BlockFactory.createBlock(30, 35, this));
+		dynamicObjects.add(BlockFactory.createBlock(4, 37, this));
+		dynamicObjects.add(BlockFactory.createBlock(4, 38, this));
+		dynamicObjects.add(BlockFactory.createBlock(20, 32, this));
+		dynamicObjects.add(BlockFactory.createBlock(4, 32, this));
 	}
 
 	/*
 	 * Creates the player
 	 */
 	private void createPlayer() {
-		this.player = new Player(new Vector2(Constants.SIZE*30, Constants.SIZE*30), this);
+		this.player = new Player(new Vector2(Constants.SIZE * 30,
+				Constants.SIZE * 30), this);
 	}
 
 	public void update() {
@@ -69,23 +82,21 @@ public class World {
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	public Vector2 getGravity() {
 		return gravity;
 	}
-	
-	
-	public void addDynamicObject(GameObject go){
+
+	public void addDynamicObject(GameObject go) {
 		dynamicObjects.add(go);
 	}
-	
+
 	/*
 	 * Used for testing collision
 	 */
-	public void flipGravity(){
+	public void flipGravity() {
 		gravity.x = -gravity.x;
 		gravity.y = -gravity.y;
 	}
-
 
 }
