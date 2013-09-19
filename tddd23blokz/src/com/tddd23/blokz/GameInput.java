@@ -45,6 +45,7 @@ public class GameInput implements InputProcessor {
 			return processMove();
 		case 62:
 			player.flipGravity();
+			return processMove();
 		}
 		return false;
 	}
