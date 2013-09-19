@@ -55,14 +55,14 @@ public class WorldRenderer {
 		}
 
 		// For determining collision detection
-		debugRenderer.begin(ShapeType.Line);
-		debugRenderer.setColor(new Color(1, 1, 1, 1));
-		debugRenderer.rect(world.getPlayer().position.x
-				+ world.getPlayer().velocity.x, world.getPlayer().position.y
-				+ world.getPlayer().velocity.y, world.getPlayer().bounds.width,
-				world.getPlayer().bounds.height);
-
-		debugRenderer.end();
+//		debugRenderer.begin(ShapeType.Line);
+//		debugRenderer.setColor(new Color(1, 1, 1, 1));
+//		debugRenderer.rect(world.getPlayer().position.x
+//				+ world.getPlayer().velocity.x, world.getPlayer().position.y
+//				+ world.getPlayer().velocity.y, world.getPlayer().bounds.width,
+//				world.getPlayer().bounds.height);
+//
+//		debugRenderer.end();
 
 	}
 

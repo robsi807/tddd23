@@ -58,14 +58,13 @@ public class GameObject {
 		boolean hasCollided = false;
 
 		// Displacement in X
-		displacementBox = new Rectangle(world.getPlayer().position.x + world.getPlayer().velocity.x,
-				world.getPlayer().position.y, world.getPlayer().bounds.width,
-				world.getPlayer().bounds.height);
+		displacementBox = new Rectangle(world.getPlayer().position.x
+				+ world.getPlayer().velocity.x, world.getPlayer().position.y,
+				world.getPlayer().bounds.width, world.getPlayer().bounds.height);
 
-		
 		collidingBlock = getCollidingBlock(displacementBox);
 		if (collidingBlock != null) {
-			hasCollided= true;
+			hasCollided = true;
 			collidingRect = collidingBlock.getPositionRectangle();
 			state = State.IDLE;
 
@@ -77,56 +76,53 @@ public class GameObject {
 						+ collidingBlock.bounds.width;
 			}
 
-		} 
-		
-		
-		
+		}
+
 		// Displacement in Y
 		displacementBox = new Rectangle(world.getPlayer().position.x,
 				world.getPlayer().position.y + world.getPlayer().velocity.y,
 				world.getPlayer().bounds.width, world.getPlayer().bounds.height);
-		
+
 		collidingBlock = getCollidingBlock(displacementBox);
-		
 
 		if (collidingBlock != null) {
 			collidingRect = collidingBlock.getPositionRectangle();
 			state = State.IDLE;
 			System.out.println(velocity.y);
 
-			if (velocity.y > 0) {
-				position.y = collidingBlock.position.y + bounds.height;
+			if (velocity.y < 0) {
+				position.y = collidingBlock.position.y + bounds.height+.1f;
 
 			} else {
 				position.y = collidingBlock.position.y
-						- collidingBlock.bounds.height;
+						- collidingBlock.bounds.height-.1f;
 			}
 
-		} 
-		
-		if(!hasCollided)
-				position.add(velocity);
+		}
+
+		if (!hasCollided)
+			position.add(velocity);
 	}
 
-//	private Rectangle getIntersectionRectangle(Rectangle playerRect,
-//			Rectangle collidingRect) {
-//
-//		Rectangle intersection = new Rectangle();
-//
-//		intersection.x = Math.max(playerRect.x, collidingRect.x);
-//		intersection.width = Math.min((playerRect.x + playerRect.width),
-//				collidingRect.x + collidingRect.width) - intersection.x;
-//		intersection.y = Math.max(playerRect.y, collidingRect.y);
-//		intersection.height = Math.min(playerRect.y + playerRect.height,
-//				collidingRect.y + collidingRect.height) - intersection.y;
-//
-//		if (world.getPlayer().position.x < collidingRect.x)
-//			intersection.width = -intersection.width;
-//		if (world.getPlayer().position.y < collidingRect.y)
-//			intersection.height = -intersection.height;
-//		return intersection;
-//
-//	}
+	// private Rectangle getIntersectionRectangle(Rectangle playerRect,
+	// Rectangle collidingRect) {
+	//
+	// Rectangle intersection = new Rectangle();
+	//
+	// intersection.x = Math.max(playerRect.x, collidingRect.x);
+	// intersection.width = Math.min((playerRect.x + playerRect.width),
+	// collidingRect.x + collidingRect.width) - intersection.x;
+	// intersection.y = Math.max(playerRect.y, collidingRect.y);
+	// intersection.height = Math.min(playerRect.y + playerRect.height,
+	// collidingRect.y + collidingRect.height) - intersection.y;
+	//
+	// if (world.getPlayer().position.x < collidingRect.x)
+	// intersection.width = -intersection.width;
+	// if (world.getPlayer().position.y < collidingRect.y)
+	// intersection.height = -intersection.height;
+	// return intersection;
+	//
+	// }
 
 	private Block getCollidingBlock(Rectangle rect) {
 		for (GameObject object : world.getDynamicObjects()) {
