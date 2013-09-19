@@ -12,7 +12,7 @@ public class GameObject {
 		IDLE, WALKING, JUMPING, DYING
 	}
 
-	static final float SPEED = 0.01f; // unit per second
+	static final float SPEED = 0.005f; // unit per second
 	static final float JUMP_VELOCITY = 1f;
 	static final float SIZE = Constants.SIZE; // half a unit
 
@@ -42,6 +42,7 @@ public class GameObject {
 		
 		if(!(this instanceof Player))
 			return;
+		world.collisionRects.clear();
 		tick++;
 		if(tick % 60 == 0){
 			System.out.println();
@@ -64,14 +65,14 @@ public class GameObject {
 			if (facingLeft) {
 				acceleration.set(-SPEED, acceleration.y);
 				velocity.set(velocity.x + acceleration.x, acceleration.y);
-				if (velocity.x < -0.5)
-					velocity.set(-0.5f, velocity.y);
+				if (velocity.x < -0.3)
+					velocity.set(-0.3f, velocity.y);
 
 			} else {
 				acceleration.set(SPEED, acceleration.y);
 				velocity.set(velocity.x + acceleration.x, acceleration.y);
-				if (velocity.x > 0.5)
-					velocity.set(0.5f, velocity.y);
+				if (velocity.x > 0.3)
+					velocity.set(0.3f, velocity.y);
 			}
 		}
 		boolean hasCollidedX = false;
@@ -84,6 +85,7 @@ public class GameObject {
 
 		collidingBlock = getCollidingBlock(displacementBox);
 		if (collidingBlock != null) {
+			world.collisionRects.add(collidingBlock.getPositionRectangle());
 			hasCollidedX = true;
 			collidingRect = collidingBlock.getPositionRectangle();
 			// state = State.IDLE;
@@ -106,10 +108,11 @@ public class GameObject {
 		collidingBlock = getCollidingBlock(displacementBox);
 
 		if (collidingBlock != null) {
+			world.collisionRects.add(collidingBlock.getPositionRectangle());
 			hasCollidedY = true;
 			collidingRect = collidingBlock.getPositionRectangle();
 			// state = State.IDLE;
-
+		
 			if (velocity.y > 0){
 				grounded = true;
 				

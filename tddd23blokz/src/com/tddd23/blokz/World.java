@@ -11,10 +11,18 @@ public class World {
 
 	private Player player;
 
-	Rectangle collisionRect = null;
+	ArrayList<Rectangle> collisionRects = new ArrayList<Rectangle>();
 
 	public ArrayList<GameObject> getDynamicObjects() {
 		return dynamicObjects;
+	}
+
+	public ArrayList<Rectangle> getCollisionRects() {
+		return collisionRects;
+	}
+
+	public void setCollisionRects(ArrayList<Rectangle> collisionRects) {
+		this.collisionRects = collisionRects;
 	}
 
 	private Vector2 gravity;

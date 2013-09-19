@@ -34,13 +34,13 @@ public class WorldRenderer {
 		renderPlayer();
 		renderDynamicObjects();
 
-		if (world.collisionRect != null) {
+		for (Rectangle r : world.getCollisionRects()) {
 			debugRenderer.begin(ShapeType.Filled);
 			debugRenderer.setColor(new Color(1, 1, 1, 0));
-			debugRenderer.rect(world.collisionRect.x, world.collisionRect.y,
-					world.collisionRect.width, world.collisionRect.height);
+			debugRenderer.rect(r.x, r.y,
+					r.width, r.height);
+			debugRenderer.end();
 		}
-
 		debugRenderer.end();
 	}
 
@@ -55,14 +55,14 @@ public class WorldRenderer {
 		}
 
 		// For determining collision detection
-//		debugRenderer.begin(ShapeType.Line);
-//		debugRenderer.setColor(new Color(1, 1, 1, 1));
-//		debugRenderer.rect(world.getPlayer().position.x
-//				+ world.getPlayer().velocity.x, world.getPlayer().position.y
-//				+ world.getPlayer().velocity.y, world.getPlayer().bounds.width,
-//				world.getPlayer().bounds.height);
-//
-//		debugRenderer.end();
+		// debugRenderer.begin(ShapeType.Line);
+		// debugRenderer.setColor(new Color(1, 1, 1, 1));
+		// debugRenderer.rect(world.getPlayer().position.x
+		// + world.getPlayer().velocity.x, world.getPlayer().position.y
+		// + world.getPlayer().velocity.y, world.getPlayer().bounds.width,
+		// world.getPlayer().bounds.height);
+		//
+		// debugRenderer.end();
 
 	}
 
