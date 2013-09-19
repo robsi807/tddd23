@@ -39,7 +39,13 @@ public class World {
 	/*
 	 * Creates dynamic objects and adds them to the worlds arraylist over
 	 * dynamicobjects
+	 * 
 	 */
+	
+	public void addDynamicObject(int posX, int posY){
+		dynamicObjects.add(BlockFactory.createBlock(posX, posY, this));
+		
+	}
 	private void createDynamicObjects() {
 		for (int y = 0; y < 39; y++) {
 			dynamicObjects.add(BlockFactory.createBlock(56, y, this));
@@ -52,37 +58,37 @@ public class World {
 
 		// Maze
 
-		for (int y = 3; y < 30; y += 3) {
-			int startX = 1;
-			int endX = 50;
-			if (y % 2 == 0) {
-				startX += 6;
-				endX += 6;
-			}
-			for (int x = startX; x < endX; x++)
-				dynamicObjects.add(BlockFactory.createBlock(x, y, this));
-
-		}
-		dynamicObjects.add(BlockFactory.createBlock(4, 35, this));
-		dynamicObjects.add(BlockFactory.createBlock(4, 37, this));
-		dynamicObjects.add(BlockFactory.createBlock(4, 32, this));
-		
-		
-		dynamicObjects.add(BlockFactory.createBlock(15, 35, this));
-		
-		
-		dynamicObjects.add(BlockFactory.createBlock(20, 32, this));
-		
-		
-		dynamicObjects.add(BlockFactory.createBlock(30, 35, this));
-		
-		dynamicObjects.add(BlockFactory.createBlock(35, 34, this));
-		
-		dynamicObjects.add(BlockFactory.createBlock(40, 33, this));
-		
-		dynamicObjects.add(BlockFactory.createBlock(45, 32, this));
-		
-		dynamicObjects.add(BlockFactory.createBlock(50, 31, this));
+//		for (int y = 3; y < 30; y += 3) {
+//			int startX = 1;
+//			int endX = 50;
+//			if (y % 2 == 0) {
+//				startX += 6;
+//				endX += 6;
+//			}
+//			for (int x = startX; x < endX; x++)
+//				dynamicObjects.add(BlockFactory.createBlock(x, y, this));
+//
+//		}
+//		dynamicObjects.add(BlockFactory.createBlock(4, 35, this));
+//		dynamicObjects.add(BlockFactory.createBlock(4, 37, this));
+//		dynamicObjects.add(BlockFactory.createBlock(4, 32, this));
+//		
+//		
+//		dynamicObjects.add(BlockFactory.createBlock(15, 35, this));
+//		
+//		
+//		dynamicObjects.add(BlockFactory.createBlock(20, 32, this));
+//		
+//		
+//		dynamicObjects.add(BlockFactory.createBlock(30, 35, this));
+//		
+//		dynamicObjects.add(BlockFactory.createBlock(35, 34, this));
+//		
+//		dynamicObjects.add(BlockFactory.createBlock(40, 33, this));
+//		
+//		dynamicObjects.add(BlockFactory.createBlock(45, 32, this));
+//		
+//		dynamicObjects.add(BlockFactory.createBlock(50, 31, this));
 		
 	}
 

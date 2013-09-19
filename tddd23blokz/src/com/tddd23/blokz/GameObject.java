@@ -43,16 +43,16 @@ public class GameObject {
 		if(!(this instanceof Player))
 			return;
 		world.collisionRects.clear();
-		tick++;
-		if(tick % 60 == 0){
-			System.out.println();
-			System.out.println(tick /60);
-			System.out.println("PlayerAcceleration: X: "+ acceleration.x+" Y: "+acceleration.y);
-			System.out.println("PlayerVelocity: X: "+ velocity.x+" Y: "+velocity.y);
-			System.out.println("PlayerPosition: X: "+ position.x+" Y: "+position.y);
-			System.out.println("På marken: "+grounded);
-			
-		}
+//		tick++;
+//		if(tick % 60 == 0){
+//			System.out.println();
+//			System.out.println(tick /60);
+//			System.out.println("PlayerAcceleration: X: "+ acceleration.x+" Y: "+acceleration.y);
+//			System.out.println("PlayerVelocity: X: "+ velocity.x+" Y: "+velocity.y);
+//			System.out.println("PlayerPosition: X: "+ position.x+" Y: "+position.y);
+//			System.out.println("På marken: "+grounded);
+//			
+//		}
 		
 		acceleration.y += world.getGravity().y;
 		if (state == State.IDLE) {

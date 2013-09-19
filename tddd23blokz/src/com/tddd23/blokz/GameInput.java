@@ -2,17 +2,20 @@ package com.tddd23.blokz;
 
 import javax.swing.JEditorPane;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.tddd23.blokz.GameObject.State;
 
 public class GameInput implements InputProcessor {
-
+	
+	private World world;
 	private Blokz game;
 	private Player player;
 	private boolean walkRight = false, walkLeft = false;
 
-	public GameInput(Player player, Blokz game) {
-		this.player = player;
+	public GameInput(World world, Blokz game) {
+		this.world = world;
+		this.player = world.getPlayer();
 		this.game = game;
 	}
 
@@ -84,13 +87,17 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
+		float percentageX = (float)screenX/Gdx.graphics.getWidth();
+		float percentageY = (float)screenY/Gdx.graphics.getHeight();
+	    world.addDynamicObject((int)(percentageX*57), (int)(percentageY*39));
 		return false;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
+		float percentageX = (float)screenX/Gdx.graphics.getWidth();
+		float percentageY = (float)screenY/Gdx.graphics.getHeight();
+	    world.addDynamicObject((int)(percentageX*57), (int)(percentageY*39));
 		return false;
 	}
 

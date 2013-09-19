@@ -15,7 +15,7 @@ public class GameScreen implements Screen {
 		fpsLog = new FPSLogger();
 		world = new World();
 		renderer = new WorldRenderer(world);
-		Gdx.input.setInputProcessor(new GameInput(world.getPlayer(), game));
+		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
 
 	@Override
