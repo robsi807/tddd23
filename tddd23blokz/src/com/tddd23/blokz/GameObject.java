@@ -56,19 +56,7 @@ public class GameObject {
 				bounds.height);
 	}
 	
-	private int tick;
-	private void playerPositionDebugText(){
-		tick++;
-		if(tick % 60 == 0){
-			System.out.println();
-			System.out.println(tick /60);
-			System.out.println("PlayerAcceleration: X: "+ acceleration.x+" Y: "+acceleration.y);
-			System.out.println("PlayerVelocity: X: "+ velocity.x+" Y: "+velocity.y);
-			System.out.println("PlayerPosition: X: "+ position.x+" Y: "+position.y);
-			System.out.println("På marken: "+grounded);
-			
-		}
-	}
+	
 
 	/*
 	 * Used for testing collision detection
