@@ -19,7 +19,9 @@ public class GameObject {
 	Vector2 velocity = new Vector2();
 	Rectangle bounds = new Rectangle();
 	State state = State.IDLE;
-
+	
+	
+	private boolean hasCollidedX, hasCollidedY, grounded;
 	private World world;
 	boolean facingLeft = true;
 	private Rectangle displacementBox;
@@ -55,8 +57,9 @@ public class GameObject {
 					velocity.set(0.5f, velocity.y);
 			}
 		}
-		boolean hasCollided = false;
-
+		boolean hasCollidedX = false;
+		boolean hasCollidedY = false;
+		
 		// Displacement in X
 		displacementBox = new Rectangle(world.getPlayer().position.x
 				+ world.getPlayer().velocity.x, world.getPlayer().position.y,
@@ -64,9 +67,10 @@ public class GameObject {
 
 		collidingBlock = getCollidingBlock(displacementBox);
 		if (collidingBlock != null) {
-			hasCollided = true;
+			System.out.println("Kolliderar i x-led");
+			hasCollidedX = true;
 			collidingRect = collidingBlock.getPositionRectangle();
-			state = State.IDLE;
+//			state = State.IDLE;
 
 			if (velocity.x > 0) {
 				position.x = collidingBlock.position.x - bounds.width;
@@ -86,21 +90,33 @@ public class GameObject {
 		collidingBlock = getCollidingBlock(displacementBox);
 
 		if (collidingBlock != null) {
+			System.out.println("Kolliderar i y-led");
+			hasCollidedY = true;
 			collidingRect = collidingBlock.getPositionRectangle();
-			state = State.IDLE;
-			System.out.println(velocity.y);
+//			state = State.IDLE;
+			
+			if(velocity.y <0)
+				grounded = true;
 
 			if (velocity.y < 0) {
-				position.y = collidingBlock.position.y + bounds.height+.1f;
+				position.y = collidingBlock.position.y + bounds.height;
 
 			} else {
 				position.y = collidingBlock.position.y
-						- collidingBlock.bounds.height-.1f;
+						- collidingBlock.bounds.height;
 			}
 
 		}
 
-		if (!hasCollided)
+		
+		if (hasCollidedX)
+			velocity.x = 0;
+		if (hasCollidedY)
+			velocity.y = 0;
+		
+
+		
+//		if (!hasCollidedX && !hasCollidedY)
 			position.add(velocity);
 	}
 
