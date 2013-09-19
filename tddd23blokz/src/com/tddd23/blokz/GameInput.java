@@ -25,9 +25,13 @@ public class GameInput implements InputProcessor {
 		case 32:
 			walkRight = true;
 			return processMove();
+		case 62:
+			player.jump();
+			return processMove();
 		case 131:
 			game.exitGame();
 			return true;
+
 		}
 
 		return false;
@@ -35,7 +39,7 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		
+
 		switch (keycode) {
 		case 29:
 			walkLeft = false;
@@ -43,9 +47,7 @@ public class GameInput implements InputProcessor {
 		case 32:
 			walkRight = false;
 			return processMove();
-		case 62:
-			player.flipGravity();
-			return processMove();
+
 		}
 		return false;
 	}

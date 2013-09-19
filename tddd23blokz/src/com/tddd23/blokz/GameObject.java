@@ -2,6 +2,8 @@ package com.tddd23.blokz;
 
 import javax.crypto.spec.PSource;
 
+import sun.java2d.StateTrackable.State;
+
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -19,8 +21,10 @@ public class GameObject {
 	Vector2 velocity = new Vector2();
 	Rectangle bounds = new Rectangle();
 	State state = State.IDLE;
+	int tick;
 
-	private boolean hasCollidedX, hasCollidedY, grounded;
+	private boolean hasCollidedX, hasCollidedY;
+	protected boolean grounded;
 	private World world;
 	boolean facingLeft = true;
 	private Rectangle displacementBox;
@@ -35,14 +39,26 @@ public class GameObject {
 	}
 
 	public void update() {
+		
 		if(!(this instanceof Player))
 			return;
-		acceleration.y = world.getGravity().y;
-		System.out.println(acceleration.y);
+		tick++;
+		if(tick % 60 == 0){
+			System.out.println();
+			System.out.println(tick /60);
+			System.out.println("PlayerAcceleration: X: "+ acceleration.x+" Y: "+acceleration.y);
+			System.out.println("PlayerVelocity: X: "+ velocity.x+" Y: "+velocity.y);
+			System.out.println("PlayerPosition: X: "+ position.x+" Y: "+position.y);
+			System.out.println("På marken: "+grounded);
+			
+		}
+		
+		acceleration.y += world.getGravity().y;
 		if (state == State.IDLE) {
-			System.out.println("japp");
 			velocity.set(0,acceleration.y);
 		}
+		if(acceleration.y > Constants.MAX_FALLING_ACCELERATION)
+			acceleration.y = Constants.MAX_FALLING_ACCELERATION;
 
 		if (state == State.WALKING) {
 			if (facingLeft) {
@@ -68,7 +84,6 @@ public class GameObject {
 
 		collidingBlock = getCollidingBlock(displacementBox);
 		if (collidingBlock != null) {
-			System.out.println("Kolliderar i x-led");
 			hasCollidedX = true;
 			collidingRect = collidingBlock.getPositionRectangle();
 			// state = State.IDLE;
@@ -91,14 +106,16 @@ public class GameObject {
 		collidingBlock = getCollidingBlock(displacementBox);
 
 		if (collidingBlock != null) {
-			System.out.println("Kolliderar i y-led");
 			hasCollidedY = true;
 			collidingRect = collidingBlock.getPositionRectangle();
 			// state = State.IDLE;
 
-			if (velocity.y < 0)
+			if (velocity.y > 0){
 				grounded = true;
-
+				
+			}else{
+				acceleration.y = world.getGravity().y;
+			}
 			if (velocity.y < 0) {
 				position.y = collidingBlock.position.y + bounds.height;
 
@@ -107,6 +124,8 @@ public class GameObject {
 						- collidingBlock.bounds.height;
 			}
 
+		}else{
+			grounded = false;
 		}
 
 		if (hasCollidedX)

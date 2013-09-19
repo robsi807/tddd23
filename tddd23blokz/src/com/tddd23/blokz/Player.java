@@ -8,4 +8,12 @@ public class Player extends GameObject {
 		super(position, world);
 	}
 
+	public void jump() {
+		System.out.println("jsd");
+		if (grounded) {
+			acceleration.add(new Vector2(0, -0.5f));
+			System.out.println("asd");
+		}
+	}
+
 }

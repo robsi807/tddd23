@@ -20,7 +20,7 @@ public class World {
 	private Vector2 gravity;
 
 	public World() {
-		gravity = new Vector2(0, -0.05f);
+		gravity = Constants.WORLD_GRAVITY;
 		this.dynamicObjects = new ArrayList<GameObject>();
 		createPlayer();
 		createDynamicObjects();
@@ -56,12 +56,26 @@ public class World {
 
 		}
 		dynamicObjects.add(BlockFactory.createBlock(4, 35, this));
-		dynamicObjects.add(BlockFactory.createBlock(15, 35, this));
-		dynamicObjects.add(BlockFactory.createBlock(30, 35, this));
 		dynamicObjects.add(BlockFactory.createBlock(4, 37, this));
-		dynamicObjects.add(BlockFactory.createBlock(4, 38, this));
-		dynamicObjects.add(BlockFactory.createBlock(20, 32, this));
 		dynamicObjects.add(BlockFactory.createBlock(4, 32, this));
+		
+		
+		dynamicObjects.add(BlockFactory.createBlock(15, 35, this));
+		
+		
+		dynamicObjects.add(BlockFactory.createBlock(20, 32, this));
+		
+		
+		dynamicObjects.add(BlockFactory.createBlock(30, 35, this));
+		
+		dynamicObjects.add(BlockFactory.createBlock(35, 34, this));
+		
+		dynamicObjects.add(BlockFactory.createBlock(40, 33, this));
+		
+		dynamicObjects.add(BlockFactory.createBlock(45, 32, this));
+		
+		dynamicObjects.add(BlockFactory.createBlock(50, 31, this));
+		
 	}
 
 	/*
