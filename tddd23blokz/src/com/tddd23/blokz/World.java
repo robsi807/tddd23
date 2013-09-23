@@ -7,13 +7,68 @@ import com.badlogic.gdx.math.Vector2;
 
 public class World {
 
-	private ArrayList<GameObject> dynamicObjects;
+	private ArrayList<MovableObject> dynamicObjects;
+
+	private Block[][] blocks;
 
 	private Player player;
 
 	ArrayList<Rectangle> collisionRects = new ArrayList<Rectangle>();
 
-	public ArrayList<GameObject> getDynamicObjects() {
+	private Vector2 gravity;
+
+	public World(int nrOfBlocksWidth, int nrOfBlocksHeight) {
+		gravity = Constants.WORLD_GRAVITY;
+		this.dynamicObjects = new ArrayList<MovableObject>();
+		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
+		initBlocks(); // test method
+		createPlayer();
+		createDynamicObjects();
+	}
+
+	public void addBlockObject(int posX, int posY) {
+		if (blocks[posX][posY] == null) {
+			blocks[posX][posY] = BlockFactory.createBlock(posX, posY, this);
+		}
+
+	}
+
+	private void createDynamicObjects() {
+		// for (int y = 0; y < 39; y++) {
+		// dynamicObjects.add(BlockFactory.createBlock(56, y, this));
+		// dynamicObjects.add(BlockFactory.createBlock(0, y, this));
+		// }
+		// for (int x = 0; x < 57; x++) {
+		// dynamicObjects.add(BlockFactory.createBlock(x, 38, this));
+		// dynamicObjects.add(BlockFactory.createBlock(x, 0, this));
+		// }
+
+	}
+
+	private void initBlocks() {
+		for (int y = 0; y < blocks[0].length; y++) {
+			for (int x = 0; x < blocks.length; x++) {
+				if (x == blocks.length - 1 || x == 0 || y == 0
+						|| y == blocks[0].length - 1) {
+					blocks[x][y] = BlockFactory.createBlock(x, y, this);
+				}
+			}
+		}
+	}
+
+	private void createPlayer() {
+		this.player = new Player(new Vector2(Constants.SIZE * 10,
+				Constants.SIZE * 10), this);
+	}
+
+	public void update() {
+		player.update();
+		for (MovableObject obj : dynamicObjects) {
+			obj.update();
+		}
+	}
+
+	public ArrayList<MovableObject> getDynamicObjects() {
 		return dynamicObjects;
 	}
 
@@ -25,44 +80,6 @@ public class World {
 		this.collisionRects = collisionRects;
 	}
 
-	private Vector2 gravity;
-
-	public World() {
-		gravity = Constants.WORLD_GRAVITY;
-		this.dynamicObjects = new ArrayList<GameObject>();
-		createPlayer();
-		createDynamicObjects();
-	}
-	
-	public void addDynamicObject(int posX, int posY){
-		dynamicObjects.add(BlockFactory.createBlock(posX, posY, this));
-		
-	}
-	private void createDynamicObjects() {
-		for (int y = 0; y < 39; y++) {
-			dynamicObjects.add(BlockFactory.createBlock(56, y, this));
-			dynamicObjects.add(BlockFactory.createBlock(0, y, this));
-		}
-		for (int x = 0; x < 57; x++) {
-			dynamicObjects.add(BlockFactory.createBlock(x, 38, this));
-			dynamicObjects.add(BlockFactory.createBlock(x, 0, this));
-		}
-
-		
-	}
-
-	private void createPlayer() {
-		this.player = new Player(new Vector2(Constants.SIZE * 30,
-				Constants.SIZE * 30), this);
-	}
-
-	public void update() {
-		player.update();
-		for (GameObject obj : dynamicObjects) {
-			obj.update();
-		}
-	}
-
 	public Player getPlayer() {
 		return player;
 	}
@@ -71,8 +88,12 @@ public class World {
 		return gravity;
 	}
 
-	public void addDynamicObject(GameObject go) {
+	public void addDynamicObject(MovableObject go) {
 		dynamicObjects.add(go);
+	}
+
+	public Block[][] getBlocks() {
+		return blocks;
 	}
 
 }

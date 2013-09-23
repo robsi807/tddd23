@@ -1,9 +1,5 @@
 package com.tddd23.blokz;
 
-import javax.crypto.spec.PSource;
-
-import sun.java2d.StateTrackable.State;
-
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -22,8 +18,6 @@ public class GameObject {
 	Rectangle bounds = new Rectangle();
 	State state = State.IDLE;
 
-
-	private boolean hasCollidedX, hasCollidedY;
 	protected boolean grounded;
 	protected World world;
 	boolean facingLeft = true;
@@ -38,25 +32,12 @@ public class GameObject {
 		this.world = world;
 	}
 
-	public void update() {
-		
-	}
-
-	protected Block getCollidingBlock(Rectangle rect) {
-		for (GameObject object : world.getDynamicObjects()) {
-			if (object.getPositionRectangle().overlaps(rect)) {
-				return (Block) object;
-			}
-		}
-		return null;
-	}
+	
 
 	public Rectangle getPositionRectangle() {
 		return new Rectangle(position.x, position.y, bounds.width,
 				bounds.height);
 	}
-	
-	
 
 	/*
 	 * Used for testing collision detection

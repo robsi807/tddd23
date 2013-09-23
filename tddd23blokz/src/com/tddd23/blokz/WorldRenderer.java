@@ -1,7 +1,5 @@
 package com.tddd23.blokz;
 
-import java.util.ArrayList;
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -33,20 +31,35 @@ public class WorldRenderer {
 
 		renderPlayer();
 		renderDynamicObjects();
+		renderBlocks();
 
 		for (Rectangle r : world.getCollisionRects()) {
 			debugRenderer.begin(ShapeType.Filled);
 			debugRenderer.setColor(new Color(1, 1, 1, 0));
-			debugRenderer.rect(r.x, r.y,
-					r.width, r.height);
+			debugRenderer.rect(r.x, r.y, r.width, r.height);
 			debugRenderer.end();
 		}
 		debugRenderer.end();
 	}
 
+	private void renderBlocks() {
+		for (int y = 0; y < world.getBlocks()[0].length; y++) {
+			for (int x = 0; x < world.getBlocks().length; x++) {
+				if (world.getBlocks()[x][y] != null) {
+					debugRenderer.begin(ShapeType.Line);
+					debugRenderer.setColor(new Color(1, 1, 1, 0));
+					debugRenderer.rect(world.getBlocks()[x][y].position.x,
+							world.getBlocks()[x][y].position.y,
+							world.getBlocks()[x][y].bounds.width,
+							world.getBlocks()[x][y].bounds.height);
+					debugRenderer.end();
+				}
+			}
+		}
+	}
+
 	private void renderDynamicObjects() {
-		ArrayList<GameObject> dynamicObjects = world.getDynamicObjects();
-		for (GameObject object : dynamicObjects) {
+		for (GameObject object : world.getDynamicObjects()) {
 			debugRenderer.begin(ShapeType.Line);
 			debugRenderer.setColor(new Color(1, 1, 1, 0));
 			debugRenderer.rect(object.position.x, object.position.y,
