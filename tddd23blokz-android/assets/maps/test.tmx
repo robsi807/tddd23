@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="max_blocks" value="64"/>
+ </properties>
+ <tileset firstgid="1" name="test" tilewidth="16" tileheight="16">
+  <image source="tilesetTest.png" trans="ff00ff" width="128" height="128"/>
+  <tile id="1">
+   <properties>
+    <property name="destroyable" value=""/>
+    <property name="solid" value=""/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="solid" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztwwENAAAMw6DOv+kLOSSsmqqqqu8ezqADhQ==
+  </data>
+ </layer>
+ <layer name="blocks" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGAS7AhMbGhkcB9cBICs+R5FdaA2YCYujy2NSTay82jE9+KAJc/qQ1HgX0AQCUuwCa
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="30">
+  <object name="Trigger" type="jump" x="128" y="240" width="16" height="16"/>
+  <object name="Goal" type="goal" x="208" y="368" width="16" height="16"/>
+  <object name="spawn" x="48" y="224">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

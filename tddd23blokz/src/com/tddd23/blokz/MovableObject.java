@@ -1,39 +1,46 @@
 package com.tddd23.blokz;
 
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class MovableObject extends GameObject implements Movable {
 
+	private TiledMapTileLayer blocks;
+	private Block collidingBlock;
+
 	public MovableObject(Vector2 position, World world) {
 		super(position, world);
+		blocks = (TiledMapTileLayer) world.getMap().getLayers().get("blocks");
 	}
 
 	@Override
-	public void update() {
+	public void update(float delta) {
 		world.collisionRects.clear();
 
 		acceleration.y += world.getGravity().y;
+
 		if (state == State.IDLE) {
 			velocity.set(0, acceleration.y);
 		}
-		if (acceleration.y > Constants.MAX_FALLING_SPEED)
-			acceleration.y = Constants.MAX_FALLING_SPEED;
+		if (Math.abs(acceleration.y) > Constants.MAX_FALLING_SPEED)
+			acceleration.y = -Constants.MAX_FALLING_SPEED;
 
 		if (state == State.WALKING) {
 			if (facingLeft) {
 				acceleration.set(-SPEED, acceleration.y);
 				velocity.set(velocity.x + acceleration.x, acceleration.y);
-				if (velocity.x < -0.3)
-					velocity.set(-0.3f, velocity.y);
+				if (velocity.x < -Constants.MAX_MOVING_SPEED)
+					velocity.set(-Constants.MAX_MOVING_SPEED, velocity.y);
 
 			} else {
 				acceleration.set(SPEED, acceleration.y);
 				velocity.set(velocity.x + acceleration.x, acceleration.y);
-				if (velocity.x > 0.3)
-					velocity.set(0.3f, velocity.y);
+				if (velocity.x > Constants.MAX_MOVING_SPEED)
+					velocity.set(Constants.MAX_MOVING_SPEED, velocity.y);
 			}
 		}
+
 		boolean hasCollidedX = false;
 		boolean hasCollidedY = false;
 
@@ -94,17 +101,27 @@ public class MovableObject extends GameObject implements Movable {
 	}
 
 	protected Block getCollidingBlock(Rectangle rect) {
-		for (int y = 0; y < world.getBlocks()[0].length; y++) {
-			for (int x = 0; x < world.getBlocks().length; x++) {
-				if (world.getBlocks()[x][y] != null
-						&& world.getBlocks()[x][y].getPositionRectangle()
-								.overlaps(rect)) {
-					return (Block) world.getBlocks()[x][y];
+
+		collidingBlock = null;
+
+		// loop all the tiles
+		for (int y = 0; y < world.getMapSize().height; y++) {
+			for (int x = 0; x < world.getMapSize().width; x++) {
+
+				// if a block exists and is solid
+				if (blocks.getCell(x, y) != null
+						&& blocks.getCell(x, y).getTile().getProperties()
+								.containsKey("solid")) {
+					// do they overlaps?
+					collidingBlock = new Block(
+							new Vector2(x * blocks.getTileWidth(), y
+									* blocks.getTileHeight()), world);
+					if (collidingBlock.getPositionRectangle().overlaps(rect))
+						return collidingBlock;
 				}
 
 			}
 		}
 		return null;
 	}
-
 }

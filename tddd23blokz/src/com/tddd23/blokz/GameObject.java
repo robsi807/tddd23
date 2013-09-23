@@ -8,8 +8,8 @@ public class GameObject {
 		IDLE, WALKING, JUMPING, DYING
 	}
 
-	static final float SPEED = 0.005f; // unit per second
-	static final float JUMP_VELOCITY = 1f;
+	static final float SPEED = 0.5f; // unit per second
+	static final float JUMP_VELOCITY = 10f;
 	static final float SIZE = Constants.SIZE; // half a unit
 
 	Vector2 position = new Vector2();

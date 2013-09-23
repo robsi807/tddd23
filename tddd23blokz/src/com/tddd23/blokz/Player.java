@@ -8,13 +8,13 @@ public class Player extends MovableObject {
 
 	public Player(Vector2 position, World world) {
 		super(position, world);
-		bounds.height = .65f;
-		bounds.width = .9f;
+		bounds.height = 28f;
+		bounds.width = 16;
 	}
 
 	public void jump() {
 		if (grounded) {
-			acceleration.add(new Vector2(0, -0.5f));
+			acceleration.add(new Vector2(0, 5f));
 		}
 	}
 
