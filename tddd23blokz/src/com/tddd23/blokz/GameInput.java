@@ -103,8 +103,13 @@ public class GameInput implements InputProcessor {
 		clickPoint.x = (int) (clickPoint.x - (clickPoint.x%Constants.SIZE));
 		clickPoint.y = (int) (clickPoint.y - (clickPoint.y%Constants.SIZE));
 		
+		
+		
 		if(clickPoint.y <0 || clickPoint.x < 0 || clickPoint.x>=world.getMapSize().width || clickPoint.y>=world.getMapSize().height)
-			return false;
+			return false; //Utanför
+		
+		if(!world.isPlaceable(clickPoint.x, clickPoint.y))
+			return false;//Klickat på ett befintlig block
 		world.addBlockObject(clickPoint.x, clickPoint.y);
 		
 		return false;
@@ -117,8 +122,13 @@ public class GameInput implements InputProcessor {
 		clickPoint.x = (int) (clickPoint.x - (clickPoint.x%Constants.SIZE));
 		clickPoint.y = (int) (clickPoint.y - (clickPoint.y%Constants.SIZE));
 		
+		
+		
 		if(clickPoint.y <0 || clickPoint.x < 0 || clickPoint.x>=world.getMapSize().width || clickPoint.y>=world.getMapSize().height)
-			return false;
+			return false; //Utanför
+		
+		if(!world.isPlaceable(clickPoint.x, clickPoint.y))
+			return false;//Klickat på ett befintlig block
 		world.addBlockObject(clickPoint.x, clickPoint.y);
 		
 		return false;

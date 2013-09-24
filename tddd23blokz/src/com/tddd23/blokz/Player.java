@@ -13,7 +13,7 @@ public class Player extends MovableObject {
 	}
 
 	public void jump() {
-		playerPositionDebugText();
+//		playerPositionDebugText();
 		if (grounded) {
 			grounded = true;
 			acceleration.y = Constants.MAX_FALLING_SPEED+1;

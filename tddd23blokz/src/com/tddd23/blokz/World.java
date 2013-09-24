@@ -5,11 +5,8 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -44,6 +41,25 @@ public class World {
 
 	public void createPlayer() {
 		this.player = new Player(new Vector2(spawnPoint.x, spawnPoint.y), this);
+	}
+
+	private TiledMapTileLayer blockLayer;
+	private Rectangle rect;
+
+	public boolean isPlaceable(int x, int y) {
+		blockLayer = (TiledMapTileLayer) map.getLayers().get("blocks");
+		if (blockLayer.getCell((int) (x / Constants.SIZE),
+				(int) (y / Constants.SIZE)) != null)
+			return false;
+
+		rect = new Rectangle(x, y, Constants.SIZE, Constants.SIZE);
+		if (player.getPositionRectangle().overlaps(rect))
+			return false;
+
+		for (MovableObject obj : dynamicObjects)
+			if (obj.getPositionRectangle().overlaps(rect))
+				return false;
+		return true;
 	}
 
 	public void update() {

@@ -61,7 +61,7 @@ public class MovableObject extends GameObject implements Movable {
 
 			} else {
 				position.x = collidingRectangle.x
-						- collidingRectangle.width;
+						- bounds.width;
 			}
 
 		}
