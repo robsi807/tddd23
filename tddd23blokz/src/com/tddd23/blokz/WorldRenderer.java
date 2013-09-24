@@ -24,7 +24,7 @@ public class WorldRenderer {
 	public WorldRenderer(World world) {
 		this.world = world;
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth()/(16/9), Gdx.graphics.getHeight());
-		cam.zoom = 0.7f;
+		cam.zoom = 0.5f;
 
 		debugRenderer = new ShapeRenderer();
 		
@@ -88,9 +88,16 @@ public class WorldRenderer {
 	}
 
 	private void moveCamera() {
+		
 		//får fina avrundningsfel när vi castar till int tror jag
 		cam.position.set((int) world.getPlayer().position.x,
 				(int) world.getPlayer().position.y, 0);
+		
+		if(cam.position.x < world.getMapSize().width*cam.zoom+16)
+			cam.position.x = (int)world.getMapSize().width*cam.zoom+16;
+		if(cam.position.x > world.getMapSize().width*(1-cam.zoom)-8)
+			cam.position.x = (int)world.getMapSize().width*(1-cam.zoom)-8;
+//		System.out.println("Cam X:"+cam.position.x+" Cam y:"+cam.position.y+"    "+ world.getMapSize().width);
 		cam.update();
 	}
 

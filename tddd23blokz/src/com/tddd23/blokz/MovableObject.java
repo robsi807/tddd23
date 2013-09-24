@@ -23,7 +23,7 @@ public class MovableObject extends GameObject implements Movable {
 		if (state == State.IDLE) {
 			velocity.set(0, acceleration.y);
 		}
-		if (Math.abs(acceleration.y) > Constants.MAX_FALLING_SPEED)
+		if (acceleration.y < -Constants.MAX_FALLING_SPEED)
 			acceleration.y = -Constants.MAX_FALLING_SPEED;
 
 		if (state == State.WALKING) {
@@ -53,12 +53,12 @@ public class MovableObject extends GameObject implements Movable {
 			world.collisionRects.add(collidingBlock.getPositionRectangle());
 			hasCollidedX = true;
 			// state = State.IDLE;
-			if (velocity.x > 0) {
-				position.x = collidingBlock.position.x - bounds.width;
+			if (velocity.x < 0) {
+				position.x = collidingBlock.position.x + collidingBlock.bounds.width;
 
 			} else {
 				position.x = collidingBlock.position.x
-						+ collidingBlock.bounds.width;
+						- collidingBlock.bounds.width;
 			}
 
 		}
@@ -73,9 +73,9 @@ public class MovableObject extends GameObject implements Movable {
 			world.collisionRects.add(collidingBlock.getPositionRectangle());
 			hasCollidedY = true;
 
-			if (velocity.y > 0) {
+			if (velocity.y < 0) {
 				grounded = true;
-				acceleration.y = Constants.MAX_FALLING_SPEED;
+				acceleration.y = 0;
 			} else { // Collision with block above player,
 				acceleration.y = 0;
 			}

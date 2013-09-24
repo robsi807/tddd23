@@ -40,7 +40,6 @@ public class World {
 		if (blocks[posX][posY] == null) {
 			blocks[posX][posY] = BlockFactory.createBlock(posX, posY, this);
 		}
-
 	}
 
 	public void createPlayer() {

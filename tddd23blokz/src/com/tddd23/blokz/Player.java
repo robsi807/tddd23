@@ -13,14 +13,15 @@ public class Player extends MovableObject {
 	}
 
 	public void jump() {
+		playerPositionDebugText();
 		if (grounded) {
-			acceleration.add(new Vector2(0, 5f));
+			grounded = true;
+			acceleration.y = Constants.MAX_FALLING_SPEED+1;
 		}
 	}
 
 	private void playerPositionDebugText() {
-		tick++;
-		if (tick % 60 == 0) {
+
 			System.out.println();
 			System.out.println(tick / 60);
 			System.out.println("PlayerAcceleration: X: " + acceleration.x
@@ -31,7 +32,7 @@ public class Player extends MovableObject {
 					+ position.y);
 			System.out.println("På marken: " + grounded);
 
-		}
+		
 	}
 
 }
