@@ -103,7 +103,7 @@ public class GameInput implements InputProcessor {
 		clickPoint.x = (int) (clickPoint.x - (clickPoint.x%Constants.SIZE));
 		clickPoint.y = (int) (clickPoint.y - (clickPoint.y%Constants.SIZE));
 		
-		
+		System.out.println("X:"+clickPoint.x+" Y:"+clickPoint.y);
 		
 		if(clickPoint.y <0 || clickPoint.x < 0 || clickPoint.x>=world.getMapSize().width || clickPoint.y>=world.getMapSize().height)
 			return false; //Utanför
@@ -123,7 +123,7 @@ public class GameInput implements InputProcessor {
 		clickPoint.y = (int) (clickPoint.y - (clickPoint.y%Constants.SIZE));
 		
 		
-		
+
 		if(clickPoint.y <0 || clickPoint.x < 0 || clickPoint.x>=world.getMapSize().width || clickPoint.y>=world.getMapSize().height)
 			return false; //Utanför
 		

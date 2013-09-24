@@ -3,20 +3,7 @@
  <properties>
   <property name="max_blocks" value="64"/>
  </properties>
- <tileset firstgid="1" name="test" tilewidth="16" tileheight="16">
-  <image source="tilesetTest.png" trans="ff00ff" width="128" height="128"/>
-  <tile id="1">
-   <properties>
-    <property name="destroyable" value=""/>
-    <property name="solid" value=""/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="solid" value=""/>
-   </properties>
-  </tile>
- </tileset>
+ <tileset firstgid="1" source="../../../../../Tiled/Tileset.tsx"/>
  <layer name="Tile Layer 1" width="30" height="30">
   <data encoding="base64" compression="zlib">
    eJztwwENAAAMw6DOv+kLOSSsmqqqqu8ezqADhQ==
@@ -24,13 +11,13 @@
  </layer>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApGAS7AhMbGhkcB9cBICs+R5FdaA2YCYujy2NSTay82jE9+KAJc/qQ1HgX0AQCUuwCa
+   eJzt0kEKACEMA8BW///nvWpBqjZaYRMoXjSDYhWRmjS3Q5cuXbp06a66ZbNbgy7aRLpqVi/o++qk/Zo7+15/c1V6C+F6HSMT5Xo9dm/0P6/02HMRt7Vvu6eS7WbMB0pSAYw=
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
   <object name="Trigger" type="jump" x="128" y="240" width="16" height="16"/>
   <object name="Goal" type="goal" x="208" y="368" width="16" height="16"/>
-  <object name="spawn" x="48" y="224">
+  <object name="spawn" x="252" y="188">
    <properties>
     <property name="spawn_point" value=""/>
    </properties>

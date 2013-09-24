@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -20,6 +21,7 @@ public class WorldRenderer {
 
 	private ShapeRenderer debugRenderer;
 
+	
 	private World world;
 
 	/** for debug rendering **/
@@ -77,20 +79,21 @@ public class WorldRenderer {
 	private void moveCamera() {
 
 		// får fina avrundningsfel när vi castar till int tror jag
-//		cam.position.set((int) world.getPlayer().position.x,
-//				(int) world.getPlayer().position.y, 0);
-		
+		// cam.position.set((int) world.getPlayer().position.x,
+		// (int) world.getPlayer().position.y, 0);
 		cam.position.set(world.getPlayer().position.x,
-			 world.getPlayer().position.y, 0);
+				world.getPlayer().position.y, 0);
 
-
-		// if (cam.position.x < world.getMapSize().width * cam.zoom + 16)
-		// cam.position.x = (int) world.getMapSize().width * cam.zoom + 16;
-		// if (cam.position.x > world.getMapSize().width * (1 - cam.zoom) - 8)
-		// cam.position.x = (int) world.getMapSize().width * (1 - cam.zoom)
-		// - 8;
-		// System.out.println("Cam X:"+cam.position.x+" Cam y:"+cam.position.y+"    "+
-		// world.getMapSize().width);
+		// if (cam.position.x < world.getMapSize().width *
+		// cam.zoom+((1-cam.zoom)*Constants.SIZE))
+		// cam.position.x = world.getMapSize().width *
+		// cam.zoom+((1-cam.zoom)*Constants.SIZE);
+		// if (cam.position.x > world.getMapSize().width * (1 -
+		// cam.zoom)-((1-cam.zoom)*Constants.SIZE))
+		// cam.position.x = world.getMapSize().width * (1 -
+		// cam.zoom)-((1-cam.zoom)*Constants.SIZE);
+		// System.out.println("Cam X:" + cam.position.x + " Cam y:"
+		// + cam.position.y + "    " + world.getMapSize().width);
 		cam.update();
 	}
 

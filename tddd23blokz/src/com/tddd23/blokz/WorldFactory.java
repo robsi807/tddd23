@@ -19,7 +19,6 @@ public class WorldFactory {
 		int mapWidth = prop.get("width", Integer.class);
 		int mapHeight = prop.get("height", Integer.class);
 		
-
 		World world = new World(mapWidth*16, mapHeight*16);
 
 		world.setMap(map);

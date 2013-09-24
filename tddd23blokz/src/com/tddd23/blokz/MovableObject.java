@@ -13,6 +13,7 @@ public class MovableObject extends GameObject implements Movable {
 	public MovableObject(Vector2 position, World world) {
 		super(position, world);
 		blocks = (TiledMapTileLayer) world.getMap().getLayers().get("blocks");
+		System.out.println(blocks);
 	}
 
 	@Override

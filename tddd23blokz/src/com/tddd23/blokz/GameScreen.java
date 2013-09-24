@@ -12,7 +12,7 @@ public class GameScreen implements Screen {
 	private World world;
 
 	public GameScreen(Blokz game) {
-		world = WorldFactory.createMap("test");
+		world = WorldFactory.createMap("test2");
 		renderer = new WorldRenderer(world);
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
