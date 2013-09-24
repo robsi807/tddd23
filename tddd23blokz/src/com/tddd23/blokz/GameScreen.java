@@ -27,6 +27,10 @@ public class GameScreen implements Screen {
 
 	}
 
+	public WorldRenderer getRenderer() {
+		return renderer;
+	}
+
 	private void updateGame() {
 		world.update();
 	}
@@ -61,5 +65,7 @@ public class GameScreen implements Screen {
 		world.getMap().dispose();
 		renderer.getRenderer().dispose();
 	}
+	
+	
 
 }

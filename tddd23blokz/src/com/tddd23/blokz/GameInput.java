@@ -1,9 +1,13 @@
 package com.tddd23.blokz;
 
+import java.awt.Point;
+
 import javax.swing.JEditorPane;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.GameObject.State;
 
 public class GameInput implements InputProcessor {
@@ -12,7 +16,10 @@ public class GameInput implements InputProcessor {
 	private Blokz game;
 	private Player player;
 	private boolean walkRight = false, walkLeft = false;
-
+	private Ray ray;
+	private Point clickPoint;
+	
+	
 	public GameInput(World world, Blokz game) {
 		this.world = world;
 		this.player = world.getPlayer();
@@ -85,19 +92,35 @@ public class GameInput implements InputProcessor {
 		return false;
 	}
 
-	@Override
+
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		float percentageX = (float)screenX/Gdx.graphics.getWidth();
-		float percentageY = (float)screenY/Gdx.graphics.getHeight();
-//	    world.addBlockObject((int)(percentageX*Constants.numberOfBlocksOnScreen.x), (int)(percentageY*Constants.numberOfBlocksOnScreen.y));
+		if(button == 1){
+			world.getDynamicObjects().clear();
+			return false;
+		}
+		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
+		clickPoint  = new Point((int)ray.origin.x,(int)ray.origin.y);
+		clickPoint.x = (int) (clickPoint.x - (clickPoint.x%Constants.SIZE));
+		clickPoint.y = (int) (clickPoint.y - (clickPoint.y%Constants.SIZE));
+		
+		if(clickPoint.y <0 || clickPoint.x < 0 || clickPoint.x>=world.getMapSize().width || clickPoint.y>=world.getMapSize().height)
+			return false;
+		world.addBlockObject(clickPoint.x, clickPoint.y);
+		
 		return false;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		float percentageX = (float)screenX/Gdx.graphics.getWidth();
-		float percentageY = (float)screenY/Gdx.graphics.getHeight();
-//	    world.addBlockObject((int)(percentageX*57), (int)(percentageY*39));
+		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
+		clickPoint  = new Point((int)ray.origin.x,(int)ray.origin.y);
+		clickPoint.x = (int) (clickPoint.x - (clickPoint.x%Constants.SIZE));
+		clickPoint.y = (int) (clickPoint.y - (clickPoint.y%Constants.SIZE));
+		
+		if(clickPoint.y <0 || clickPoint.x < 0 || clickPoint.x>=world.getMapSize().width || clickPoint.y>=world.getMapSize().height)
+			return false;
+		world.addBlockObject(clickPoint.x, clickPoint.y);
+		
 		return false;
 	}
 

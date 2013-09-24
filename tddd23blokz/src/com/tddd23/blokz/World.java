@@ -36,10 +36,10 @@ public class World {
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
 	}
 
-	public void addBlockObject(int posX, int posY) {
-		if (blocks[posX][posY] == null) {
-			blocks[posX][posY] = BlockFactory.createBlock(posX, posY, this);
-		}
+	public void addBlockObject(float posX, float posY) {
+		MovableObject obj = new MovableObject(new Vector2(posX, posY), this);
+		obj.setMovable(false);
+		dynamicObjects.add(obj);
 	}
 
 	public void createPlayer() {

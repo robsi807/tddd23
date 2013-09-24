@@ -5,8 +5,14 @@ import com.badlogic.gdx.Gdx;
 
 public class Blokz extends Game {
 
+	private GameScreen gameScreen;
 	public void create() {
-		setScreen(new GameScreen(this));
+		gameScreen = new GameScreen(this);
+		setScreen(gameScreen);
+	}
+
+	public GameScreen getGameScreen() {
+		return gameScreen;
 	}
 
 	public void exitGame() {
