@@ -62,10 +62,10 @@ public class World {
 		return true;
 	}
 
-	public void update() {
-		player.update(Gdx.graphics.getDeltaTime());
+	public void update(float delta) {
+		player.update(delta);
 		for (MovableObject obj : dynamicObjects) {
-			obj.update(Gdx.graphics.getDeltaTime());
+			obj.update(delta);
 		}
 	}
 

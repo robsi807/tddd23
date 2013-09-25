@@ -25,7 +25,7 @@ public class DebugWindow {
 	public DebugWindow(World world, Graphics graphics, ShapeRenderer renderer) {
 		consoleCam = new OrthographicCamera(1024, 768);
 		lines = new String[12];
-		for(int x=0;x<12;x++)
+		for (int x = 0; x < 12; x++)
 			lines[x] = "";
 		this.world = world;
 		this.renderer = renderer;
@@ -37,7 +37,7 @@ public class DebugWindow {
 
 	public void render() {
 		spriteBatch.setProjectionMatrix(consoleCam.combined);
-	
+
 		consoleCam.position.set(graphics.getWidth() / 2,
 				graphics.getHeight() / 2, 0.0f);
 		// update camera
@@ -62,14 +62,14 @@ public class DebugWindow {
 			font.draw(spriteBatch, lines[pos], 10, 190 - pos * 15);
 
 		spriteBatch.end();
-		
+
 		spriteBatch.begin();
-		font.draw(spriteBatch,"X: "+
-				(int)world.getPlayer().position.x + " Y: "
-						+ (int)world.getPlayer().position.y,graphics.getWidth()/2 ,graphics.getHeight()/2);
-		font.draw(spriteBatch,"dX: "+
-				world.getPlayer().acceleration.x + " dY: "
-						+ world.getPlayer().acceleration.y,graphics.getWidth()/2 ,graphics.getHeight()/2-15);
+		font.draw(spriteBatch, "X: " + (int) world.getPlayer().getPosition().x
+				+ " Y: " + (int) world.getPlayer().getPosition().y,
+				graphics.getWidth() / 2, graphics.getHeight() / 2);
+		font.draw(spriteBatch, "dX: " + world.getPlayer().getAcceleration().x
+				+ " dY: " + world.getPlayer().getAcceleration().y,
+				graphics.getWidth() / 2, graphics.getHeight() / 2 - 15);
 		spriteBatch.end();
 
 		consoleCam.update();
