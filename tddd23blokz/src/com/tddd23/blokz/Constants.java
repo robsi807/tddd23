@@ -11,7 +11,7 @@ public class Constants {
 	public static final float MAX_FALLING_SPEED = 5f;
 	public static final float JUMPING_SPEED = 3f;
 	public static final float MAX_MOVING_SPEED = 1f;
-	public static final Vector2 WORLD_GRAVITY = new Vector2(0, -0.05f);
+	public static final Vector2 WORLD_GRAVITY = new Vector2(0, -0.07f);
 	public static final Texture BLOCK_DIRT = new Texture(
 			"images/hej.png");
 }
