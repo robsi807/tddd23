@@ -48,7 +48,6 @@ public class World {
 
 	public boolean isPlaceable(int x, int y) {
 		blockLayer = (TiledMapTileLayer) map.getLayers().get("blocks");
-		System.out.println("asd");
 		if (blockLayer.getCell((int) (x / Constants.SIZE),
 				(int) (y / Constants.SIZE)) != null)
 			return false;

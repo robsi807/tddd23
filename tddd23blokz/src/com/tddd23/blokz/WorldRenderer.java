@@ -15,13 +15,11 @@ public class WorldRenderer {
 	private OrthogonalTiledMapRenderer renderer;
 	private OrthographicCamera cam;
 
-	public OrthographicCamera getCam() {
-		return cam;
-	}
+	private DebugWindow debugWindow;
+	private boolean debugMode = false;
 
 	private ShapeRenderer debugRenderer;
 
-	
 	private World world;
 
 	/** for debug rendering **/
@@ -33,7 +31,7 @@ public class WorldRenderer {
 		cam.zoom = 0.33f;
 
 		debugRenderer = new ShapeRenderer();
-
+		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 		renderer = new OrthogonalTiledMapRenderer(world.getMap());
 
 		this.cam.update();
@@ -58,6 +56,7 @@ public class WorldRenderer {
 	}
 
 	private void renderDynamicObjects() {
+
 		for (GameObject object : world.getDynamicObjects()) {
 			debugRenderer.begin(ShapeType.Line);
 			debugRenderer.setColor(new Color(1, 1, 1, 0));
@@ -65,6 +64,9 @@ public class WorldRenderer {
 					object.bounds.width, object.bounds.height);
 			debugRenderer.end();
 		}
+
+		if (debugMode)
+			debugWindow.render();
 	}
 
 	private void renderPlayer() {
@@ -97,12 +99,36 @@ public class WorldRenderer {
 		cam.update();
 	}
 
+	public ShapeRenderer getDebugRenderer() {
+		return debugRenderer;
+	}
+
 	public OrthogonalTiledMapRenderer getRenderer() {
 		return renderer;
 	}
 
 	public Ray getRay(int screenX, int screenY) {
 		return cam.getPickRay(screenX, screenY);
+	}
+
+	public OrthographicCamera getCam() {
+		return cam;
+	}
+
+	public boolean isDebugMode() {
+		return debugMode;
+	}
+
+	public void switchDebugMode() {
+		if (debugMode)
+			debugMode = false;
+		else
+			debugMode = true;
+
+	}
+
+	public void debug(String text) {
+		debugWindow.addText(text);
 	}
 
 }

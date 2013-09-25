@@ -4,8 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Player extends MovableObject {
 
-	private int tick;
-
 	public Player(Vector2 position, World world) {
 		super(position, world);
 		bounds.height = 28f;
@@ -13,26 +11,24 @@ public class Player extends MovableObject {
 	}
 
 	public void jump() {
-//		playerPositionDebugText();
 		if (grounded) {
+//			playerPositionDebugText();
 			grounded = true;
-			acceleration.y = Constants.MAX_FALLING_SPEED+1;
+			acceleration.y = Constants.JUMPING_SPEED;
 		}
 	}
 
 	private void playerPositionDebugText() {
 
-			System.out.println();
-			System.out.println(tick / 60);
-			System.out.println("PlayerAcceleration: X: " + acceleration.x
-					+ " Y: " + acceleration.y);
-			System.out.println("PlayerVelocity: X: " + velocity.x + " Y: "
-					+ velocity.y);
-			System.out.println("PlayerPosition: X: " + position.x + " Y: "
-					+ position.y);
-			System.out.println("På marken: " + grounded);
+		DebugWindow.addText(" ");
+		DebugWindow.addText("PlayerAcceleration: X: " + acceleration.x + " Y: "
+				+ acceleration.y);
+		DebugWindow.addText("PlayerVelocity: X: " + velocity.x + " Y: "
+				+ velocity.y);
+		DebugWindow.addText("PlayerPosition: X: " + position.x + " Y: "
+				+ position.y);
+		DebugWindow.addText("På marken: " + grounded);
 
-		
 	}
 
 }
