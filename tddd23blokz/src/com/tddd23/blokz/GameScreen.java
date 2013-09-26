@@ -2,9 +2,6 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.GL10;
-import com.tddd23.blokz.gfx.WorldRenderer;
 
 public class GameScreen implements Screen {
 
@@ -22,7 +19,7 @@ public class GameScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		updateGame(delta);
-		renderer.render(delta);
+		renderer.render();
 	}
 
 	public WorldRenderer getRenderer() {

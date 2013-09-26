@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
@@ -21,6 +22,9 @@ public class WorldRenderer {
 	private ShapeRenderer debugRenderer;
 
 	private World world;
+	
+	private SpriteBatch spriteBatch;
+	private Texture sourceTexture;
 
 	/** for debug rendering **/
 
@@ -30,6 +34,9 @@ public class WorldRenderer {
 				Gdx.graphics.getHeight());
 		cam.zoom = 0.33f;
 
+		ImageCache.load();
+		spriteBatch = new SpriteBatch();
+		sourceTexture = new Texture("images/SpriteSheet.png");  
 		debugRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 		renderer = new OrthogonalTiledMapRenderer(world.getMap());
@@ -47,8 +54,8 @@ public class WorldRenderer {
 		renderer.setView(cam);
 		renderer.render();
 
+		spriteBatch.setProjectionMatrix(cam.combined);
 		debugRenderer.setProjectionMatrix(cam.combined);
-
 		renderPlayer();
 		renderDynamicObjects();
 		// renderBlocks();
@@ -58,11 +65,9 @@ public class WorldRenderer {
 	private void renderDynamicObjects() {
 
 		for (GameObject object : world.getDynamicObjects()) {
-			debugRenderer.begin(ShapeType.Line);
-			debugRenderer.setColor(new Color(1, 1, 1, 0));
-			debugRenderer.rect(object.position.x, object.position.y,
-					object.bounds.width, object.bounds.height);
-			debugRenderer.end();
+			spriteBatch.begin();
+			spriteBatch.draw(ImageCache.getTexture("placed_block"), object.getPosition().x, object.getPosition().y);
+			spriteBatch.end();
 		}
 
 		if (debugMode)
@@ -73,8 +78,8 @@ public class WorldRenderer {
 		Player player = world.getPlayer();
 		debugRenderer.begin(ShapeType.Filled);
 		debugRenderer.setColor(new Color(1, 0, 0, 1));
-		debugRenderer.rect(player.position.x, player.position.y,
-				player.bounds.width, player.bounds.height);
+		debugRenderer.rect(player.getPosition().x, player.getPosition().y,
+				player.getBounds().width, player.getBounds().height);
 		debugRenderer.end();
 	}
 
@@ -83,8 +88,8 @@ public class WorldRenderer {
 		// får fina avrundningsfel när vi castar till int tror jag
 		// cam.position.set((int) world.getPlayer().position.x,
 		// (int) world.getPlayer().position.y, 0);
-		cam.position.set(world.getPlayer().position.x,
-				world.getPlayer().position.y, 0);
+		cam.position.set(world.getPlayer().getPosition().x,
+				world.getPlayer().getPosition().y, 0);
 
 		// if (cam.position.x < world.getMapSize().width *
 		// cam.zoom+((1-cam.zoom)*Constants.SIZE))
