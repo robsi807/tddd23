@@ -6,10 +6,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.collision.Ray;
+import com.tddd23.blokz.GameObject.State;
+import com.tddd23.blokz.gfx.DebugWindow;
+import com.tddd23.blokz.gfx.ImageCache;
+import com.tddd23.blokz.gfx.TextureHandler;
 
 public class WorldRenderer {
 
@@ -22,9 +27,11 @@ public class WorldRenderer {
 	private ShapeRenderer debugRenderer;
 
 	private World world;
-	
+
 	private SpriteBatch spriteBatch;
 	private Texture sourceTexture;
+
+	private TextureRegion playerRegion;
 
 	/** for debug rendering **/
 
@@ -36,7 +43,8 @@ public class WorldRenderer {
 
 		ImageCache.load();
 		spriteBatch = new SpriteBatch();
-		sourceTexture = new Texture("images/SpriteSheet.png");  
+
+		TextureHandler.init();
 		debugRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 		renderer = new OrthogonalTiledMapRenderer(world.getMap());
@@ -66,7 +74,8 @@ public class WorldRenderer {
 
 		for (GameObject object : world.getDynamicObjects()) {
 			spriteBatch.begin();
-			spriteBatch.draw(ImageCache.getTexture("placed_block"), object.getPosition().x, object.getPosition().y);
+			spriteBatch.draw(TextureHandler.placed_Block,
+					object.getPosition().x, object.getPosition().y);
 			spriteBatch.end();
 		}
 
@@ -75,12 +84,17 @@ public class WorldRenderer {
 	}
 
 	private void renderPlayer() {
-		Player player = world.getPlayer();
-		debugRenderer.begin(ShapeType.Filled);
-		debugRenderer.setColor(new Color(1, 0, 0, 1));
-		debugRenderer.rect(player.getPosition().x, player.getPosition().y,
-				player.getBounds().width, player.getBounds().height);
-		debugRenderer.end();
+		playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_idle
+				: TextureHandler.player_right_idle;
+		if (world.getPlayer().state.equals(State.WALKING)) {
+			playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_animation
+					.getKeyFrame(world.getPlayer().getStateTime(), true)
+					: TextureHandler.player_right_animation.getKeyFrame(world.getPlayer().getStateTime(), true);
+		}
+		spriteBatch.begin();
+		spriteBatch.draw(playerRegion, world.getPlayer().getPosition().x,
+				world.getPlayer().getPosition().y, world.getPlayer().getBounds().width, world.getPlayer().getBounds().height);
+		spriteBatch.end();
 	}
 
 	private void moveCamera() {
@@ -88,8 +102,8 @@ public class WorldRenderer {
 		// får fina avrundningsfel när vi castar till int tror jag
 		// cam.position.set((int) world.getPlayer().position.x,
 		// (int) world.getPlayer().position.y, 0);
-		cam.position.set(world.getPlayer().getPosition().x,
-				world.getPlayer().getPosition().y, 0);
+		cam.position.set(world.getPlayer().getPosition().x, world.getPlayer()
+				.getPosition().y, 0);
 
 		// if (cam.position.x < world.getMapSize().width *
 		// cam.zoom+((1-cam.zoom)*Constants.SIZE))

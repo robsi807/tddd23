@@ -62,6 +62,12 @@ public class World {
 		return true;
 	}
 
+	public MovableObject getDynamicObjectAt(int x, int y){
+		for (MovableObject obj : dynamicObjects)
+			if (obj.getPositionRectangle().overlaps(rect))
+				return obj;
+		return null;
+	}
 	public void update(float delta) {
 		player.update(delta);
 		for (MovableObject obj : dynamicObjects) {

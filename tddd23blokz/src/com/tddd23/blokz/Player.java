@@ -1,6 +1,7 @@
 package com.tddd23.blokz;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tddd23.blokz.gfx.DebugWindow;
 
 public class Player extends MovableObject {
 
@@ -8,6 +9,7 @@ public class Player extends MovableObject {
 		super(position, world);
 		getBounds().height = 28f;
 		getBounds().width = 16;
+		setMovable(true);
 	}
 
 	public void jump() {
@@ -27,6 +29,7 @@ public class Player extends MovableObject {
 		DebugWindow.addText("PlayergetPosition(): X: " + getPosition().x
 				+ " Y: " + getPosition().y);
 		DebugWindow.addText("På marken: " + grounded);
+		
 
 	}
 

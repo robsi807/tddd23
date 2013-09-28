@@ -8,7 +8,8 @@ public class MovableObject extends GameObject implements Movable {
 
 	private TiledMapTileLayer blocks;
 	private Rectangle collidingRectangle;
-	private boolean movable = true;;
+	private boolean movable = true;
+	private float stateTime =0;
 
 	public MovableObject(Vector2 position, World world) {
 		super(position, world);
@@ -17,8 +18,10 @@ public class MovableObject extends GameObject implements Movable {
 
 	@Override
 	public void update(float delta) {
-		if (!movable || !(this instanceof Player))
+		stateTime += delta;
+		if (!movable)
 			return;
+		
 		world.collisionRects.clear();
 
 		getAcceleration().y += world.getGravity().y;
@@ -96,9 +99,12 @@ public class MovableObject extends GameObject implements Movable {
 			getVelocity().x = 0;
 		if (hasCollidedY)
 			getVelocity().y = 0;
-
 		getPosition().add(getVelocity());
 
+	}
+
+	public float getStateTime() {
+		return stateTime;
 	}
 
 	protected Rectangle getCollidingBlock(Rectangle rect) {

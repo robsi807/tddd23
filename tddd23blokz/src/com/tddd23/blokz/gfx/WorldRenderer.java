@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.collision.Ray;
-import com.tddd23.blokz.DebugWindow;
 import com.tddd23.blokz.GameObject;
 import com.tddd23.blokz.Player;
 import com.tddd23.blokz.World;

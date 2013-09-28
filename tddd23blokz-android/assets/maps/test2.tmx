@@ -17,11 +17,14 @@
    </properties>
   </tile>
  </tileset>
- <layer name="background" width="100" height="100" visible="0">
+ <layer name="background" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAMBKH7/qUHy6Hgqqmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqv8AX0MnEQ==
   </data>
  </layer>
+ <imagelayer name="Image Layer 1" width="100" height="100">
+  <image source="../../../../../Bilder/heaven.jpg"/>
+ </imagelayer>
  <objectgroup name="objects" width="100" height="100">
   <object name="spawn" x="233" y="1348">
    <properties>

@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>libgdx</string>
         <key>textureFileName</key>
-        <filename>SpriteSheet.png</filename>
+        <filename></filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -74,7 +74,7 @@
             <key>freeSizeMode</key>
             <enum type="AlgorithmSettings::AlgorithmFreeSizeMode">Best</enum>
             <key>sizeConstraints</key>
-            <enum type="AlgorithmSettings::SizeConstraints">AnySize</enum>
+            <enum type="AlgorithmSettings::SizeConstraints">POT</enum>
             <key>forceSquared</key>
             <false/>
             <key>forceWordAligned</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>SpriteSheet.txt</filename>
+        <filename></filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>
@@ -148,7 +148,11 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename></filename>
+            <filename>../../../../../Bilder/left_idle.png</filename>
+            <filename>../../../../../Bilder/left_running0.png</filename>
+            <filename>../../../../../Bilder/left_running1.png</filename>
+            <filename>../../../../../Bilder/left_running2.png</filename>
+            <filename>SpriteSheet.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

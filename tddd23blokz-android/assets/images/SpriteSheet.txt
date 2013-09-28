@@ -2,10 +2,38 @@ SpriteSheet.png
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-placed_block
+right_idle
+  rotate: false
+  xy: 56, 2
+  size: 16, 28
+  orig: 16, 28
+  offset: 0, 0
+  index: -1
+right_running2
   rotate: false
   xy: 2, 2
+  size: 16, 28
+  orig: 16, 28
+  offset: 0, 0
+  index: -1
+right_running0
+  rotate: false
+  xy: 38, 2
+  size: 16, 28
+  orig: 16, 28
+  offset: 0, 0
+  index: -1
+placed_block
+  rotate: false
+  xy: 74, 2
   size: 16, 16
   orig: 16, 16
+  offset: 0, 0
+  index: -1
+right_running1
+  rotate: false
+  xy: 20, 2
+  size: 16, 28
+  orig: 16, 28
   offset: 0, 0
   index: -1
