@@ -62,7 +62,7 @@ public class WorldRenderer {
 
 		spriteBatch.setProjectionMatrix(cam.combined);
 		debugRenderer.setProjectionMatrix(cam.combined);
-		renderBlocks();
+		 renderBlocks();
 		renderPlayer();
 		renderDynamicObjects();
 
@@ -70,8 +70,8 @@ public class WorldRenderer {
 
 	private void renderBlocks() {
 
-		for (int y = 0; y < world.getMapSize().height; y++) {
-			for (int x = 0; x < world.getMapSize().width; x++) {
+		for (int y = 0; y < (int) (world.getMapSize().height / Constants.SIZE); y++) {
+			for (int x = 0; x < (int) (world.getMapSize().width / Constants.SIZE); x++) {
 				if (world.getBlocks()[x][y] != null) {
 					spriteBatch.begin();
 					spriteBatch.draw(TextureHandler.placed_Block,
