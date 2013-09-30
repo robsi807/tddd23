@@ -95,14 +95,12 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 		collidingRectangle = null;
 		if (world != null) {
-			relevantCoords.getRelevantCoordinates(getPosition(), world);
-			// loop all the tiles
+			relevantCoords.setRelevantCoordinates(getPosition(), world);
+
 			for (int y = relevantCoords.minY; y < relevantCoords.maxY; y++) {
-				System.out.println("--------------");
 				for (int x = relevantCoords.minX; x < relevantCoords.maxX; x++) {
-					// if a block exists and is solid
+
 					if (world.getBlocks()[x][y] != null) {
-						System.out.println("found dat blck");
 						collidingRectangle = world.getBlocks()[x][y]
 								.getPositionRectangle();
 						// do they overlaps?

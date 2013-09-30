@@ -37,13 +37,13 @@ public class World {
 	}
 
 	public void addBlockObject(float posX, float posY) {
-		// blocks[posX][posY] = new Block(new Vector2(posX, posY), this);
-		// dynamicObjects.add(obj);
+		blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
+				new Vector2(posX, posY), this);
 	}
 
 	public void createPlayer() {
 		this.player = new Player(new Vector2(spawnPoint.x, spawnPoint.y),
-				Constants.SPEED * 2, this);
+				Constants.SPEED * 5, this);
 	}
 
 	public boolean isPlaceable(int x, int y) {
