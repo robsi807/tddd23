@@ -22,19 +22,21 @@
    eJztwwEJAAAMBKH7/qUHy6Hgqqmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqv8AX0MnEQ==
   </data>
  </layer>
- <imagelayer name="Image Layer 1" width="100" height="100">
-  <image source="../../../../../Bilder/heaven.jpg"/>
- </imagelayer>
  <objectgroup name="objects" width="100" height="100">
-  <object name="spawn" x="233" y="1348">
+  <object name="spawn" x="352" y="1168">
    <properties>
     <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="160" y="1392" width="1280" height="48">
+   <properties>
+    <property name="trigger_player_jump" value="2"/>
    </properties>
   </object>
  </objectgroup>
  <layer name="blocks" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt00EKgCAARUHB+9+5I6gV9RbzQP6mhSQzxxjTSZ1hE+tNelu4g+WjuoU7WD6qW7iD5aO6p+/m3D8n/3n1rZ518ia73+h+fLTioxUfrfhoxUcrPlrx0YqPVny04qMVH634aMVHKz5a8dGKj1Z8tOKjFR+t+GjFRys+WvHRio9WfLTioxUfrfhoxUcrPlrx0YqPVny04qMVH634aMVHKz5a8dGKj1Z8tOKjFR+t+GjFRys+WvHRio9WfLTioxUfrfhoxUcrPlrx0YqPVny04qMVH634aMVHKz5a8dGKj1Z8tOKjFR+t+GjFRys+WvHRio9WfLTioxUfrfhoxUcrPlq97cN55+z859U39ps9eTf73Zv8fQfLR3ULd7B8VLdwB8tHdZ3WuQDMxhlR
+   eJzt10EKg0AQAEHB//8590DQ3ajpaDUMc/GwZCk067Isq0nNYie2O+ntwhlsPqq7cAabj+ounMHmo7pH783Mz8jvvPWsvmvkTvY+o/n4aMVHKz5a8dGKj1Z8tOKjFR+t+GjFRys+WvHRio9WfLTioxUfrfhoxUcrPlrx0YqPVny04qMVH634aMVHKz5a8dGKj1Z8tOKjFR+t+GjFRys+WvHRio9WfLTioxUfrfhoxUcrPlrx0YqPVny04qMVH634aMVHKz5a8dGKj1Z8tOKjFR+t+GjFRys+WvHRio9WfLTioxUfrfhoxUcrPlpd6eP9bj/Nk+OjlfdHKz5a8dHqH32c8T1w9HfG7Fn4OK/Ze9zaNR93rurjqf9N7u5jz3uhdN9VH0/taB/mmNnzO289Y1+zR+7Nvu5Ofn0Gm4/qLpzB5qO6C2ew+ahu05oXbmgZ5A==
   </data>
  </layer>
 </map>

@@ -9,9 +9,11 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.triggers.Triggerable;
 
 public class World {
 
+	private ArrayList<Triggerable> triggers;
 	private ArrayList<MovableObject> dynamicObjects;
 	private Block[][] blocks;
 	private Player player;
@@ -22,10 +24,16 @@ public class World {
 
 	private int maxNrOfBlocks;
 
-	ArrayList<Rectangle> collisionRects = new ArrayList<Rectangle>();
-
 	private TiledMapTileLayer blockLayer;
 	private Rectangle rect;
+
+	public ArrayList<Triggerable> getTriggers() {
+		return triggers;
+	}
+
+	public void addTrigger(Triggerable trigger) {
+		triggers.add(trigger);
+	}
 
 	private Vector2 gravity;
 
@@ -33,6 +41,7 @@ public class World {
 		mapSize = new Dimension(nrOfBlocksWidth, nrOfBlocksHeight);
 		gravity = Constants.WORLD_GRAVITY;
 		this.dynamicObjects = new ArrayList<MovableObject>();
+		this.triggers = new ArrayList<Triggerable>();
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
 	}
 
@@ -78,14 +87,6 @@ public class World {
 
 	public ArrayList<MovableObject> getDynamicObjects() {
 		return dynamicObjects;
-	}
-
-	public ArrayList<Rectangle> getCollisionRects() {
-		return collisionRects;
-	}
-
-	public void setCollisionRects(ArrayList<Rectangle> collisionRects) {
-		this.collisionRects = collisionRects;
 	}
 
 	public Player getPlayer() {

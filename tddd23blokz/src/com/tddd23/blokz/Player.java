@@ -17,9 +17,12 @@ public class Player extends MovableObject {
 		setMovable(true);
 	}
 
+	public void jump(float multiplier) {
+		getAcceleration().y = Constants.JUMPING_SPEED ;
+	}
+
 	public void jump() {
 		if (grounded) {
-			grounded = true;
 			getAcceleration().y = Constants.JUMPING_SPEED;
 		}
 	}

@@ -11,8 +11,8 @@ public class Main {
 		cfg.width = 1024;
 		cfg.height = 768;
 
-		//cfg.fullscreen = true;
-		cfg.vSyncEnabled = true;
+//		cfg.fullscreen = true;
+//		cfg.vSyncEnabled = true;
 
 		new LwjglApplication(new Blokz(), cfg);
 	}

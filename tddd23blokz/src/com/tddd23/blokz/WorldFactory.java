@@ -10,6 +10,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.triggers.DeathTrigger;
+import com.tddd23.blokz.triggers.JumpTrigger;
 
 public class WorldFactory {
 
@@ -56,16 +58,16 @@ public class WorldFactory {
 			if (properties.containsKey("spawn_point")) {
 				world.setSpawnPoint(new Point((int) rectObj.getRectangle().x,
 						(int) rectObj.getRectangle().y));
+				world.createPlayer();
 			}
-
-			// if (properties.containsKey("movable_block")) {
-			//
-			// }
+			if (properties.containsKey("trigger_player_jump")) {
+				world.addTrigger(new JumpTrigger(world.getPlayer(), rectObj
+						.getRectangle()));
+			}
 
 		}
 
-		world.createPlayer();
-
+	
 		return world;
 	}
 

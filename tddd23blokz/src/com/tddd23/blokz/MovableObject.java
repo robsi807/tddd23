@@ -2,6 +2,7 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.tddd23.blokz.triggers.Triggerable;
 
 public abstract class MovableObject extends GameObject implements Movable {
 
@@ -26,8 +27,6 @@ public abstract class MovableObject extends GameObject implements Movable {
 		stateTime += delta;
 		if (!movable)
 			return;
-
-		world.collisionRects.clear();
 
 		addGravity();
 		updateObject();
@@ -56,6 +55,8 @@ public abstract class MovableObject extends GameObject implements Movable {
 		displacementBox = new Rectangle(getPosition().x, getPosition().y
 				+ getVelocity().y, getBounds().width, getBounds().height);
 
+		if(checkForTriggers(displacementBox))
+			return;
 		collidingRectangle = getCollidingBlock(displacementBox);
 
 		if (collidingRectangle != null) {
@@ -85,6 +86,17 @@ public abstract class MovableObject extends GameObject implements Movable {
 			getVelocity().y = 0;
 		getPosition().add(getVelocity());
 
+	}
+
+	private boolean checkForTriggers(Rectangle displacementRectangle) {
+		for (Triggerable trigger : world.getTriggers()) {
+			if (trigger.getBounds().overlaps(displacementRectangle)) {
+				System.out.println("Overlaps");
+				trigger.trigger();
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public float getStateTime() {
