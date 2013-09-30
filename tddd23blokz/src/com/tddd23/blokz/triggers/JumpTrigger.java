@@ -11,8 +11,7 @@ public class JumpTrigger extends PlayerTrigger{
 	}
 
 	public void trigger() {
-		System.out.println("asd");
-		player.jump(2f);
+		player.jump(1);
 	}
 
 }

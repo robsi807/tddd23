@@ -35,7 +35,7 @@ public class WorldRenderer {
 		this.world = world;
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());
-		cam.zoom = 0.33f;
+//		cam.zoom = 10f; The fuck hände här då :o
 
 		debugRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);

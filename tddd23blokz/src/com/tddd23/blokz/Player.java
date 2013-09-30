@@ -18,7 +18,7 @@ public class Player extends MovableObject {
 	}
 
 	public void jump(float multiplier) {
-		getAcceleration().y = Constants.JUMPING_SPEED ;
+		getAcceleration().y = Constants.JUMPING_SPEED*multiplier;
 	}
 
 	public void jump() {
