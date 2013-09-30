@@ -1,17 +1,15 @@
 package com.tddd23.blokz;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.collision.Ray;
-import com.tddd23.blokz.GameObject.State;
+import com.tddd23.blokz.Player.State;
 import com.tddd23.blokz.gfx.DebugWindow;
 import com.tddd23.blokz.gfx.ImageCache;
 import com.tddd23.blokz.gfx.TextureHandler;
@@ -59,19 +57,33 @@ public class WorldRenderer {
 
 		moveCamera(); // moves the camera to the player location
 
-		renderer.setView(cam);
-		renderer.render();
+		// renderer.setView(cam);
+		// renderer.render();
 
 		spriteBatch.setProjectionMatrix(cam.combined);
 		debugRenderer.setProjectionMatrix(cam.combined);
+		renderBlocks();
 		renderPlayer();
 		renderDynamicObjects();
-		// renderBlocks();
 
 	}
 
-	private void renderDynamicObjects() {
+	private void renderBlocks() {
 
+		for (int y = 0; y < world.getMapSize().height; y++) {
+			for (int x = 0; x < world.getMapSize().width; x++) {
+				if (world.getBlocks()[x][y] != null) {
+					spriteBatch.begin();
+					spriteBatch.draw(TextureHandler.placed_Block,
+							world.getBlocks()[x][y].getPosition().x,
+							world.getBlocks()[x][y].getPosition().y);
+					spriteBatch.end();
+				}
+			}
+		}
+	}
+
+	private void renderDynamicObjects() {
 		for (GameObject object : world.getDynamicObjects()) {
 			spriteBatch.begin();
 			spriteBatch.draw(TextureHandler.placed_Block,
@@ -86,14 +98,17 @@ public class WorldRenderer {
 	private void renderPlayer() {
 		playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_idle
 				: TextureHandler.player_right_idle;
-		if (world.getPlayer().state.equals(State.WALKING)) {
+		if (world.getPlayer().getState().equals(State.WALKING)) {
 			playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_animation
 					.getKeyFrame(world.getPlayer().getStateTime(), true)
-					: TextureHandler.player_right_animation.getKeyFrame(world.getPlayer().getStateTime(), true);
+					: TextureHandler.player_right_animation.getKeyFrame(world
+							.getPlayer().getStateTime(), true);
 		}
 		spriteBatch.begin();
-		spriteBatch.draw(playerRegion, world.getPlayer().getPosition().x,
-				world.getPlayer().getPosition().y, world.getPlayer().getBounds().width, world.getPlayer().getBounds().height);
+		spriteBatch.draw(playerRegion, world.getPlayer().getPosition().x, world
+				.getPlayer().getPosition().y,
+				world.getPlayer().getBounds().width, world.getPlayer()
+						.getBounds().height);
 		spriteBatch.end();
 	}
 

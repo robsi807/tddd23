@@ -4,11 +4,11 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.tddd23.blokz.blocks.Block;
 
 public class World {
 
@@ -24,6 +24,9 @@ public class World {
 
 	ArrayList<Rectangle> collisionRects = new ArrayList<Rectangle>();
 
+	private TiledMapTileLayer blockLayer;
+	private Rectangle rect;
+
 	private Vector2 gravity;
 
 	public World(int nrOfBlocksWidth, int nrOfBlocksHeight) {
@@ -34,17 +37,14 @@ public class World {
 	}
 
 	public void addBlockObject(float posX, float posY) {
-		MovableObject obj = new MovableObject(new Vector2(posX, posY), this);
-		obj.setMovable(false);
-		dynamicObjects.add(obj);
+		// blocks[posX][posY] = new Block(new Vector2(posX, posY), this);
+		// dynamicObjects.add(obj);
 	}
 
 	public void createPlayer() {
-		this.player = new Player(new Vector2(spawnPoint.x, spawnPoint.y), this);
+		this.player = new Player(new Vector2(spawnPoint.x, spawnPoint.y),
+				Constants.SPEED * 2, this);
 	}
-
-	private TiledMapTileLayer blockLayer;
-	private Rectangle rect;
 
 	public boolean isPlaceable(int x, int y) {
 		blockLayer = (TiledMapTileLayer) map.getLayers().get("blocks");
@@ -62,12 +62,13 @@ public class World {
 		return true;
 	}
 
-	public MovableObject getDynamicObjectAt(int x, int y){
+	public MovableObject getDynamicObjectAt(int x, int y) {
 		for (MovableObject obj : dynamicObjects)
 			if (obj.getPositionRectangle().overlaps(rect))
 				return obj;
 		return null;
 	}
+
 	public void update(float delta) {
 		player.update(delta);
 		for (MovableObject obj : dynamicObjects) {

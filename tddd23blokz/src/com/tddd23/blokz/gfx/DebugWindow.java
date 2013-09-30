@@ -1,10 +1,6 @@
 package com.tddd23.blokz.gfx;
 
-import java.util.Iterator;
-import java.util.Stack;
-
 import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

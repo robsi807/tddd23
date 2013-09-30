@@ -1,6 +1,5 @@
 package com.tddd23.blokz;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 /*
@@ -12,5 +11,7 @@ public class Constants {
 	public static final float JUMPING_SPEED = 3f;
 	public static final float MAX_MOVING_SPEED = 1f;
 	public static final Vector2 WORLD_GRAVITY = new Vector2(0, -0.07f);
-	
+	static final float SPEED = 0.5f; // unit per second
+	static final float JUMP_VELOCITY = 10f;
+
 }

@@ -1,58 +1,43 @@
 package com.tddd23.blokz;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class MovableObject extends GameObject implements Movable {
+public abstract class MovableObject extends GameObject implements Movable {
 
-	private TiledMapTileLayer blocks;
 	private Rectangle collidingRectangle;
 	private boolean movable = true;
-	private float stateTime =0;
+	private float stateTime = 0;
+	private float speed;
 
-	public MovableObject(Vector2 position, World world) {
+	private MinMax relevantCoords;
+
+	public MovableObject(Vector2 position, float speed, World world) {
 		super(position, world);
-		blocks = (TiledMapTileLayer) world.getMap().getLayers().get("blocks");
+		this.speed = speed;
+		relevantCoords = new MinMax();
 	}
 
 	@Override
 	public void update(float delta) {
+
+		updateObject();
+
 		stateTime += delta;
 		if (!movable)
 			return;
-		
+
 		world.collisionRects.clear();
 
-		getAcceleration().y += world.getGravity().y;
-
-		if (state == State.IDLE) {
-			getVelocity().set(0, getAcceleration().y);
-		}
-		if (getAcceleration().y < -Constants.MAX_FALLING_SPEED)
-			getAcceleration().y = -Constants.MAX_FALLING_SPEED;
-
-		if (state == State.WALKING) {
-			if (facingLeft) {
-				getAcceleration().set(-SPEED, getAcceleration().y);
-				getVelocity().set(getVelocity().x + getAcceleration().x, getAcceleration().y);
-				if (getVelocity().x < -Constants.MAX_MOVING_SPEED)
-					getVelocity().set(-Constants.MAX_MOVING_SPEED, getVelocity().y);
-
-			} else {
-				getAcceleration().set(SPEED, getAcceleration().y);
-				getVelocity().set(getVelocity().x + getAcceleration().x, getAcceleration().y);
-				if (getVelocity().x > Constants.MAX_MOVING_SPEED)
-					getVelocity().set(Constants.MAX_MOVING_SPEED, getVelocity().y);
-			}
-		}
+		addGravity();
+		updateObject();
 
 		boolean hasCollidedX = false;
 		boolean hasCollidedY = false;
 
 		// X axis collision handling
-		displacementBox = new Rectangle(getPosition().x + getVelocity().x, getPosition().y,
-				getBounds().width, getBounds().height);
+		displacementBox = new Rectangle(getPosition().x + getVelocity().x,
+				getPosition().y, getBounds().width, getBounds().height);
 
 		collidingRectangle = getCollidingBlock(displacementBox);
 		if (collidingRectangle != null) {
@@ -62,15 +47,14 @@ public class MovableObject extends GameObject implements Movable {
 						+ collidingRectangle.width;
 
 			} else {
-				getPosition().x = collidingRectangle.x
-						- getBounds().width;
+				getPosition().x = collidingRectangle.x - getBounds().width;
 			}
 
 		}
 
 		// Y axis collision handling
-		displacementBox = new Rectangle(getPosition().x, getPosition().y + getVelocity().y,
-				getBounds().width, getBounds().height);
+		displacementBox = new Rectangle(getPosition().x, getPosition().y
+				+ getVelocity().y, getBounds().width, getBounds().height);
 
 		collidingRectangle = getCollidingBlock(displacementBox);
 
@@ -110,32 +94,34 @@ public class MovableObject extends GameObject implements Movable {
 	protected Rectangle getCollidingBlock(Rectangle rect) {
 
 		collidingRectangle = null;
+		if (world != null) {
+			relevantCoords.getRelevantCoordinates(getPosition(), world);
+			// loop all the tiles
+			for (int y = relevantCoords.minY; y < relevantCoords.maxY; y++) {
+				System.out.println("--------------");
+				for (int x = relevantCoords.minX; x < relevantCoords.maxX; x++) {
+					// if a block exists and is solid
+					if (world.getBlocks()[x][y] != null) {
+						System.out.println("found dat blck");
+						collidingRectangle = world.getBlocks()[x][y]
+								.getPositionRectangle();
+						// do they overlaps?
+						if (collidingRectangle.overlaps(rect))
+							return collidingRectangle;
+					}
 
-		// loop all the tiles
-		for (int y = 0; y < world.getMapSize().height; y++) {
-			for (int x = 0; x < world.getMapSize().width; x++) {
-
-				// if a block exists and is solid
-				if (blocks.getCell(x, y) != null
-						&& blocks.getCell(x, y).getTile().getProperties()
-								.containsKey("solid")) {
-					// do they overlaps?
-					collidingRectangle = new Rectangle(x*blocks.getTileWidth(),y*blocks.getTileHeight(),
-							blocks.getTileWidth(), blocks.getTileHeight());
-					if (collidingRectangle.overlaps(rect))
-						return collidingRectangle;
 				}
+			}
 
+			for (GameObject object : world.getDynamicObjects()) {
+				if (object instanceof Player) {
+					continue;
+				}
+				if (object.getPositionRectangle().overlaps(rect)) {
+					return object.getPositionRectangle();
+				}
 			}
-		}
 
-		for (GameObject object : world.getDynamicObjects()) {
-			if (object instanceof Player) {
-				continue;
-			}
-			if (object.getPositionRectangle().overlaps(rect)) {
-				return object.getPositionRectangle();
-			}
 		}
 		return null;
 	}
@@ -147,4 +133,12 @@ public class MovableObject extends GameObject implements Movable {
 	public void setMovable(boolean movable) {
 		this.movable = movable;
 	}
+
+	public float getSpeed() {
+		return speed;
+	}
+
+	public abstract void addGravity();
+
+	public abstract void updateObject();
 }
