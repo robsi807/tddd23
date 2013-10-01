@@ -2,13 +2,16 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.tddd23.blokz.audio.MusicCache;
+import com.tddd23.blokz.audio.SoundCache;
 
 public class Blokz extends Game {
 
 	private GameScreen gameScreen;
 	public void create() {
-		gameScreen = new GameScreen(this);
 		SoundCache.load();
+		MusicCache.load();
+		gameScreen = new GameScreen(this);
 		setScreen(gameScreen);
 	}
 

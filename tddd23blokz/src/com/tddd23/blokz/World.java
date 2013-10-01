@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.tddd23.blokz.audio.MusicCache;
 import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.triggers.Triggerable;
 
@@ -43,6 +44,7 @@ public class World {
 		this.dynamicObjects = new ArrayList<MovableObject>();
 		this.triggers = new ArrayList<Triggerable>();
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
+		MusicCache.level1.play();
 	}
 
 	public void addBlockObject(float posX, float posY) {
