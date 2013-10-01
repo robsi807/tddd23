@@ -18,11 +18,13 @@ public class Player extends MovableObject {
 	}
 
 	public void jump(float multiplier) {
+		SoundCache.jump.play();
 		getAcceleration().y = Constants.JUMPING_SPEED*multiplier;
 	}
 
 	public void jump() {
 		if (grounded) {
+			SoundCache.jump.play();
 			getAcceleration().y = Constants.JUMPING_SPEED;
 		}
 	}

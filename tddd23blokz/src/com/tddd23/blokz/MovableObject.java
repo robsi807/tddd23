@@ -91,7 +91,9 @@ public abstract class MovableObject extends GameObject implements Movable {
 	private boolean checkForTriggers(Rectangle displacementRectangle) {
 		for (Triggerable trigger : world.getTriggers()) {
 			if (trigger.getBounds().overlaps(displacementRectangle)) {
-				System.out.println("Overlaps");
+				//Only trigger when player is STANDING on a trigger
+				if(world.getPlayer().getPosition().y < trigger.getBounds().y+trigger.getBounds().height)
+					return false;
 				trigger.trigger();
 				return true;
 			}

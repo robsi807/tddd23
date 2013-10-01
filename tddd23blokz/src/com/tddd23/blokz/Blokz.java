@@ -8,6 +8,7 @@ public class Blokz extends Game {
 	private GameScreen gameScreen;
 	public void create() {
 		gameScreen = new GameScreen(this);
+		SoundCache.load();
 		setScreen(gameScreen);
 	}
 
