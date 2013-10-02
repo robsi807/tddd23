@@ -83,7 +83,7 @@ public class WorldRenderer {
 			for (int x = relevantBlocks.minX; x < relevantBlocks.maxX; x++) {
 				if (world.getBlocks()[x][y] != null) {
 					spriteBatch.begin();
-					spriteBatch.draw(TextureHandler.placed_Block,
+					spriteBatch.draw(TextureHandler.block_dirt,
 							world.getBlocks()[x][y].getPosition().x,
 							world.getBlocks()[x][y].getPosition().y);
 					spriteBatch.end();
@@ -95,7 +95,7 @@ public class WorldRenderer {
 	private void renderDynamicObjects() {
 		for (GameObject object : world.getDynamicObjects()) {
 			spriteBatch.begin();
-			spriteBatch.draw(TextureHandler.placed_Block,
+			spriteBatch.draw(TextureHandler.block_dirt,
 					object.getPosition().x, object.getPosition().y);
 			spriteBatch.end();
 		}
@@ -124,30 +124,17 @@ public class WorldRenderer {
 		}
 		spriteBatch.begin();
 		spriteBatch.draw(playerRegion, world.getPlayer().getPosition().x, world
-				.getPlayer().getPosition().y,
-				world.getPlayer().getBounds().width, world.getPlayer()
-						.getBounds().height);
+				.getPlayer().getPosition().y, playerRegion.getRegionWidth(),
+				playerRegion.getRegionHeight());
+
 		spriteBatch.end();
 	}
 
 	private void moveCamera() {
 
-		// får fina avrundningsfel när vi castar till int tror jag
-		// cam.position.set((int) world.getPlayer().position.x,
-		// (int) world.getPlayer().position.y, 0);
 		cam.position.set(world.getPlayer().getPosition().x, world.getPlayer()
 				.getPosition().y, 0);
 
-		// if (cam.position.x < world.getMapSize().width *
-		// cam.zoom+((1-cam.zoom)*Constants.SIZE))
-		// cam.position.x = world.getMapSize().width *
-		// cam.zoom+((1-cam.zoom)*Constants.SIZE);
-		// if (cam.position.x > world.getMapSize().width * (1 -
-		// cam.zoom)-((1-cam.zoom)*Constants.SIZE))
-		// cam.position.x = world.getMapSize().width * (1 -
-		// cam.zoom)-((1-cam.zoom)*Constants.SIZE);
-		// System.out.println("Cam X:" + cam.position.x + " Cam y:"
-		// + cam.position.y + "    " + world.getMapSize().width);
 		cam.update();
 	}
 
