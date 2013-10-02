@@ -58,7 +58,7 @@ public class WorldRenderer {
 
 	public void render() {
 
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		moveCamera(); // moves the camera to the player location
@@ -95,8 +95,8 @@ public class WorldRenderer {
 	private void renderDynamicObjects() {
 		for (GameObject object : world.getDynamicObjects()) {
 			spriteBatch.begin();
-			spriteBatch.draw(TextureHandler.block_dirt,
-					object.getPosition().x, object.getPosition().y);
+			spriteBatch.draw(TextureHandler.block_dirt, object.getPosition().x,
+					object.getPosition().y);
 			spriteBatch.end();
 		}
 
@@ -112,7 +112,9 @@ public class WorldRenderer {
 		} else {
 
 			playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_idle
-					: TextureHandler.player_right_idle;
+					.getKeyFrame(world.getPlayer().getStateTime(), true)
+					: TextureHandler.player_right_idle.getKeyFrame(world
+							.getPlayer().getStateTime(), true);
 
 			if (world.getPlayer().getState().equals(State.WALKING)) {
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_animation
