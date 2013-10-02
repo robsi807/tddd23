@@ -16,6 +16,8 @@ import com.tddd23.blokz.gfx.TextureHandler;
 
 public class WorldRenderer {
 
+	private final static int RENDER_DIST = 12;
+
 	private OrthogonalTiledMapRenderer renderer;
 	private OrthographicCamera cam;
 
@@ -29,6 +31,8 @@ public class WorldRenderer {
 	private SpriteBatch spriteBatch;
 	private Texture sourceTexture;
 
+	private MinMax relevantBlocks;
+
 	private TextureRegion playerRegion;
 
 	/** for debug rendering **/
@@ -38,6 +42,8 @@ public class WorldRenderer {
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());
 		cam.zoom = 0.33f;
+
+		relevantBlocks = new MinMax();
 
 		ImageCache.load();
 		spriteBatch = new SpriteBatch();
@@ -62,7 +68,7 @@ public class WorldRenderer {
 
 		spriteBatch.setProjectionMatrix(cam.combined);
 		debugRenderer.setProjectionMatrix(cam.combined);
-		 renderBlocks();
+		renderBlocks();
 		renderPlayer();
 		renderDynamicObjects();
 
@@ -70,8 +76,11 @@ public class WorldRenderer {
 
 	private void renderBlocks() {
 
-		for (int y = 0; y < (int) (world.getMapSize().height / Constants.SIZE); y++) {
-			for (int x = 0; x < (int) (world.getMapSize().width / Constants.SIZE); x++) {
+		relevantBlocks.setRelevantCoordinates(RENDER_DIST, world.getPlayer()
+				.getPosition(), world);
+
+		for (int y = relevantBlocks.minY; y < relevantBlocks.maxY; y++) {
+			for (int x = relevantBlocks.minX; x < relevantBlocks.maxX; x++) {
 				if (world.getBlocks()[x][y] != null) {
 					spriteBatch.begin();
 					spriteBatch.draw(TextureHandler.placed_Block,
@@ -96,13 +105,22 @@ public class WorldRenderer {
 	}
 
 	private void renderPlayer() {
-		playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_idle
-				: TextureHandler.player_right_idle;
-		if (world.getPlayer().getState().equals(State.WALKING)) {
-			playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_animation
-					.getKeyFrame(world.getPlayer().getStateTime(), true)
-					: TextureHandler.player_right_animation.getKeyFrame(world
-							.getPlayer().getStateTime(), true);
+
+		if (!world.getPlayer().grounded) { // is in the air
+			playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_jump_right
+					: TextureHandler.player_jump_left;
+		} else {
+
+			playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_idle
+					: TextureHandler.player_right_idle;
+
+			if (world.getPlayer().getState().equals(State.WALKING)) {
+				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_animation
+						.getKeyFrame(world.getPlayer().getStateTime(), true)
+						: TextureHandler.player_right_animation.getKeyFrame(
+								world.getPlayer().getStateTime(), true);
+			}
+
 		}
 		spriteBatch.begin();
 		spriteBatch.draw(playerRegion, world.getPlayer().getPosition().x, world
