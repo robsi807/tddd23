@@ -44,12 +44,12 @@ public class Player extends MovableObject {
 	}
 
 	@Override
-	public void addGravity() {
+	public void addGravity(float delta) {
 		getAcceleration().y += world.getGravity().y;
 	}
 
 	@Override
-	public void updateObject() {
+	public void updateObject(float delta) {
 		if (state == State.IDLE) {
 			getVelocity().set(0, getAcceleration().y);
 		}

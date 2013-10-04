@@ -22,20 +22,20 @@ public abstract class MovableObject extends GameObject implements Movable {
 	@Override
 	public void update(float delta) {
 
-		updateObject();
+		updateObject(delta);
 
 		stateTime += delta;
 		if (!movable)
 			return;
 
-		addGravity();
-		updateObject();
+		addGravity(delta);
+		updateObject(delta);
 
 		boolean hasCollidedX = false;
 		boolean hasCollidedY = false;
 
 		// X axis collision handling
-		displacementBox = new Rectangle(getPosition().x + getVelocity().x,
+		displacementBox = new Rectangle(getPosition().x + getVelocity().x*delta,
 				getPosition().y, getBounds().width, getBounds().height);
 
 		collidingRectangle = getCollidingBlock(displacementBox);
@@ -53,7 +53,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 		// Y axis collision handling
 		displacementBox = new Rectangle(getPosition().x, getPosition().y
-				+ getVelocity().y, getBounds().width, getBounds().height);
+				+ getVelocity().y*delta, getBounds().width, getBounds().height);
 
 		if (checkForTriggers(displacementBox))
 			return;
@@ -84,7 +84,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 			getVelocity().x = 0;
 		if (hasCollidedY)
 			getVelocity().y = 0;
-		getPosition().add(getVelocity());
+		getPosition().add(getVelocity().scl(delta));
 
 	}
 
@@ -125,7 +125,6 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 				}
 			}
-
 			for (GameObject object : world.getDynamicObjects()) {
 				if (object instanceof Player) {
 					continue;
@@ -151,7 +150,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 		return speed;
 	}
 
-	public abstract void addGravity();
+	public abstract void addGravity(float delta);
 
-	public abstract void updateObject();
+	public abstract void updateObject(float delta);
 }

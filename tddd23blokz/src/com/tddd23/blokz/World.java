@@ -44,7 +44,7 @@ public class World {
 		this.dynamicObjects = new ArrayList<MovableObject>();
 		this.triggers = new ArrayList<Triggerable>();
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
-		MusicCache.level1.play();
+//		MusicCache.level1.play();
 	}
 
 	public void addBlockObject(float posX, float posY) {

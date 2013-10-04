@@ -12,12 +12,12 @@ public class MovableBlock extends MovableObject implements Movable {
 	}
 
 	@Override
-	public void addGravity() {
+	public void addGravity(float delta) {
 
 	}
 
 	@Override
-	public void updateObject() {
+	public void updateObject(float delta) {
 		
 	}
 

@@ -107,6 +107,7 @@ public class WorldRenderer {
 	private void renderPlayer() {
 
 		if (!world.getPlayer().grounded) { // is in the air
+			System.out.println(world.getPlayer().getPosition().y);
 			if(world.getPlayer().getVelocity().y >= 0){
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_jump_right
 						: TextureHandler.player_jump_left;
