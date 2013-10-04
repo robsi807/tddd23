@@ -15,6 +15,9 @@ public class TextureHandler {
 
 	public static TextureRegion player_jump_right;
 	public static TextureRegion player_jump_left;
+	
+	public static TextureRegion player_falling_right;
+	public static TextureRegion player_falling_left;
 
 	public static Animation player_left_animation;
 	public static Animation player_right_animation;
@@ -72,6 +75,10 @@ public class TextureHandler {
 		player_jump_left = new TextureRegion(player, 6 * 16, 0, 16, 32);
 		player_jump_right = new TextureRegion(player, 6 * 16, 0, 16, 32);
 		player_jump_right.flip(true, false);
+		
+		player_falling_left = new TextureRegion(player, 7 * 16, 0, 16, 32);
+		player_falling_right = new TextureRegion(player, 7 * 16, 0, 16, 32);
+		player_falling_right.flip(true, false);
 	}
 
 	private static void initBlocks() {
