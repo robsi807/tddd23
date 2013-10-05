@@ -32,6 +32,7 @@ public class WorldRenderer {
 	/** for debug rendering **/
 
 	public WorldRenderer(World world) {
+		System.out.println("render2");
 		this.world = world;
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());

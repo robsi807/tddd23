@@ -43,6 +43,7 @@ public class WorldRenderer {
 	/** for debug rendering **/
 
 	public WorldRenderer(World world) {
+		System.out.println("render1");
 		this.world = world;
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());
@@ -53,7 +54,8 @@ public class WorldRenderer {
 		ImageCache.load();
 		renderBatch = new SpriteBatch();
 		hudBatch = new SpriteBatch();
-
+		font = new BitmapFont();
+		
 		TextureHandler.init();
 		debugRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
@@ -114,7 +116,7 @@ public class WorldRenderer {
 	private void renderPlayer() {
 
 		if (!world.getPlayer().grounded) { // is in the air
-//			System.out.println(world.getPlayer().getPosition().y);
+			System.out.println(world.getPlayer().getPosition().y);
 			if(world.getPlayer().getVelocity().y >= 0){
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_jump_right
 						: TextureHandler.player_jump_left;
@@ -122,14 +124,11 @@ public class WorldRenderer {
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_falling_right
 						: TextureHandler.player_falling_left;
 			}
-			
 		} else {
-
 			playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_idle
 					.getKeyFrame(world.getPlayer().getStateTime(), true)
 					: TextureHandler.player_right_idle.getKeyFrame(world
 							.getPlayer().getStateTime(), true);
-
 			if (world.getPlayer().getState().equals(State.WALKING)) {
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_left_animation
 						.getKeyFrame(world.getPlayer().getStateTime(), true)
@@ -185,6 +184,14 @@ public class WorldRenderer {
 	public void debug(String text) {
 		debugWindow.addText(text);
 	}
+	
+	public void drawGetReady(){
+		hudBatch.begin();
+		hudBatch.draw(TextureHandler.ready, world.getPlayer().getPosition().x-100, world.getPlayer()
+				.getPosition().y-50,200,100);
+		hudBatch.end();
+	}
+	
 
 	public void drawPause() {
 		hudBatch.begin();

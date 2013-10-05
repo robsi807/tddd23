@@ -35,8 +35,11 @@ public class GameInput implements InputProcessor {
 			if(game.getGameScreen().getState() == GameState.GAME_PAUSED){
 				//Skall vara gå tillbaks till menyn
 				game.exitGame();
-				
 			}
+			if(game.getGameScreen().getState() == GameState.GAME_READY){
+				game.getGameScreen().setState(GameState.GAME_RUNNING);
+			}
+			
 			player.jump();
 			return processMove();
 		case 131: // ESC

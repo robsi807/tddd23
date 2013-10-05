@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
 	private World world;
 
 	public GameScreen(Blokz game) {
-		state = GameState.GAME_RUNNING;
+		state = GameState.GAME_READY;
 		world = WorldFactory.createMap("test2");
 		renderer = new WorldRenderer(world);
 		Gdx.input.setInputProcessor(new GameInput(world, game));
@@ -27,7 +27,9 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		switch (state) {
 		case GAME_READY:
-			// Game_ready = 3...2...1... kör!
+			renderer.setOpacity(0.2f);
+			renderer.render();
+			renderer.drawGetReady();
 			break;
 		case GAME_RUNNING:
 			renderer.setOpacity(1f);
