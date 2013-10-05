@@ -8,6 +8,7 @@ public class TextureHandler {
 
 	private static Texture player;
 	private static Texture blocks;
+	public static Texture paused;
 
 	// player graphics
 	public static Animation player_left_idle;
@@ -25,6 +26,8 @@ public class TextureHandler {
 	public static TextureRegion block_dirt;
 	public static TextureRegion block_indestructable;
 	public static TextureRegion block_jump;
+	
+
 
 	private static TextureRegion[] frameCollection;
 	private static TextureRegion[] frameCollection2;
@@ -34,7 +37,13 @@ public class TextureHandler {
 
 		initPlayer();
 		initBlocks();
+		initOther();
 
+	}
+
+	private static void initOther() {
+		paused = new Texture("images/paused.png");
+		
 	}
 
 	private static void initPlayer() {

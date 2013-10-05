@@ -4,8 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g3d.shaders.GLES10Shader;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.collision.Ray;
@@ -28,12 +30,15 @@ public class WorldRenderer {
 
 	private World world;
 
-	private SpriteBatch spriteBatch;
+	private SpriteBatch renderBatch;
+	private SpriteBatch hudBatch;
 	private Texture sourceTexture;
 
 	private MinMax relevantBlocks;
 
 	private TextureRegion playerRegion;
+	
+	private BitmapFont font;
 
 	/** for debug rendering **/
 
@@ -46,7 +51,8 @@ public class WorldRenderer {
 		relevantBlocks = new MinMax();
 
 		ImageCache.load();
-		spriteBatch = new SpriteBatch();
+		renderBatch = new SpriteBatch();
+		hudBatch = new SpriteBatch();
 
 		TextureHandler.init();
 		debugRenderer = new ShapeRenderer();
@@ -66,7 +72,8 @@ public class WorldRenderer {
 		// renderer.setView(cam);
 		// renderer.render();
 
-		spriteBatch.setProjectionMatrix(cam.combined);
+		hudBatch.setProjectionMatrix(cam.combined);
+		renderBatch.setProjectionMatrix(cam.combined);
 		debugRenderer.setProjectionMatrix(cam.combined);
 		renderBlocks();
 		renderPlayer();
@@ -82,11 +89,11 @@ public class WorldRenderer {
 		for (int y = relevantBlocks.minY; y < relevantBlocks.maxY; y++) {
 			for (int x = relevantBlocks.minX; x < relevantBlocks.maxX; x++) {
 				if (world.getBlocks()[x][y] != null) {
-					spriteBatch.begin();
-					spriteBatch.draw(TextureHandler.block_dirt,
+					renderBatch.begin();
+					renderBatch.draw(TextureHandler.block_dirt,
 							world.getBlocks()[x][y].getPosition().x,
 							world.getBlocks()[x][y].getPosition().y);
-					spriteBatch.end();
+					renderBatch.end();
 				}
 			}
 		}
@@ -94,10 +101,10 @@ public class WorldRenderer {
 
 	private void renderDynamicObjects() {
 		for (GameObject object : world.getDynamicObjects()) {
-			spriteBatch.begin();
-			spriteBatch.draw(TextureHandler.block_dirt, object.getPosition().x,
+			renderBatch.begin();
+			renderBatch.draw(TextureHandler.block_dirt, object.getPosition().x,
 					object.getPosition().y);
-			spriteBatch.end();
+			renderBatch.end();
 		}
 
 		if (debugMode)
@@ -107,7 +114,7 @@ public class WorldRenderer {
 	private void renderPlayer() {
 
 		if (!world.getPlayer().grounded) { // is in the air
-			System.out.println(world.getPlayer().getPosition().y);
+//			System.out.println(world.getPlayer().getPosition().y);
 			if(world.getPlayer().getVelocity().y >= 0){
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_jump_right
 						: TextureHandler.player_jump_left;
@@ -131,12 +138,12 @@ public class WorldRenderer {
 			}
 
 		}
-		spriteBatch.begin();
-		spriteBatch.draw(playerRegion, world.getPlayer().getPosition().x, world
+		renderBatch.begin();
+		renderBatch.draw(playerRegion, world.getPlayer().getPosition().x, world
 				.getPlayer().getPosition().y, playerRegion.getRegionWidth(),
 				playerRegion.getRegionHeight());
 
-		spriteBatch.end();
+		renderBatch.end();
 	}
 
 	private void moveCamera() {
@@ -177,6 +184,16 @@ public class WorldRenderer {
 
 	public void debug(String text) {
 		debugWindow.addText(text);
+	}
+
+	public void drawPause() {
+		hudBatch.begin();
+		hudBatch.draw(TextureHandler.paused, world.getPlayer().getPosition().x-100, world.getPlayer()
+				.getPosition().y-50,200,100);
+		hudBatch.end();
+	}
+	public void setOpacity(float amount){
+		renderBatch.setColor(1f, 1f, 1f, amount);
 	}
 
 }
