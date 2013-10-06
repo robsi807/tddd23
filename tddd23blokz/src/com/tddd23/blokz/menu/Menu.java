@@ -8,6 +8,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.tddd23.blokz.font.FontHandler;
 import com.tddd23.blokz.gfx.TextureHandler;
 
 public class Menu implements Screen {
@@ -22,7 +23,7 @@ public class Menu implements Screen {
 		Gdx.input.setInputProcessor(new MenuInput(this));
 		menuItems = new ArrayList<AbstractMenuItem>();
 		batch = new SpriteBatch();
-		font = new BitmapFont();
+		font = FontHandler.courier25;
 
 	}
 
@@ -46,13 +47,9 @@ public class Menu implements Screen {
 		for (AbstractMenuItem item : menuItems)
 			font.draw(batch, item.getTitle(), 250,
 					(float) (500 - menuItems.indexOf(item) * 75));
+		font.draw(batch,"|", 230,
+				(float) (500 - pointer * 75));
 		batch.end();
-		batch.begin();
-		batch.draw(TextureHandler.player_jump_left, 230,
-				(float) (480 - pointer * 75));
-		batch.end();
-
-
 	}
 
 	@Override

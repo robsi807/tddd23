@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.tddd23.blokz.audio.MusicCache;
 import com.tddd23.blokz.audio.SoundCache;
+import com.tddd23.blokz.font.FontHandler;
 import com.tddd23.blokz.gfx.TextureHandler;
 import com.tddd23.blokz.menu.MainMenu;
 import com.tddd23.blokz.menu.Menu;
@@ -14,6 +15,7 @@ public class Blokz extends Game {
 	private Menu menuScreen;
 	public void create() {
 		TextureHandler.init();
+		FontHandler.init();
 		SoundCache.load();
 		MusicCache.load();
 		menuScreen = new MainMenu(this);
