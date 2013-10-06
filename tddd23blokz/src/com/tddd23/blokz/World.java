@@ -54,7 +54,7 @@ public class World {
 
 	public void createPlayer() {
 		this.player = new Player(new Vector2(spawnPoint.x, spawnPoint.y),
-				Constants.SPEED * 5, this);
+				Constants.SPEED, this);
 	}
 
 	public boolean isPlaceable(int x, int y) {

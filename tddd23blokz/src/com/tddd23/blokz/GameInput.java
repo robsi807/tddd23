@@ -3,6 +3,7 @@ package com.tddd23.blokz;
 import java.awt.Point;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.GameScreen.GameState;
 import com.tddd23.blokz.Player.State;
@@ -32,20 +33,20 @@ public class GameInput implements InputProcessor {
 			walkRight = true;
 			return processMove();
 		case 62:
-			if(game.getGameScreen().getState() == GameState.GAME_PAUSED){
-				//Skall vara gå tillbaks till menyn
+			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
+				// Skall vara gå tillbaks till menyn
 				game.exitGame();
 			}
-			if(game.getGameScreen().getState() == GameState.GAME_READY){
+			if (game.getGameScreen().getState() == GameState.GAME_READY) {
 				game.getGameScreen().setState(GameState.GAME_RUNNING);
 			}
-			
+
 			player.jump();
 			return processMove();
 		case 131: // ESC
-			if(game.getGameScreen().getState() == GameState.GAME_PAUSED){
+			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
 				game.getGameScreen().setState(GameState.GAME_RUNNING);
-			}else if (game.getGameScreen().getState() != GameState.GAME_READY){
+			} else if (game.getGameScreen().getState() != GameState.GAME_READY) {
 				game.getGameScreen().setState(GameState.GAME_PAUSED);
 			}
 			return true;
@@ -73,9 +74,9 @@ public class GameInput implements InputProcessor {
 	}
 
 	private boolean processMove() {
-		if(game.getGameScreen().getState() == GameState.GAME_PAUSED || game.getGameScreen().getState() == GameState.GAME_READY)
+		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
 			return false;
-		
+
 		if (walkLeft && walkRight) {
 			player.setState(State.IDLE);
 			return true;
@@ -106,9 +107,9 @@ public class GameInput implements InputProcessor {
 	}
 
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		if(game.getGameScreen().getState() == GameState.GAME_PAUSED || game.getGameScreen().getState() == GameState.GAME_READY)
+		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
 			return false;
-		
+
 		if (button == 1) {
 			world.getDynamicObjects().clear();
 			return false;
@@ -132,7 +133,7 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		if(game.getGameScreen().getState() == GameState.GAME_PAUSED || game.getGameScreen().getState() == GameState.GAME_READY)
+		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
 			return false;
 		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
 		clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);
@@ -153,13 +154,39 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
+		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
+			return false;
+		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
+		clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);
+		clickPoint.x = (int) (clickPoint.x - (clickPoint.x % Constants.SIZE));
+		clickPoint.y = (int) (clickPoint.y - (clickPoint.y % Constants.SIZE));
+
+		if (clickPoint.y < 0 || clickPoint.x < 0
+				|| clickPoint.x >= world.getMapSize().width
+				|| clickPoint.y >= world.getMapSize().height) {
+			
+			return false; // Utanför
+		}
+		if (!world.isPlaceable(clickPoint.x, clickPoint.y)) {
+			game.getGameScreen().getRenderer().setHelpBlock(null);
+			return false;
+			
+		}
+		game.getGameScreen()
+				.getRenderer()
+				.setHelpBlock(
+						new Block(new Vector2(clickPoint.x, clickPoint.y),
+								world));
 		return false;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
+		if(amount<0){
+			game.getGameScreen().getRenderer().zoomIn();
+		}else{
+			game.getGameScreen().getRenderer().zoomOut();
+		}
 		return false;
 	}
 

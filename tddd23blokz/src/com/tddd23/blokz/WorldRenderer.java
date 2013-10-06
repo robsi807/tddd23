@@ -37,13 +37,14 @@ public class WorldRenderer {
 	private MinMax relevantBlocks;
 
 	private TextureRegion playerRegion;
-	
+
 	private BitmapFont font;
+
+	private Block helpBlock;
 
 	/** for debug rendering **/
 
 	public WorldRenderer(World world) {
-		System.out.println("render1");
 		this.world = world;
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());
@@ -55,7 +56,7 @@ public class WorldRenderer {
 		renderBatch = new SpriteBatch();
 		hudBatch = new SpriteBatch();
 		font = new BitmapFont();
-		
+
 		TextureHandler.init();
 		debugRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
@@ -80,7 +81,17 @@ public class WorldRenderer {
 		renderBlocks();
 		renderPlayer();
 		renderDynamicObjects();
+		renderHelpBlock();
+	}
 
+	public void zoomIn() {
+		if (cam.zoom > 0.01)
+			cam.zoom -= 0.01f;
+	}
+
+	public void zoomOut() {
+		if (cam.zoom < 0.33)
+			cam.zoom += 0.01f;
 	}
 
 	private void renderBlocks() {
@@ -101,6 +112,20 @@ public class WorldRenderer {
 		}
 	}
 
+	public void setHelpBlock(Block helpBlock) {
+		this.helpBlock = helpBlock;
+	}
+
+	private void renderHelpBlock() {
+		setOpacity(0.3f);
+		if (helpBlock == null)
+			return;
+		renderBatch.begin();
+		renderBatch.draw(TextureHandler.block_dirt, helpBlock.getPosition().x,
+				helpBlock.getPosition().y);
+		renderBatch.end();
+	}
+
 	private void renderDynamicObjects() {
 		for (GameObject object : world.getDynamicObjects()) {
 			renderBatch.begin();
@@ -116,11 +141,10 @@ public class WorldRenderer {
 	private void renderPlayer() {
 
 		if (!world.getPlayer().grounded) { // is in the air
-			System.out.println(world.getPlayer().getPosition().y);
-			if(world.getPlayer().getVelocity().y >= 0){
+			if (world.getPlayer().getVelocity().y >= 0) {
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_jump_right
 						: TextureHandler.player_jump_left;
-			}else{
+			} else {
 				playerRegion = world.getPlayer().facingLeft ? TextureHandler.player_falling_right
 						: TextureHandler.player_falling_left;
 			}
@@ -184,22 +208,24 @@ public class WorldRenderer {
 	public void debug(String text) {
 		debugWindow.addText(text);
 	}
-	
-	public void drawGetReady(){
+
+	public void drawGetReady() {
 		hudBatch.begin();
-		hudBatch.draw(TextureHandler.ready, world.getPlayer().getPosition().x-100, world.getPlayer()
-				.getPosition().y-50,200,100);
+		hudBatch.draw(TextureHandler.ready,
+				world.getPlayer().getPosition().x - 100, world.getPlayer()
+						.getPosition().y - 50, 200, 100);
 		hudBatch.end();
 	}
-	
 
 	public void drawPause() {
 		hudBatch.begin();
-		hudBatch.draw(TextureHandler.paused, world.getPlayer().getPosition().x-100, world.getPlayer()
-				.getPosition().y-50,200,100);
+		hudBatch.draw(TextureHandler.paused,
+				world.getPlayer().getPosition().x - 100, world.getPlayer()
+						.getPosition().y - 50, 200, 100);
 		hudBatch.end();
 	}
-	public void setOpacity(float amount){
+
+	public void setOpacity(float amount) {
 		renderBatch.setColor(1f, 1f, 1f, amount);
 	}
 

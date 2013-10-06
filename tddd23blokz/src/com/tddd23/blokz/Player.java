@@ -57,6 +57,7 @@ public class Player extends MovableObject {
 			getAcceleration().y = -Constants.MAX_FALLING_SPEED;
 
 		if (state == State.WALKING) {
+			DebugWindow.addText(""+getSpeed());
 			if (facingLeft) {
 				getVelocity().set(-getSpeed(), getAcceleration().y);
 				if (getVelocity().x < -Constants.MAX_MOVING_SPEED)
