@@ -10,7 +10,7 @@ public class MainMenu extends Menu {
 		super(game);
 		addMenuItem(new AbstractMenuItem("Map selection") {
 			public void trigger() {
-				game.startGame();
+				game.setScreen(new MapSelectionMenu(game));
 			}
 		});
 		addMenuItem(new AbstractMenuItem("Credits") {
