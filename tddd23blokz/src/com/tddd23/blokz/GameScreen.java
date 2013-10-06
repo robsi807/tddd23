@@ -2,6 +2,7 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.tddd23.blokz.audio.MusicCache;
 
 public class GameScreen implements Screen {
 
