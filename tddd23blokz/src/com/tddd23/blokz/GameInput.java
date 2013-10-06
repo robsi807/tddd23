@@ -45,7 +45,7 @@ public class GameInput implements InputProcessor {
 		case 131: // ESC
 			if(game.getGameScreen().getState() == GameState.GAME_PAUSED){
 				game.getGameScreen().setState(GameState.GAME_RUNNING);
-			}else{
+			}else if (game.getGameScreen().getState() != GameState.GAME_READY){
 				game.getGameScreen().setState(GameState.GAME_PAUSED);
 			}
 			return true;
@@ -73,7 +73,7 @@ public class GameInput implements InputProcessor {
 	}
 
 	private boolean processMove() {
-		if(game.getGameScreen().getState() == GameState.GAME_PAUSED)
+		if(game.getGameScreen().getState() == GameState.GAME_PAUSED || game.getGameScreen().getState() == GameState.GAME_READY)
 			return false;
 		
 		if (walkLeft && walkRight) {
@@ -106,7 +106,7 @@ public class GameInput implements InputProcessor {
 	}
 
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		if(game.getGameScreen().getState() == GameState.GAME_PAUSED)
+		if(game.getGameScreen().getState() == GameState.GAME_PAUSED || game.getGameScreen().getState() == GameState.GAME_READY)
 			return false;
 		
 		if (button == 1) {
@@ -132,7 +132,7 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		if(game.getGameScreen().getState() == GameState.GAME_PAUSED)
+		if(game.getGameScreen().getState() == GameState.GAME_PAUSED || game.getGameScreen().getState() == GameState.GAME_READY)
 			return false;
 		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
 		clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);

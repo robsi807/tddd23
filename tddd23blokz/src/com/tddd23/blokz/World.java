@@ -36,7 +36,7 @@ public class World {
 		triggers.add(trigger);
 	}
 
-	private Vector2 gravity;
+	private Vector2 gravity; 
 
 	public World(int nrOfBlocksWidth, int nrOfBlocksHeight) {
 		mapSize = new Dimension(nrOfBlocksWidth, nrOfBlocksHeight);
