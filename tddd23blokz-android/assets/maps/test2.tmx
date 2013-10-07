@@ -5,34 +5,7 @@
   <property name="max_blocks" value="10"/>
   <property name="width" value="30"/>
  </properties>
- <tileset firstgid="1" name="blocks" tilewidth="16" tileheight="16">
-  <image source="../images/blockssheet.png" trans="ff00ff" width="160" height="32"/>
-  <tile id="0">
-   <properties>
-    <property name="type" value="dirt"/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="type" value="stone"/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="type" value="dirt"/>
-   </properties>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="type" value="spike"/>
-   </properties>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="type" value="gravity"/>
-   </properties>
-  </tile>
- </tileset>
+ <tileset firstgid="1" source="blocks.tsx"/>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
    eJzt1cEKABAQhOG18f6v7CqNIrujNH/NyeFLKWZK/VN5OHZy5cqVe+s2ouskC7kRtm9udtF5Vqv7ZrnjH5hloDfKcFEnbgWLcjUteh3rhAHA
