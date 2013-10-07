@@ -50,12 +50,6 @@ public class TextureHandler {
 	private static void initPlayer() {
 		player = new Texture("images/playersheet2.png");
 
-		// player_right_idle = ImageCache.getTexture("right_idle");
-
-		// player_right_idle = new TextureRegion(player, 0, 0, 16, 28);
-		// player_left_idle = new TextureRegion(player, 0, 0, 16, 28);
-		// player_left_idle.flip(true, false);
-
 		// the idle animation
 		frameCollection = new TextureRegion[3];
 		frameCollection2 = new TextureRegion[3];

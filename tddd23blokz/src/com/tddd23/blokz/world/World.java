@@ -20,7 +20,6 @@ public class World {
 	private Block[][] blocks;
 	private Player player;
 	private Point spawnPoint;
-	private TiledMap map;
 
 	private Dimension mapSize;
 
@@ -105,9 +104,6 @@ public class World {
 		return blocks;
 	}
 
-	public TiledMap getMap() {
-		return map;
-	}
 
 	public Point getSpawnPoint() {
 		return spawnPoint;
@@ -121,9 +117,6 @@ public class World {
 		this.player = player;
 	}
 
-	public void setMap(TiledMap map) {
-		this.map = map;
-	}
 
 	public int getMaxNrOfBlocks() {
 		return maxNrOfBlocks;

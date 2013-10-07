@@ -1,62 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="16" tileheight="16">
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
  <properties>
-  <property name="max_blocks" value="64"/>
+  <property name="height" value="30"/>
+  <property name="max_blocks" value="10"/>
+  <property name="width" value="30"/>
  </properties>
- <tileset firstgid="1" name="test" tilewidth="16" tileheight="16">
-  <image source="tilesetTest.png" trans="ff00ff" width="128" height="128"/>
-  <tile id="1">
-   <properties>
-    <property name="destroyable" value=""/>
-    <property name="solid" value=""/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="solid" value=""/>
-   </properties>
-  </tile>
- </tileset>
- <layer name="background" width="100" height="100">
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJztwwEJAAAMBKH7/qUHy6Hgqqmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqv8AX0MnEQ==
+   eJxjYBgFo2D4AMYBxPQGo/aO2jtqL+WAZdTeUXuHkb30zkcDVQ+OdHtH2znD296BwAAVxQCf
   </data>
  </layer>
- <objectgroup name="objects" width="100" height="100">
-  <object name="spawn" x="352" y="1168">
+ <objectgroup name="objects" width="30" height="30">
+  <object x="32" y="352" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
    </properties>
   </object>
-  <object x="160" y="1392" width="1280" height="48">
-   <properties>
-    <property name="trigger_player_jump" value="2"/>
-   </properties>
-  </object>
-  <object x="848" y="1264" width="16" height="16">
-   <properties>
-    <property name="trigger_player_jump" value=""/>
-   </properties>
-  </object>
-  <object x="768" y="1264" width="16" height="16">
-   <properties>
-    <property name="trigger_player_jump" value=""/>
-   </properties>
-  </object>
-  <object x="928" y="1264" width="16" height="16">
-   <properties>
-    <property name="trigger_player_jump" value=""/>
-   </properties>
-  </object>
-  <object x="1024" y="1264" width="16" height="16">
-   <properties>
-    <property name="trigger_player_jump" value=""/>
-   </properties>
-  </object>
  </objectgroup>
- <layer name="blocks" width="100" height="100">
-  <data encoding="base64" compression="zlib">
-   eJzt10sKwkAQQMGg97+zWxE1H5NYOu9B0yJZDA6Fep2m6dpQM7WJ3Z14WzhDOx/qFs7Qzoe6hTO086HutffWbJ81n/Pcs/VZa+5k6TO1vXxY5cMqH1b5sMqHVT6s8mGVD6t8WOXDKh9W+bDKh1U+rPJhlQ+rfFjlwyofVvmwyodVPqzyYZUPq3xY5cMqH1b5sMqHVT6s8mGVD6t8WOXDKh9W+bDKh1U+rPJhlQ+rfFjlwyofVvmwyodVPqzyYZUPq3xY5cMqH1b5sMqHVT6s8mGVD6t8WOXDKh9W+bDKh1U+rPJhJfq4vHg9QqKP0e9D9HE/IyX6GLkzfTze7as5omfOlr737v29y4eV+P0xcvmwyofVL/o44vfA3r8ztp4lH8e19R7ntubjn1N9nPnfROrffSz5XpDuW/Uxanv7aPaZJZ/z3DPtc/aae2ufdyffPkM7H+oWztDOh7qFM7Tzoe7Gmhu4vRn8
-  </data>
- </layer>
 </map>

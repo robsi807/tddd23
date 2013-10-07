@@ -36,7 +36,7 @@ public class GameInput implements InputProcessor {
 		case 62:
 			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
 				// Skall vara gå tillbaks till menyn
-				game.exitGame();
+				game.goToMapMenu();
 			}
 			if (game.getGameScreen().getState() == GameState.GAME_READY) {
 				game.getGameScreen().setState(GameState.GAME_RUNNING);

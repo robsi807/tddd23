@@ -2,7 +2,7 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.tddd23.blokz.audio.MusicCache;
+import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.world.World;
 import com.tddd23.blokz.world.WorldFactory;
 import com.tddd23.blokz.world.WorldRenderer;
@@ -20,9 +20,9 @@ public class GameScreen implements Screen {
 	private WorldRenderer renderer;
 	private World world;
 
-	public GameScreen(Blokz game) {
+	public GameScreen(Blokz game, GameMap map) {
 		state = GameState.GAME_READY;
-		world = WorldFactory.createMap("test2");
+		world = WorldFactory.createMap(map);
 		renderer = new WorldRenderer(world);
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
@@ -46,7 +46,7 @@ public class GameScreen implements Screen {
 			renderer.drawPause();
 			break;
 		case GAME_OVER:
-			//Skriv ut något och gå till game_ready
+			// Skriv ut något och gå till game_ready
 			break;
 		}
 	}
@@ -94,8 +94,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		world.getMap().dispose();
-		renderer.getRenderer().dispose();
+		System.out.println("@gamescreen : gamescreen has been disposed");
 	}
 
 }

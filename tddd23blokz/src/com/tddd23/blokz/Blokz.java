@@ -6,25 +6,36 @@ import com.tddd23.blokz.audio.MusicCache;
 import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.font.FontHandler;
 import com.tddd23.blokz.gfx.TextureHandler;
+import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.menu.MainMenu;
+import com.tddd23.blokz.menu.MapSelectionMenu;
 import com.tddd23.blokz.menu.Menu;
+import com.tddd23.blokz.world.WorldManager;
 
 public class Blokz extends Game {
 
 	private GameScreen gameScreen;
 	private Menu menuScreen;
+	private WorldManager worldmanager;
+
 	public void create() {
 		TextureHandler.init();
 		FontHandler.init();
 		SoundCache.load();
 		MusicCache.load();
-		menuScreen = new MainMenu(this);
+		worldmanager = new WorldManager();
+		menuScreen = new MainMenu(this, worldmanager);
 		setScreen(menuScreen);
 	}
-	
-	//Här skall vi skicka med vilken level som skall spelas som argument till gamescreen
-	public void startGame(){
-		gameScreen = new GameScreen(this);
+
+	public void goToMapMenu() {
+		setScreen(new MapSelectionMenu(this, worldmanager));
+	}
+
+	// Här skall vi skicka med vilken level som skall spelas som argument till
+	// gamescreen
+	public void startGame(GameMap map) {
+		gameScreen = new GameScreen(this, map);
 		setScreen(gameScreen);
 	}
 

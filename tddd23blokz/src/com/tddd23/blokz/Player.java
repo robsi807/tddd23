@@ -15,7 +15,7 @@ public class Player extends MovableObject {
 	public Player(Vector2 position, float speed, World world) {
 		super(position, speed, world);
 		getBounds().height = 28f;
-		getBounds().width = 16;
+		getBounds().width = 13;
 		setMovable(true);
 	}
 

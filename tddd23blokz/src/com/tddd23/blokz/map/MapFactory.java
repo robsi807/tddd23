@@ -19,11 +19,8 @@ public class MapFactory {
 
 		int mapWidth = prop.get("width", Integer.class);
 		int mapHeight = prop.get("height", Integer.class);
-		
 
 		World world = new World(mapWidth, mapHeight);
-
-		world.setMap(map);
 
 		world.setMaxNrOfBlocks(Integer.parseInt((String) prop.get("max_blocks")));
 
@@ -35,12 +32,12 @@ public class MapFactory {
 		for (MapObject obj : map.getLayers().get("objects").getObjects()) {
 			properties = obj.getProperties();
 			rectObj = (RectangleMapObject) obj;
-			
+
 			if (properties.containsKey("spawn_point")) {
 				world.setSpawnPoint(new Point((int) rectObj.getRectangle().x,
 						(int) rectObj.getRectangle().y));
 			}
-			
+
 		}
 
 		world.createPlayer();

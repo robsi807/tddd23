@@ -9,25 +9,29 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.blocks.Block;
-import com.tddd23.blokz.triggers.DeathTrigger;
+import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.JumpTrigger;
 
 public class WorldFactory {
 
-	public static World createMap(TiledMap map) {
+	public static World createMap(GameMap gmap) {
+
+		System.out.println("maps/" + gmap.getLocation() + ".tmx");
+		TiledMap map = new TmxMapLoader().load("maps/" + gmap.getLocation()
+				+ ".tmx");
 
 		TiledMapTileLayer blocks = (TiledMapTileLayer) map.getLayers().get(
 				"blocks");
 		MapProperties prop = map.getProperties();
 
-		int mapWidth = prop.get("width", Integer.class);
-		int mapHeight = prop.get("height", Integer.class);
+		int mapHeight = Integer.parseInt(prop.get("width", String.class));
+		int mapWidth = Integer.parseInt(prop.get("height", String.class));
+		World world = new World(mapWidth * Constants.SIZE, (int) mapHeight
+				* Constants.SIZE);
 
-		World world = new World(mapWidth * 16, mapHeight * 16);
-
-		world.setMap(map);
 		world.setMaxNrOfBlocks(Integer.parseInt((String) prop.get("max_blocks")));
 
 		RectangleMapObject rectObj = null;
@@ -68,5 +72,4 @@ public class WorldFactory {
 
 		return world;
 	}
-
 }

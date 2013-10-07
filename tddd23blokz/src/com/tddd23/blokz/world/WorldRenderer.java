@@ -28,7 +28,6 @@ public class WorldRenderer {
 
 	private final static int RENDER_DIST = 12;
 
-	private OrthogonalTiledMapRenderer renderer;
 	private OrthographicCamera cam;
 
 	private DebugWindow debugWindow;
@@ -70,7 +69,6 @@ public class WorldRenderer {
 		TextureHandler.init();
 		debugRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
-		renderer = new OrthogonalTiledMapRenderer(world.getMap());
 
 		this.cam.update();
 	}
@@ -82,13 +80,10 @@ public class WorldRenderer {
 
 		moveCamera(); // moves the camera to the player location
 
-		// renderer.setView(cam);
-		// renderer.render();
-
 		hudBatch.setProjectionMatrix(cam.combined);
 		renderBatch.setProjectionMatrix(cam.combined);
 		debugRenderer.setProjectionMatrix(cam.combined);
-		
+
 		updateHelpBlock();
 		renderBlocks();
 		renderPlayer();
@@ -193,10 +188,6 @@ public class WorldRenderer {
 		return debugRenderer;
 	}
 
-	public OrthogonalTiledMapRenderer getRenderer() {
-		return renderer;
-	}
-
 	public Ray getRay(int screenX, int screenY) {
 		return cam.getPickRay(screenX, screenY);
 	}
@@ -250,7 +241,6 @@ public class WorldRenderer {
 				(int) getRay(screenX, screenY).origin.y);
 		clickPoint.x = (int) (clickPoint.x / Constants.SIZE);
 		clickPoint.y = (int) (clickPoint.y / Constants.SIZE);
-		System.out.println("clickPoint = " + clickPoint.toString());
 
 		if (clickPoint.y < 0 || clickPoint.x < 0
 				|| clickPoint.x >= world.getMapSize().width
