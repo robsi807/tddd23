@@ -28,5 +28,6 @@ public class MinMax {
 
 		if (maxY > world.getMapSize().height / 16)
 			maxY = world.getMapSize().height / 16;
+
 	}
 }

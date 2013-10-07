@@ -12,6 +12,8 @@ public abstract class MovableObject extends GameObject implements Movable {
 	private float stateTime = 0;
 	private float speed;
 
+	private boolean invertGravity = false;
+
 	private MinMax relevantCoords;
 
 	public MovableObject(Vector2 position, float speed, World world) {
@@ -57,19 +59,30 @@ public abstract class MovableObject extends GameObject implements Movable {
 				+ getVelocity().y * delta, getBounds().width,
 				getBounds().height);
 
-		if (checkForTriggers(displacementBox))
-			return;
+		// setting the invert to false, if we still are colliding with a gravity
+		// trigger it will be set to true
+		invertGravity = false;
+
+		// if colliding with a trigger, trigger the event
+		checkForTriggers(displacementBox);
+
 		collidingRectangle = getCollidingBlock(displacementBox);
 
 		if (collidingRectangle != null) {
 			hasCollidedY = true;
 
-			if (getVelocity().y < 0) {
-				grounded = true;
-				getAcceleration().y = 0;
-			} else { // Collision with block above player,
-				getAcceleration().y = 0;
+			if (!invertGravity) {
+				if (getVelocity().y < 0) {
+					grounded = true;
+					getAcceleration().y = 0;
+				}
+			} else {
+				if (getVelocity().y > 0) {
+					grounded = true;
+					getAcceleration().y = 0;
+				}
 			}
+			getAcceleration().y = 0;
 
 			if (getVelocity().y < 0) {
 				getPosition().y = collidingRectangle.y
@@ -90,20 +103,13 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 	}
 
-	private boolean checkForTriggers(Rectangle displacementRectangle) {
+	private void checkForTriggers(Rectangle displacementRectangle) {
 
 		for (Triggerable trigger : world.getTriggers()) {
 			if (trigger.getBounds().overlaps(displacementRectangle)) {
-				// Only trigger when player is STANDING on a trigger
-				System.out.println("overlapping trigger");
-				if (world.getPlayer().getPosition().y < trigger.getBounds().y
-						+ trigger.getBounds().height)
-					return false;
 				trigger.trigger();
-				return true;
 			}
 		}
-		return false;
 	}
 
 	public float getStateTime() {
@@ -157,4 +163,13 @@ public abstract class MovableObject extends GameObject implements Movable {
 	public abstract void addGravity(float delta);
 
 	public abstract void updateObject(float delta);
+
+	public boolean isInvertGravity() {
+		return invertGravity;
+	}
+
+	public void setInvertGravity(boolean invertGravity) {
+		this.invertGravity = invertGravity;
+	}
+
 }

@@ -24,13 +24,22 @@ public class Player extends MovableObject {
 
 	public void jump(float multiplier) {
 		SoundCache.jump.play();
-		getAcceleration().y = Constants.JUMPING_SPEED * multiplier;
+		if (!isInvertGravity()) {
+			getAcceleration().y = Constants.JUMPING_SPEED * multiplier;
+		} else {
+			getAcceleration().y = -Constants.JUMPING_SPEED * multiplier;
+		}
 	}
 
 	public void jump() {
+
 		if (grounded) {
 			SoundCache.jump.play();
-			getAcceleration().y = Constants.JUMPING_SPEED;
+			if (!isInvertGravity()) {
+				getAcceleration().y = Constants.JUMPING_SPEED;
+			} else {
+				getAcceleration().y = -Constants.JUMPING_SPEED;
+			}
 		}
 	}
 
@@ -49,7 +58,11 @@ public class Player extends MovableObject {
 
 	@Override
 	public void addGravity(float delta) {
-		getAcceleration().y += world.getGravity().y;
+		if (!isInvertGravity()) {
+			getAcceleration().y += world.getGravity().y;
+		} else {
+			getAcceleration().y -= world.getGravity().y;
+		}
 	}
 
 	@Override

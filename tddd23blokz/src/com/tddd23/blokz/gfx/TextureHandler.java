@@ -30,6 +30,7 @@ public class TextureHandler {
 	public static TextureRegion block_stone;
 	public static TextureRegion block_jump;
 	public static TextureRegion block_spike;
+	public static TextureRegion block_gravity;
 
 	// framecollections for animation creation
 	private static TextureRegion[] frameCollection;
@@ -93,5 +94,6 @@ public class TextureHandler {
 		block_dirt = new TextureRegion(blocks, 0, 0, 16, 16);
 		block_stone = new TextureRegion(blocks, 16, 0, 16, 16);
 		block_spike = new TextureRegion(blocks, 48, 0, 16, 16);
+		block_gravity = new TextureRegion(blocks, 64, 0, 16, 16);
 	}
 }

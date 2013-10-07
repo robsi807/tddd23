@@ -3,10 +3,12 @@ package com.tddd23.blokz.world;
 import java.awt.Point;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -40,11 +42,12 @@ public class WorldRenderer {
 
 	private SpriteBatch renderBatch;
 	private SpriteBatch hudBatch;
-	private Texture sourceTexture;
 
 	private MinMax relevantBlocks;
 
-	private TextureRegion playerRegion;
+	private Sprite playerSprite;
+	private int playerAngle; // y flip animation
+
 	private TextureRegion tempRegion;
 
 	private BitmapFont font;
@@ -62,6 +65,8 @@ public class WorldRenderer {
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());
 		cam.zoom = 0.33f;
+
+		playerAngle = 0;
 
 		relevantBlocks = new MinMax();
 
@@ -127,6 +132,9 @@ public class WorldRenderer {
 					case SPIKE:
 						tempRegion = TextureHandler.block_spike;
 						break;
+					case GRAVITY:
+						tempRegion = TextureHandler.block_gravity;
+						break;
 					}
 
 					renderBatch.draw(tempRegion,
@@ -178,33 +186,77 @@ public class WorldRenderer {
 
 	private void renderPlayer() {
 
+		if (playerSprite == null){
+			playerSprite = new Sprite(TextureHandler.player_falling_right);
+			playerSprite.setOrigin(8, 14);
+		}
+
 		if (!world.getPlayer().isGrounded()) { // is in the air
+
 			if (world.getPlayer().getVelocity().y >= 0) {
-				playerRegion = world.getPlayer().isFacingLeft() ? TextureHandler.player_jump_right
-						: TextureHandler.player_jump_left;
+				playerSprite
+						.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_jump_right
+								: TextureHandler.player_jump_left);
 			} else {
-				playerRegion = world.getPlayer().isFacingLeft() ? TextureHandler.player_falling_right
-						: TextureHandler.player_falling_left;
+				playerSprite
+						.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_falling_right
+								: TextureHandler.player_falling_left);
 			}
+
 		} else {
-			playerRegion = world.getPlayer().isFacingLeft() ? TextureHandler.player_left_idle
-					.getKeyFrame(world.getPlayer().getStateTime(), true)
-					: TextureHandler.player_right_idle.getKeyFrame(world
-							.getPlayer().getStateTime(), true);
+			playerSprite
+					.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_left_idle
+							.getKeyFrame(world.getPlayer().getStateTime(), true)
+							: TextureHandler.player_right_idle.getKeyFrame(
+									world.getPlayer().getStateTime(), true));
+
 			if (world.getPlayer().getState().equals(State.WALKING)) {
-				playerRegion = world.getPlayer().isFacingLeft() ? TextureHandler.player_left_animation
-						.getKeyFrame(world.getPlayer().getStateTime(), true)
-						: TextureHandler.player_right_animation.getKeyFrame(
-								world.getPlayer().getStateTime(), true);
+				playerSprite
+						.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_left_animation
+								.getKeyFrame(world.getPlayer().getStateTime(),
+										true)
+								: TextureHandler.player_right_animation
+										.getKeyFrame(world.getPlayer()
+												.getStateTime(), true));
 			}
 
 		}
-		renderBatch.begin();
-		renderBatch.draw(playerRegion, world.getPlayer().getPosition().x, world
-				.getPlayer().getPosition().y, playerRegion.getRegionWidth(),
-				playerRegion.getRegionHeight());
+		playerSprite.setSize(playerSprite.getRegionWidth(),
+				playerSprite.getRegionHeight());
 
+		// if inverted, we want to turn the sprite
+		if (world.getPlayer().isInvertGravity()) {
+			if (playerAngle != 180) {
+				playerAngle += 45;
+			} else {
+				playerSprite.flip(true, false);
+			}
+		} else {
+			if (playerAngle != 0) {
+				playerAngle -= 45;
+			}
+		}
+		playerSprite.setRotation(playerAngle);
+
+		// moving the sprite to the playerlocation
+		playerSprite.setPosition(world.getPlayer().getPosition().x, world
+				.getPlayer().getPosition().y);
+
+		// draw the player
+		renderBatch.begin();
+		playerSprite.draw(renderBatch);
 		renderBatch.end();
+
+		if (debugMode) {
+			triggerRenderer.begin(ShapeType.Line);
+			triggerRenderer.setColor(Color.RED);
+			triggerRenderer.rect(world.getPlayer().getPosition().x, world
+					.getPlayer().getPosition().y,
+					world.getPlayer().getBounds().width, world.getPlayer()
+							.getBounds().height);
+			triggerRenderer.end();
+		}
+
 	}
 
 	private void moveCamera() {

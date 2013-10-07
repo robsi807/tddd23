@@ -27,10 +27,15 @@
     <property name="type" value="spike"/>
    </properties>
   </tile>
+  <tile id="4">
+   <properties>
+    <property name="type" value="gravity"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1TEKACAMBMEo/v/NtodYxguRPdh6IE0iGPtnozD3cHFxcTu5s9B12+qeuVzdK1d/oPPGHdx1Kcslym4DXCgBog==
+   eJzt1cEKABAQhOG18f6v7CqNIrujNH/NyeFLKWZK/VN5OHZy5cqVe+s2ouskC7kRtm9udtF5Vqv7ZrnjH5hloDfKcFEnbgWLcjUteh3rhAHA
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">

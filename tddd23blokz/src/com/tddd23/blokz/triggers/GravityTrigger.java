@@ -11,7 +11,7 @@ public class GravityTrigger extends PlayerTrigger {
 
 	@Override
 	public void trigger() {
-		// reverse gravity
+		player.setInvertGravity(true);
 	}
 
 }

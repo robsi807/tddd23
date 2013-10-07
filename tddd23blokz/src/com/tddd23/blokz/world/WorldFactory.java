@@ -16,6 +16,7 @@ import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.DeathTrigger;
+import com.tddd23.blokz.triggers.GravityTrigger;
 import com.tddd23.blokz.triggers.JumpTrigger;
 import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.triggers.Triggerable;
@@ -24,7 +25,6 @@ public class WorldFactory {
 
 	public static World createMap(GameMap gmap, GameScreen screen) {
 
-		System.out.println("maps/" + gmap.getLocation() + ".tmx");
 		TiledMap map = new TmxMapLoader().load("maps/" + gmap.getLocation()
 				+ ".tmx");
 
@@ -68,6 +68,16 @@ public class WorldFactory {
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
 											Constants.SIZE, 3)));
+						} else if (type.equals("gravity")) {
+							blockType = BlockType.GRAVITY;
+							world.getTriggers().add(
+									new GravityTrigger(null, new Rectangle(
+											(x * Constants.SIZE) - 2
+													* Constants.SIZE,
+											(y * Constants.SIZE)
+													- (2 * Constants.SIZE),
+											Constants.SIZE * 5,
+											Constants.SIZE * 5)));
 						}
 
 						world.getBlocks()[x][y] = new Block(new Vector2(x

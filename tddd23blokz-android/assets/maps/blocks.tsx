@@ -21,4 +21,9 @@
    <property name="type" value="spike"/>
   </properties>
  </tile>
+ <tile id="4">
+  <properties>
+   <property name="type" value="gravity"/>
+  </properties>
+ </tile>
 </tileset>
