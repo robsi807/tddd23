@@ -128,4 +128,8 @@ public class World {
 		return mapSize;
 	}
 
+	public void killPlayer() {
+		player.setPosition(new Vector2(spawnPoint.x, spawnPoint.y));
+	}
+
 }

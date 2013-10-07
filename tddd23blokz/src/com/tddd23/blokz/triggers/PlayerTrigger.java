@@ -10,7 +10,6 @@ public abstract class PlayerTrigger implements Triggerable {
 
 	public PlayerTrigger(Player player, Rectangle bounds) {
 		this.player = player;
-		System.out.println(player);
 		this.bounds = bounds;
 	}
 
@@ -20,6 +19,10 @@ public abstract class PlayerTrigger implements Triggerable {
 	@Override
 	public Rectangle getBounds() {
 		return bounds;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 }

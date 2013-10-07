@@ -18,17 +18,20 @@ public class TextureHandler {
 
 	public static TextureRegion player_jump_right;
 	public static TextureRegion player_jump_left;
-	
+
 	public static TextureRegion player_falling_right;
 	public static TextureRegion player_falling_left;
 
 	public static Animation player_left_animation;
 	public static Animation player_right_animation;
-	
+
+	// blocks
 	public static TextureRegion block_dirt;
 	public static TextureRegion block_stone;
 	public static TextureRegion block_jump;
-	
+	public static TextureRegion block_spike;
+
+	// framecollections for animation creation
 	private static TextureRegion[] frameCollection;
 	private static TextureRegion[] frameCollection2;
 
@@ -79,7 +82,7 @@ public class TextureHandler {
 		player_jump_left = new TextureRegion(player, 6 * 16, 0, 16, 32);
 		player_jump_right = new TextureRegion(player, 6 * 16, 0, 16, 32);
 		player_jump_right.flip(true, false);
-		
+
 		player_falling_left = new TextureRegion(player, 7 * 16, 0, 16, 32);
 		player_falling_right = new TextureRegion(player, 7 * 16, 0, 16, 32);
 		player_falling_right.flip(true, false);
@@ -89,5 +92,6 @@ public class TextureHandler {
 		blocks = new Texture("images/blockssheet.png");
 		block_dirt = new TextureRegion(blocks, 0, 0, 16, 16);
 		block_stone = new TextureRegion(blocks, 16, 0, 16, 16);
+		block_spike = new TextureRegion(blocks, 48, 0, 16, 16);
 	}
 }

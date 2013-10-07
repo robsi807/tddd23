@@ -8,13 +8,17 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
+import com.tddd23.blokz.triggers.DeathTrigger;
 import com.tddd23.blokz.triggers.JumpTrigger;
+import com.tddd23.blokz.triggers.PlayerTrigger;
+import com.tddd23.blokz.triggers.Triggerable;
 
 public class WorldFactory {
 
@@ -39,34 +43,43 @@ public class WorldFactory {
 		MapProperties properties = null;
 
 		String type = null;
+		BlockType blockType = null;
 
 		// looping throu all the blocks in the map
 		for (int y = 0; y < world.getMapSize().height; y++) {
 			for (int x = 0; x < world.getMapSize().width; x++) {
 
-				// if a block exists and is solid
+				// if a block exists and is solids
 				if (blocks.getCell(x, y) != null) {
 					type = (String) blocks.getCell(x, y).getTile()
 							.getProperties().get("type");
-					System.out.println("@worldFac: block @ " + x + ", " + y
-							+ " " + type);
 					if (type != null) {
+
+						// checking the types of blocks
 						if (type.equals("dirt")) {
-							System.out.println("adding dirt @");
-							world.getBlocks()[x][y] = new Block(new Vector2(x
-									* Constants.SIZE, y * Constants.SIZE),
-									world, BlockType.DIRT);
+							blockType = BlockType.DIRT;
 						} else if (type.equals("stone")) {
-							world.getBlocks()[x][y] = new Block(new Vector2(x
-									* Constants.SIZE, y * Constants.SIZE),
-									world, BlockType.STONE);
+							blockType = BlockType.STONE;
+						} else if (type.equals("spike")) {
+							blockType = BlockType.SPIKE;
+							world.getTriggers().add(
+									new DeathTrigger(null, new Rectangle(
+											(x * Constants.SIZE),
+											(y * Constants.SIZE)
+													+ Constants.SIZE,
+											Constants.SIZE, 3)));
 						}
+
+						world.getBlocks()[x][y] = new Block(new Vector2(x
+								* Constants.SIZE, y * Constants.SIZE), world,
+								blockType);
 
 					}
 				}
 			}
 
 		}
+
 		// looping all the objects finding the interesting ones and adding them
 		// to the world object
 		for (MapObject obj : map.getLayers().get("objects").getObjects()) {
@@ -84,6 +97,12 @@ public class WorldFactory {
 						.getRectangle()));
 			}
 
+		}
+
+		for (Triggerable t : world.getTriggers()) {
+			if (t instanceof PlayerTrigger) {
+				((PlayerTrigger) t).setPlayer(world.getPlayer());
+			}
 		}
 
 		return world;

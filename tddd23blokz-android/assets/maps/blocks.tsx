@@ -16,4 +16,9 @@
    <property name="type" value="dirt"/>
   </properties>
  </tile>
+ <tile id="3">
+  <properties>
+   <property name="type" value="spike"/>
+  </properties>
+ </tile>
 </tileset>

@@ -10,16 +10,19 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.Constants;
-import com.tddd23.blokz.GameObject;
 import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.Player.State;
 import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.gfx.DebugWindow;
 import com.tddd23.blokz.gfx.ImageCache;
 import com.tddd23.blokz.gfx.TextureHandler;
+import com.tddd23.blokz.triggers.PlayerTrigger;
+import com.tddd23.blokz.triggers.Triggerable;
 
 public class WorldRenderer {
 
@@ -31,6 +34,7 @@ public class WorldRenderer {
 	private boolean debugMode = false;
 
 	private ShapeRenderer debugRenderer;
+	private ShapeRenderer triggerRenderer;
 
 	private World world;
 
@@ -49,6 +53,8 @@ public class WorldRenderer {
 
 	private Point clickPoint;
 
+	private Rectangle triggerRect;
+
 	/** for debug rendering **/
 
 	public WorldRenderer(World world) {
@@ -66,6 +72,7 @@ public class WorldRenderer {
 
 		TextureHandler.init();
 		debugRenderer = new ShapeRenderer();
+		triggerRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 
 		this.cam.update();
@@ -81,6 +88,7 @@ public class WorldRenderer {
 		hudBatch.setProjectionMatrix(cam.combined);
 		renderBatch.setProjectionMatrix(cam.combined);
 		debugRenderer.setProjectionMatrix(cam.combined);
+		triggerRenderer.setProjectionMatrix(cam.combined);
 
 		updateHelpBlock();
 		renderBlocks();
@@ -116,6 +124,9 @@ public class WorldRenderer {
 					case STONE:
 						tempRegion = TextureHandler.block_stone;
 						break;
+					case SPIKE:
+						tempRegion = TextureHandler.block_spike;
+						break;
 					}
 
 					renderBatch.draw(tempRegion,
@@ -143,15 +154,26 @@ public class WorldRenderer {
 	}
 
 	private void renderDynamicObjects() {
-		for (GameObject object : world.getDynamicObjects()) {
-			renderBatch.begin();
-			renderBatch.draw(TextureHandler.block_dirt, object.getPosition().x,
-					object.getPosition().y);
-			renderBatch.end();
-		}
+		// for (GameObject object : world.getDynamicObjects()) {
+		// renderBatch.begin();
+		// renderBatch.draw(TextureHandler.block_dirt, object.getPosition().x,
+		// object.getPosition().y);
+		// renderBatch.end();
+		// }
 
-		if (debugMode)
+		if (debugMode) {
 			debugWindow.render();
+
+			for (Triggerable t : world.getTriggers()) {
+				if (t instanceof PlayerTrigger) {
+					triggerRect = ((PlayerTrigger) t).getBounds();
+					triggerRenderer.begin(ShapeType.Line);
+					triggerRenderer.rect(triggerRect.x, triggerRect.y,
+							triggerRect.width, triggerRect.height);
+					triggerRenderer.end();
+				}
+			}
+		}
 	}
 
 	private void renderPlayer() {

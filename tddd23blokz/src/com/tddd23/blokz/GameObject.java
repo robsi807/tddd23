@@ -71,4 +71,10 @@ public class GameObject {
 		return facingLeft;
 	}
 
+	public World getWorld() {
+		return world;
+	}
+	
+	
+
 }

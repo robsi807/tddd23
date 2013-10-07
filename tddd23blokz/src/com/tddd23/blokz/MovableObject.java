@@ -36,8 +36,8 @@ public abstract class MovableObject extends GameObject implements Movable {
 		boolean hasCollidedY = false;
 
 		// X axis collision handling
-		displacementBox = new Rectangle(getPosition().x + getVelocity().x*delta,
-				getPosition().y, getBounds().width, getBounds().height);
+		displacementBox = new Rectangle(getPosition().x + getVelocity().x
+				* delta, getPosition().y, getBounds().width, getBounds().height);
 
 		collidingRectangle = getCollidingBlock(displacementBox);
 		if (collidingRectangle != null) {
@@ -54,7 +54,8 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 		// Y axis collision handling
 		displacementBox = new Rectangle(getPosition().x, getPosition().y
-				+ getVelocity().y*delta, getBounds().width, getBounds().height);
+				+ getVelocity().y * delta, getBounds().width,
+				getBounds().height);
 
 		if (checkForTriggers(displacementBox))
 			return;
@@ -90,9 +91,11 @@ public abstract class MovableObject extends GameObject implements Movable {
 	}
 
 	private boolean checkForTriggers(Rectangle displacementRectangle) {
+
 		for (Triggerable trigger : world.getTriggers()) {
 			if (trigger.getBounds().overlaps(displacementRectangle)) {
 				// Only trigger when player is STANDING on a trigger
+				System.out.println("overlapping trigger");
 				if (world.getPlayer().getPosition().y < trigger.getBounds().y
 						+ trigger.getBounds().height)
 					return false;

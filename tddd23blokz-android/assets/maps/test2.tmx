@@ -22,10 +22,15 @@
     <property name="type" value="dirt"/>
    </properties>
   </tile>
+  <tile id="3">
+   <properties>
+    <property name="type" value="spike"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1UEKACAIRFGN7n/mthK4Kkeo/2HWD9xoRvRO3jh1uLi4501cmTsaXbUd3X2VeeJUufEHKm/8u8vY7S2QyAGg
+   eJzt1TEKACAMBMEo/v/NtodYxguRPdh6IE0iGPtnozD3cHFxcTu5s9B12+qeuVzdK1d/oPPGHdx1Kcslym4DXCgBog==
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
