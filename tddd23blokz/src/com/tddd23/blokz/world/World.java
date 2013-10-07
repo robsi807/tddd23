@@ -60,11 +60,11 @@ public class World {
 				Constants.SPEED, this);
 	}
 
-	public boolean isPlaceable(int x, int y) {
-		if (blocks[x][y] != null)
+	public boolean isPlaceable(int tileX, int tileY) {
+		if (blocks[tileX][tileY] != null)
 			return false;
 
-		rect = new Rectangle(x, y, Constants.SIZE, Constants.SIZE);
+		rect = new Rectangle(tileX*Constants.SIZE, tileY*Constants.SIZE, Constants.SIZE, Constants.SIZE);
 		if (player.getPositionRectangle().overlaps(rect))
 			return false;
 
