@@ -3,7 +3,7 @@ package com.tddd23.blokz.blocks;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.Movable;
 import com.tddd23.blokz.MovableObject;
-import com.tddd23.blokz.World;
+import com.tddd23.blokz.world.World;
 
 public class MovableBlock extends MovableObject implements Movable {
 

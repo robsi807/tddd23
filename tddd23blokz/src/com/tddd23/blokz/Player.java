@@ -3,6 +3,7 @@ package com.tddd23.blokz;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.gfx.DebugWindow;
+import com.tddd23.blokz.world.World;
 
 public class Player extends MovableObject {
 	private State state = State.IDLE;

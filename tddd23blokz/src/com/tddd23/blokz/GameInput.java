@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.GameScreen.GameState;
 import com.tddd23.blokz.Player.State;
+import com.tddd23.blokz.world.World;
 
 public class GameInput implements InputProcessor {
 
@@ -154,37 +155,14 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
-			return false;
-		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
-		clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);
-		clickPoint.x = (int) (clickPoint.x - (clickPoint.x % Constants.SIZE));
-		clickPoint.y = (int) (clickPoint.y - (clickPoint.y % Constants.SIZE));
-
-		if (clickPoint.y < 0 || clickPoint.x < 0
-				|| clickPoint.x >= world.getMapSize().width
-				|| clickPoint.y >= world.getMapSize().height) {
-			
-			return false; // Utanför
-		}
-		if (!world.isPlaceable(clickPoint.x, clickPoint.y)) {
-			game.getGameScreen().getRenderer().setHelpBlock(null);
-			return false;
-			
-		}
-		game.getGameScreen()
-				.getRenderer()
-				.setHelpBlock(
-						new Block(new Vector2(clickPoint.x, clickPoint.y),
-								world));
 		return false;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
-		if(amount<0){
+		if (amount < 0) {
 			game.getGameScreen().getRenderer().zoomIn();
-		}else{
+		} else {
 			game.getGameScreen().getRenderer().zoomOut();
 		}
 		return false;

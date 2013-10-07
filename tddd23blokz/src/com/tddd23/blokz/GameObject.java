@@ -3,6 +3,7 @@ package com.tddd23.blokz;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.world.World;
 
 public class GameObject {
 
@@ -60,6 +61,14 @@ public class GameObject {
 
 	public void setBounds(Rectangle bounds) {
 		this.bounds = bounds;
+	}
+
+	public boolean isGrounded() {
+		return grounded;
+	}
+
+	public boolean isFacingLeft() {
+		return facingLeft;
 	}
 
 }

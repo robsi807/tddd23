@@ -2,7 +2,7 @@ package com.tddd23.blokz.blocks;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.Constants;
-import com.tddd23.blokz.World;
+import com.tddd23.blokz.world.World;
 
 /*
  * Class for creating blocks.

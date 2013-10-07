@@ -3,6 +3,9 @@ package com.tddd23.blokz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.tddd23.blokz.audio.MusicCache;
+import com.tddd23.blokz.world.World;
+import com.tddd23.blokz.world.WorldFactory;
+import com.tddd23.blokz.world.WorldRenderer;
 
 public class GameScreen implements Screen {
 

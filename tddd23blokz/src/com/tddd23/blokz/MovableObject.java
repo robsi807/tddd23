@@ -3,6 +3,7 @@ package com.tddd23.blokz;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.triggers.Triggerable;
+import com.tddd23.blokz.world.World;
 
 public abstract class MovableObject extends GameObject implements Movable {
 

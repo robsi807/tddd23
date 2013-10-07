@@ -1,9 +1,13 @@
 package com.tddd23.blokz;
 
 import com.badlogic.gdx.math.Vector2;
+import com.tddd23.blokz.world.World;
 
 public class MinMax {
-	int minX, maxX, minY, maxY;
+	public int minX;
+	public int maxX;
+	public int minY;
+	public int maxY;
 
 	public void setRelevantCoordinates(int distance, Vector2 position,
 			World world) {
