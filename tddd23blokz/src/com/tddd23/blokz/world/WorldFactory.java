@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.tddd23.blokz.Constants;
+import com.tddd23.blokz.GameScreen;
 import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
@@ -22,7 +23,7 @@ import com.tddd23.blokz.triggers.Triggerable;
 
 public class WorldFactory {
 
-	public static World createMap(GameMap gmap) {
+	public static World createMap(GameMap gmap, GameScreen screen) {
 
 		System.out.println("maps/" + gmap.getLocation() + ".tmx");
 		TiledMap map = new TmxMapLoader().load("maps/" + gmap.getLocation()
@@ -35,7 +36,7 @@ public class WorldFactory {
 		int mapHeight = Integer.parseInt(prop.get("width", String.class));
 		int mapWidth = Integer.parseInt(prop.get("height", String.class));
 		World world = new World(mapWidth * Constants.SIZE, (int) mapHeight
-				* Constants.SIZE);
+				* Constants.SIZE, screen);
 
 		world.setMaxNrOfBlocks(Integer.parseInt((String) prop.get("max_blocks")));
 

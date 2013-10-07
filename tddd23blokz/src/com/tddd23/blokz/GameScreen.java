@@ -19,11 +19,15 @@ public class GameScreen implements Screen {
 
 	private WorldRenderer renderer;
 	private World world;
+	private Blokz game;
+	private GameMap map;
 
 	public GameScreen(Blokz game, GameMap map) {
 		state = GameState.GAME_READY;
-		world = WorldFactory.createMap(map);
+		this.map = map;
+		world = WorldFactory.createMap(map, this);
 		renderer = new WorldRenderer(world);
+		this.game = game;
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
 
@@ -94,7 +98,10 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void dispose() {
-		System.out.println("@gamescreen : gamescreen has been disposed");
+	}
+
+	public void resetMap() {
+		game.startGame(map);
 	}
 
 }

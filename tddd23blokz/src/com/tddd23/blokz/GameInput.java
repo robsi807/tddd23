@@ -103,11 +103,6 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
 			return false;
 
@@ -125,30 +120,38 @@ public class GameInput implements InputProcessor {
 				|| clickPoint.y >= world.getMapSize().height)
 			return false; // Utanför
 
-		if (!world.isPlaceable(clickPoint.x, clickPoint.y))
+		if (!world.isPlaceable(clickPoint.x / Constants.SIZE, clickPoint.y
+				/ Constants.SIZE))
 			return false;// Klickat på ett befintlig block
+
 		world.addBlockObject(clickPoint.x, clickPoint.y);
+		return false;
+	}
+
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 
 		return false;
 	}
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
-			return false;
-		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
-		clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);
-		clickPoint.x = (int) (clickPoint.x - (clickPoint.x % Constants.SIZE));
-		clickPoint.y = (int) (clickPoint.y - (clickPoint.y % Constants.SIZE));
-
-		if (clickPoint.y < 0 || clickPoint.x < 0
-				|| clickPoint.x >= world.getMapSize().width
-				|| clickPoint.y >= world.getMapSize().height)
-			return false; // Utanför
-
-		if (!world.isPlaceable(clickPoint.x, clickPoint.y))
-			return false;// Klickat på ett befintlig block
-		world.addBlockObject(clickPoint.x, clickPoint.y);
+		// if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
+		// return false;
+		// ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
+		// clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);
+		// clickPoint.x = (int) (clickPoint.x - (clickPoint.x %
+		// Constants.SIZE));
+		// clickPoint.y = (int) (clickPoint.y - (clickPoint.y %
+		// Constants.SIZE));
+		//
+		// if (clickPoint.y < 0 || clickPoint.x < 0
+		// || clickPoint.x >= world.getMapSize().width
+		// || clickPoint.y >= world.getMapSize().height)
+		// return false; // Utanför
+		//
+		// if (!world.isPlaceable(clickPoint.x, clickPoint.y))
+		// return false;// Klickat på ett befintlig block
+		// world.addBlockObject(clickPoint.x, clickPoint.y);
 
 		return false;
 	}
