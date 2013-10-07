@@ -10,7 +10,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.GameScreen;
 import com.tddd23.blokz.blocks.Block;
