@@ -26,7 +26,7 @@ public class TextureHandler {
 	public static Animation player_right_animation;
 	
 	public static TextureRegion block_dirt;
-	public static TextureRegion block_indestructable;
+	public static TextureRegion block_stone;
 	public static TextureRegion block_jump;
 	
 	private static TextureRegion[] frameCollection;
@@ -88,6 +88,6 @@ public class TextureHandler {
 	private static void initBlocks() {
 		blocks = new Texture("images/blockssheet.png");
 		block_dirt = new TextureRegion(blocks, 0, 0, 16, 16);
-		block_indestructable = new TextureRegion(blocks, 16, 0, 16, 16);
+		block_stone = new TextureRegion(blocks, 16, 0, 16, 16);
 	}
 }

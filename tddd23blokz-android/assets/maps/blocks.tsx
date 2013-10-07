@@ -3,7 +3,16 @@
  <image source="../images/blockssheet.png" trans="ff00ff" width="160" height="32"/>
  <tile id="0">
   <properties>
-   <property name="solid" value=""/>
+   <property name="type" value="dirt"/>
+  </properties>
+ </tile>
+ <tile id="1">
+  <properties>
+   <property name="type" value="stone"/>
+  </properties>
+ </tile>
+ <tile id="2">
+  <properties>
    <property name="type" value="dirt"/>
   </properties>
  </tile>

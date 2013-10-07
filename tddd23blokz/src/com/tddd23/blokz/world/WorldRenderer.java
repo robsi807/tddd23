@@ -41,6 +41,7 @@ public class WorldRenderer {
 	private MinMax relevantBlocks;
 
 	private TextureRegion playerRegion;
+	private TextureRegion tempRegion;
 
 	private BitmapFont font;
 
@@ -99,6 +100,7 @@ public class WorldRenderer {
 	}
 
 	private void renderBlocks() {
+		tempRegion = null;
 
 		relevantBlocks.setRelevantCoordinates(RENDER_DIST, world.getPlayer()
 				.getPosition(), world);
@@ -107,9 +109,19 @@ public class WorldRenderer {
 			for (int x = relevantBlocks.minX; x < relevantBlocks.maxX; x++) {
 				if (world.getBlocks()[x][y] != null) {
 					renderBatch.begin();
-					renderBatch.draw(TextureHandler.block_dirt,
+					switch (world.getBlocks()[x][y].getType()) {
+					case DIRT:
+						tempRegion = TextureHandler.block_dirt;
+						break;
+					case STONE:
+						tempRegion = TextureHandler.block_stone;
+						break;
+					}
+
+					renderBatch.draw(tempRegion,
 							world.getBlocks()[x][y].getPosition().x,
 							world.getBlocks()[x][y].getPosition().y);
+
 					renderBatch.end();
 				}
 			}
@@ -250,7 +262,8 @@ public class WorldRenderer {
 			return;
 
 		}
-		setHelpBlock(new Block(new Vector2(clickPoint.x, clickPoint.y), world));
+		setHelpBlock(new Block(new Vector2(clickPoint.x, clickPoint.y), world,
+				world.getPlayer().getSelectedBlockType()));
 	}
 
 }

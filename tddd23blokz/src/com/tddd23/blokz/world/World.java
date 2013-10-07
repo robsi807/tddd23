@@ -48,7 +48,7 @@ public class World {
 
 	public void addBlockObject(float posX, float posY) {
 		blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
-				new Vector2(posX, posY), this);
+				new Vector2(posX, posY), this, player.getSelectedBlockType());
 	}
 
 	public void createPlayer() {
@@ -104,7 +104,6 @@ public class World {
 		return blocks;
 	}
 
-
 	public Point getSpawnPoint() {
 		return spawnPoint;
 	}
@@ -116,7 +115,6 @@ public class World {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-
 
 	public int getMaxNrOfBlocks() {
 		return maxNrOfBlocks;

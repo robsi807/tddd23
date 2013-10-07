@@ -2,11 +2,14 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.audio.SoundCache;
+import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.gfx.DebugWindow;
 import com.tddd23.blokz.world.World;
 
 public class Player extends MovableObject {
 	private State state = State.IDLE;
+
+	private BlockType selectedBlockType = BlockType.DIRT;
 
 	public enum State {
 		IDLE, WALKING, JUMPING, DYING
@@ -21,7 +24,7 @@ public class Player extends MovableObject {
 
 	public void jump(float multiplier) {
 		SoundCache.jump.play();
-		getAcceleration().y = Constants.JUMPING_SPEED*multiplier;
+		getAcceleration().y = Constants.JUMPING_SPEED * multiplier;
 	}
 
 	public void jump() {
@@ -58,7 +61,7 @@ public class Player extends MovableObject {
 			getAcceleration().y = -Constants.MAX_FALLING_SPEED;
 
 		if (state == State.WALKING) {
-			DebugWindow.addText(""+getSpeed());
+			DebugWindow.addText("" + getSpeed());
 			if (facingLeft) {
 				getVelocity().set(-getSpeed(), getAcceleration().y);
 				if (getVelocity().x < -Constants.MAX_MOVING_SPEED)
@@ -80,6 +83,14 @@ public class Player extends MovableObject {
 
 	public void setState(State state) {
 		this.state = state;
+	}
+
+	public BlockType getSelectedBlockType() {
+		return selectedBlockType;
+	}
+
+	public void setSelectedBlockType(BlockType selectedBlockType) {
+		this.selectedBlockType = selectedBlockType;
 	}
 
 }

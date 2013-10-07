@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.JumpTrigger;
 
@@ -37,20 +38,35 @@ public class WorldFactory {
 		RectangleMapObject rectObj = null;
 		MapProperties properties = null;
 
+		String type = null;
+
 		// looping throu all the blocks in the map
 		for (int y = 0; y < world.getMapSize().height; y++) {
 			for (int x = 0; x < world.getMapSize().width; x++) {
 
 				// if a block exists and is solid
-				if (blocks.getCell(x, y) != null
-						&& blocks.getCell(x, y).getTile().getProperties()
-								.containsKey("solid")) {
-					world.getBlocks()[x][y] = new Block(new Vector2(x
-							* Constants.SIZE, y * Constants.SIZE), world);
+				if (blocks.getCell(x, y) != null) {
+					type = (String) blocks.getCell(x, y).getTile()
+							.getProperties().get("type");
+					System.out.println("@worldFac: block @ " + x + ", " + y
+							+ " " + type);
+					if (type != null) {
+						if (type.equals("dirt")) {
+							System.out.println("adding dirt @");
+							world.getBlocks()[x][y] = new Block(new Vector2(x
+									* Constants.SIZE, y * Constants.SIZE),
+									world, BlockType.DIRT);
+						} else if (type.equals("stone")) {
+							world.getBlocks()[x][y] = new Block(new Vector2(x
+									* Constants.SIZE, y * Constants.SIZE),
+									world, BlockType.STONE);
+						}
+
+					}
 				}
 			}
-		}
 
+		}
 		// looping all the objects finding the interesting ones and adding them
 		// to the world object
 		for (MapObject obj : map.getLayers().get("objects").getObjects()) {
