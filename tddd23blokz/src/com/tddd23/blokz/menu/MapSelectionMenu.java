@@ -5,10 +5,12 @@ import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.world.WorldManager;
 
 public class MapSelectionMenu extends Menu {
+	private WorldManager worldmanager;
 
 	public MapSelectionMenu(final Blokz game, final WorldManager worldmanager) {
 		super(game);
-
+		this.worldmanager = worldmanager;
+		
 		for (final GameMap map : worldmanager.getMapInfo()) {
 			addMenuItem(new AbstractMenuItem(map.getName() + "  -  Score: "
 					+ map.getScore() + "  -  Time: " + map.getTimeInMillis()) {

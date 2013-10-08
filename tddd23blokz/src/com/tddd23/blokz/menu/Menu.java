@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -46,6 +47,7 @@ public class Menu implements Screen {
 		for (AbstractMenuItem item : menuItems)
 			font.draw(batch, item.getTitle(), 250,
 					(float) (500 - menuItems.indexOf(item) * 75));
+	
 		font.draw(batch,"|", 230,
 				(float) (500 - pointer * 75));
 		batch.end();
