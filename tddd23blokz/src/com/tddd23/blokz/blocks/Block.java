@@ -22,7 +22,7 @@ public class Block extends GameObject {
 	}
 
 	public enum BlockType {
-		DIRT, JUMP, SPIKE, GRAVITY, STONE;
+		DIRT, JUMP, SPIKE, GRAVITY, STONE, GOAL;
 	}
 
 }

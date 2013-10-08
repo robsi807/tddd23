@@ -133,5 +133,9 @@ public class World {
 		// player.setPosition(new Vector2(spawnPoint.x, spawnPoint.y));
 		gamescreen.resetMap();
 	}
+	public void loadNextWorld() {
+		// player.setPosition(new Vector2(spawnPoint.x, spawnPoint.y));
+		gamescreen.loadNextMap();
+	}
 
 }

@@ -20,11 +20,11 @@ public class GameScreen implements Screen {
 	private WorldRenderer renderer;
 	private World world;
 	private Blokz game;
-	private GameMap map;
+	private GameMap currentMap;
 
 	public GameScreen(Blokz game, GameMap map) {
 		state = GameState.GAME_READY;
-		this.map = map;
+		this.currentMap = map;
 		world = WorldFactory.createMap(map, this);
 		renderer = new WorldRenderer(world);
 		this.game = game;
@@ -101,7 +101,11 @@ public class GameScreen implements Screen {
 	}
 
 	public void resetMap() {
-		game.startGame(map);
+		game.startGame(currentMap);
+	}
+	public void loadNextMap() {
+		//Rendera ut lite goa grejer om stats etc
+		game.loadNextMap(currentMap);
 	}
 
 }

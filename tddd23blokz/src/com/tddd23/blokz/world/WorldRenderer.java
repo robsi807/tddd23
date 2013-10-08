@@ -135,6 +135,9 @@ public class WorldRenderer {
 					case GRAVITY:
 						tempRegion = TextureHandler.block_gravity;
 						break;
+					case GOAL:
+						tempRegion = TextureHandler.block_goal;
+						break;
 					}
 
 					renderBatch.draw(tempRegion,

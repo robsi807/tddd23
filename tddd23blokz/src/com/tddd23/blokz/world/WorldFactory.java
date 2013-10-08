@@ -16,6 +16,7 @@ import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.DeathTrigger;
+import com.tddd23.blokz.triggers.GoalTrigger;
 import com.tddd23.blokz.triggers.GravityTrigger;
 import com.tddd23.blokz.triggers.JumpTrigger;
 import com.tddd23.blokz.triggers.PlayerTrigger;
@@ -77,9 +78,15 @@ public class WorldFactory {
 											(y * Constants.SIZE)
 													- (2 * Constants.SIZE),
 											Constants.SIZE * 5,
-											Constants.SIZE * 5)));
+											Constants.SIZE * 5-1)));
+						} else if (type.equals("goal")) {
+							blockType = BlockType.GOAL;
+							world.getTriggers().add(
+									new GoalTrigger(null, new Rectangle(
+											(x * Constants.SIZE)-1,
+											(y * Constants.SIZE)-1,
+											Constants.SIZE+2, Constants.SIZE+2)));
 						}
-
 						world.getBlocks()[x][y] = new Block(new Vector2(x
 								* Constants.SIZE, y * Constants.SIZE), world,
 								blockType);

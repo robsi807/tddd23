@@ -14,7 +14,7 @@ public class GameObject {
 
 	protected boolean grounded;
 	protected World world;
-	boolean facingLeft = true;
+	boolean facingLeft = false;
 	protected Rectangle displacementBox;
 	protected Block collidingBlock;
 	protected Rectangle collidingRect;

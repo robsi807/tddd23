@@ -41,4 +41,10 @@ public class WorldManager {
 		return mapInfo;
 	}
 
+	public GameMap getMextMap(GameMap currentMap) {
+		if(mapInfo.indexOf(currentMap) == mapInfo.size()-1)
+			return mapInfo.get(0);
+		return mapInfo.get(mapInfo.indexOf(currentMap)+1);
+	}
+
 }

@@ -2,17 +2,19 @@
 <map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
  <properties>
   <property name="height" value="30"/>
-  <property name="max_blocks" value="10"/>
+  <property name="max_block_dirt" value="30"/>
+  <property name="max_block_jump" value="30"/>
+  <property name="max_blocks" value="20"/>
   <property name="width" value="30"/>
  </properties>
  <tileset firstgid="1" source="blocks.tsx"/>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1cEKABAURFGE//9kKyUNkTeU5tasLE5KcU6pf/IPdzu5cuXKPXUTycnADSRrVnUt7LC43kXnrEb3ZbntH8gy0Bu94aJ23Ahm5Wqa9QoNywHG
+   eJzt1tEGACAMBdDJ6v8/uZceJkmt2SU3RjdyHmasiEgBVfahe/7npU9ed5fp0vW6CnJ3mW68qyB3lenGuZxfrNuSXPT83u6tv/Q30/Wa2a61I1wdVc1dp/fZRVQH/D8Bnw==
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
-  <object x="32" y="352" width="16" height="16">
+  <object x="224" y="96" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
    </properties>

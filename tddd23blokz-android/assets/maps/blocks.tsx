@@ -26,4 +26,9 @@
    <property name="type" value="gravity"/>
   </properties>
  </tile>
+  <tile id="5">
+  <properties>
+   <property name="type" value="goal"/>
+  </properties>
+ </tile>
 </tileset>
