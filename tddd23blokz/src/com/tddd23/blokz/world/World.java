@@ -24,6 +24,7 @@ public class World {
 	private Block[][] blocks;
 	private Player player;
 	private Point spawnPoint;
+	private float stateTime;
 
 	private Dimension mapSize;
 
@@ -69,16 +70,21 @@ public class World {
 		return true;
 	}
 
-	public MovableObject getDynamicObjectAt(int x, int y) {
-		for (MovableObject obj : dynamicObjects)
-			if (obj.getPositionRectangle().overlaps(rect))
-				return obj;
-		return null;
-	}
+//	public MovableObject getDynamicObjectAt(int x, int y) {
+//		for (MovableObject obj : dynamicObjects)
+//			if (obj.getPositionRectangle().overlaps(rect))
+//				return obj;
+//		return null;
+//	}
 
 	public void update(float delta) {
+		stateTime +=delta;
 		player.update(delta);
 		updateBlocks(delta);
+	}
+
+	public float getStateTime() {
+		return stateTime;
 	}
 
 	private void updateBlocks(float delta) {

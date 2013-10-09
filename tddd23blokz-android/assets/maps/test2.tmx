@@ -8,7 +8,7 @@
  <tileset firstgid="1" source="blocks.tsx"/>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJztkkEKwCAMBK3Y9v8/9hQQScRoTEB2YC72MC42JQDu4QmUeA/ua+m7XmBvTNcL7I3peuG192O6+VBrBHU17V84z5P2Xe77Sn8Gaa/U3WlRj9x539E9uH/UqqtF0y2MVl0Ira1iVgH7
+   eJztlUEKwCAQA620+v8fexJEIihmd6FkICehw6DQlIT4D0/gOp9h38js9UK9MV4v1Bvj9WKntxI8BXgz4bundC/DnTc3e9G5Favelff2rsd/oFUbeqMeXsSJ9wVjeTWNvQYxcgHt
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">

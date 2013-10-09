@@ -64,11 +64,26 @@ public class WorldFactory {
 							blockType = BlockType.STONE;
 						} else if (type.equals("fire")) {
 							blockType = BlockType.FIRE;
-							connectedTriggers.add(new DeathTrigger(null,
-									new Rectangle((x * Constants.SIZE - Constants.SIZE*3), (y
+							connectedTriggers.add(new DeathTrigger(null,//Vänster
+									new Rectangle((x * Constants.SIZE - Constants.SIZE*2), (y
 											* Constants.SIZE),
-											Constants.SIZE*3,
+											Constants.SIZE*2,
 											Constants.SIZE )));
+							connectedTriggers.add(new DeathTrigger(null,//Höger
+									new Rectangle((x+1) * Constants.SIZE, (y
+											* Constants.SIZE),
+											Constants.SIZE*2,
+											Constants.SIZE )));
+							connectedTriggers.add(new DeathTrigger(null,//Upp
+									new Rectangle(x * Constants.SIZE, (y
+											* Constants.SIZE+Constants.SIZE),
+											Constants.SIZE,
+											Constants.SIZE*2 )));
+							connectedTriggers.add(new DeathTrigger(null,//Ner
+									new Rectangle(x * Constants.SIZE, ((y-2)
+											* Constants.SIZE),
+											Constants.SIZE,
+											Constants.SIZE*2 )));
 						} else if (type.equals("spike")) {
 							blockType = BlockType.SPIKE;
 							connectedTriggers.add(new DeathTrigger(null,
