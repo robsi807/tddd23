@@ -28,7 +28,7 @@ import com.tddd23.blokz.triggers.Triggerable;
 
 public class WorldRenderer {
 
-	private final static int RENDER_DIST = 12;
+	
 
 	private OrthographicCamera cam;
 
@@ -57,6 +57,8 @@ public class WorldRenderer {
 	private Point clickPoint;
 
 	private Rectangle triggerRect;
+	
+	float nrOfUpdates;
 
 	/** for debug rendering **/
 
@@ -81,6 +83,8 @@ public class WorldRenderer {
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 
 		this.cam.update();
+		
+		
 	}
 
 	public void render() {
@@ -115,7 +119,7 @@ public class WorldRenderer {
 	private void renderBlocks() {
 		tempRegion = null;
 
-		relevantBlocks.setRelevantCoordinates(RENDER_DIST, world.getPlayer()
+		relevantBlocks.setRelevantCoordinates(Constants.RENDER_DIST, world.getPlayer()
 				.getPosition(), world);
 
 		for (int y = relevantBlocks.minY; y < relevantBlocks.maxY; y++) {
@@ -137,6 +141,12 @@ public class WorldRenderer {
 						break;
 					case GOAL:
 						tempRegion = TextureHandler.block_goal;
+						break;
+					case FIRE:
+						tempRegion = TextureHandler.block_fire;
+						break;
+					case JUMP:
+						tempRegion = TextureHandler.block_jump;
 						break;
 					}
 
@@ -196,17 +206,22 @@ public class WorldRenderer {
 
 		if (!world.getPlayer().isGrounded()) { // is in the air
 
-			if (world.getPlayer().getVelocity().y >= 0) {
+			if (world.getPlayer().getVelocity().y >= 0 || world.getPlayer().isInvertGravity()) {
 				playerSprite
 						.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_jump_right
 								: TextureHandler.player_jump_left);
-			} else {
+			} else if(world.getPlayer().getVelocity().y < 0 || !world.getPlayer().isInvertGravity()) {
 				playerSprite
 						.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_falling_right
 								: TextureHandler.player_falling_left);
 			}
 
-		} else {
+			
+			
+			
+			
+			
+		} else { //Is on the ground
 			playerSprite
 					.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_left_idle
 							.getKeyFrame(world.getPlayer().getStateTime(), true)
@@ -229,13 +244,13 @@ public class WorldRenderer {
 
 		// if inverted, we want to turn the sprite
 		if (world.getPlayer().isInvertGravity()) {
-			if (playerAngle != 180) {
+			if (playerAngle != 180 && nrOfUpdates%2 ==0) {
 				playerAngle += 45;
 			} else {
 				playerSprite.flip(true, false);
 			}
 		} else {
-			if (playerAngle != 0) {
+			if (playerAngle != 0  && nrOfUpdates%2 ==0) {
 				playerAngle -= 45;
 			}
 		}
@@ -340,7 +355,7 @@ public class WorldRenderer {
 
 		}
 		setHelpBlock(new Block(new Vector2(clickPoint.x, clickPoint.y), world,
-				world.getPlayer().getSelectedBlockType()));
+				world.getPlayer().getSelectedBlockType(),null));
 	}
 
 }

@@ -13,7 +13,7 @@
  </tile>
  <tile id="2">
   <properties>
-   <property name="type" value="dirt"/>
+   <property name="type" value="jump"/>
   </properties>
  </tile>
  <tile id="3">
@@ -29,6 +29,11 @@
   <tile id="5">
   <properties>
    <property name="type" value="goal"/>
+  </properties>
+ </tile>
+  <tile id="6">
+  <properties>
+   <property name="type" value="fire"/>
   </properties>
  </tile>
 </tileset>

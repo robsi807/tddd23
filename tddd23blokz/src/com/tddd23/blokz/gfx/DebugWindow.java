@@ -63,10 +63,10 @@ public class DebugWindow {
 		spriteBatch.begin();
 		font.draw(spriteBatch, "X: " + (int) world.getPlayer().getPosition().x
 				+ " Y: " + (int) world.getPlayer().getPosition().y,
-				graphics.getWidth() / 2, graphics.getHeight() / 2);
+				graphics.getWidth() / 2, graphics.getHeight() / 2- 15);
 		font.draw(spriteBatch, "dX: " + world.getPlayer().getAcceleration().x
 				+ " dY: " + world.getPlayer().getAcceleration().y,
-				graphics.getWidth() / 2, graphics.getHeight() / 2 - 15);
+				graphics.getWidth() / 2, graphics.getHeight() / 2 - 30);
 		
 		
 		font.draw(spriteBatch, "FPS: "+graphics.getFramesPerSecond(),

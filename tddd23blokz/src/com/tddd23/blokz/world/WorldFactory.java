@@ -45,6 +45,7 @@ public class WorldFactory {
 
 		String type = null;
 		BlockType blockType = null;
+		Triggerable connectedTrigger = null;
 
 		// looping throu all the blocks in the map
 		for (int y = 0; y < world.getMapSize().height; y++) {
@@ -61,35 +62,49 @@ public class WorldFactory {
 							blockType = BlockType.DIRT;
 						} else if (type.equals("stone")) {
 							blockType = BlockType.STONE;
+						} else if (type.equals("fire")) {
+							blockType = BlockType.FIRE;
+							connectedTrigger = new DeathTrigger(null,
+									new Rectangle((x * Constants.SIZE - 2), (y
+											* Constants.SIZE - 2),
+											Constants.SIZE + 4,
+											Constants.SIZE + 4));
 						} else if (type.equals("spike")) {
 							blockType = BlockType.SPIKE;
-							world.getTriggers().add(
-									new DeathTrigger(null, new Rectangle(
-											(x * Constants.SIZE),
+							connectedTrigger = new DeathTrigger(null,
+									new Rectangle((x * Constants.SIZE),
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
-											Constants.SIZE, 3)));
+											Constants.SIZE, 3));
 						} else if (type.equals("gravity")) {
 							blockType = BlockType.GRAVITY;
-							world.getTriggers().add(
-									new GravityTrigger(null, new Rectangle(
-											(x * Constants.SIZE) - 2
-													* Constants.SIZE,
+							connectedTrigger = new GravityTrigger(null,
+									new Rectangle((x * Constants.SIZE) - 2
+											* Constants.SIZE,
 											(y * Constants.SIZE)
 													- (2 * Constants.SIZE),
 											Constants.SIZE * 5,
-											Constants.SIZE * 5-1)));
+											Constants.SIZE * 5 - 1));
 						} else if (type.equals("goal")) {
 							blockType = BlockType.GOAL;
-							world.getTriggers().add(
-									new GoalTrigger(null, new Rectangle(
-											(x * Constants.SIZE)-1,
-											(y * Constants.SIZE)-1,
-											Constants.SIZE+2, Constants.SIZE+2)));
+							connectedTrigger = new GoalTrigger(null,
+									new Rectangle((x * Constants.SIZE) - 1,
+											(y * Constants.SIZE) - 1,
+											Constants.SIZE + 2,
+											Constants.SIZE + 2));
+						} else if (type.equals("jump")) {
+							blockType = BlockType.JUMP;
+							connectedTrigger = new JumpTrigger(null,
+									new Rectangle((x * Constants.SIZE),
+											(y * Constants.SIZE)
+													+ Constants.SIZE,
+											Constants.SIZE, 3));
 						}
+						if (connectedTrigger != null)
+							world.getTriggers().add(connectedTrigger);
 						world.getBlocks()[x][y] = new Block(new Vector2(x
 								* Constants.SIZE, y * Constants.SIZE), world,
-								blockType);
+								blockType, connectedTrigger);
 
 					}
 				}

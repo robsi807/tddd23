@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.GameScreen;
+import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.MovableObject;
 import com.tddd23.blokz.Player;
 import com.tddd23.blokz.blocks.Block;
@@ -28,6 +29,8 @@ public class World {
 	private int maxNrOfBlocks;
 
 	private Rectangle rect;
+	
+	private MinMax relevantBlocks;
 
 	public ArrayList<Triggerable> getTriggers() {
 		return triggers;
@@ -47,12 +50,13 @@ public class World {
 		this.dynamicObjects = new ArrayList<MovableObject>();
 		this.triggers = new ArrayList<Triggerable>();
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
+		relevantBlocks = new MinMax();
 		// MusicCache.level1.play();
 	}
 
 	public void addBlockObject(float posX, float posY) {
 		blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
-				new Vector2(posX, posY), this, player.getSelectedBlockType());
+				new Vector2(posX, posY), this, player.getSelectedBlockType(),null);
 	}
 
 	public void createPlayer() {
@@ -80,9 +84,20 @@ public class World {
 
 	public void update(float delta) {
 		player.update(delta);
+		updateBlocks(delta);
 		for (MovableObject obj : dynamicObjects) {
 			obj.update(delta);
 		}
+	}
+
+	private void updateBlocks(float delta) {
+		relevantBlocks.setRelevantCoordinates(Constants.RENDER_DIST, getPlayer()
+				.getPosition(), this);
+		for (int y = relevantBlocks.minY; y < relevantBlocks.maxY; y++) 
+			for (int x = relevantBlocks.minX; x < relevantBlocks.maxX; x++) 
+				if (getBlocks()[x][y] != null) 
+					blocks[x][y].update(delta);
+				
 	}
 
 	public ArrayList<MovableObject> getDynamicObjects() {
@@ -130,11 +145,9 @@ public class World {
 	}
 
 	public void killPlayer() {
-		// player.setPosition(new Vector2(spawnPoint.x, spawnPoint.y));
 		gamescreen.resetMap();
 	}
 	public void loadNextWorld() {
-		// player.setPosition(new Vector2(spawnPoint.x, spawnPoint.y));
 		gamescreen.loadNextMap();
 	}
 

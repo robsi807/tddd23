@@ -104,7 +104,6 @@ public abstract class MovableObject extends GameObject implements Movable {
 	}
 
 	private void checkForTriggers(Rectangle displacementRectangle) {
-
 		for (Triggerable trigger : world.getTriggers()) {
 			if (trigger.getBounds().overlaps(displacementRectangle)) {
 				trigger.trigger();
@@ -121,7 +120,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 		collidingRectangle = null;
 		if (world != null) {
 			relevantCoords.setRelevantCoordinates(3, getPosition(), world);
-
+			
 			for (int y = relevantCoords.minY; y < relevantCoords.maxY; y++) {
 				for (int x = relevantCoords.minX; x < relevantCoords.maxX; x++) {
 

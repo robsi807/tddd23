@@ -6,7 +6,7 @@ import com.tddd23.blokz.Player;
 public abstract class PlayerTrigger implements Triggerable {
 
 	protected Player player;
-	private Rectangle bounds;
+	protected Rectangle bounds;
 
 	public PlayerTrigger(Player player, Rectangle bounds) {
 		this.player = player;
