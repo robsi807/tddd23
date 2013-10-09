@@ -8,6 +8,7 @@ public class TextureHandler {
 
 	private static Texture player;
 	private static Texture blocks;
+	private static Texture effects;
 	public static Texture paused;
 	public static Texture ready;
 	public static Texture mainMenuTitle;
@@ -30,9 +31,12 @@ public class TextureHandler {
 	public static TextureRegion block_stone;
 	public static TextureRegion block_jump;
 	public static TextureRegion block_spike;
-	public static TextureRegion block_gravity;
+	public static Animation block_gravity;
 	public static TextureRegion block_goal;
 	public static TextureRegion block_fire;
+
+	// effects
+	public static Animation effect_gravityfield;
 
 	// framecollections for animation creation
 	private static TextureRegion[] frameCollection;
@@ -44,6 +48,7 @@ public class TextureHandler {
 		initPlayer();
 		initBlocks();
 		initOther();
+		initEffects();
 
 	}
 
@@ -97,8 +102,27 @@ public class TextureHandler {
 		block_stone = new TextureRegion(blocks, 16, 0, 16, 16);
 		block_jump = new TextureRegion(blocks, 32, 0, 16, 16);
 		block_spike = new TextureRegion(blocks, 48, 0, 16, 16);
-		block_gravity = new TextureRegion(blocks, 64, 0, 16, 16);
-		block_goal = new TextureRegion(blocks, 80, 0, 16, 16);
-		block_fire = new TextureRegion(blocks, 96, 0, 16, 16);
+		block_goal = new TextureRegion(blocks, 7 * 16, 0, 16, 16);
+		block_fire = new TextureRegion(blocks, 8 * 16, 0, 16, 16);
+
+		// gravity block
+		frameCollection = new TextureRegion[3];
+		for (int i = 0; i < frameCollection.length; i++) {
+			frameCollection[i] = new TextureRegion(blocks, (i + 4) * 16, 0, 16,
+					16);
+		}
+		block_gravity = new Animation(.2f, frameCollection);
 	}
+
+	private static void initEffects() {
+		effects = new Texture("images/effects.png");
+
+		frameCollection = new TextureRegion[6];
+		for (int i = 0; i < frameCollection.length; i++) {
+			frameCollection[i] = new TextureRegion(effects, i * 16, 0, 16, 16);
+		}
+		effect_gravityfield = new Animation(.1f, frameCollection);
+
+	}
+
 }

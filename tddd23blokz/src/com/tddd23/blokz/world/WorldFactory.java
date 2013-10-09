@@ -65,6 +65,8 @@ public class WorldFactory {
 							blockType = BlockType.STONE;
 						} else if (type.equals("fire")) {
 							blockType = BlockType.FIRE;
+							
+							//SÄTT NEDANSTÅENDE KOD I BLOCK CONSTRUCTORN
 							connectedTriggers.add(new FireTrigger(null,//Vänster
 									new Rectangle((x * Constants.SIZE - Constants.SIZE*2), (y
 											* Constants.SIZE),
@@ -94,6 +96,8 @@ public class WorldFactory {
 											Constants.SIZE, 3)));
 						} else if (type.equals("gravity")) {
 							blockType = BlockType.GRAVITY;
+							
+							//IN I BLOCK CONSTRUCTORN MED NEDANSTÅENDE
 							connectedTriggers.add(new GravityTrigger(null,
 									new Rectangle((x * Constants.SIZE) - 2
 											* Constants.SIZE,
