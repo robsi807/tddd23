@@ -21,64 +21,29 @@ public class MapSelectionMenu extends Menu {
 		}
 		addMenuItem(new AbstractMenuItem("Empty item1") {
 			public void trigger() {
-			
 			}
 		});
 
 		addMenuItem(new AbstractMenuItem("Empty item2") {
 			public void trigger() {
-			
 			}
 		});
-
 		addMenuItem(new AbstractMenuItem("Empty item3") {
 			public void trigger() {
-			
 			}
 		});
 		addMenuItem(new AbstractMenuItem("Empty item4") {
 			public void trigger() {
-			
 			}
 		});
-		addMenuItem(new AbstractMenuItem("Empty item5") {
+		addMenuItem(new AbstractMenuItem("Tillbaka") {
 			public void trigger() {
-			
+				game.goToMainMenu();
 			}
 		});
-		addMenuItem(new AbstractMenuItem("Empty item6") {
-			public void trigger() {
-			
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Empty item7") {
-			public void trigger() {
-			
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Empty item8") {
-			public void trigger() {
-			
-			}
-		});
-
-		addMenuItem(new AbstractMenuItem("Empty item9") {
-			public void trigger() {
-			
-			}
-		});
-
-		addMenuItem(new AbstractMenuItem("Empty item10") {
-			public void trigger() {
-			
-			}
-		});
-
 	}
 
-	@Override
 	public String getTitle() {
 		return "Select map";
-		
 	}
 }

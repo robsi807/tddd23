@@ -17,6 +17,7 @@ public abstract class Menu implements Screen {
 	private ArrayList<AbstractMenuItem> menuItems;
 	private ArrayList<AbstractMenuItem> menuItemsToShow;
 	private int pointer;
+	private int relPointer;
 	protected Game game;
 	private BitmapFont font;
 
@@ -49,7 +50,10 @@ public abstract class Menu implements Screen {
 		font.draw(batch, "Blokz", 50, 700);
 		font = FontHandler.courier[3];
 		font.draw(batch, "Use UP/DOWN and ENTER to select", 55, 580);
-		font.draw(batch, "-----------------------------------------------------------------", 55, 500);
+		font.draw(
+				batch,
+				getDashes(38),
+				55, 500);
 		font = FontHandler.courier[6];
 		font.draw(batch, getTitle(), 50, 450);
 		font = FontHandler.courier[3];
@@ -57,22 +61,25 @@ public abstract class Menu implements Screen {
 			font.draw(batch, item.getTitle(), 50,
 					(float) (350 - menuItemsToShow.indexOf(item) * 75));
 
-		font.draw(batch, "|", 30, (float) (350 - pointer * 75));
+		font.draw(batch, "|", 30, (float) (350 - relPointer * 75));
 		batch.end();
 	}
 
 	private void setMenuItemsToShow() {
 		menuItemsToShow.clear();
-		if(pointer <3)
-			for(int x=0;x<menuItems.size();x++)
+		if (pointer < 3) {
+			for (int x = 0; x < 5; x++) {
+				if (x < menuItems.size())
+					menuItemsToShow.add(menuItems.get(x));
+
+			}
+		} else if (pointer > 2 && pointer < menuItems.size() - 2) {
+			for (int x = pointer - 2; x < pointer + 3; x++)
 				menuItemsToShow.add(menuItems.get(x));
-		else if  (pointer >2 && pointer< menuItems.size()-2)
-			for(int x=pointer-2;x<pointer+5;x++)
+		} else {
+			for (int x = menuItems.size() - 5; x < menuItems.size(); x++)
 				menuItemsToShow.add(menuItems.get(x));
-		else 
-			for(int x=menuItems.size()-5;x<menuItems.size();x++)
-				menuItemsToShow.add(menuItems.get(x));
-		
+		}
 	}
 
 	@Override
@@ -109,17 +116,36 @@ public abstract class Menu implements Screen {
 		pointer++;
 		if (pointer >= menuItems.size())
 			pointer = 0;
+		relPointer = pointer;
+		if(menuItems.size()> 4 &&pointer > menuItems.size()-3)
+			relPointer = 5-(menuItems.size()-pointer);
+		
+		if(menuItems.size()>4 &&pointer > 2 && pointer < menuItems.size()-2){
+			relPointer = 2;
+		}
 	}
 
 	public void decreasePointer() {
 		pointer--;
 		if (pointer < 0)
 			pointer = menuItems.size() - 1;
+		relPointer = pointer;
+		relPointer = pointer;
+		if(menuItems.size()> 4 &&pointer > menuItems.size()-3)
+			relPointer = 5-(menuItems.size()-pointer);
+		if(menuItems.size()> 4 &&pointer > 2 && pointer < menuItems.size()-2)
+			relPointer = 2;
+	
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-
+	}
+	private String getDashes(int i){
+		String a="";
+		for(int x=0;x<i;x++)
+			a+="-";
+		return a;
 	}
 }

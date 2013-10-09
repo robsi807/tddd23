@@ -90,14 +90,12 @@ public class WorldFactory {
 						} else if (type.equals("spike")) {
 							blockType = BlockType.SPIKE;
 							connectedTriggers.add(new DeathTrigger(null,
-									new Rectangle((x * Constants.SIZE) +3,
+									new Rectangle((x * Constants.SIZE) +1,
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
-											Constants.SIZE - 6, 3)));
+											Constants.SIZE - 2, 3)));
 						} else if (type.equals("gravity")) {
 							blockType = BlockType.GRAVITY;
-							
-							//IN I BLOCK CONSTRUCTORN MED NEDANSTÅENDE
 							connectedTriggers.add(new GravityTrigger(null,
 									new Rectangle((x * Constants.SIZE) - 2
 											* Constants.SIZE,
@@ -115,10 +113,10 @@ public class WorldFactory {
 						} else if (type.equals("jump")) {
 							blockType = BlockType.JUMP;
 							connectedTriggers.add(new JumpTrigger(null,
-									new Rectangle((x * Constants.SIZE) + 3,
+									new Rectangle((x * Constants.SIZE) + 1,
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
-											Constants.SIZE - 6, 3)));
+											Constants.SIZE - 2, 3)));
 						}
 						world.getBlocks()[x][y] = new Block(new Vector2(x
 								* Constants.SIZE, y * Constants.SIZE), world,

@@ -24,13 +24,16 @@ public class Blokz extends Game {
 		SoundCache.load();
 		MusicCache.load();
 		worldmanager = new WorldManager();
-		menuScreen = new MainMenu(this, worldmanager);
-		setScreen(menuScreen);
+		goToMainMenu();
 	}
 
 	public void goToMapMenu() {
 		setScreen(new MapSelectionMenu(this, worldmanager));
 	}
+	public void goToMainMenu() {
+		setScreen(new MainMenu(this, worldmanager));
+	}
+
 
 	// Här skall vi skicka med vilken level som skall spelas som argument till
 	// gamescreen

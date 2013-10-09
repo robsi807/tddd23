@@ -11,6 +11,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 	private boolean movable = true;
 	private float stateTime = 0;
 	private float speed;
+	
 
 	private boolean invertGravity = false;
 

@@ -1,0 +1,259 @@
+[33mcommit f9679146e7bef5735e1731253aa062396d56231a[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 20:43:32 2013 +0200
+
+    gravityblocks funkar finfint, maste jobba pa rotation animation
+
+[33mcommit 02ccbc5d3141ca7fd85304c1a8268dbaea483130[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 18:39:56 2013 +0200
+
+    kan inte lagga block i player
+
+[33mcommit d08bb9c90beb38f4556d7a298e7d7ebc9c082bb0[m
+Author: robsi807 <robsi807@student.liu.se>
+Date:   Mon Oct 7 18:23:05 2013 +0200
+
+    Delete MapFactory.java
+
+[33mcommit c24c2cd15a03f08a15c2c0dffce8059220ed511b[m
+Author: robsi807 <robsi807@student.liu.se>
+Date:   Mon Oct 7 18:22:39 2013 +0200
+
+    Delete WorldRenderer.java
+
+[33mcommit 34318916508f6299bb8f42b94e21133141851c6e[m
+Author: robsi807 <robsi807@student.liu.se>
+Date:   Mon Oct 7 18:22:34 2013 +0200
+
+    Delete WorldFactory.java
+
+[33mcommit f0739a3d9a3e7720012cf54a4c825d995f0f940a[m
+Author: robsi807 <robsi807@student.liu.se>
+Date:   Mon Oct 7 18:22:24 2013 +0200
+
+    delete world from blokz
+
+[33mcommit c293edda12e639e6077bcc18808f2efcfacb5491[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 18:02:50 2013 +0200
+
+    funkar block constructorn nu
+
+[33mcommit 64af4392310182489872210f92f6f81ecf0eb657[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 17:53:15 2013 +0200
+
+    tog bort mapfactory, anvands inte
+
+[33mcommit fe646ff072f99d8169ca0920cf859ce73c10ae79[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 17:52:35 2013 +0200
+
+    reset av karta vid dod funkar
+
+[33mcommit 0a7e5553989f1bdc610c17fbb9c1b27b13ff1771[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 17:30:01 2013 +0200
+
+    deathtrigger kinda works, spikes implemented
+
+[33mcommit f364ab31dd3cd8902d046ab802d87379edaa7297[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 16:13:45 2013 +0200
+
+    blocktypes implemented
+
+[33mcommit 15da782554627ed03ee66d7f016f8112d69abc8b[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 15:55:04 2013 +0200
+
+    tog bort dublett av blockfactory
+
+[33mcommit be32c0af5e2932255a230985432215df94b5c503[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 15:53:48 2013 +0200
+
+    imports for flyttat block.java
+
+[33mcommit 45860f6fd2c38053abe3533d529b19816badd969[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 15:51:50 2013 +0200
+
+    tog bort dublett av block.java
+
+[33mcommit 6419442c66c4d9dea2cb1739ae76a144d28344e9[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 14:09:28 2013 +0200
+
+    meny funkar med att ladda bana fran fil, player smalare
+
+[33mcommit dd8bae24831b6f6e513ed9021f281306f9812ffe[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 12:06:15 2013 +0200
+
+    formaterat om kod osv
+
+[33mcommit 227201656cf4ee91043430356e2bd54ac7c6685e[m
+Author: robii <robinsilverhav@gmail.com>
+Date:   Mon Oct 7 11:23:46 2013 +0200
+
+    removed old renderer
+
+[33mcommit 7bcdfaaff0281f5dee90d60274ec3943fea565f4[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sun Oct 6 23:45:05 2013 +0200
+
+    Småfix
+
+[33mcommit 4f287795a480a99487121ed64602298b29aa8ecf[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sun Oct 6 22:47:41 2013 +0200
+
+    Mindre fix, zoomar med scrollen kan man göra om man har tråkigt.
+
+[33mcommit aee1a83b3954e7f823ca4fcf824986bbb7ca7743[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sun Oct 6 20:35:53 2013 +0200
+
+    Lade till en FontHandler som kan generara BitMapFont objekt från en .ttf font. Snyggare upp menyn
+
+[33mcommit 813993acdaa5d54dc918b8c8229029cebbc1db7c[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sun Oct 6 15:52:17 2013 +0200
+
+    Mindre fix med menyn
+
+[33mcommit 7be639e8164fc8ed5e98d6e89cc885e9c49dfff6[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sun Oct 6 15:37:21 2013 +0200
+
+    Grundläggade meny-struktur och mindre fix
+
+[33mcommit 68adea748f6bcd87b741c41909858756a94ce5da[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sun Oct 6 04:51:52 2013 +0200
+
+    Random fyllepush, småfix med pause etc
+
+[33mcommit 1856e1453080a0297e6d8f94ec890c54ff03e6b1[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sat Oct 5 17:42:39 2013 +0200
+
+    Mer förarbete till meny-systemet
+
+[33mcommit f87ea7b0bd4330bb983d8a225d390865904408be[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sat Oct 5 14:14:50 2013 +0200
+
+    La till lite stöd för pause och state-handling i spelet. Grunder för att sköta meny <-> game
+
+[33mcommit 6106d98c36ad1f60ea6c530abf6fb239f262ff6f[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Fri Oct 4 17:18:48 2013 +0200
+
+    Lade till delta så att vi rullar även på låga fps
+
+[33mcommit f4671bfb2d42aa313693a2014d8b5c3d09769d58[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Fri Oct 4 12:33:06 2013 +0200
+
+    Ny bild för fallanade spelare
+
+[33mcommit fc27f3d5ef5e48db2c3971cdb12fb86d0de51b87[m
+Author: unknown <Bobban@DATTAMATTA2.(none)>
+Date:   Wed Oct 2 22:42:59 2013 +0200
+
+    some more graphic changes, animation when idle
+
+[33mcommit de6511794c48b5b6981ded30d39aa4944eb171da[m
+Author: unknown <Bobban@DATTAMATTA2.(none)>
+Date:   Wed Oct 2 22:07:46 2013 +0200
+
+    added new graphics
+
+[33mcommit 925fe0df0d104adbed123c2b5116e9103bec6d9a[m
+Author: unknown <Bobban@DATTAMATTA2.(none)>
+Date:   Wed Oct 2 20:55:55 2013 +0200
+
+    graphics changes! optimerad utritning av blocken
+
+[33mcommit 3bde22d8fb91b6d1b21dabdb919e43d046180333[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Tue Oct 1 10:54:32 2013 +0200
+
+    Fixade music
+
+[33mcommit 3ffad30c723f83c116b5227cd51b30b5f72d093f[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Tue Oct 1 10:34:59 2013 +0200
+
+    Småfix och la till möjligheten att spela upp ljud
+
+[33mcommit f6bb5cd53afa3011324aaf605d18bc9a93a0b1c3[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Mon Sep 30 21:31:53 2013 +0200
+
+    Småfix
+
+[33mcommit 02a3e642cc7f97d3c17142d1329c5a3cddf1874c[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Mon Sep 30 19:30:28 2013 +0200
+
+    Grundläggande strktur för triggers implementerad. Jump-triggern fungerar som den ska.
+
+[33mcommit 73b23fc6fc984766ded45b45054901afe044ac74[m
+Author: unknown <Bobban@DATTAMATTA2.(none)>
+Date:   Mon Sep 30 17:40:05 2013 +0200
+
+    fixed the fps shit
+
+[33mcommit b1088acd55cba14386d88e8cb36d0467481a515e[m
+Author: unknown <Bobban@DATTAMATTA2.(none)>
+Date:   Mon Sep 30 17:28:46 2013 +0200
+
+    shit has been fixed, testar kollision med 36 object
+
+[33mcommit 1d796bbd190c9cd706a33dba8f0b81650022a7cf[m
+Author: unknown <Bobban@DATTAMATTA2.(none)>
+Date:   Mon Sep 30 17:12:45 2013 +0200
+
+    back to array and alot of architectual changes
+
+[33mcommit c536a0523b1f25ffd6f05d973f2d061f539e3500[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Sat Sep 28 17:55:53 2013 +0200
+
+    Provade animationer och mindre fix, vi behöver styra ett möte/lan
+
+[33mcommit 433650816b0409056b81b27fd22c7827ba784d29[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Thu Sep 26 09:57:54 2013 +0200
+
+    Lade till stöd för TexturePacker. Se WorldRenderer konstruktorn samt klassen ImageCache
+
+[33mcommit 4899093ec7ae9f1deb561b9b772babccd1cc9852[m
+Author: unknown <Bobban@DATTAMATTA2.(none)>
+Date:   Wed Sep 25 14:58:39 2013 +0200
+
+    formaterat om lite i projektet, changed scope on variables in gameobject to private and moved worldrenderer to a new package where all the graphics will be
+
+[33mcommit d836eface358fb62f1e5f44ca4df92591aaa3afc[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Wed Sep 25 12:52:19 2013 +0200
+
+    Gravitationsfix
+
+[33mcommit 6a2f0d400639f9c8156f39764da19f424de10ede[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Wed Sep 25 12:49:08 2013 +0200
+
+    Småfix, lade till en debugger som nås via ½-knappen. Visar lite information om spelaren atm men öppnar även ett consolfönster i vilket man kan få utskrifter genom att skriva DebugWindow.addText(String str).
+
+[33mcommit 72401dea9f2056252e10bafd26891912c67f0e65[m
+Author: hnkelau <henrik.laurentz@gmail.com>
+Date:   Wed Sep 25 01:51:36 2013 +0200
+
+    Småfix, testade med ny en ny map bl.a
+
+[33mcommit 97
