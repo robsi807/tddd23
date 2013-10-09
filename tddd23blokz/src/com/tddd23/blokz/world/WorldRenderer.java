@@ -137,7 +137,6 @@ public class WorldRenderer {
 					case GRAVITY:
 						tempRegion = TextureHandler.block_gravity.getKeyFrame(
 								world.getPlayer().getStateTime(), true);
-						;
 						break;
 					case GOAL:
 						tempRegion = TextureHandler.block_goal;
@@ -145,7 +144,6 @@ public class WorldRenderer {
 					case FIRE:
 						tempRegion = TextureHandler.block_fire.getKeyFrame(
 								world.getPlayer().getStateTime(), true);
-						;
 						break;
 					case JUMP:
 						tempRegion = TextureHandler.block_jump;
@@ -186,7 +184,6 @@ public class WorldRenderer {
 						fireTriggerRect.width, fireTriggerRect.height);
 				triggerRenderer.end();
 			} else if (t instanceof GravityTrigger) {
-
 				float offset = 0;
 				for (int y = (int) t.getBounds().y; y <= (int) t.getBounds().y
 						+ (int) t.getBounds().height; y += Constants.SIZE) {

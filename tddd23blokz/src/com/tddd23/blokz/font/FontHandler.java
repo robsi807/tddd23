@@ -6,11 +6,13 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 
 public class FontHandler {
 	
-	public static BitmapFont courier25;
+	public static BitmapFont[] courier;
 
 	public static void init(){
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/COUR.ttf"));
-		courier25 = generator.generateFont(40); // font size 25 pixels
-		generator.dispose(); // don't forget to dispose to avoid memory leaks!
+		courier = new BitmapFont[20];
+		for(int x=0;x<20;x++)
+			courier[x] = generator.generateFont((x+1)*10); 
+		generator.dispose(); 
 	}
 }

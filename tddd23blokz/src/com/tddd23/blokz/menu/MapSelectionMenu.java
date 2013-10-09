@@ -19,11 +19,66 @@ public class MapSelectionMenu extends Menu {
 				}
 			});
 		}
-
-		addMenuItem(new AbstractMenuItem("Back to main menu") {
+		addMenuItem(new AbstractMenuItem("Empty item1") {
 			public void trigger() {
-				game.setScreen(new MainMenu(game, worldmanager));
+			
 			}
 		});
+
+		addMenuItem(new AbstractMenuItem("Empty item2") {
+			public void trigger() {
+			
+			}
+		});
+
+		addMenuItem(new AbstractMenuItem("Empty item3") {
+			public void trigger() {
+			
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Empty item4") {
+			public void trigger() {
+			
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Empty item5") {
+			public void trigger() {
+			
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Empty item6") {
+			public void trigger() {
+			
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Empty item7") {
+			public void trigger() {
+			
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Empty item8") {
+			public void trigger() {
+			
+			}
+		});
+
+		addMenuItem(new AbstractMenuItem("Empty item9") {
+			public void trigger() {
+			
+			}
+		});
+
+		addMenuItem(new AbstractMenuItem("Empty item10") {
+			public void trigger() {
+			
+			}
+		});
+
+	}
+
+	@Override
+	public String getTitle() {
+		return "Select map";
+		
 	}
 }

@@ -28,4 +28,9 @@ public class MainMenu extends Menu {
 		});
 	}
 
+	@Override
+	public String getTitle() {
+		return "Main menu";
+	}
+
 }

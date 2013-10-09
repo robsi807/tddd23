@@ -129,6 +129,9 @@ public class TextureHandler {
 			frameCollection[i] = new TextureRegion(effects, i * 16, 0, 16, 16);
 		}
 		effect_gravityfield = new Animation(.1f, frameCollection);
+		
+		
+		
 
 	}
 
