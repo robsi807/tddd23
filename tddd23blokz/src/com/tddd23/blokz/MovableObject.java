@@ -42,6 +42,10 @@ public abstract class MovableObject extends GameObject implements Movable {
 		displacementBox = new Rectangle(getPosition().x + getVelocity().x
 				* delta, getPosition().y, getBounds().width, getBounds().height);
 		
+		
+		// setting the invert to false, if we still are colliding with a gravity
+				// trigger it will be set to true
+		invertGravity = false;
 		checkForTriggers(displacementBox);
 		
 		 //Måste uppdatera efter att triggern eventuellt har påverkat spelarens rörelse
@@ -70,9 +74,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 				+ getVelocity().y * delta, getBounds().width,
 				getBounds().height);
 
-		// setting the invert to false, if we still are colliding with a gravity
-		// trigger it will be set to true
-		invertGravity = false;
+		
 
 		// if colliding with a trigger, trigger the event
 
