@@ -33,7 +33,7 @@ public class TextureHandler {
 	public static TextureRegion block_spike;
 	public static Animation block_gravity;
 	public static TextureRegion block_goal;
-	public static TextureRegion block_fire;
+	public static Animation block_fire;
 
 	// effects
 	public static Animation effect_gravityfield;
@@ -103,7 +103,6 @@ public class TextureHandler {
 		block_jump = new TextureRegion(blocks, 32, 0, 16, 16);
 		block_spike = new TextureRegion(blocks, 48, 0, 16, 16);
 		block_goal = new TextureRegion(blocks, 7 * 16, 0, 16, 16);
-		block_fire = new TextureRegion(blocks, 8 * 16, 0, 16, 16);
 
 		// gravity block
 		frameCollection = new TextureRegion[3];
@@ -112,6 +111,14 @@ public class TextureHandler {
 					16);
 		}
 		block_gravity = new Animation(.2f, frameCollection);
+
+		// fireblock
+		frameCollection = new TextureRegion[4];
+		for (int i = 0; i < frameCollection.length; i++) {
+			frameCollection[i] = new TextureRegion(blocks, i * 16, 16, 16, 16);
+		}
+		block_fire = new Animation(.2f, frameCollection);
+
 	}
 
 	private static void initEffects() {

@@ -143,7 +143,9 @@ public class WorldRenderer {
 						tempRegion = TextureHandler.block_goal;
 						break;
 					case FIRE:
-						tempRegion = TextureHandler.block_fire;
+						tempRegion = TextureHandler.block_fire.getKeyFrame(
+								world.getPlayer().getStateTime(), true);
+						;
 						break;
 					case JUMP:
 						tempRegion = TextureHandler.block_jump;
