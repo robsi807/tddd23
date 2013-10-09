@@ -12,7 +12,6 @@ public class MenuInput implements InputProcessor{
 
 	@Override
 	public boolean keyDown(int keycode) {
-		System.out.println(keycode);
 		switch (keycode) {
 		case 19:
 			callingMenu.decreasePointer();
