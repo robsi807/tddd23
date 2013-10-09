@@ -11,6 +11,6 @@ public class DeathTrigger extends PlayerTrigger {
 
 	@Override
 	public void trigger() {
-			player.getWorld().killPlayer();
+		player.getWorld().killPlayer();
 	}
 }

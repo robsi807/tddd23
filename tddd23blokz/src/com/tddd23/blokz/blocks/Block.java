@@ -1,20 +1,24 @@
 package com.tddd23.blokz.blocks;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.GameObject;
+import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.triggers.Triggerable;
 import com.tddd23.blokz.world.World;
 
 public class Block extends GameObject {
 
 	private BlockType type;
-	private int stateTime;
-	private Triggerable connectedTrigger;
+	private float stateTime;
+	private ArrayList<PlayerTrigger> connectedTriggers;
+	private static int FLAME_REPEAT = 3;
+	private static int FLAME_LENGTH = 1;
 
-	public Block(Vector2 position, World world, BlockType type,
-			Triggerable connectedTrigger) {
+	public Block(Vector2 position, World world, BlockType type) {
 		super(position, world);
-		this.connectedTrigger = connectedTrigger;
+		this.connectedTriggers = new ArrayList<PlayerTrigger>();
 		this.type = type;
 	}
 
@@ -27,9 +31,21 @@ public class Block extends GameObject {
 	}
 
 	public void update(float delta) {
+		stateTime+=delta;
+		System.out.println(stateTime);
 		switch (type) {
 		case FIRE:
+			if (stateTime > FLAME_REPEAT
+					&& stateTime < FLAME_LENGTH + FLAME_REPEAT) {
+				for(PlayerTrigger t : connectedTriggers)
+					t.setActive(true);
 
+			} else {
+				for(PlayerTrigger t : connectedTriggers)
+					t.setActive(false);
+			}
+			if(stateTime > FLAME_LENGTH+FLAME_REPEAT)
+				stateTime =0;
 			break;
 		default:
 			break;
@@ -40,4 +56,12 @@ public class Block extends GameObject {
 		DIRT, JUMP, SPIKE, GRAVITY, STONE, GOAL, FIRE;
 	}
 
+	public void addTrigger(PlayerTrigger trigger) {
+		connectedTriggers.add(trigger);
+	}
+
+	public void addTrigger(ArrayList<PlayerTrigger> triggerList) {
+		for (PlayerTrigger t : triggerList)
+			connectedTriggers.add(t);
+	}
 }

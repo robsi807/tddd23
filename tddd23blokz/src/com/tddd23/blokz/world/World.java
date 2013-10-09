@@ -12,13 +12,14 @@ import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.MovableObject;
 import com.tddd23.blokz.Player;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.triggers.Triggerable;
 
 public class World {
 
 	private GameScreen gamescreen;
 
-	private ArrayList<Triggerable> triggers;
+	private ArrayList<PlayerTrigger> triggers;
 	private ArrayList<MovableObject> dynamicObjects;
 	private Block[][] blocks;
 	private Player player;
@@ -29,16 +30,8 @@ public class World {
 	private int maxNrOfBlocks;
 
 	private Rectangle rect;
-	
+
 	private MinMax relevantBlocks;
-
-	public ArrayList<Triggerable> getTriggers() {
-		return triggers;
-	}
-
-	public void addTrigger(Triggerable trigger) {
-		triggers.add(trigger);
-	}
 
 	private Vector2 gravity;
 
@@ -48,7 +41,7 @@ public class World {
 		mapSize = new Dimension(nrOfBlocksWidth, nrOfBlocksHeight);
 		gravity = Constants.WORLD_GRAVITY;
 		this.dynamicObjects = new ArrayList<MovableObject>();
-		this.triggers = new ArrayList<Triggerable>();
+		this.triggers = new ArrayList<PlayerTrigger>();
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
 		relevantBlocks = new MinMax();
 		// MusicCache.level1.play();
@@ -56,7 +49,7 @@ public class World {
 
 	public void addBlockObject(float posX, float posY) {
 		blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
-				new Vector2(posX, posY), this, player.getSelectedBlockType(),null);
+				new Vector2(posX, posY), this, player.getSelectedBlockType());
 	}
 
 	public void createPlayer() {
@@ -68,7 +61,8 @@ public class World {
 		if (blocks[tileX][tileY] != null)
 			return false;
 
-		rect = new Rectangle(tileX*Constants.SIZE, tileY*Constants.SIZE, Constants.SIZE, Constants.SIZE);
+		rect = new Rectangle(tileX * Constants.SIZE, tileY * Constants.SIZE,
+				Constants.SIZE, Constants.SIZE);
 		if (player.getPositionRectangle().overlaps(rect))
 			return false;
 
@@ -85,19 +79,16 @@ public class World {
 	public void update(float delta) {
 		player.update(delta);
 		updateBlocks(delta);
-		for (MovableObject obj : dynamicObjects) {
-			obj.update(delta);
-		}
 	}
 
 	private void updateBlocks(float delta) {
-		relevantBlocks.setRelevantCoordinates(Constants.RENDER_DIST, getPlayer()
-				.getPosition(), this);
-		for (int y = relevantBlocks.minY; y < relevantBlocks.maxY; y++) 
-			for (int x = relevantBlocks.minX; x < relevantBlocks.maxX; x++) 
-				if (getBlocks()[x][y] != null) 
+		relevantBlocks.setRelevantCoordinates(Constants.RENDER_DIST,
+				getPlayer().getPosition(), this);
+		for (int y = relevantBlocks.minY; y < relevantBlocks.maxY; y++)
+			for (int x = relevantBlocks.minX; x < relevantBlocks.maxX; x++)
+				if (getBlocks()[x][y] != null)
 					blocks[x][y].update(delta);
-				
+
 	}
 
 	public ArrayList<MovableObject> getDynamicObjects() {
@@ -147,8 +138,22 @@ public class World {
 	public void killPlayer() {
 		gamescreen.resetMap();
 	}
+
 	public void loadNextWorld() {
 		gamescreen.loadNextMap();
+	}
+
+	public void addTrigger(PlayerTrigger trigger) {
+		triggers.add(trigger);
+	}
+
+	public void addTrigger(ArrayList<PlayerTrigger> triggerList) {
+		for (PlayerTrigger t : triggerList)
+			triggers.add(t);
+	}
+
+	public ArrayList<PlayerTrigger> getTriggers() {
+		return triggers;
 	}
 
 }

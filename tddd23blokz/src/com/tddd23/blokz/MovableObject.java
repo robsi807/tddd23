@@ -2,6 +2,7 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.triggers.Triggerable;
 import com.tddd23.blokz.world.World;
 
@@ -104,8 +105,8 @@ public abstract class MovableObject extends GameObject implements Movable {
 	}
 
 	private void checkForTriggers(Rectangle displacementRectangle) {
-		for (Triggerable trigger : world.getTriggers()) {
-			if (trigger.getBounds().overlaps(displacementRectangle)) {
+		for (PlayerTrigger trigger : world.getTriggers()) {
+			if (trigger.getBounds().overlaps(displacementRectangle) && trigger.isActive()) {
 				trigger.trigger();
 			}
 		}

@@ -1,6 +1,7 @@
 package com.tddd23.blokz.world;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
@@ -45,12 +46,11 @@ public class WorldFactory {
 
 		String type = null;
 		BlockType blockType = null;
-		Triggerable connectedTrigger = null;
-
+		ArrayList<PlayerTrigger> connectedTriggers;
 		// looping throu all the blocks in the map
 		for (int y = 0; y < world.getMapSize().height; y++) {
 			for (int x = 0; x < world.getMapSize().width; x++) {
-
+				connectedTriggers = new ArrayList<PlayerTrigger>();
 				// if a block exists and is solids
 				if (blocks.getCell(x, y) != null) {
 					type = (String) blocks.getCell(x, y).getTile()
@@ -64,47 +64,50 @@ public class WorldFactory {
 							blockType = BlockType.STONE;
 						} else if (type.equals("fire")) {
 							blockType = BlockType.FIRE;
-							connectedTrigger = new DeathTrigger(null,
-									new Rectangle((x * Constants.SIZE - 2), (y
-											* Constants.SIZE - 2),
-											Constants.SIZE + 4,
-											Constants.SIZE + 4));
+							connectedTriggers.add(new DeathTrigger(null,
+									new Rectangle((x * Constants.SIZE - Constants.SIZE*3), (y
+											* Constants.SIZE),
+											Constants.SIZE*3,
+											Constants.SIZE )));
 						} else if (type.equals("spike")) {
 							blockType = BlockType.SPIKE;
-							connectedTrigger = new DeathTrigger(null,
+							connectedTriggers.add(new DeathTrigger(null,
 									new Rectangle((x * Constants.SIZE),
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
-											Constants.SIZE, 3));
+											Constants.SIZE, 3)));
 						} else if (type.equals("gravity")) {
 							blockType = BlockType.GRAVITY;
-							connectedTrigger = new GravityTrigger(null,
+							connectedTriggers.add(new GravityTrigger(null,
 									new Rectangle((x * Constants.SIZE) - 2
 											* Constants.SIZE,
 											(y * Constants.SIZE)
 													- (2 * Constants.SIZE),
 											Constants.SIZE * 5,
-											Constants.SIZE * 5 - 1));
+											Constants.SIZE * 5 - 1)));
 						} else if (type.equals("goal")) {
 							blockType = BlockType.GOAL;
-							connectedTrigger = new GoalTrigger(null,
+							connectedTriggers.add(new GoalTrigger(null,
 									new Rectangle((x * Constants.SIZE) - 1,
 											(y * Constants.SIZE) - 1,
 											Constants.SIZE + 2,
-											Constants.SIZE + 2));
+											Constants.SIZE + 2)));
 						} else if (type.equals("jump")) {
 							blockType = BlockType.JUMP;
-							connectedTrigger = new JumpTrigger(null,
+							connectedTriggers.add(new JumpTrigger(null,
 									new Rectangle((x * Constants.SIZE),
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
-											Constants.SIZE, 3));
+											Constants.SIZE, 3)));
 						}
-						if (connectedTrigger != null)
-							world.getTriggers().add(connectedTrigger);
 						world.getBlocks()[x][y] = new Block(new Vector2(x
 								* Constants.SIZE, y * Constants.SIZE), world,
-								blockType, connectedTrigger);
+								blockType);
+						if (connectedTriggers != null) {
+							world.addTrigger(connectedTriggers);
+							world.getBlocks()[x][y]
+									.addTrigger(connectedTriggers);
+						}
 
 					}
 				}

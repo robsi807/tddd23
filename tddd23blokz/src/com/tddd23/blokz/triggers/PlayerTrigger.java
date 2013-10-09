@@ -7,10 +7,20 @@ public abstract class PlayerTrigger implements Triggerable {
 
 	protected Player player;
 	protected Rectangle bounds;
+	protected boolean active;
 
 	public PlayerTrigger(Player player, Rectangle bounds) {
 		this.player = player;
 		this.bounds = bounds;
+		this.active = true;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	@Override

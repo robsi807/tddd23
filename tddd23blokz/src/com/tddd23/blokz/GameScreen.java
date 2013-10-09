@@ -22,12 +22,15 @@ public class GameScreen implements Screen {
 	private Blokz game;
 	private GameMap currentMap;
 
+	private boolean updateGame;
+
 	public GameScreen(Blokz game, GameMap map) {
 		state = GameState.GAME_READY;
 		this.currentMap = map;
 		world = WorldFactory.createMap(map, this);
 		renderer = new WorldRenderer(world);
 		this.game = game;
+		updateGame = true;
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
 
@@ -68,7 +71,8 @@ public class GameScreen implements Screen {
 	}
 
 	private void updateGame(float delta) {
-		world.update(delta);
+		if (updateGame )
+			world.update(delta);
 	}
 
 	@Override
@@ -101,10 +105,12 @@ public class GameScreen implements Screen {
 	}
 
 	public void resetMap() {
+		updateGame = false;
 		game.startGame(currentMap);
 	}
+
 	public void loadNextMap() {
-		//Rendera ut lite goa grejer om stats etc
+		// Rendera ut lite goa grejer om stats etc
 		game.loadNextMap(currentMap);
 	}
 

@@ -185,8 +185,8 @@ public class WorldRenderer {
 		if (debugMode) {
 			debugWindow.render();
 
-			for (Triggerable t : world.getTriggers()) {
-				if (t instanceof PlayerTrigger) {
+			for (PlayerTrigger t : world.getTriggers()) {
+				if (t.isActive()) {
 					triggerRect = ((PlayerTrigger) t).getBounds();
 					triggerRenderer.begin(ShapeType.Line);
 					triggerRenderer.rect(triggerRect.x, triggerRect.y,
@@ -355,7 +355,7 @@ public class WorldRenderer {
 
 		}
 		setHelpBlock(new Block(new Vector2(clickPoint.x, clickPoint.y), world,
-				world.getPlayer().getSelectedBlockType(),null));
+				world.getPlayer().getSelectedBlockType()));
 	}
 
 }
