@@ -26,12 +26,37 @@
    <property name="type" value="gravity"/>
   </properties>
  </tile>
-  <tile id="5">
+ <tile id="5">
+  <properties>
+   <property name="type" value="gravity"/>
+  </properties>
+ </tile>
+ <tile id="6">
+  <properties>
+   <property name="type" value="gravity"/>
+  </properties>
+ </tile>
+ <tile id="7">
   <properties>
    <property name="type" value="goal"/>
   </properties>
  </tile>
-  <tile id="6">
+ <tile id="10">
+  <properties>
+   <property name="type" value="fire"/>
+  </properties>
+ </tile>
+ <tile id="11">
+  <properties>
+   <property name="type" value="fire"/>
+  </properties>
+ </tile>
+ <tile id="12">
+  <properties>
+   <property name="type" value="fire"/>
+  </properties>
+ </tile>
+ <tile id="13">
   <properties>
    <property name="type" value="fire"/>
   </properties>
