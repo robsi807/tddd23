@@ -12,23 +12,8 @@ public class JumpTrigger extends PlayerTrigger {
 	}
 
 	public void trigger() {
-		DebugWindow.addText(player.getPosition().y + " hoppa!"); // Ultimate bug
-																	// of death,
-																	// tas denna
-																	// bort (aka
-																	// vi gör
-																	// INTE ett
-																	// tidskrävande
-																	// anrop
-																	// innan
-																	// jump) så
-																	// hoppar
-																	// han
-																	// endast
-																	// 3-5 ggr
-																	// på ett
-																	// jumpblock
-		player.jump(1);
+		if (player.getPosition().y >= getBounds().y)
+			player.jump(1);
 	}
 
 }

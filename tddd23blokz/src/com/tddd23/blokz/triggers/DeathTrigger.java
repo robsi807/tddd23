@@ -11,6 +11,8 @@ public class DeathTrigger extends PlayerTrigger {
 
 	@Override
 	public void trigger() {
-		player.getWorld().killPlayer();
+		if (player.getPosition().y >= getBounds().y)
+			player.getWorld().killPlayer();
+	
 	}
 }
