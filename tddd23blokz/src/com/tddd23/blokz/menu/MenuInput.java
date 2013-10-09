@@ -12,14 +12,15 @@ public class MenuInput implements InputProcessor{
 
 	@Override
 	public boolean keyDown(int keycode) {
+		System.out.println(keycode);
 		switch (keycode) {
-		case 51:
+		case 19:
 			callingMenu.decreasePointer();
 			return true;
-		case 47:
+		case 20:
 			callingMenu.increasePointer();
 			return true;
-		case 62:	
+		case 66:	
 			callingMenu.triggerMenuItem();
 			return true;
 		}

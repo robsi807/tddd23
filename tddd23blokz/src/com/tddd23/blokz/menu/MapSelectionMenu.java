@@ -36,6 +36,18 @@ public class MapSelectionMenu extends Menu {
 			public void trigger() {
 			}
 		});
+		addMenuItem(new AbstractMenuItem("Empty item5") {
+			public void trigger() {
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Empty item6") {
+			public void trigger() {
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Empty item7") {
+			public void trigger() {
+			}
+		});
 		addMenuItem(new AbstractMenuItem("Tillbaka") {
 			public void trigger() {
 				game.goToMainMenu();
