@@ -32,7 +32,6 @@ public class Block extends GameObject {
 
 	public void update(float delta) {
 		stateTime = world.getStateTime() % (FLAME_LENGTH+FLAME_REPEAT);
-		System.out.println(stateTime);
 		switch (type) {
 		case FIRE:
 			if (stateTime > FLAME_REPEAT

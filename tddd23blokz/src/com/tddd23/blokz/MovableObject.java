@@ -38,9 +38,19 @@ public abstract class MovableObject extends GameObject implements Movable {
 		boolean hasCollidedX = false;
 		boolean hasCollidedY = false;
 
-		// X axis collision handling
+		updateObject(delta);
 		displacementBox = new Rectangle(getPosition().x + getVelocity().x
 				* delta, getPosition().y, getBounds().width, getBounds().height);
+		
+		checkForTriggers(displacementBox);
+		
+		 //Måste uppdatera efter att triggern eventuellt har påverkat spelarens rörelse
+		updateObject(delta);
+		displacementBox = new Rectangle(getPosition().x + getVelocity().x
+				* delta, getPosition().y, getBounds().width, getBounds().height);
+		
+		
+		
 
 		collidingRectangle = getCollidingBlock(displacementBox);
 		if (collidingRectangle != null) {
@@ -65,7 +75,6 @@ public abstract class MovableObject extends GameObject implements Movable {
 		invertGravity = false;
 
 		// if colliding with a trigger, trigger the event
-		checkForTriggers(displacementBox);
 
 		collidingRectangle = getCollidingBlock(displacementBox);
 
