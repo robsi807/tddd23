@@ -23,6 +23,7 @@ import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.gfx.DebugWindow;
 import com.tddd23.blokz.gfx.ImageCache;
 import com.tddd23.blokz.gfx.TextureHandler;
+import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.triggers.Triggerable;
 
@@ -57,6 +58,8 @@ public class WorldRenderer {
 	private Point clickPoint;
 
 	private Rectangle triggerRect;
+	
+	private Rectangle fireTriggerRect;
 	
 	float nrOfUpdates;
 
@@ -175,19 +178,23 @@ public class WorldRenderer {
 	}
 
 	private void renderDynamicObjects() {
-		// for (GameObject object : world.getDynamicObjects()) {
-		// renderBatch.begin();
-		// renderBatch.draw(TextureHandler.block_dirt, object.getPosition().x,
-		// object.getPosition().y);
-		// renderBatch.end();
-		// }
+		for (PlayerTrigger t : world.getTriggers()) {
+			if (t instanceof FireTrigger && t.isActive()) {
+				fireTriggerRect = t.getBounds();
+				triggerRenderer.begin(ShapeType.Filled);
+				triggerRenderer.setColor(Color.YELLOW);
+				triggerRenderer.rect(fireTriggerRect.x, fireTriggerRect.y,
+						fireTriggerRect.width, fireTriggerRect.height);
+				triggerRenderer.end();
+			}
+		}
 
 		if (debugMode) {
 			debugWindow.render();
 
 			for (PlayerTrigger t : world.getTriggers()) {
 				if (t.isActive()) {
-					triggerRect = ((PlayerTrigger) t).getBounds();
+					triggerRect = t.getBounds();
 					triggerRenderer.begin(ShapeType.Line);
 					triggerRenderer.rect(triggerRect.x, triggerRect.y,
 							triggerRect.width, triggerRect.height);
@@ -198,7 +205,6 @@ public class WorldRenderer {
 	}
 
 	private void renderPlayer() {
-
 		if (playerSprite == null){
 			playerSprite = new Sprite(TextureHandler.player_falling_right);
 			playerSprite.setOrigin(8, 14);
@@ -215,12 +221,6 @@ public class WorldRenderer {
 						.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_falling_right
 								: TextureHandler.player_falling_left);
 			}
-
-			
-			
-			
-			
-			
 		} else { //Is on the ground
 			playerSprite
 					.setRegion(world.getPlayer().isFacingLeft() ? TextureHandler.player_left_idle

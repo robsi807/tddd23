@@ -17,6 +17,7 @@ import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.DeathTrigger;
+import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.GoalTrigger;
 import com.tddd23.blokz.triggers.GravityTrigger;
 import com.tddd23.blokz.triggers.JumpTrigger;
@@ -64,22 +65,22 @@ public class WorldFactory {
 							blockType = BlockType.STONE;
 						} else if (type.equals("fire")) {
 							blockType = BlockType.FIRE;
-							connectedTriggers.add(new DeathTrigger(null,//Vänster
+							connectedTriggers.add(new FireTrigger(null,//Vänster
 									new Rectangle((x * Constants.SIZE - Constants.SIZE*2), (y
 											* Constants.SIZE),
 											Constants.SIZE*2,
 											Constants.SIZE )));
-							connectedTriggers.add(new DeathTrigger(null,//Höger
+							connectedTriggers.add(new FireTrigger(null,//Höger
 									new Rectangle((x+1) * Constants.SIZE, (y
 											* Constants.SIZE),
 											Constants.SIZE*2,
 											Constants.SIZE )));
-							connectedTriggers.add(new DeathTrigger(null,//Upp
+							connectedTriggers.add(new FireTrigger(null,//Upp
 									new Rectangle(x * Constants.SIZE, (y
 											* Constants.SIZE+Constants.SIZE),
 											Constants.SIZE,
 											Constants.SIZE*2 )));
-							connectedTriggers.add(new DeathTrigger(null,//Ner
+							connectedTriggers.add(new FireTrigger(null,//Ner
 									new Rectangle(x * Constants.SIZE, ((y-2)
 											* Constants.SIZE),
 											Constants.SIZE,
