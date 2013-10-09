@@ -70,8 +70,14 @@ public class Player extends MovableObject {
 		if (state == State.IDLE) {
 			getVelocity().set(0, getAcceleration().y);
 		}
-		if (getAcceleration().y < -Constants.MAX_FALLING_SPEED)
-			getAcceleration().y = -Constants.MAX_FALLING_SPEED;
+		
+		if (!isInvertGravity()) {
+			if (getAcceleration().y < -Constants.MAX_FALLING_SPEED)
+				getAcceleration().y = -Constants.MAX_FALLING_SPEED;
+		}else{
+			if (getAcceleration().y > Constants.MAX_FALLING_SPEED)
+				getAcceleration().y = Constants.MAX_FALLING_SPEED;
+		}
 
 		if (state == State.WALKING) {
 			DebugWindow.addText("" + getSpeed());

@@ -41,20 +41,56 @@ public abstract class MovableObject extends GameObject implements Movable {
 		updateObject(delta);
 		displacementBox = new Rectangle(getPosition().x + getVelocity().x
 				* delta, getPosition().y, getBounds().width, getBounds().height);
-		
-		
+
 		// setting the invert to false, if we still are colliding with a gravity
-				// trigger it will be set to true
+		// trigger it will be set to true
 		invertGravity = false;
 		checkForTriggers(displacementBox);
-		
-		 //Måste uppdatera efter att triggern eventuellt har påverkat spelarens rörelse
+
+		// Måste uppdatera efter att triggern eventuellt har påverkat spelarens
+		// rörelse
 		updateObject(delta);
+		
+		// Y axis collision handling
+				displacementBox = new Rectangle(getPosition().x, getPosition().y
+						+ getVelocity().y * delta, getBounds().width,
+						getBounds().height);
+
+				// if colliding with a trigger, trigger the event
+
+				collidingRectangle = getCollidingBlock(displacementBox);
+
+				if (collidingRectangle != null) {
+					hasCollidedY = true;
+
+					if (!invertGravity) {
+						if (getVelocity().y < 0) {
+							grounded = true;
+							getAcceleration().y = 0;
+						}
+					} else {
+						if (getVelocity().y > 0) {
+							grounded = true;
+							getAcceleration().y = 0;
+						}
+					}
+					getAcceleration().y = 0;
+
+					if (getVelocity().y < 0) {
+						getPosition().y = collidingRectangle.y
+								+ collidingRectangle.height;
+
+					} else {
+						getPosition().y = collidingRectangle.y - getBounds().height;
+					}
+				} else {
+					grounded = false;
+				}
+		
+		
+		
 		displacementBox = new Rectangle(getPosition().x + getVelocity().x
 				* delta, getPosition().y, getBounds().width, getBounds().height);
-		
-		
-		
 
 		collidingRectangle = getCollidingBlock(displacementBox);
 		if (collidingRectangle != null) {
@@ -62,50 +98,13 @@ public abstract class MovableObject extends GameObject implements Movable {
 			if (getVelocity().x < 0) {
 				getPosition().x = collidingRectangle.x
 						+ collidingRectangle.width;
-
 			} else {
 				getPosition().x = collidingRectangle.x - getBounds().width;
 			}
 
 		}
 
-		// Y axis collision handling
-		displacementBox = new Rectangle(getPosition().x, getPosition().y
-				+ getVelocity().y * delta, getBounds().width,
-				getBounds().height);
-
 		
-
-		// if colliding with a trigger, trigger the event
-
-		collidingRectangle = getCollidingBlock(displacementBox);
-
-		if (collidingRectangle != null) {
-			hasCollidedY = true;
-
-			if (!invertGravity) {
-				if (getVelocity().y < 0) {
-					grounded = true;
-					getAcceleration().y = 0;
-				}
-			} else {
-				if (getVelocity().y > 0) {
-					grounded = true;
-					getAcceleration().y = 0;
-				}
-			}
-			getAcceleration().y = 0;
-
-			if (getVelocity().y < 0) {
-				getPosition().y = collidingRectangle.y
-						+ collidingRectangle.height;
-
-			} else {
-				getPosition().y = collidingRectangle.y - getBounds().height;
-			}
-		} else {
-			grounded = false;
-		}
 
 		if (hasCollidedX)
 			getVelocity().x = 0;
@@ -117,7 +116,8 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 	private void checkForTriggers(Rectangle displacementRectangle) {
 		for (PlayerTrigger trigger : world.getTriggers()) {
-			if (trigger.getBounds().overlaps(displacementRectangle) && trigger.isActive()) {
+			if (trigger.getBounds().overlaps(displacementRectangle)
+					&& trigger.isActive()) {
 				trigger.trigger();
 			}
 		}
@@ -132,7 +132,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 		collidingRectangle = null;
 		if (world != null) {
 			relevantCoords.setRelevantCoordinates(3, getPosition(), world);
-			
+
 			for (int y = relevantCoords.minY; y < relevantCoords.maxY; y++) {
 				for (int x = relevantCoords.minX; x < relevantCoords.maxX; x++) {
 
