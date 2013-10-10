@@ -1,5 +1,8 @@
 package com.tddd23.blokz.menu;
 
+import java.awt.Point;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
 public class MenuInput implements InputProcessor {
@@ -41,7 +44,7 @@ public class MenuInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		System.out.println("X:"+screenX+"  Y:"+screenY);
+		callingMenu.triggerMenuItem(screenX, Gdx.graphics.getHeight()-screenY);
 		return false;
 	}
 
@@ -59,7 +62,7 @@ public class MenuInput implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
+		callingMenu.hoverMenuItem(screenX, Gdx.graphics.getHeight()-screenY);
 		return false;
 	}
 
