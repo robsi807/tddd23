@@ -73,11 +73,11 @@ public abstract class Menu implements Screen {
 		batch.end();
 		setMenuItemsToShow();
 		for (AbstractMenuItem item : menuItemsToShow) {
-			if (menuItems.indexOf(item) == highLightedItem) {
+			if (menuItemsToShow.indexOf(item) == highLightedItem) {
 				rectRenderer.begin(ShapeType.Filled);
 				rectRenderer.rect(item.getBounds().x, item.getBounds().y,
 						item.getBounds().width, item.getBounds().height,
-						Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY	);
+						new Color(Color.BLACK), Color.BLACK, Color.DARK_GRAY, Color.DARK_GRAY	);
 				rectRenderer.end();
 			}
 			batch.begin();
