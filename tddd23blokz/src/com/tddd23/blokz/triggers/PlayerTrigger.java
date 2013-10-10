@@ -1,6 +1,7 @@
 package com.tddd23.blokz.triggers;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.tddd23.blokz.GameScreen;
 import com.tddd23.blokz.Player;
 
 public abstract class PlayerTrigger implements Triggerable {
@@ -8,10 +9,12 @@ public abstract class PlayerTrigger implements Triggerable {
 	protected Player player;
 	protected Rectangle bounds;
 	protected boolean active;
+	protected GameScreen screen;
 
-	public PlayerTrigger(Player player, Rectangle bounds) {
+	public PlayerTrigger(Player player, Rectangle bounds, GameScreen screen) {
 		this.player = player;
 		this.bounds = bounds;
+		this.screen = screen;
 		this.active = true;
 	}
 

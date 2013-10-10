@@ -10,7 +10,7 @@ public class MapSelectionMenu extends Menu {
 	public MapSelectionMenu(final Blokz game, final WorldManager worldmanager) {
 		super(game);
 		this.worldmanager = worldmanager;
-		
+
 		for (final GameMap map : worldmanager.getMapInfo()) {
 			addMenuItem(new AbstractMenuItem(map.getName() + "  -  Score: "
 					+ map.getScore() + "  -  Time: " + map.getTimeInMillis()) {

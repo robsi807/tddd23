@@ -19,7 +19,9 @@ import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.Player.State;
+import com.tddd23.blokz.Time;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.font.FontHandler;
 import com.tddd23.blokz.gfx.DebugWindow;
 import com.tddd23.blokz.gfx.ImageCache;
 import com.tddd23.blokz.gfx.TextureHandler;
@@ -41,11 +43,12 @@ public class WorldRenderer {
 
 	private SpriteBatch renderBatch;
 	private SpriteBatch hudBatch;
+	private SpriteBatch textBatch;
 
 	private MinMax relevantBlocks;
 
 	private Sprite playerSprite;
-	private int playerAngle; // y flip animation
+	private int playerAngle;
 
 	private TextureRegion tempRegion;
 
@@ -57,7 +60,11 @@ public class WorldRenderer {
 	private Rectangle triggerRect;
 	private Rectangle fireTriggerRect;
 
+	private Time time;
+	
 	float nrOfUpdates;
+	
+	boolean running = false;
 
 	/** for debug rendering **/
 
@@ -67,6 +74,8 @@ public class WorldRenderer {
 				Gdx.graphics.getHeight());
 		cam.zoom = 0.33f;
 
+		time = new Time();
+		
 		playerAngle = 0;
 
 		relevantBlocks = new MinMax();
@@ -80,13 +89,15 @@ public class WorldRenderer {
 		debugRenderer = new ShapeRenderer();
 		triggerRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
+		textBatch = new SpriteBatch();
 
 		this.cam.update();
 
 	}
 
-	public void render() {
-
+	public void render(float delta) {
+		if(running)
+			time.addTime(delta);
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -97,11 +108,23 @@ public class WorldRenderer {
 		debugRenderer.setProjectionMatrix(cam.combined);
 		triggerRenderer.setProjectionMatrix(cam.combined);
 
-		updateHelpBlock();
-		renderDynamicObjects();
-		renderBlocks();
-		renderPlayer();
-		renderHelpBlock();
+		updateHelpBlock(delta);
+		renderDynamicObjects(delta);
+		renderBlocks(delta);
+		renderPlayer(delta);
+		renderHelpBlock(delta);
+		renderHud(delta);
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	private void renderHud(float delta) {
+		textBatch.begin();
+		font = FontHandler.courier[1];
+		font.draw(textBatch, "Time: "+time, 100, 750);
+		textBatch.end();
 	}
 
 	public void zoomIn() {
@@ -114,7 +137,7 @@ public class WorldRenderer {
 			cam.zoom += 0.01f;
 	}
 
-	private void renderBlocks() {
+	private void renderBlocks(float delta) {
 		tempRegion = null;
 
 		relevantBlocks.setRelevantCoordinates(Constants.RENDER_DIST, world
@@ -164,7 +187,7 @@ public class WorldRenderer {
 		this.helpBlock = helpBlock;
 	}
 
-	private void renderHelpBlock() {
+	private void renderHelpBlock(float delta) {
 		setOpacity(0.3f);
 		if (helpBlock == null)
 			return;
@@ -174,7 +197,7 @@ public class WorldRenderer {
 		renderBatch.end();
 	}
 
-	private void renderDynamicObjects() {
+	private void renderDynamicObjects(float delta) {
 		for (PlayerTrigger t : world.getTriggers()) {
 			if (t instanceof FireTrigger && t.isActive()) {
 				fireTriggerRect = t.getBounds();
@@ -218,7 +241,7 @@ public class WorldRenderer {
 		}
 	}
 
-	private void renderPlayer() {
+	private void renderPlayer(float delta) {
 		if (playerSprite == null) {
 			playerSprite = new Sprite(TextureHandler.player_falling_right);
 			playerSprite.setOrigin(8, 14);
@@ -325,31 +348,46 @@ public class WorldRenderer {
 
 	}
 
-	public void debug(String text) {
-		debugWindow.addText(text);
+	public Time getTime() {
+		return time;
 	}
 
 	public void drawGetReady() {
-		hudBatch.begin();
-		hudBatch.draw(TextureHandler.ready,
-				world.getPlayer().getPosition().x - 100, world.getPlayer()
-						.getPosition().y - 50, 200, 100);
-		hudBatch.end();
+		textBatch.begin();
+		font = FontHandler.courier[13];
+		font.draw(textBatch, "Get ready!", 150, 650);
+		font = FontHandler.courier[3];
+		font.draw(textBatch, "Press space to start", 100, 100);
+		textBatch.end();
 	}
 
 	public void drawPause() {
-		hudBatch.begin();
-		hudBatch.draw(TextureHandler.paused,
-				world.getPlayer().getPosition().x - 100, world.getPlayer()
-						.getPosition().y - 50, 200, 100);
-		hudBatch.end();
+		textBatch.begin();
+		font = FontHandler.courier[13];
+		font.draw(textBatch, "Paused", 150, 650);
+		font = FontHandler.courier[3];
+		font.draw(textBatch, "Press space to continue playing", 150, 150);
+		font = FontHandler.courier[3];
+		font.draw(textBatch, "Press ESC to enter menu", 150, 100);
+		textBatch.end();
+	}
+
+	public void drawNextMap() {
+		textBatch.begin();
+		font = FontHandler.courier[13];
+		font.draw(textBatch, "Finished!", 150, 650);
+		font = FontHandler.courier[3];
+		font.draw(textBatch, "Time: "+time, 150, 550);
+		font = FontHandler.courier[3];
+		font.draw(textBatch, "Press SPACE to load next map", 100, 100);
+		textBatch.end();
 	}
 
 	public void setOpacity(float amount) {
 		renderBatch.setColor(1f, 1f, 1f, amount);
 	}
 
-	public void updateHelpBlock() {
+	public void updateHelpBlock(float delta) {
 
 		int screenX = Gdx.input.getX();
 		int screenY = Gdx.input.getY();
@@ -363,7 +401,7 @@ public class WorldRenderer {
 				|| clickPoint.x >= world.getMapSize().width
 				|| clickPoint.y >= world.getMapSize().height) {
 
-			return; // Utanför
+			return;
 		}
 		if (!world.isPlaceable(clickPoint.x, clickPoint.y)) {
 			setHelpBlock(null);
@@ -373,5 +411,4 @@ public class WorldRenderer {
 		setHelpBlock(new Block(new Vector2(clickPoint.x, clickPoint.y), world,
 				world.getPlayer().getSelectedBlockType()));
 	}
-
 }

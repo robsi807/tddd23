@@ -93,7 +93,6 @@ public abstract class Menu implements Screen {
 			for (int x = 0; x < 5; x++) {
 				if (x < menuItems.size())
 					menuItemsToShow.add(menuItems.get(x));
-
 			}
 		} else if (pointer > 2 && pointer < menuItems.size() - 2) {
 			for (int x = pointer - 2; x < pointer + 3; x++)
@@ -117,7 +116,6 @@ public abstract class Menu implements Screen {
 					font.getBounds(item.getTitle(), 0, item.getTitle().length()).width,
 					font.getBounds(item.getTitle(), 0, item.getTitle().length()).height + 10 + 30));
 		}
-
 	}
 
 	@Override

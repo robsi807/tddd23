@@ -71,29 +71,29 @@ public class WorldFactory {
 									new Rectangle((x * Constants.SIZE - Constants.SIZE*2), (y
 											* Constants.SIZE),
 											Constants.SIZE*2,
-											Constants.SIZE )));
+											Constants.SIZE ),screen));
 							connectedTriggers.add(new FireTrigger(null,//Höger
 									new Rectangle((x+1) * Constants.SIZE, (y
 											* Constants.SIZE),
 											Constants.SIZE*2,
-											Constants.SIZE )));
+											Constants.SIZE ),screen));
 							connectedTriggers.add(new FireTrigger(null,//Upp
 									new Rectangle(x * Constants.SIZE, (y
 											* Constants.SIZE+Constants.SIZE),
 											Constants.SIZE,
-											Constants.SIZE*2 )));
+											Constants.SIZE*2 ),screen));
 							connectedTriggers.add(new FireTrigger(null,//Ner
 									new Rectangle(x * Constants.SIZE, ((y-2)
 											* Constants.SIZE),
 											Constants.SIZE,
-											Constants.SIZE*2 )));
+											Constants.SIZE*2 ),screen));
 						} else if (type.equals("spike")) {
 							blockType = BlockType.SPIKE;
 							connectedTriggers.add(new DeathTrigger(null,
 									new Rectangle((x * Constants.SIZE) +1,
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
-											Constants.SIZE - 2, 3)));
+											Constants.SIZE - 2, 3),screen));
 						} else if (type.equals("gravity")) {
 							blockType = BlockType.GRAVITY;
 							connectedTriggers.add(new GravityTrigger(null,
@@ -102,21 +102,21 @@ public class WorldFactory {
 											(y * Constants.SIZE)
 													- (2 * Constants.SIZE),
 											Constants.SIZE * 5,
-											Constants.SIZE * 5 - 1)));
+											Constants.SIZE * 5 - 1),screen));
 						} else if (type.equals("goal")) {
 							blockType = BlockType.GOAL;
 							connectedTriggers.add(new GoalTrigger(null,
 									new Rectangle((x * Constants.SIZE) - 1,
 											(y * Constants.SIZE) - 1,
 											Constants.SIZE + 2,
-											Constants.SIZE + 2)));
+											Constants.SIZE + 2),screen));
 						} else if (type.equals("jump")) {
 							blockType = BlockType.JUMP;
 							connectedTriggers.add(new JumpTrigger(null,
 									new Rectangle((x * Constants.SIZE) + 1,
 											(y * Constants.SIZE)
 													+ Constants.SIZE,
-											Constants.SIZE - 2, 3)));
+											Constants.SIZE - 2, 3),screen));
 						}
 						world.getBlocks()[x][y] = new Block(new Vector2(x
 								* Constants.SIZE, y * Constants.SIZE), world,
@@ -144,10 +144,6 @@ public class WorldFactory {
 				world.setSpawnPoint(new Point((int) rectObj.getRectangle().x,
 						(int) rectObj.getRectangle().y));
 				world.createPlayer();
-			}
-			if (properties.containsKey("trigger_player_jump")) {
-				world.addTrigger(new JumpTrigger(world.getPlayer(), rectObj
-						.getRectangle()));
 			}
 
 		}

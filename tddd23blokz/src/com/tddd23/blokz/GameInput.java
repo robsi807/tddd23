@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.GameScreen.GameState;
 import com.tddd23.blokz.Player.State;
+import com.tddd23.blokz.font.Key;
 import com.tddd23.blokz.world.World;
 
 public class GameInput implements InputProcessor {
@@ -27,31 +28,36 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
-		case 29:
+		case Key.A:
 			walkLeft = true;
 			return processMove();
-		case 32:
+		case Key.D:
 			walkRight = true;
 			return processMove();
-		case 62:
+		case Key.SPACE: 
 			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
-				// Skall vara gå tillbaks till menyn
-				game.goToMapMenu();
+				game.getGameScreen().setState(GameState.GAME_RUNNING);
+				return processMove();
 			}
 			if (game.getGameScreen().getState() == GameState.GAME_READY) {
 				game.getGameScreen().setState(GameState.GAME_RUNNING);
+				return processMove();
 			}
-
+			if(game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP)
+				game.getGameScreen().loadNextMap();
 			player.jump();
 			return processMove();
-		case 131: // ESC
-			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
-				game.getGameScreen().setState(GameState.GAME_RUNNING);
-			} else if (game.getGameScreen().getState() != GameState.GAME_READY) {
+		case Key.ESC: 
+			if (game.getGameScreen().getState() == GameState.GAME_RUNNING) {
 				game.getGameScreen().setState(GameState.GAME_PAUSED);
+				return true;
+			}
+			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
+				game.goToMapMenu();
+				return true;
 			}
 			return true;
-		case 73:
+		case Key.CONSOLE:
 			game.getGameScreen().getRenderer().switchDebugMode();
 			return true;
 		}
@@ -61,7 +67,6 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
-
 		switch (keycode) {
 		case 29:
 			walkLeft = false;
@@ -69,7 +74,6 @@ public class GameInput implements InputProcessor {
 		case 32:
 			walkRight = false;
 			return processMove();
-
 		}
 		return false;
 	}
@@ -97,7 +101,6 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -135,23 +138,6 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
-		// return false;
-		// ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
-		// clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);
-		// clickPoint.x = (int) (clickPoint.x - (clickPoint.x %
-		// Constants.SIZE));
-		// clickPoint.y = (int) (clickPoint.y - (clickPoint.y %
-		// Constants.SIZE));
-		//
-		// if (clickPoint.y < 0 || clickPoint.x < 0
-		// || clickPoint.x >= world.getMapSize().width
-		// || clickPoint.y >= world.getMapSize().height)
-		// return false; // Utanför
-		//
-		// if (!world.isPlaceable(clickPoint.x, clickPoint.y))
-		// return false;// Klickat på ett befintlig block
-		// world.addBlockObject(clickPoint.x, clickPoint.y);
 
 		return false;
 	}

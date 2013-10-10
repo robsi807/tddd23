@@ -12,7 +12,7 @@ public class GameScreen implements Screen {
 	public static final int MAP_WIDTH = 30, MAP_HEIGHT = 30;
 
 	public enum GameState {
-		GAME_READY, GAME_RUNNING, GAME_PAUSED, GAME_OVER;
+		GAME_READY, GAME_RUNNING, GAME_PAUSED, GAME_OVER, WAITING_FOR_NEXT_MAP;
 	}
 
 	private GameState state;
@@ -38,19 +38,28 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		switch (state) {
 		case GAME_READY:
+			renderer.setRunning(false);
 			renderer.setOpacity(0.2f);
-			renderer.render();
+			renderer.render(delta);
 			renderer.drawGetReady();
 			break;
 		case GAME_RUNNING:
+			renderer.setRunning(true);
 			renderer.setOpacity(1f);
 			updateGame(delta);
-			renderer.render();
+			renderer.render(delta);
 			break;
 		case GAME_PAUSED:
+			renderer.setRunning(false);
 			renderer.setOpacity(0.2f);
-			renderer.render();
+			renderer.render(delta);
 			renderer.drawPause();
+			break;
+		case WAITING_FOR_NEXT_MAP:
+			renderer.setOpacity(0.2f);
+			renderer.render(delta);
+			renderer.setRunning(false);
+			renderer.drawNextMap();
 			break;
 		case GAME_OVER:
 			// Skriv ut något och gå till game_ready
@@ -110,7 +119,6 @@ public class GameScreen implements Screen {
 	}
 
 	public void loadNextMap() {
-		// Rendera ut lite goa grejer om stats etc
 		game.loadNextMap(currentMap);
 	}
 
