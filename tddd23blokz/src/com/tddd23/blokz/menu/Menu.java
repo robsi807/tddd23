@@ -79,7 +79,7 @@ public abstract class Menu implements Screen {
 						Color.BLACK, Color.WHITE, Color.WHITE, Color.BLACK);
 				rectRenderer.rect(item.getBounds().x, item.getBounds().y,
 						item.getBounds().width, item.getBounds().height,
-						Color.YELLOW, Color.BLUE, Color.GREEN, Color.RED);
+						Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY);
 				rectRenderer.end();
 			}
 			batch.begin();
