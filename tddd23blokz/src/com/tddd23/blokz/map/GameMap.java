@@ -7,16 +7,22 @@ public class GameMap {
 	private String name, location;
 	private int score;
 	private int timeInMillis;
+	private boolean allowPlacingBlocks;
 
-	public GameMap(String name, String location, int score, int timeInMillis) {
+	public GameMap(String name, String location, int score, int timeInMillis, int allowPlacingBlocks) {
 		this.name = name;
 		this.location = location;
 		this.score = score;
 		this.timeInMillis = timeInMillis;
+		this.allowPlacingBlocks = (allowPlacingBlocks == 1) ? true : false;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public boolean isAllowPlacingBlocks() {
+		return allowPlacingBlocks;
 	}
 
 	public String getLocation() {

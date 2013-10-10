@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="height" value="30"/>
+  <property name="max_block_dirt" value="30"/>
+  <property name="max_block_jump" value="30"/>
+  <property name="max_blocks" value="30"/>
+  <property name="width" value="100"/>
+ </properties>
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <tileset firstgid="21" source="blocks.tsx"/>
+ <layer name="blocks" width="100" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztl1sLhCAQhcXap96jYKH//y+XHgQ5jJfUaY/lgWEkL830aU3WGGOHURmDeomzpZjzlGJijLOl/Ny+hivPN/Gw4P3rLHliLEukr3fdxaNmvXE+dHjUzH0yDyu0NXnUrsNYX2ndswceT9EMXlLoWQ0ebXUy8Pd+iIk2D00Wu+LaJToifdL7JzUO2+w8JK2ZMbCe2R55bILdrSU9pEgpHldqmha1z1poNWKq3/x7feD6P3hIkp79G3gwnA9JuTy2gMc6E/2VXCeILbSfS9UTD6cj0Bfy+I8leY3zgfMmz3LmsPNInQ82HiWq+X7MYLFc3J5wY1M6x7jaiYEH5qplFtpOOTEOu9d+HdULPA==
+  </data>
+ </layer>
+ <objectgroup name="objects" width="100" height="20">
+  <object x="48" y="48">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

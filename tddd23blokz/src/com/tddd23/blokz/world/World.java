@@ -12,6 +12,7 @@ import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.MovableObject;
 import com.tddd23.blokz.Player;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.triggers.Triggerable;
 
@@ -35,9 +36,11 @@ public class World {
 	private MinMax relevantBlocks;
 
 	private Vector2 gravity;
+	
+	private GameMap gameMap;
 
 	public World(int nrOfBlocksWidth, int nrOfBlocksHeight,
-			GameScreen gamescreen) {
+			GameScreen gamescreen, GameMap gameMap) {
 		this.gamescreen = gamescreen;
 		mapSize = new Dimension(nrOfBlocksWidth, nrOfBlocksHeight);
 		gravity = Constants.WORLD_GRAVITY;
@@ -45,7 +48,12 @@ public class World {
 		this.triggers = new ArrayList<PlayerTrigger>();
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
 		relevantBlocks = new MinMax();
+		this.gameMap = gameMap;
 		// MusicCache.level1.play();
+	}
+
+	public GameMap getGameMap() {
+		return gameMap;
 	}
 
 	public void addBlockObject(float posX, float posY) {
@@ -69,13 +77,6 @@ public class World {
 
 		return true;
 	}
-
-//	public MovableObject getDynamicObjectAt(int x, int y) {
-//		for (MovableObject obj : dynamicObjects)
-//			if (obj.getPositionRectangle().overlaps(rect))
-//				return obj;
-//		return null;
-//	}
 
 	public void update(float delta) {
 		stateTime +=delta;

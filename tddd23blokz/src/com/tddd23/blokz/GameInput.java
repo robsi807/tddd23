@@ -106,13 +106,11 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		if(!world.getGameMap().isAllowPlacingBlocks())
+			return false;
 		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
 			return false;
 
-		if (button == 1) {
-			world.getDynamicObjects().clear();
-			return false;
-		}
 		ray = game.getGameScreen().getRenderer().getRay(screenX, screenY);
 		clickPoint = new Point((int) ray.origin.x, (int) ray.origin.y);
 		clickPoint.x = (int) (clickPoint.x - (clickPoint.x % Constants.SIZE));

@@ -35,10 +35,10 @@ public class WorldFactory {
 				"blocks");
 		MapProperties prop = map.getProperties();
 
-		int mapHeight = Integer.parseInt(prop.get("width", String.class));
-		int mapWidth = Integer.parseInt(prop.get("height", String.class));
+		int mapHeight = Integer.parseInt(prop.get("height", String.class));
+		int mapWidth = Integer.parseInt(prop.get("width", String.class));
 		World world = new World(mapWidth * Constants.SIZE, (int) mapHeight
-				* Constants.SIZE, screen);
+				* Constants.SIZE, screen, gmap);
 
 		world.setMaxNrOfBlocks(Integer.parseInt((String) prop.get("max_blocks")));
 

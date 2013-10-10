@@ -25,10 +25,13 @@ public class WorldManager {
 			String line = "";
 			while (br.hasNext()) {
 				line = br.nextLine();
+				if (line.charAt(0) == '%')
+					continue;
 				splitString = line.split(";");
 				mapInfo.add(new GameMap(splitString[0], splitString[1], Integer
 						.parseInt(splitString[2]), Integer
-						.parseInt(splitString[3])));
+						.parseInt(splitString[3]), Integer
+						.parseInt(splitString[4])));
 			}
 
 		} finally {
@@ -42,9 +45,9 @@ public class WorldManager {
 	}
 
 	public GameMap getMextMap(GameMap currentMap) {
-		if(mapInfo.indexOf(currentMap) == mapInfo.size()-1)
+		if (mapInfo.indexOf(currentMap) == mapInfo.size() - 1)
 			return mapInfo.get(0);
-		return mapInfo.get(mapInfo.indexOf(currentMap)+1);
+		return mapInfo.get(mapInfo.indexOf(currentMap) + 1);
 	}
 
 }

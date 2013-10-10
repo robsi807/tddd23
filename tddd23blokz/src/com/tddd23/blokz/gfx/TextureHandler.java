@@ -9,10 +9,8 @@ public class TextureHandler {
 	private static Texture player;
 	private static Texture blocks;
 	private static Texture effects;
-	public static Texture paused;
-	public static Texture ready;
-	public static Texture mainMenuTitle;
-
+	public static Texture hud;
+	
 	// player graphics
 	public static Animation player_left_idle;
 	public static Animation player_right_idle;
@@ -53,9 +51,7 @@ public class TextureHandler {
 	}
 
 	private static void initOther() {
-		paused = new Texture("images/paused.png");
-		ready = new Texture("images/ready.png");
-		mainMenuTitle = new Texture("images/mainmenu_title.png");
+		hud = new Texture("images/hud.png");
 	}
 
 	private static void initPlayer() {

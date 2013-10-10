@@ -38,12 +38,13 @@ public class WorldRenderer {
 
 	private ShapeRenderer debugRenderer;
 	private ShapeRenderer triggerRenderer;
+	private ShapeRenderer unprojectedRenderer;
 
 	private World world;
 
 	private SpriteBatch renderBatch;
 	private SpriteBatch hudBatch;
-	private SpriteBatch textBatch;
+	private SpriteBatch unprojectedBatch;
 
 	private MinMax relevantBlocks;
 
@@ -84,12 +85,14 @@ public class WorldRenderer {
 		renderBatch = new SpriteBatch();
 		hudBatch = new SpriteBatch();
 		font = new BitmapFont();
-
+		unprojectedBatch = new SpriteBatch();
+		
 		TextureHandler.init();
+		unprojectedRenderer= new ShapeRenderer();
 		debugRenderer = new ShapeRenderer();
 		triggerRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
-		textBatch = new SpriteBatch();
+
 
 		this.cam.update();
 
@@ -121,10 +124,12 @@ public class WorldRenderer {
 	}
 
 	private void renderHud(float delta) {
-		textBatch.begin();
-		font = FontHandler.courier[1];
-		font.draw(textBatch, "Time: "+time, 100, 750);
-		textBatch.end();
+		unprojectedBatch.begin();
+		unprojectedBatch.draw(TextureHandler.hud, 100, 678);
+		font = FontHandler.courier[2];
+		font.draw(unprojectedBatch, "Time: "+time, 130, 750);
+		unprojectedBatch.end();
+		
 	}
 
 	public void zoomIn() {
@@ -353,34 +358,34 @@ public class WorldRenderer {
 	}
 
 	public void drawGetReady() {
-		textBatch.begin();
+		unprojectedBatch.begin();
 		font = FontHandler.courier[13];
-		font.draw(textBatch, "Get ready!", 150, 650);
+		font.draw(unprojectedBatch, "Get ready!", 110, 650);
 		font = FontHandler.courier[3];
-		font.draw(textBatch, "Press space to start", 100, 100);
-		textBatch.end();
+		font.draw(unprojectedBatch, "Press space to start", 100, 100);
+		unprojectedBatch.end();
 	}
 
 	public void drawPause() {
-		textBatch.begin();
+		unprojectedBatch.begin();
 		font = FontHandler.courier[13];
-		font.draw(textBatch, "Paused", 150, 650);
+		font.draw(unprojectedBatch, "Paused", 120, 650);
 		font = FontHandler.courier[3];
-		font.draw(textBatch, "Press space to continue playing", 150, 150);
+		font.draw(unprojectedBatch, "Press space to continue playing", 150, 150);
 		font = FontHandler.courier[3];
-		font.draw(textBatch, "Press ESC to enter menu", 150, 100);
-		textBatch.end();
+		font.draw(unprojectedBatch, "Press ESC to enter menu", 150, 100);
+		unprojectedBatch.end();
 	}
 
 	public void drawNextMap() {
-		textBatch.begin();
+		unprojectedBatch.begin();
 		font = FontHandler.courier[13];
-		font.draw(textBatch, "Finished!", 150, 650);
+		font.draw(unprojectedBatch, "Finished!", 120, 650);
 		font = FontHandler.courier[3];
-		font.draw(textBatch, "Time: "+time, 150, 550);
+		font.draw(unprojectedBatch, "Time: "+time, 130, 550);
 		font = FontHandler.courier[3];
-		font.draw(textBatch, "Press SPACE to load next map", 100, 100);
-		textBatch.end();
+		font.draw(unprojectedBatch, "Press SPACE to load next map", 110, 100);
+		unprojectedBatch.end();
 	}
 
 	public void setOpacity(float amount) {
@@ -388,7 +393,8 @@ public class WorldRenderer {
 	}
 
 	public void updateHelpBlock(float delta) {
-
+		if(!world.getGameMap().isAllowPlacingBlocks())
+			return;
 		int screenX = Gdx.input.getX();
 		int screenY = Gdx.input.getY();
 
