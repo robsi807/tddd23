@@ -7,18 +7,9 @@ public abstract class  AbstractMenuItem implements MenuItem {
 
 	private String title;
 	private Rectangle bounds;
-	private boolean hovered;
 	
 	public AbstractMenuItem(Rectangle r){
 		bounds = r;
-	}
-
-	public boolean isHovered() {
-		return hovered;
-	}
-
-	public void setHovered(boolean hovered) {
-		this.hovered = hovered;
 	}
 
 	public String getTitle() {

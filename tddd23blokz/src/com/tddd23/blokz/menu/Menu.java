@@ -23,6 +23,7 @@ public abstract class Menu implements Screen {
 	private ArrayList<AbstractMenuItem> menuItemsToShow;
 	private int pointer;
 	private int relPointer;
+	private int highLightedItem;
 	protected Game game;
 	private BitmapFont font;
 
@@ -72,14 +73,11 @@ public abstract class Menu implements Screen {
 		batch.end();
 		setMenuItemsToShow();
 		for (AbstractMenuItem item : menuItemsToShow) {
-			if (item.isHovered()) {
+			if (menuItems.indexOf(item) == highLightedItem) {
 				rectRenderer.begin(ShapeType.Filled);
 				rectRenderer.rect(item.getBounds().x, item.getBounds().y,
 						item.getBounds().width, item.getBounds().height,
-						Color.BLACK, Color.WHITE, Color.WHITE, Color.BLACK);
-				rectRenderer.rect(item.getBounds().x, item.getBounds().y,
-						item.getBounds().width, item.getBounds().height,
-						Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY);
+						Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY	);
 				rectRenderer.end();
 			}
 			batch.begin();
@@ -87,9 +85,6 @@ public abstract class Menu implements Screen {
 					(float) (400 - menuItemsToShow.indexOf(item) * 75));
 			batch.end();
 		}
-		batch.begin();
-		font.draw(batch, "|", 30, (float) (400 - relPointer * 75));
-		batch.end();
 	}
 
 	private void setMenuItemsToShow() {
@@ -107,9 +102,6 @@ public abstract class Menu implements Screen {
 			for (int x = menuItems.size() - 5; x < menuItems.size(); x++)
 				menuItemsToShow.add(menuItems.get(x));
 		}
-//		for (AbstractMenuItem item : menuItemsToShow)
-//			item.setHovered(false);
-//		menuItemsToShow.get(relPointer).setHovered(true);
 		setRectangles();
 	}
 
@@ -170,6 +162,7 @@ public abstract class Menu implements Screen {
 				&& pointer < menuItems.size() - 2) {
 			relPointer = 2;
 		}
+		highLightedItem = relPointer;
 	}
 
 	public void decreasePointer() {
@@ -182,6 +175,7 @@ public abstract class Menu implements Screen {
 		if (menuItems.size() > 4 && pointer > 2
 				&& pointer < menuItems.size() - 2)
 			relPointer = 2;
+		highLightedItem = relPointer;
 	}
 
 	@Override
@@ -197,9 +191,8 @@ public abstract class Menu implements Screen {
 
 	public void hoverMenuItem(int screenX, int screenY) {
 		for (AbstractMenuItem item : menuItemsToShow) {
-			item.setHovered(false);
 			if (item.getBounds().contains(screenX, screenY))
-				item.setHovered(true);
+				highLightedItem = menuItemsToShow.indexOf(item);
 		}
 	}
 
