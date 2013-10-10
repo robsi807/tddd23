@@ -9,11 +9,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.tddd23.blokz.font.FontHandler;
 import com.tddd23.blokz.gfx.TextureHandler;
 
 public abstract class Menu implements Screen {
 	private SpriteBatch batch;
+	private ShapeRenderer rectRenderer;
 	private ArrayList<AbstractMenuItem> menuItems;
 	private ArrayList<AbstractMenuItem> menuItemsToShow;
 	private int pointer;
@@ -27,6 +30,7 @@ public abstract class Menu implements Screen {
 		menuItems = new ArrayList<AbstractMenuItem>();
 		menuItemsToShow = new ArrayList<AbstractMenuItem>();
 		batch = new SpriteBatch();
+		rectRenderer = new ShapeRenderer();
 
 	}
 
@@ -50,17 +54,23 @@ public abstract class Menu implements Screen {
 		font.draw(batch, "Blokz", 50, 700);
 		font = FontHandler.courier[3];
 		font.draw(batch, "Use UP/DOWN and ENTER to select", 55, 580);
-		font.draw(
-				batch,
-				getDashes(38),
-				55, 500);
+		System.out.println(FontHandler.courier.length);
+		font.draw(batch, getDashes(38), 55, 500);
 		font = FontHandler.courier[6];
 		font.draw(batch, getTitle(), 50, 450);
 		font = FontHandler.courier[3];
-		for (AbstractMenuItem item : menuItemsToShow)
+		batch.end();
+		for (AbstractMenuItem item : menuItemsToShow) {
+			float textHeight = font.getBounds(item.getTitle(), 0, item.getTitle().length()).height+10;
+			batch.begin();
 			font.draw(batch, item.getTitle(), 50,
 					(float) (350 - menuItemsToShow.indexOf(item) * 75));
-
+			batch.end();
+			rectRenderer.begin(ShapeType.Line);
+			rectRenderer.rect(50, 350-menuItemsToShow.indexOf(item)*75-textHeight, font.getBounds(item.getTitle(), 0, item.getTitle().length()).width, textHeight+20);
+			rectRenderer.end();
+		}
+		batch.begin();
 		font.draw(batch, "|", 30, (float) (350 - relPointer * 75));
 		batch.end();
 	}
@@ -117,10 +127,11 @@ public abstract class Menu implements Screen {
 		if (pointer >= menuItems.size())
 			pointer = 0;
 		relPointer = pointer;
-		if(menuItems.size()> 4 &&pointer > menuItems.size()-3)
-			relPointer = 5-(menuItems.size()-pointer);
-		
-		if(menuItems.size()>4 &&pointer > 2 && pointer < menuItems.size()-2){
+		if (menuItems.size() > 4 && pointer > menuItems.size() - 3)
+			relPointer = 5 - (menuItems.size() - pointer);
+
+		if (menuItems.size() > 4 && pointer > 2
+				&& pointer < menuItems.size() - 2) {
 			relPointer = 2;
 		}
 	}
@@ -130,22 +141,22 @@ public abstract class Menu implements Screen {
 		if (pointer < 0)
 			pointer = menuItems.size() - 1;
 		relPointer = pointer;
-		relPointer = pointer;
-		if(menuItems.size()> 4 &&pointer > menuItems.size()-3)
-			relPointer = 5-(menuItems.size()-pointer);
-		if(menuItems.size()> 4 &&pointer > 2 && pointer < menuItems.size()-2)
+		if (menuItems.size() > 4 && pointer > menuItems.size() - 3)
+			relPointer = 5 - (menuItems.size() - pointer);
+		if (menuItems.size() > 4 && pointer > 2
+				&& pointer < menuItems.size() - 2)
 			relPointer = 2;
-	
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
 	}
-	private String getDashes(int i){
-		String a="";
-		for(int x=0;x<i;x++)
-			a+="-";
+
+	private String getDashes(int i) {
+		String a = "";
+		for (int x = 0; x < i; x++)
+			a += "-";
 		return a;
 	}
 }

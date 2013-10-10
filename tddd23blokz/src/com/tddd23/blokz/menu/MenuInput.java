@@ -2,8 +2,8 @@ package com.tddd23.blokz.menu;
 
 import com.badlogic.gdx.InputProcessor;
 
-public class MenuInput implements InputProcessor{
-	
+public class MenuInput implements InputProcessor {
+
 	private Menu callingMenu;
 
 	public MenuInput(Menu menu) {
@@ -14,12 +14,13 @@ public class MenuInput implements InputProcessor{
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
 		case 19:
+			// callingMenu.decreasePointer();
 			callingMenu.decreasePointer();
 			return true;
 		case 20:
 			callingMenu.increasePointer();
 			return true;
-		case 66:	
+		case 66:
 			callingMenu.triggerMenuItem();
 			return true;
 		}
@@ -40,7 +41,7 @@ public class MenuInput implements InputProcessor{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
+		System.out.println("X:"+screenX+"  Y:"+screenY);
 		return false;
 	}
 
@@ -64,7 +65,10 @@ public class MenuInput implements InputProcessor{
 
 	@Override
 	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
+		if(amount<0)
+			callingMenu.decreasePointer();
+		else
+			callingMenu.increasePointer();
 		return false;
 	}
 
