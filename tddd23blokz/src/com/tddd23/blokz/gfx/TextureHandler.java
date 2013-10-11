@@ -55,7 +55,7 @@ public class TextureHandler {
 	}
 
 	private static void initPlayer() {
-		player = new Texture("images/playersheet2.png");
+		player = new Texture("images/playersheet3.png");
 
 		// the idle animation
 		frameCollection = new TextureRegion[3];
@@ -79,8 +79,8 @@ public class TextureHandler {
 			frameCollection2[i].flip(true, false);
 			// walkRightFrames[i] = ImageCache.getTexture("right_running" + i);
 		}
-		player_right_animation = new Animation(.1f, frameCollection);
-		player_left_animation = new Animation(.1f, frameCollection2);
+		player_right_animation = new Animation(.08f, frameCollection);
+		player_left_animation = new Animation(.08f, frameCollection2);
 
 		// jump frame
 		player_jump_left = new TextureRegion(player, 6 * 16, 0, 16, 32);
