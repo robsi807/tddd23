@@ -2,6 +2,7 @@ package com.tddd23.blokz;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.tddd23.blokz.audio.MusicCache;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.world.World;
 import com.tddd23.blokz.world.WorldFactory;
@@ -31,6 +32,7 @@ public class GameScreen implements Screen {
 		renderer = new WorldRenderer(world);
 		this.game = game;
 		updateGame = true;
+		MusicCache.level1.play();
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
 
@@ -80,7 +82,7 @@ public class GameScreen implements Screen {
 	}
 
 	private void updateGame(float delta) {
-		if (updateGame )
+		if (updateGame)
 			world.update(delta);
 	}
 
