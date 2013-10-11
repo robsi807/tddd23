@@ -1,5 +1,7 @@
 package com.tddd23.blokz;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.blocks.Block.BlockType;
@@ -70,11 +72,11 @@ public class Player extends MovableObject {
 		if (state == State.IDLE) {
 			getVelocity().set(0, getAcceleration().y);
 		}
-		
+
 		if (!isInvertGravity()) {
 			if (getAcceleration().y < -Constants.MAX_FALLING_SPEED)
 				getAcceleration().y = -Constants.MAX_FALLING_SPEED;
-		}else{
+		} else {
 			if (getAcceleration().y > Constants.MAX_FALLING_SPEED)
 				getAcceleration().y = Constants.MAX_FALLING_SPEED;
 		}

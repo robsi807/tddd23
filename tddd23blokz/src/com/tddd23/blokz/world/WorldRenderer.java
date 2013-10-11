@@ -1,7 +1,7 @@
 package com.tddd23.blokz.world;
 
 import java.awt.Point;
-import java.util.Random;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -24,6 +24,7 @@ import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.font.FontHandler;
 import com.tddd23.blokz.gfx.DebugWindow;
 import com.tddd23.blokz.gfx.ImageCache;
+import com.tddd23.blokz.gfx.VisualEffect;
 import com.tddd23.blokz.gfx.TextureHandler;
 import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.GravityTrigger;
@@ -46,6 +47,8 @@ public class WorldRenderer {
 	private SpriteBatch hudBatch;
 	private SpriteBatch unprojectedBatch;
 
+	private ArrayList<VisualEffect> movingEffects;
+
 	private MinMax relevantBlocks;
 
 	private Sprite playerSprite;
@@ -62,9 +65,9 @@ public class WorldRenderer {
 	private Rectangle fireTriggerRect;
 
 	private Time time;
-	
+
 	float nrOfUpdates;
-	
+
 	boolean running = false;
 
 	/** for debug rendering **/
@@ -76,30 +79,32 @@ public class WorldRenderer {
 		cam.zoom = 0.33f;
 
 		time = new Time();
-		
+
 		playerAngle = 0;
 
 		relevantBlocks = new MinMax();
+		movingEffects = new ArrayList<VisualEffect>();
 
 		ImageCache.load();
 		renderBatch = new SpriteBatch();
 		hudBatch = new SpriteBatch();
 		font = new BitmapFont();
 		unprojectedBatch = new SpriteBatch();
-		
+
 		TextureHandler.init();
-		unprojectedRenderer= new ShapeRenderer();
+		unprojectedRenderer = new ShapeRenderer();
 		debugRenderer = new ShapeRenderer();
 		triggerRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 
+		initEffects();
 
 		this.cam.update();
 
 	}
 
 	public void render(float delta) {
-		if(running)
+		if (running)
 			time.addTime(delta);
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -115,8 +120,23 @@ public class WorldRenderer {
 		renderDynamicObjects(delta);
 		renderBlocks(delta);
 		renderPlayer(delta);
+		renderEffects(delta);
 		renderHelpBlock(delta);
 		renderHud(delta);
+	}
+
+	private void initEffects() {
+		movingEffects.add(new VisualEffect(world.getPlayer(),
+				"visualeffects/wand.p", "images", 16, 17));
+	}
+
+	private void renderEffects(float delta) {
+		for (VisualEffect effect : movingEffects) {
+			effect.updateEffect(delta);
+			renderBatch.begin();
+			effect.getEffect().draw(renderBatch);
+			renderBatch.end();
+		}
 	}
 
 	public void setRunning(boolean running) {
@@ -127,9 +147,9 @@ public class WorldRenderer {
 		unprojectedBatch.begin();
 		unprojectedBatch.draw(TextureHandler.hud, 100, 678);
 		font = FontHandler.courier[2];
-		font.draw(unprojectedBatch, "Time: "+time, 130, 750);
+		font.draw(unprojectedBatch, "Time: " + time, 130, 750);
 		unprojectedBatch.end();
-		
+
 	}
 
 	public void zoomIn() {
@@ -382,7 +402,7 @@ public class WorldRenderer {
 		font = FontHandler.courier[13];
 		font.draw(unprojectedBatch, "Finished!", 120, 650);
 		font = FontHandler.courier[3];
-		font.draw(unprojectedBatch, "Time: "+time, 130, 550);
+		font.draw(unprojectedBatch, "Time: " + time, 130, 550);
 		font = FontHandler.courier[3];
 		font.draw(unprojectedBatch, "Press SPACE to load next map", 110, 100);
 		unprojectedBatch.end();
@@ -393,7 +413,7 @@ public class WorldRenderer {
 	}
 
 	public void updateHelpBlock(float delta) {
-		if(!world.getGameMap().isAllowPlacingBlocks())
+		if (!world.getGameMap().isAllowPlacingBlocks())
 			return;
 		int screenX = Gdx.input.getX();
 		int screenY = Gdx.input.getY();
