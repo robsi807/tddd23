@@ -49,7 +49,6 @@ public class World {
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
 		relevantBlocks = new MinMax();
 		this.gameMap = gameMap;
-		// MusicCache.level1.play();
 	}
 
 	public GameMap getGameMap() {

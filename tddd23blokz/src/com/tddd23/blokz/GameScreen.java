@@ -32,7 +32,9 @@ public class GameScreen implements Screen {
 		renderer = new WorldRenderer(world);
 		this.game = game;
 		updateGame = true;
-		MusicCache.level1.play();
+		if (!MusicCache.level1.isPlaying())
+			MusicCache.level1.play();
+		MusicCache.level1.setLooping(true);
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
 
@@ -64,7 +66,7 @@ public class GameScreen implements Screen {
 			renderer.drawNextMap();
 			break;
 		case GAME_OVER:
-			// Skriv ut något och gå till game_ready
+			// Skriv ut nï¿½got och gï¿½ till game_ready
 			break;
 		}
 	}

@@ -9,8 +9,6 @@ import com.tddd23.blokz.world.World;
 public class Player extends MovableObject {
 	private State state = State.IDLE;
 
-	private boolean hidden;
-
 	private BlockType selectedBlockType = BlockType.DIRT;
 
 	public enum State {
@@ -19,7 +17,6 @@ public class Player extends MovableObject {
 
 	public Player(Vector2 position, float speed, World world) {
 		super(position, speed, world);
-		this.hidden = false;
 		getBounds().height = 28f;
 		getBounds().width = 13;
 		setMovable(true);
@@ -55,7 +52,7 @@ public class Player extends MovableObject {
 				+ " Y: " + getVelocity().y);
 		DebugWindow.addText("PlayergetPosition(): X: " + getPosition().x
 				+ " Y: " + getPosition().y);
-		DebugWindow.addText("På marken: " + grounded);
+		DebugWindow.addText("Pï¿½ marken: " + grounded);
 
 	}
 
@@ -113,22 +110,6 @@ public class Player extends MovableObject {
 
 	public void setSelectedBlockType(BlockType selectedBlockType) {
 		this.selectedBlockType = selectedBlockType;
-	}
-
-	public void hide() {
-		hidden = true;
-	}
-
-	public void show() {
-		hidden = false;
-	}
-
-	public boolean isHidden() {
-		return hidden;
-	}
-
-	public void setHidden(boolean hidden) {
-		this.hidden = hidden;
 	}
 
 }

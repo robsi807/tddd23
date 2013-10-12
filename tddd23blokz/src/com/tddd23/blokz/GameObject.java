@@ -12,6 +12,7 @@ public class GameObject {
 	private Vector2 velocity = new Vector2();
 	private Rectangle bounds = new Rectangle();
 
+	private boolean hidden;
 	protected boolean grounded;
 	protected World world;
 	boolean facingLeft = false;
@@ -24,6 +25,7 @@ public class GameObject {
 		this.bounds.height = Constants.SIZE;
 		this.bounds.width = Constants.SIZE;
 		this.world = world;
+		this.hidden = false;
 	}
 
 	public Rectangle getPositionRectangle() {
@@ -74,7 +76,17 @@ public class GameObject {
 	public World getWorld() {
 		return world;
 	}
-	
-	
+
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	public void hide() {
+		hidden = true;
+	}
+
+	public void show() {
+		hidden = false;
+	}
 
 }

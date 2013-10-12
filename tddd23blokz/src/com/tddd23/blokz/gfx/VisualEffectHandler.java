@@ -33,8 +33,7 @@ public class VisualEffectHandler {
 		for (VisualEffect v : visualEffects)
 			v.start();
 
-		death = new VisualEffect(world.getPlayer(), "visualeffects/death.p",
-				"images", 8, 14, false);
+		death = new VisualEffect("visualeffects/death.p", "images", 0, 0, false);
 		visualEffects.add(death);
 	}
 
@@ -43,6 +42,11 @@ public class VisualEffectHandler {
 			world.resetMap();
 
 		if (!showingDeath) {
+			death.getEffect().setPosition(
+					world.getPlayer().getPosition().x
+							+ world.getPlayer().getBounds().width / 2,
+					world.getPlayer().getPosition().y
+							+ world.getPlayer().getBounds().width / 2);
 			world.getPlayer().hide();
 			death.start();
 			showingDeath = true;

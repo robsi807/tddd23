@@ -128,10 +128,12 @@ public class WorldRenderer {
 
 	private void renderEffects(float delta) {
 		for (VisualEffect effect : visualEffHand.getVisualEffects()) {
-			effect.updateEffect(delta);
-			renderBatch.begin();
-			effect.getEffect().draw(renderBatch);
-			renderBatch.end();
+			if (effect.getParent() == null || !effect.getParent().isHidden()) {
+				effect.updateEffect(delta);
+				renderBatch.begin();
+				effect.getEffect().draw(renderBatch);
+				renderBatch.end();
+			}
 		}
 	}
 
@@ -263,10 +265,9 @@ public class WorldRenderer {
 	}
 
 	private void renderPlayer(float delta) {
-		if(world.getPlayer().isHidden())
+		if (world.getPlayer().isHidden())
 			return;
-		
-		
+
 		if (playerSprite == null) {
 			playerSprite = new Sprite(TextureHandler.player_falling_right);
 			playerSprite.setOrigin(8, 14);
@@ -441,6 +442,5 @@ public class WorldRenderer {
 	public VisualEffectHandler getVisualEffHand() {
 		return visualEffHand;
 	}
-	
-	
+
 }
