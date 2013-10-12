@@ -9,27 +9,40 @@ public class VisualEffect {
 	private ParticleEffect effect;
 	private GameObject parent;
 	private int xOffset, yOffset;
+	private boolean continuous, active;
 
-	public VisualEffect(String effectPath, String imagePath, int xPos, int yPos) {
+	public VisualEffect(String effectPath, String imagePath, int xPos,
+			int yPos, boolean isContinuous) {
 		effect = new ParticleEffect();
 		effect.load(Gdx.files.local(effectPath), Gdx.files.local(imagePath));
 		effect.setPosition(xPos, yPos);
+		this.continuous = isContinuous;
+		this.active = false;
 	}
 
 	public VisualEffect(GameObject parent, String effectPath, String imagePath,
-			int xOffset, int yOffset) {
+			int xOffset, int yOffset, boolean isContinuous) {
 		this.parent = parent;
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
+		this.continuous = isContinuous;
 		effect = new ParticleEffect();
 		effect.load(Gdx.files.local(effectPath), Gdx.files.local(imagePath));
 		effect.setPosition(parent.getPosition().x + xOffset,
 				parent.getPosition().y + yOffset);
+		active = false;
+	}
+
+	public void start() {
+		active = true;
+		effect.start();
 	}
 
 	public void updateEffect(float delta) {
+		if (!active)
+			return;
 
-		if (effect.isComplete())
+		if (continuous && effect.isComplete())
 			effect.start();
 
 		if (parent != null) {
@@ -66,6 +79,14 @@ public class VisualEffect {
 
 	public ParticleEffect getEffect() {
 		return effect;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }

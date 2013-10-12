@@ -1,7 +1,5 @@
 package com.tddd23.blokz;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.blocks.Block.BlockType;
@@ -11,6 +9,8 @@ import com.tddd23.blokz.world.World;
 public class Player extends MovableObject {
 	private State state = State.IDLE;
 
+	private boolean hidden;
+
 	private BlockType selectedBlockType = BlockType.DIRT;
 
 	public enum State {
@@ -19,6 +19,7 @@ public class Player extends MovableObject {
 
 	public Player(Vector2 position, float speed, World world) {
 		super(position, speed, world);
+		this.hidden = false;
 		getBounds().height = 28f;
 		getBounds().width = 13;
 		setMovable(true);
@@ -112,6 +113,22 @@ public class Player extends MovableObject {
 
 	public void setSelectedBlockType(BlockType selectedBlockType) {
 		this.selectedBlockType = selectedBlockType;
+	}
+
+	public void hide() {
+		hidden = true;
+	}
+
+	public void show() {
+		hidden = false;
+	}
+
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
 	}
 
 }

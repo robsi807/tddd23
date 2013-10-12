@@ -36,7 +36,7 @@ public class World {
 	private MinMax relevantBlocks;
 
 	private Vector2 gravity;
-	
+
 	private GameMap gameMap;
 
 	public World(int nrOfBlocksWidth, int nrOfBlocksHeight,
@@ -79,7 +79,7 @@ public class World {
 	}
 
 	public void update(float delta) {
-		stateTime +=delta;
+		stateTime += delta;
 		player.update(delta);
 		updateBlocks(delta);
 	}
@@ -143,6 +143,10 @@ public class World {
 	}
 
 	public void killPlayer() {
+		gamescreen.getRenderer().getVisualEffHand().showDeath();
+	}
+
+	public void resetMap() {
 		gamescreen.resetMap();
 	}
 

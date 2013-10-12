@@ -28,26 +28,32 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
+
 		case Key.A:
-			walkLeft = true;
+			if (!world.getPlayer().isHidden())
+				walkLeft = true;
 			return processMove();
 		case Key.D:
-			walkRight = true;
+			if (!world.getPlayer().isHidden())
+				walkRight = true;
 			return processMove();
-		case Key.SPACE: 
-			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
-				game.getGameScreen().setState(GameState.GAME_RUNNING);
+		case Key.SPACE:
+			if (!world.getPlayer().isHidden()) {
+				if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
+					game.getGameScreen().setState(GameState.GAME_RUNNING);
+					return processMove();
+				}
+				if (game.getGameScreen().getState() == GameState.GAME_READY) {
+					game.getGameScreen().setState(GameState.GAME_RUNNING);
+					return processMove();
+				}
+				if (game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP)
+					game.getGameScreen().loadNextMap();
+				player.jump();
 				return processMove();
 			}
-			if (game.getGameScreen().getState() == GameState.GAME_READY) {
-				game.getGameScreen().setState(GameState.GAME_RUNNING);
-				return processMove();
-			}
-			if(game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP)
-				game.getGameScreen().loadNextMap();
-			player.jump();
-			return processMove();
-		case Key.ESC: 
+			break;
+		case Key.ESC:
 			if (game.getGameScreen().getState() == GameState.GAME_RUNNING) {
 				game.getGameScreen().setState(GameState.GAME_PAUSED);
 				return true;
@@ -106,7 +112,7 @@ public class GameInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		if(!world.getGameMap().isAllowPlacingBlocks())
+		if (!world.getGameMap().isAllowPlacingBlocks())
 			return false;
 		if (!(game.getGameScreen().getState() == GameState.GAME_RUNNING))
 			return false;

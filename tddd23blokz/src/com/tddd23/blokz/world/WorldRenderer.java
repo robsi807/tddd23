@@ -26,6 +26,7 @@ import com.tddd23.blokz.gfx.DebugWindow;
 import com.tddd23.blokz.gfx.ImageCache;
 import com.tddd23.blokz.gfx.VisualEffect;
 import com.tddd23.blokz.gfx.TextureHandler;
+import com.tddd23.blokz.gfx.VisualEffectHandler;
 import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.GravityTrigger;
 import com.tddd23.blokz.triggers.PlayerTrigger;
@@ -47,7 +48,7 @@ public class WorldRenderer {
 	private SpriteBatch hudBatch;
 	private SpriteBatch unprojectedBatch;
 
-	private ArrayList<VisualEffect> movingEffects;
+	private VisualEffectHandler visualEffHand;
 
 	private MinMax relevantBlocks;
 
@@ -83,7 +84,7 @@ public class WorldRenderer {
 		playerAngle = 0;
 
 		relevantBlocks = new MinMax();
-		movingEffects = new ArrayList<VisualEffect>();
+		visualEffHand = new VisualEffectHandler(world);
 
 		ImageCache.load();
 		renderBatch = new SpriteBatch();
@@ -97,7 +98,7 @@ public class WorldRenderer {
 		triggerRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 
-		initEffects();
+		// init visualEff
 
 		this.cam.update();
 
@@ -125,13 +126,8 @@ public class WorldRenderer {
 		renderHud(delta);
 	}
 
-	private void initEffects() {
-		movingEffects.add(new VisualEffect(world.getPlayer(),
-				"visualeffects/wand.p", "images", 16, 17));
-	}
-
 	private void renderEffects(float delta) {
-		for (VisualEffect effect : movingEffects) {
+		for (VisualEffect effect : visualEffHand.getVisualEffects()) {
 			effect.updateEffect(delta);
 			renderBatch.begin();
 			effect.getEffect().draw(renderBatch);
@@ -267,6 +263,10 @@ public class WorldRenderer {
 	}
 
 	private void renderPlayer(float delta) {
+		if(world.getPlayer().isHidden())
+			return;
+		
+		
 		if (playerSprite == null) {
 			playerSprite = new Sprite(TextureHandler.player_falling_right);
 			playerSprite.setOrigin(8, 14);
@@ -437,4 +437,10 @@ public class WorldRenderer {
 		setHelpBlock(new Block(new Vector2(clickPoint.x, clickPoint.y), world,
 				world.getPlayer().getSelectedBlockType()));
 	}
+
+	public VisualEffectHandler getVisualEffHand() {
+		return visualEffHand;
+	}
+	
+	
 }
