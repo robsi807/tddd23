@@ -12,9 +12,9 @@ import com.tddd23.blokz.world.World;
  */
 public class BlockFactory {
 
-	public static Block createBlock(int posX, int posY, World world,
-			BlockType type) {
-		return new Block(new Vector2(posX * Constants.SIZE, posY
-				* Constants.SIZE), world, type);
-	}
+//	public static Block createBlock(int posX, int posY, World world,
+//			BlockType type) {
+//		return new Block(new Vector2(posX * Constants.SIZE, posY
+//				* Constants.SIZE), world, type);
+//	}
 }

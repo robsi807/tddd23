@@ -10,10 +10,7 @@ import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.world.World;
 
-/**
- * @author Bobban
- * 
- */
+
 public class VisualEffectHandler {
 
 	private ArrayList<VisualEffect> visualEffects;

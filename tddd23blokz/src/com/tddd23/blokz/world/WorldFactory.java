@@ -114,7 +114,7 @@ public class WorldFactory {
 						if (face == null) {
 							world.getBlocks()[x][y] = new Block(new Vector2(x
 									* Constants.SIZE, y * Constants.SIZE),
-									world, blockType);
+									world, blockType,screen);
 						} else {
 							world.getBlocks()[x][y] = new Block(new Vector2(x
 									* Constants.SIZE, y * Constants.SIZE),

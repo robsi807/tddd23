@@ -12,6 +12,7 @@ public class TextureHandler {
 	private static Texture effects;
 
 	// hud
+	public static Texture hudSelection;
 	public static Texture hudbg;
 	public static Sprite[] hud_blocks;
 
@@ -71,6 +72,8 @@ public class TextureHandler {
 		addSprite = new Sprite(block_gravity.getKeyFrame(0));
 		addSprite.scale(5);
 		hud_blocks[2] = addSprite;
+		
+		hudSelection = new Texture("images/hudSelector.png");
 
 	}
 

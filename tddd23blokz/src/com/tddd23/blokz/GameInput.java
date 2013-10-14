@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.GameScreen.GameState;
 import com.tddd23.blokz.Player.State;
+import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.font.Key;
 import com.tddd23.blokz.world.World;
 
@@ -28,7 +29,15 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
-
+		case Key._1:
+			player.setSelectedBlockType(BlockType.DIRT);
+			break;
+		case Key._2:
+			player.setSelectedBlockType(BlockType.JUMP);
+			break;
+		case Key._3:
+			player.setSelectedBlockType(BlockType.GRAVITY);
+			break;
 		case Key.A:
 			walkLeft = true;
 			return processMove();
@@ -130,7 +139,7 @@ public class GameInput implements InputProcessor {
 				/ Constants.SIZE))
 			return false;// Klickat på ett befintlig block
 
-		world.addBlockObject(clickPoint.x, clickPoint.y);
+		world.addBlockObject(clickPoint.x, clickPoint.y, game.getGameScreen());
 		return false;
 	}
 

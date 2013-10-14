@@ -20,5 +20,4 @@ public class MovableBlock extends MovableObject implements Movable {
 	public void updateObject(float delta) {
 		
 	}
-
 }

@@ -17,6 +17,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.collision.Ray;
 import com.tddd23.blokz.Constants;
+import com.tddd23.blokz.GameScreen;
 import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.Player.State;
 import com.tddd23.blokz.Time;
@@ -45,6 +46,8 @@ public class WorldRenderer {
 	private ShapeRenderer debugRenderer;
 	private ShapeRenderer triggerRenderer;
 	private ShapeRenderer unprojectedRenderer;
+
+	private GameScreen screen;
 
 	private World world;
 
@@ -78,14 +81,14 @@ public class WorldRenderer {
 
 	/** for debug rendering **/
 
-	public WorldRenderer(World world) {
+	public WorldRenderer(World world, GameScreen screen) {
 		this.world = world;
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());
 		cam.zoom = 0.33f;
 
 		time = new Time();
-
+		this.screen = screen;
 		playerAngle = 0;
 
 		relevantBlocks = new MinMax();
@@ -159,23 +162,21 @@ public class WorldRenderer {
 		for (int i = 0; i < world.getAllowedBlocks().length; i++) {
 			if (world.getAllowedBlocks()[i] != -1) {
 				unprojectedBatch.begin();
-				unprojectedBatch.setColor(1f, 1f, 1f, 1f);
-
-				// if (world.getPlayer().getSelectedBlockType().ordinal() == i)
-				// {
-				// unprojectedRenderer.begin(ShapeType.Filled);
-				// unprojectedRenderer.setColor(1, 1, 0, 0.5f); // highlight
-				// color
-				// // for block
-				// unprojectedRenderer.rect(drawHudBlock.x
-				// - HUD_BLOCK_HIGHTLIGHT_SIZE, drawHudBlock.y
-				// - HUD_BLOCK_HIGHTLIGHT_SIZE, HUD_BLOCK_SCALE
-				// * Constants.SIZE + HUD_BLOCK_HIGHTLIGHT_SIZE * 2,
-				// HUD_BLOCK_SCALE * Constants.SIZE
-				// + HUD_BLOCK_HIGHTLIGHT_SIZE * 2);
-				// unprojectedRenderer.end();
-				// }
-
+				if (world.getPlayer().getSelectedBlockType().ordinal() == i) {
+					unprojectedBatch.setColor(1f, 1f, 1f, 1f);
+					if (world.getAllowedBlocks()[i] == 0) {
+						hudFont.setColor(1, 0, 0, 1f);
+					} else {
+						hudFont.setColor(1, 1, 1, 1f);
+					}
+				} else {
+					if (world.getAllowedBlocks()[i] == 0) {
+						hudFont.setColor(1, 0, 0, 0.25f);
+					} else {
+						hudFont.setColor(1, 1, 1, 0.25f);
+					}
+					unprojectedBatch.setColor(1f, 1f, 1f, .25f);
+				}
 				unprojectedBatch.draw(TextureHandler.hud_blocks[i],
 						drawHudBlock.x, drawHudBlock.y, 0, 0, Constants.SIZE,
 						Constants.SIZE, HUD_BLOCK_SCALE, HUD_BLOCK_SCALE, 0);
@@ -187,7 +188,7 @@ public class WorldRenderer {
 						HUD_HEIGHT / 2 + hudFont.getBounds(hudStr).height / 2);
 
 				drawHudBlock.x += hudFont.getBounds(hudStr).width + 20;
-
+				hudFont.setColor(1, 1, 1, 1f);
 				unprojectedBatch.end();
 
 			}
@@ -284,8 +285,22 @@ public class WorldRenderer {
 		if (helpBlock == null)
 			return;
 		renderBatch.begin();
-		renderBatch.draw(TextureHandler.block_dirt, helpBlock.getPosition().x
-				* Constants.SIZE, helpBlock.getPosition().y * Constants.SIZE);
+
+		switch (helpBlock.getType()) {
+		case DIRT:
+			tempRegion = TextureHandler.block_dirt;
+			break;
+		case JUMP:
+			tempRegion = TextureHandler.block_jump;
+			break;
+		case GRAVITY:
+			tempRegion = TextureHandler.block_gravity.getKeyFrame(0);
+			break;
+		}
+
+		renderBatch.draw(tempRegion,
+				helpBlock.getPosition().x * Constants.SIZE,
+				helpBlock.getPosition().y * Constants.SIZE);
 		renderBatch.end();
 	}
 

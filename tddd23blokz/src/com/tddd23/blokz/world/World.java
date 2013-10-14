@@ -59,12 +59,11 @@ public class World {
 		return gameMap;
 	}
 
-	public void addBlockObject(float posX, float posY) {
-
+	public void addBlockObject(float posX, float posY, GameScreen gameScreen2) {
 		if (allowedBlocks[player.getSelectedBlockType().ordinal()] > 0) {
 			blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
 					new Vector2(posX, posY), this,
-					player.getSelectedBlockType());
+					player.getSelectedBlockType(),gamescreen);
 			allowedBlocks[player.getSelectedBlockType().ordinal()]--;
 			SoundCache.place_block.play();
 		}

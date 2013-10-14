@@ -7,7 +7,7 @@ import com.tddd23.blokz.world.World;
 
 public class GameObject {
 
-	private Vector2 position = new Vector2();
+	protected Vector2 position = new Vector2();
 	private Vector2 acceleration = new Vector2();
 	private Vector2 velocity = new Vector2();
 	private Rectangle bounds = new Rectangle();

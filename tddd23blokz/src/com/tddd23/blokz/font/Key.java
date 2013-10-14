@@ -6,4 +6,8 @@ public class Key {
 	public static final int D = 32;
 	public static final int ESC = 131;
 	public static final int CONSOLE = 73;
+	public static final int _1 = 8;
+	public static final int _2 = 9;
+	public static final int _3 = 10;
+	
 }

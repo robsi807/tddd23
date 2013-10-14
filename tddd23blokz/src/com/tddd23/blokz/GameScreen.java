@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
 		state = GameState.GAME_READY;
 		this.currentMap = map;
 		world = WorldFactory.createMap(map, this);
-		renderer = new WorldRenderer(world);
+		renderer = new WorldRenderer(world,this);
 		this.game = game;
 		updateGame = true;
 		if (!MusicCache.level1.isPlaying())
