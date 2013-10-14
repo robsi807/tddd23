@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.GameObject;
 import com.tddd23.blokz.triggers.DeathTrigger.Facing;
+import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.PlayerTrigger;
 import com.tddd23.blokz.world.World;
 
@@ -44,12 +45,16 @@ public class Block extends GameObject {
 		case FIRE:
 			if (stateTime > FLAME_REPEAT
 					&& stateTime < FLAME_LENGTH + FLAME_REPEAT) {
-				for (PlayerTrigger t : connectedTriggers)
+				for (PlayerTrigger t : connectedTriggers){
 					t.setActive(true);
+					((FireTrigger)t).getEffect().start();
+				}
 
 			} else {
-				for (PlayerTrigger t : connectedTriggers)
+				for (PlayerTrigger t : connectedTriggers){
 					t.setActive(false);
+					((FireTrigger)t).getEffect().stop();
+				}
 			}
 			if (stateTime > FLAME_LENGTH + FLAME_REPEAT)
 				stateTime = 0;
@@ -75,4 +80,9 @@ public class Block extends GameObject {
 		for (PlayerTrigger t : triggerList)
 			connectedTriggers.add(t);
 	}
+
+	public ArrayList<PlayerTrigger> getConnectedTriggers() {
+		return connectedTriggers;
+	}
+
 }

@@ -4,11 +4,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.GameScreen;
 import com.tddd23.blokz.Player;
+import com.tddd23.blokz.gfx.VisualEffect;
 import com.tddd23.blokz.triggers.DeathTrigger.Facing;
 
 public class FireTrigger extends PlayerTrigger {
 
 	private Facing facing;
+
+	private VisualEffect effect;
 
 	public FireTrigger(Player player, int x, int y, Facing direction,
 			GameScreen screen) {
@@ -44,5 +47,13 @@ public class FireTrigger extends PlayerTrigger {
 	public Facing getFacing() {
 		return facing;
 	}
-	
+
+	public VisualEffect getEffect() {
+		return effect;
+	}
+
+	public void setEffect(VisualEffect effect) {
+		this.effect = effect;
+	}
+
 }

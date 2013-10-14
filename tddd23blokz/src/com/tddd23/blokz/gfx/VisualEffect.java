@@ -42,8 +42,9 @@ public class VisualEffect {
 		if (!active)
 			return;
 
-		if (continuous && effect.isComplete())
+		if (continuous && effect.isComplete()) {
 			effect.start();
+		}
 
 		if (parent != null) {
 			if (!parent.isFacingLeft()) {
@@ -87,6 +88,11 @@ public class VisualEffect {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public void stop() {
+		effect.reset();
+		active = false;
 	}
 
 }

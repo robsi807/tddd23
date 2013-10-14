@@ -154,7 +154,7 @@ public class WorldRenderer {
 		unprojectedBatch.end();
 
 		Point drawHudBlock = new Point(20, HUD_HEIGHT / 2
-				- (int) (HUD_BLOCK_SCALE / 2 * Constants.SIZE));
+				- (int) ((HUD_BLOCK_SCALE * Constants.SIZE / 2)));
 
 		for (int i = 0; i < world.getAllowedBlocks().length; i++) {
 			if (world.getAllowedBlocks()[i] != -1) {
@@ -292,12 +292,6 @@ public class WorldRenderer {
 	private void renderDynamicObjects(float delta) {
 		for (PlayerTrigger t : world.getTriggers()) {
 			if (t instanceof FireTrigger && t.isActive()) {
-				fireTriggerRect = t.getBounds();
-				triggerRenderer.begin(ShapeType.Filled);
-				triggerRenderer.setColor(Color.YELLOW);
-				triggerRenderer.rect(fireTriggerRect.x, fireTriggerRect.y,
-						fireTriggerRect.width, fireTriggerRect.height);
-				triggerRenderer.end();
 			} else if (t instanceof GravityTrigger) {
 				float offset = 0;
 				for (int y = (int) t.getBounds().y; y <= (int) t.getBounds().y
