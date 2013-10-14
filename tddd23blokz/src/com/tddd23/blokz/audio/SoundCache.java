@@ -12,15 +12,15 @@ public class SoundCache {
 	public static Sound player_death;
 
 	public static void load() {
-		jump = Gdx.audio.newSound(Gdx.files.internal("sounds/jump.wav"));
+		jump = Gdx.audio.newSound(Gdx.files.internal("sounds/jump.mp3"));
 		place_block = Gdx.audio.newSound(Gdx.files
-				.internal("sounds/place_block.wav"));
+				.internal("sounds/place_block.mp3"));
 		menu_beep = Gdx.audio.newSound(Gdx.files
-				.internal("sounds/menu_beep.wav"));
+				.internal("sounds/menu_beep.mp3"));
 		menu_beep_select = Gdx.audio.newSound(Gdx.files
-				.internal("sounds/menu_beep_select.wav"));
+				.internal("sounds/menu_beep_select.mp3"));
 
 		player_death = Gdx.audio.newSound(Gdx.files
-				.internal("sounds/death.wav"));
+				.internal("sounds/death.mp3"));
 	}
 }
