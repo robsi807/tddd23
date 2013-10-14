@@ -17,14 +17,15 @@ public class MenuInput implements InputProcessor {
 		switch (keycode) {
 		case 19:
 			callingMenu.decreasePointer();
-			SoundCache.menu_beep_down.play();
+			SoundCache.menu_beep.play();
 			return true;
 		case 20:
 			callingMenu.increasePointer();
-			SoundCache.menu_beep_up.play();
+			SoundCache.menu_beep.play();
 			return true;
 		case 66:
 			callingMenu.triggerMenuItem();
+			SoundCache.menu_beep_select.play();
 			return true;
 		}
 		return false;
@@ -46,6 +47,7 @@ public class MenuInput implements InputProcessor {
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		callingMenu
 				.triggerMenuItem(screenX, Gdx.graphics.getHeight() - screenY);
+		SoundCache.menu_beep_select.play();
 		return false;
 	}
 
@@ -64,6 +66,7 @@ public class MenuInput implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		callingMenu.hoverMenuItem(screenX, Gdx.graphics.getHeight() - screenY);
+		
 		return false;
 	}
 

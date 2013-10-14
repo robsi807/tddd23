@@ -27,6 +27,7 @@ import com.tddd23.blokz.gfx.ImageCache;
 import com.tddd23.blokz.gfx.VisualEffect;
 import com.tddd23.blokz.gfx.TextureHandler;
 import com.tddd23.blokz.gfx.VisualEffectHandler;
+import com.tddd23.blokz.triggers.DeathTrigger.Facing;
 import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.GravityTrigger;
 import com.tddd23.blokz.triggers.PlayerTrigger;
@@ -230,7 +231,18 @@ public class WorldRenderer {
 						tempRegion = TextureHandler.block_stone;
 						break;
 					case SPIKE:
-						tempRegion = TextureHandler.block_spike;
+						if (world.getBlocks()[x][y].getFacing() != null) {
+							if (world.getBlocks()[x][y].getFacing() == Facing.DOWN) {
+								tempRegion = TextureHandler.block_spike_down;
+							} else if (world.getBlocks()[x][y].getFacing() == Facing.RIGHT) {
+								tempRegion = TextureHandler.block_spike_right;
+							} else if (world.getBlocks()[x][y].getFacing() == Facing.LEFT) {
+								tempRegion = TextureHandler.block_spike_left;
+							} else if (world.getBlocks()[x][y].getFacing() == Facing.UP) {
+								tempRegion = TextureHandler.block_spike_up;
+							}
+						}
+
 						break;
 					case GRAVITY:
 						tempRegion = TextureHandler.block_gravity.getKeyFrame(

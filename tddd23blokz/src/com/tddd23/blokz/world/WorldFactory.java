@@ -54,11 +54,13 @@ public class WorldFactory {
 
 		String type = null;
 		BlockType blockType = null;
+		Facing face = null;
 		ArrayList<PlayerTrigger> connectedTriggers;
 		// looping throu all the blocks in the map
 		for (int y = 0; y < world.getMapSize().height; y++) {
 			for (int x = 0; x < world.getMapSize().width; x++) {
 				connectedTriggers = new ArrayList<PlayerTrigger>();
+				face = null;
 				// if a block exists and is solids
 				if (blocks.getCell(x, y) != null) {
 					type = (String) blocks.getCell(x, y).getTile()
@@ -84,8 +86,21 @@ public class WorldFactory {
 									Facing.DOWN, screen));
 						} else if (type.equals("spike")) {
 							blockType = BlockType.SPIKE;
+
+							String facing = (String) blocks.getCell(x, y)
+									.getTile().getProperties().get("facing");
+							if (facing.equals("up")) {
+								face = Facing.UP;
+							} else if (facing.equals("down")) {
+								face = Facing.DOWN;
+							} else if (facing.equals("left")) {
+								face = Facing.LEFT;
+							} else if (facing.equals("right")) {
+								face = Facing.RIGHT;
+							}
+
 							connectedTriggers.add(new DeathTrigger(null, x, y,
-									Facing.UP, screen));
+									face, screen));
 						} else if (type.equals("goal")) {
 							blockType = BlockType.GOAL;
 							connectedTriggers.add(new GoalTrigger(null, x, y,
@@ -95,9 +110,17 @@ public class WorldFactory {
 							connectedTriggers.add(new JumpTrigger(null, x, y,
 									screen));
 						}
-						world.getBlocks()[x][y] = new Block(new Vector2(x
-								* Constants.SIZE, y * Constants.SIZE), world,
-								blockType);
+
+						if (face == null) {
+							world.getBlocks()[x][y] = new Block(new Vector2(x
+									* Constants.SIZE, y * Constants.SIZE),
+									world, blockType);
+						} else {
+							world.getBlocks()[x][y] = new Block(new Vector2(x
+									* Constants.SIZE, y * Constants.SIZE),
+									world, blockType, face);
+						}
+
 						if (connectedTriggers != null) {
 							world.addTrigger(connectedTriggers);
 							world.getBlocks()[x][y]

@@ -32,7 +32,10 @@ public class TextureHandler {
 	public static TextureRegion block_dirt;
 	public static TextureRegion block_stone;
 	public static TextureRegion block_jump;
-	public static TextureRegion block_spike;
+	public static TextureRegion block_spike_up;
+	public static TextureRegion block_spike_down;
+	public static TextureRegion block_spike_right;
+	public static TextureRegion block_spike_left;
 	public static Animation block_gravity;
 	public static TextureRegion block_goal;
 	public static Animation block_fire;
@@ -114,8 +117,12 @@ public class TextureHandler {
 		block_dirt = new TextureRegion(blocks, 0, 0, 16, 16);
 		block_stone = new TextureRegion(blocks, 16, 0, 16, 16);
 		block_jump = new TextureRegion(blocks, 32, 0, 16, 16);
-		block_spike = new TextureRegion(blocks, 48, 0, 16, 16);
-		block_goal = new TextureRegion(blocks, 7 * 16, 0, 16, 16);
+		block_goal = new TextureRegion(blocks, 3 * 16, 0, 16, 16);
+
+		block_spike_up = new TextureRegion(blocks, 7 * 16, 16, 16, 16);
+		block_spike_down = new TextureRegion(blocks, 5 * 16, 16, 16, 16);
+		block_spike_right = new TextureRegion(blocks, 4 * 16, 16, 16, 16);
+		block_spike_left = new TextureRegion(blocks, 6 * 16, 16, 16, 16);
 
 		// gravity block
 		frameCollection = new TextureRegion[3];

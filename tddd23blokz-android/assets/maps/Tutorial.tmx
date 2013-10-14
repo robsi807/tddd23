@@ -9,7 +9,7 @@
  <tileset firstgid="21" source="blocks.tsx"/>
  <layer name="blocks" width="100" height="20">
   <data encoding="base64" compression="zlib">
-   eJztmMEKxCAMRMX2sNBr//9byx4ECVGjSWRsHQiRdtXJvlqyG0MIcQdUIGgVn5ZCrpPzhOjTUnltv4BV55d4RJLz6yh1Ui9X5d7qmsVDs94+Hz48NHPfzCMyY08e2nUQ+yuvPVfg8RadJHMqfVebh63+DPJnv8TEm4cni9tx7RFdlXvc+6f1OTpG5yHdT3oNQSvyOJmYrdpZ0KjFo6enseh9JPta91dI/Rsaj5JHz98fm0e/RwkP2k9Kc0+tB+ONG49qJR5Jpf+vNNnjfNB5RxaSOeg8WucDjceINDxoj1OrJT0T0n6oti7nLyhzb61eEck4SeJxx9x4ACHPBXo=
+   eJztmMEKxCAMRCXdW2+l//+tZQ+ChKjRGBlbB0KkXXWyr5bsUgiBdkAFglbxOVLIdUqeEH2OVFrbL2DV+SUexHJ6HaVO7uUs3Ftds3hY1tvnw4eHZe6beZAw9uRhXQexv/LacwUeb9HFsqTcd7V5jNWfQfrs55h48/BkcTuu3aOzcE96/9Q+x8foPLT7aa8haEUelxCzVToLFtV4tPQ0I3ofzb6j+yuk/g2NR86j5++PzaPdo4YH7ye1uaXWQ/AmjXu1Eo+o3P9XluxxPvi8IwnNHHQetfOBxqNHFh68xynVEp8JbU9UWlfyF4y5tVavIDaO0njcMTcevLIIbg==
   </data>
  </layer>
  <objectgroup name="objects" width="100" height="20">

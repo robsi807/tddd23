@@ -18,8 +18,7 @@
  </tile>
  <tile id="3">
   <properties>
-   <property name="facing" value="up"/>
-   <property name="type" value="spike"/>
+   <property name="type" value="goal"/>
   </properties>
  </tile>
  <tile id="4">
@@ -35,11 +34,6 @@
  <tile id="6">
   <properties>
    <property name="type" value="gravity"/>
-  </properties>
- </tile>
- <tile id="7">
-  <properties>
-   <property name="type" value="goal"/>
   </properties>
  </tile>
  <tile id="10">
@@ -60,6 +54,30 @@
  <tile id="13">
   <properties>
    <property name="type" value="fire"/>
+  </properties>
+ </tile>
+ <tile id="14">
+  <properties>
+   <property name="facing" value="right"/>
+   <property name="type" value="spike"/>
+  </properties>
+ </tile>
+ <tile id="15">
+  <properties>
+   <property name="facing" value="down"/>
+   <property name="type" value="spike"/>
+  </properties>
+ </tile>
+ <tile id="16">
+  <properties>
+   <property name="facing" value="left"/>
+   <property name="type" value="spike"/>
+  </properties>
+ </tile>
+ <tile id="17">
+  <properties>
+   <property name="facing" value="up"/>
+   <property name="type" value="spike"/>
   </properties>
  </tile>
 </tileset>

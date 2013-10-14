@@ -8,7 +8,7 @@ import com.tddd23.blokz.world.World;
 public abstract class MovableObject extends GameObject implements Movable {
 
 	private Rectangle collidingRectangle;
-	private boolean movable = true;
+	private boolean movable = true, stillInvertGravity;
 	private float stateTime = 0;
 	private float speed;
 
@@ -20,13 +20,14 @@ public abstract class MovableObject extends GameObject implements Movable {
 		super(position, world);
 		this.speed = speed;
 		relevantCoords = new MinMax();
+		stillInvertGravity = false;
 	}
 
 	@Override
 	public void update(float delta) {
 
-//		if (isHidden())
-//			return;
+		// if (isHidden())
+		// return;
 
 		updateObject(delta);
 
@@ -46,8 +47,6 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 		// setting the invert to false, if we still are colliding with a gravity
 		// trigger it will be set to true
-		invertGravity = false;
-		checkForTriggers(displacementBox);
 
 		// Måste uppdatera efter att triggern eventuellt har påverkat spelarens
 		// rörelse
@@ -88,6 +87,10 @@ public abstract class MovableObject extends GameObject implements Movable {
 		} else {
 			grounded = false;
 		}
+
+		invertGravity = false;
+		checkForTriggers(displacementBox);
+		stillInvertGravity = invertGravity;
 
 		displacementBox = new Rectangle(getPosition().x + getVelocity().x
 				* delta, getPosition().y, getBounds().width, getBounds().height);
@@ -179,6 +182,10 @@ public abstract class MovableObject extends GameObject implements Movable {
 
 	public void setInvertGravity(boolean invertGravity) {
 		this.invertGravity = invertGravity;
+	}
+
+	public boolean isStillInvertGravity() {
+		return stillInvertGravity;
 	}
 
 }

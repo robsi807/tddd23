@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.GameObject;
+import com.tddd23.blokz.triggers.DeathTrigger.Facing;
 import com.tddd23.blokz.triggers.PlayerTrigger;
-import com.tddd23.blokz.triggers.Triggerable;
 import com.tddd23.blokz.world.World;
 
 public class Block extends GameObject {
@@ -15,11 +15,19 @@ public class Block extends GameObject {
 	private ArrayList<PlayerTrigger> connectedTriggers;
 	private static int FLAME_REPEAT = 3;
 	private static int FLAME_LENGTH = 1;
+	private Facing facing;
 
 	public Block(Vector2 position, World world, BlockType type) {
 		super(position, world);
 		this.connectedTriggers = new ArrayList<PlayerTrigger>();
 		this.type = type;
+	}
+
+	public Block(Vector2 position, World world, BlockType type, Facing facing) {
+		super(position, world);
+		this.connectedTriggers = new ArrayList<PlayerTrigger>();
+		this.type = type;
+		this.facing = facing;
 	}
 
 	public BlockType getType() {
@@ -57,6 +65,10 @@ public class Block extends GameObject {
 
 	public void addTrigger(PlayerTrigger trigger) {
 		connectedTriggers.add(trigger);
+	}
+
+	public Facing getFacing() {
+		return facing;
 	}
 
 	public void addTrigger(ArrayList<PlayerTrigger> triggerList) {
