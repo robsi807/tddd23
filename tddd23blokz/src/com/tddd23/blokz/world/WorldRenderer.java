@@ -309,7 +309,7 @@ public class WorldRenderer {
 			if (t instanceof FireTrigger && t.isActive()) {
 			} else if (t instanceof GravityTrigger) {
 				float offset = 0;
-				for (int y = (int) t.getBounds().y; y <= (int) t.getBounds().y
+				for (int y = (int) t.getBounds().y; y < (int) t.getBounds().y
 						+ (int) t.getBounds().height; y += Constants.SIZE) {
 
 					for (int x = (int) t.getBounds().x; x < (int) t.getBounds().x

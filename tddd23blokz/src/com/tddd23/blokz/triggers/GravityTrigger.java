@@ -16,7 +16,7 @@ public class GravityTrigger extends PlayerTrigger {
 	public GravityTrigger(int x, int y, Player player,
 			GameScreen screen) {
 		super(player, screen);
-		bounds = new Rectangle(x-2*Constants.SIZE, y-2*Constants.SIZE, 5*Constants.SIZE, 4*Constants.SIZE);
+		bounds = new Rectangle(x-2*Constants.SIZE, y-2*Constants.SIZE, 5*Constants.SIZE, 5*Constants.SIZE);
 	}
 
 	@Override
