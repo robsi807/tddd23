@@ -29,6 +29,12 @@ public class GameInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
+		case Key.R:
+			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
+				game.getGameScreen().resetMap();
+				return processMove();
+			}
+			break;
 		case Key._1:
 			player.setSelectedBlockType(BlockType.DIRT);
 			break;
@@ -67,6 +73,10 @@ public class GameInput implements InputProcessor {
 				return true;
 			}
 			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
+				game.goToMapMenu();
+				return true;
+			}
+			if (game.getGameScreen().getState() == GameState.GAME_OVER) {
 				game.goToMapMenu();
 				return true;
 			}

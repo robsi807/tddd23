@@ -9,5 +9,5 @@ public class Key {
 	public static final int _1 = 8;
 	public static final int _2 = 9;
 	public static final int _3 = 10;
-	
+	public static final int R = 46;
 }

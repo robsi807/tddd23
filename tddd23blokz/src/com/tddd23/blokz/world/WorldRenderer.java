@@ -457,48 +457,36 @@ public class WorldRenderer {
 	}
 
 	public void drawGetReady() {
-		unprojectedBatch.begin();
-		hudFont = FontHandler.courier[13];
-		hudFont.draw(unprojectedBatch, "Get ready!", 110, 650);
-		hudFont = FontHandler.courier[3];
-		hudFont.draw(unprojectedBatch, "Press space to start", 100, 100);
-		unprojectedBatch.end();
+		drawText("Get ready!", 650, 13);
+		drawText("Press space to start", 550, 3);
 	}
 
 	public void drawPause() {
-		unprojectedBatch.begin();
-		hudFont = FontHandler.courier[13];
-		hudFont.draw(unprojectedBatch, "Paused", 120, 650);
-		hudFont = FontHandler.courier[3];
-		hudFont.draw(unprojectedBatch, "Press space to continue playing", 150,
-				150);
-		hudFont = FontHandler.courier[3];
-		hudFont.draw(unprojectedBatch, "Press ESC to enter menu", 150, 100);
-		unprojectedBatch.end();
+		drawText("Paused", 650, 13);
+		drawText("Press space to continue playing", 550, 3);
+		drawText("Press R to restart map", 500, 3);
+		drawText("Press ESC to enter menu", 450, 3);
 	}
 
 	public void drawDeath() {
-		unprojectedBatch.begin();
-		hudFont = FontHandler.courier[13];
-		hudFont.draw(unprojectedBatch, "You died", 120, 650);
-		hudFont = FontHandler.courier[3];
-		hudFont.draw(unprojectedBatch, "Press space to restart level", 150, 150);
-		hudFont = FontHandler.courier[3];
-		hudFont.draw(unprojectedBatch, "Press ESC to enter menu", 150, 100);
-		unprojectedBatch.end();
+		drawText("You died", 650, 13);
+		drawText("Press space to restart level", 550, 3);
+		drawText("Press ESC to enter menu", 500, 3);
 	}
 
 	public void drawNextMap() {
-		unprojectedBatch.begin();
-		hudFont = FontHandler.courier[13];
-		hudFont.draw(unprojectedBatch, "Finished!", 120, 650);
-		hudFont = FontHandler.courier[3];
-		hudFont.draw(unprojectedBatch, "Time: " + time, 130, 550);
-		hudFont = FontHandler.courier[3];
-		hudFont.draw(unprojectedBatch, "Press SPACE to load next map", 110, 100);
-		unprojectedBatch.end();
+		drawText("Finished", 650, 13);
+		drawText("Time: " + time, 550, 3);
+		drawText("Press SPACE to load next map", 500, 3);
 	}
 
+	private void drawText(String str,int y, int fontSize){
+		unprojectedBatch.begin();
+		hudFont = FontHandler.courier[fontSize];
+		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth()/2-hudFont.getBounds(str).width/2, y);
+		unprojectedBatch.end();
+	}
+	
 	public void setOpacity(float amount) {
 		renderBatch.setColor(1f, 1f, 1f, amount);
 	}
