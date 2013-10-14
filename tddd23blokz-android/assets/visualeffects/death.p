@@ -2,16 +2,16 @@ gore
 - Delay -
 active: false
 - Duration - 
-lowMin: 1000.0
-lowMax: 1000.0
+lowMin: 500.0
+lowMax: 500.0
 - Count - 
 min: 0
 max: 5
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 10.0
-highMax: 20.0
+highMin: 30.0
+highMax: 30.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -20,8 +20,8 @@ timeline0: 0.0
 - Life - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 3000.0
-highMax: 3000.0
+highMin: 1500.0
+highMax: 1500.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -30,7 +30,16 @@ timeline0: 0.0
 - Life Offset - 
 active: false
 - X Offset - 
-active: false
+active: true
+lowMin: -5.0
+lowMax: 5.0
+highMin: 0.0
+highMax: 0.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
 - Y Offset - 
 active: false
 - Spawn Shape - 
@@ -106,17 +115,15 @@ active: false
 active: true
 lowMin: 100.0
 lowMax: 100.0
-highMin: -2000.0
-highMax: -2000.0
+highMin: -500.0
+highMax: -500.0
 relative: false
-scalingCount: 3
+scalingCount: 2
 scaling0: 0.0
-scaling1: 0.41573033
-scaling2: 1.0
-timelineCount: 3
+scaling1: 1.0
+timelineCount: 2
 timeline0: 0.0
-timeline1: 0.61100566
-timeline2: 1.0
+timeline1: 1.0
 - Tint - 
 colorsCount: 3
 colors0: 1.0
@@ -144,7 +151,7 @@ timeline3: 1.0
 attached: false
 continuous: false
 aligned: false
-additive: true
+additive: false
 behind: false
 - Image Path -
 gore.png
@@ -154,16 +161,16 @@ blood
 - Delay -
 active: false
 - Duration - 
-lowMin: 400.0
-lowMax: 400.0
+lowMin: 200.0
+lowMax: 200.0
 - Count - 
 min: 0
 max: 200
 - Emission - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 500.0
-highMax: 500.0
+highMin: 1000.0
+highMax: 1000.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -172,8 +179,8 @@ timeline0: 0.0
 - Life - 
 lowMin: 0.0
 lowMax: 0.0
-highMin: 2000.0
-highMax: 2000.0
+highMin: 1000.0
+highMax: 1500.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -182,9 +189,27 @@ timeline0: 0.0
 - Life Offset - 
 active: false
 - X Offset - 
-active: false
+active: true
+lowMin: -5.0
+lowMax: 5.0
+highMin: 0.0
+highMax: 0.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
 - Y Offset - 
-active: false
+active: true
+lowMin: -5.0
+lowMax: 5.0
+highMin: 0.0
+highMax: 0.0
+relative: false
+scalingCount: 1
+scaling0: 1.0
+timelineCount: 1
+timeline0: 0.0
 - Spawn Shape - 
 shape: point
 - Spawn Width - 
@@ -221,8 +246,8 @@ timeline0: 0.0
 active: true
 lowMin: 0.0
 lowMax: 0.0
-highMin: 60.0
-highMax: 60.0
+highMin: 30.0
+highMax: 30.0
 relative: false
 scalingCount: 1
 scaling0: 1.0
@@ -247,8 +272,8 @@ active: false
 active: true
 lowMin: -300.0
 lowMax: -300.0
-highMin: 0.0
-highMax: 0.0
+highMin: 100.0
+highMax: 100.0
 relative: false
 scalingCount: 2
 scaling0: 1.0

@@ -1,9 +1,8 @@
 package com.tddd23.blokz.menu;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.tddd23.blokz.audio.SoundCache;
 
 public class MenuInput implements InputProcessor {
 
@@ -17,11 +16,12 @@ public class MenuInput implements InputProcessor {
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
 		case 19:
-			// callingMenu.decreasePointer();
 			callingMenu.decreasePointer();
+			SoundCache.menu_beep_down.play();
 			return true;
 		case 20:
 			callingMenu.increasePointer();
+			SoundCache.menu_beep_up.play();
 			return true;
 		case 66:
 			callingMenu.triggerMenuItem();
@@ -44,7 +44,8 @@ public class MenuInput implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		callingMenu.triggerMenuItem(screenX, Gdx.graphics.getHeight()-screenY);
+		callingMenu
+				.triggerMenuItem(screenX, Gdx.graphics.getHeight() - screenY);
 		return false;
 	}
 
@@ -62,13 +63,13 @@ public class MenuInput implements InputProcessor {
 
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
-		callingMenu.hoverMenuItem(screenX, Gdx.graphics.getHeight()-screenY);
+		callingMenu.hoverMenuItem(screenX, Gdx.graphics.getHeight() - screenY);
 		return false;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
-		if(amount<0)
+		if (amount < 0)
 			callingMenu.decreasePointer();
 		else
 			callingMenu.increasePointer();

@@ -2,6 +2,7 @@ package com.tddd23.blokz.gfx;
 
 import java.util.ArrayList;
 
+import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.world.World;
 
 /**
@@ -47,6 +48,7 @@ public class VisualEffectHandler {
 							+ world.getPlayer().getBounds().width / 2);
 			world.getPlayer().hide();
 			death.start();
+			SoundCache.player_death.play();
 			showingDeath = true;
 		}
 
