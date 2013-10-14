@@ -41,7 +41,6 @@ public class DeathTrigger extends PlayerTrigger {
 
 	@Override
 	public void trigger() {
-		System.out.println(facing);
 		switch (facing) {
 		case UP:
 			if (!player.isInvertGravity()) {
