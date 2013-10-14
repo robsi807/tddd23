@@ -31,20 +31,20 @@ public class Block extends GameObject {
 	}
 
 	public void update(float delta) {
-		stateTime = world.getStateTime() % (FLAME_LENGTH+FLAME_REPEAT);
+		stateTime = world.getStateTime() % (FLAME_LENGTH + FLAME_REPEAT);
 		switch (type) {
 		case FIRE:
 			if (stateTime > FLAME_REPEAT
 					&& stateTime < FLAME_LENGTH + FLAME_REPEAT) {
-				for(PlayerTrigger t : connectedTriggers)
+				for (PlayerTrigger t : connectedTriggers)
 					t.setActive(true);
 
 			} else {
-				for(PlayerTrigger t : connectedTriggers)
+				for (PlayerTrigger t : connectedTriggers)
 					t.setActive(false);
 			}
-			if(stateTime > FLAME_LENGTH+FLAME_REPEAT)
-				stateTime =0;
+			if (stateTime > FLAME_LENGTH + FLAME_REPEAT)
+				stateTime = 0;
 			break;
 		default:
 			break;
@@ -52,7 +52,7 @@ public class Block extends GameObject {
 	}
 
 	public enum BlockType {
-		DIRT, JUMP, SPIKE, GRAVITY, STONE, GOAL, FIRE;
+		DIRT, JUMP, GRAVITY, SPIKE, STONE, GOAL, FIRE;
 	}
 
 	public void addTrigger(PlayerTrigger trigger) {

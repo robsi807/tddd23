@@ -2,6 +2,7 @@ package com.tddd23.blokz.gfx;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class TextureHandler {
@@ -9,8 +10,11 @@ public class TextureHandler {
 	private static Texture player;
 	private static Texture blocks;
 	private static Texture effects;
-	public static Texture hud;
-	
+
+	// hud
+	public static Texture hudbg;
+	public static Sprite[] hud_blocks;
+
 	// player graphics
 	public static Animation player_left_idle;
 	public static Animation player_right_idle;
@@ -51,7 +55,20 @@ public class TextureHandler {
 	}
 
 	private static void initOther() {
-		hud = new Texture("images/hud.png");
+		hudbg = new Texture("images/hudbg.png");
+		hud_blocks = new Sprite[3];
+		Sprite addSprite = new Sprite(block_dirt);
+		addSprite.scale(5);
+		hud_blocks[0] = addSprite;
+
+		addSprite = new Sprite(block_jump);
+		addSprite.scale(5);
+		hud_blocks[1] = addSprite;
+
+		addSprite = new Sprite(block_gravity.getKeyFrame(0));
+		addSprite.scale(5);
+		hud_blocks[2] = addSprite;
+
 	}
 
 	private static void initPlayer() {
@@ -125,9 +142,6 @@ public class TextureHandler {
 			frameCollection[i] = new TextureRegion(effects, i * 16, 0, 16, 16);
 		}
 		effect_gravityfield = new Animation(.1f, frameCollection);
-		
-		
-		
 
 	}
 

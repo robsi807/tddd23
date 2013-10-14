@@ -50,7 +50,7 @@ public class GameScreen implements Screen {
 		case GAME_RUNNING:
 			renderer.setRunning(true);
 			renderer.setOpacity(1f);
-			updateGame(delta);
+			updateGame(delta); 
 			renderer.render(delta);
 			break;
 		case GAME_PAUSED:
@@ -66,7 +66,10 @@ public class GameScreen implements Screen {
 			renderer.drawNextMap();
 			break;
 		case GAME_OVER:
-			// Skriv ut n�got och g� till game_ready
+			renderer.setRunning(false);
+			renderer.setOpacity(0.2f);
+			renderer.render(delta);
+			renderer.drawDeath();
 			break;
 		}
 	}

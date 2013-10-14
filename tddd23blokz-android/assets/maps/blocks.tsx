@@ -18,6 +18,7 @@
  </tile>
  <tile id="3">
   <properties>
+   <property name="facing" value="up"/>
    <property name="type" value="spike"/>
   </properties>
  </tile>

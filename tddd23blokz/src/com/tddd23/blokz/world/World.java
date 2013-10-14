@@ -11,6 +11,7 @@ import com.tddd23.blokz.GameScreen;
 import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.MovableObject;
 import com.tddd23.blokz.Player;
+import com.tddd23.blokz.GameScreen.GameState;
 import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.PlayerTrigger;
@@ -23,6 +24,7 @@ public class World {
 	private ArrayList<PlayerTrigger> triggers;
 	private ArrayList<MovableObject> dynamicObjects;
 	private Block[][] blocks;
+	private int[] allowedBlocks;
 	private Player player;
 	private Point spawnPoint;
 	private float stateTime;
@@ -49,6 +51,7 @@ public class World {
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
 		relevantBlocks = new MinMax();
 		this.gameMap = gameMap;
+		allowedBlocks = new int[] { -1, -1, -1 };
 	}
 
 	public GameMap getGameMap() {
@@ -56,8 +59,13 @@ public class World {
 	}
 
 	public void addBlockObject(float posX, float posY) {
-		blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
-				new Vector2(posX, posY), this, player.getSelectedBlockType());
+
+		if (allowedBlocks[player.getSelectedBlockType().ordinal()] > 0) {
+			blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
+					new Vector2(posX, posY), this,
+					player.getSelectedBlockType());
+			allowedBlocks[player.getSelectedBlockType().ordinal()]--;
+		}
 	}
 
 	public void createPlayer() {
@@ -133,8 +141,8 @@ public class World {
 		return maxNrOfBlocks;
 	}
 
-	public void setMaxNrOfBlocks(int maxNrOfBlocks) {
-		this.maxNrOfBlocks = maxNrOfBlocks;
+	public void setMaxNrOfBlocks(int[] maxNrOfBlocks) {
+		allowedBlocks = maxNrOfBlocks;
 	}
 
 	public Dimension getMapSize() {
@@ -143,6 +151,7 @@ public class World {
 
 	public void killPlayer() {
 		gamescreen.getRenderer().getVisualEffHand().showDeath();
+		gamescreen.setState(GameState.GAME_OVER);
 	}
 
 	public void resetMap() {
@@ -164,6 +173,22 @@ public class World {
 
 	public ArrayList<PlayerTrigger> getTriggers() {
 		return triggers;
+	}
+
+	public void setNrOfDirt(int amount) {
+		allowedBlocks[0] = amount;
+	}
+
+	public void setNrOfJump(int amount) {
+		allowedBlocks[1] = amount;
+	}
+
+	public void setNrOfGravity(int amount) {
+		allowedBlocks[2] = amount;
+	}
+
+	public int[] getAllowedBlocks() {
+		return allowedBlocks;
 	}
 
 }

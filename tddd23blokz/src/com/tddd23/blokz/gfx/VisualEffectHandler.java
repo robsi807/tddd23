@@ -38,8 +38,6 @@ public class VisualEffectHandler {
 	}
 
 	public void showDeath() {
-		if (death.getEffect().isComplete())
-			world.resetMap();
 
 		if (!showingDeath) {
 			death.getEffect().setPosition(
@@ -56,6 +54,10 @@ public class VisualEffectHandler {
 
 	public ArrayList<VisualEffect> getVisualEffects() {
 		return visualEffects;
+	}
+
+	public boolean isShowingDeath() {
+		return showingDeath;
 	}
 
 }

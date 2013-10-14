@@ -6,8 +6,10 @@ import com.tddd23.blokz.Player;
 
 public class GravityTrigger extends PlayerTrigger {
 
-	public GravityTrigger(Player player, Rectangle bounds, GameScreen screen) {
-		super(player, bounds,screen);
+	public GravityTrigger(int x, int y, int width, int height, Player player,
+			GameScreen screen) {
+		super(player, screen);
+		bounds = new Rectangle(x, y, width, height);
 	}
 
 	@Override

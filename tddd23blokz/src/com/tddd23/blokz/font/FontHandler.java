@@ -9,7 +9,7 @@ public class FontHandler {
 	public static BitmapFont[] courier;
 
 	public static void init(){
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/COUR.TTF"));
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/pixel.TTF"));
 		courier = new BitmapFont[20];
 		for(int x=0;x<20;x++)
 			courier[x] = generator.generateFont((x+1)*10); 

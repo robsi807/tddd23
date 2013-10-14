@@ -2,19 +2,29 @@
 <map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
  <properties>
   <property name="height" value="30"/>
-  <property name="max_blocks" value="10"/>
+  <property name="max_blocks" value="3:-1:-1"/>
   <property name="width" value="30"/>
  </properties>
  <tileset firstgid="1" source="blocks.tsx"/>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJztldEGACEURNvsEv3///YUyURp7r2sOcxT7HEUm5IQ/+EJXOcz7BuZvV6oN8brhXpjvF7s9FaCpwBvJnz3lO5luPPmZi86t2LVu/Le3vX4D7RqQ2/Uw4s48b5gLK+msdcAZOoB9w==
+   eJztlcEKgCAQRDfpEHT1/781OggiIyjObpDzYE5Cj4dCZkL8h+PDFbJjX03rjWLn3mx79b6oN8YbxUjvTfBcwJsI352leBnuNLjWi8696PX2vKt3Xf8DvdrQG43wIma8JxjLq2nsPTzmAnQ=
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
   <object x="32" y="352" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="16" y="112" width="80" height="208">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="304" y="320" width="128" height="80">
+   <properties>
+    <property name="gravity" value=""/>
    </properties>
   </object>
  </objectgroup>

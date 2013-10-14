@@ -33,6 +33,9 @@ import com.tddd23.blokz.triggers.PlayerTrigger;
 
 public class WorldRenderer {
 
+	private static final int HUD_HEIGHT = 128, HUD_BLOCK_SCALE = 5,
+			HUD_BLOCK_HIGHTLIGHT_SIZE = 3;
+
 	private OrthographicCamera cam;
 
 	private DebugWindow debugWindow;
@@ -57,7 +60,8 @@ public class WorldRenderer {
 
 	private TextureRegion tempRegion;
 
-	private BitmapFont font;
+	private BitmapFont hudFont;
+	private String hudStr;
 
 	private Block helpBlock;
 	private Point clickPoint;
@@ -89,7 +93,8 @@ public class WorldRenderer {
 		ImageCache.load();
 		renderBatch = new SpriteBatch();
 		hudBatch = new SpriteBatch();
-		font = new BitmapFont();
+		hudFont = new BitmapFont();
+		hudFont = FontHandler.courier[2];
 		unprojectedBatch = new SpriteBatch();
 
 		TextureHandler.init();
@@ -143,9 +148,56 @@ public class WorldRenderer {
 
 	private void renderHud(float delta) {
 		unprojectedBatch.begin();
-		unprojectedBatch.draw(TextureHandler.hud, 100, 678);
-		font = FontHandler.courier[2];
-		font.draw(unprojectedBatch, "Time: " + time, 130, 750);
+		unprojectedBatch.setColor(1f, 1f, 1f, 0.6f);
+		unprojectedBatch.draw(TextureHandler.hudbg, 0, 0);
+		unprojectedBatch.end();
+
+		Point drawHudBlock = new Point(20, HUD_HEIGHT / 2
+				- (int) (HUD_BLOCK_SCALE / 2 * Constants.SIZE));
+
+		for (int i = 0; i < world.getAllowedBlocks().length; i++) {
+			if (world.getAllowedBlocks()[i] != -1) {
+				unprojectedBatch.begin();
+				unprojectedBatch.setColor(1f, 1f, 1f, 1f);
+
+				// if (world.getPlayer().getSelectedBlockType().ordinal() == i)
+				// {
+				// unprojectedRenderer.begin(ShapeType.Filled);
+				// unprojectedRenderer.setColor(1, 1, 0, 0.5f); // highlight
+				// color
+				// // for block
+				// unprojectedRenderer.rect(drawHudBlock.x
+				// - HUD_BLOCK_HIGHTLIGHT_SIZE, drawHudBlock.y
+				// - HUD_BLOCK_HIGHTLIGHT_SIZE, HUD_BLOCK_SCALE
+				// * Constants.SIZE + HUD_BLOCK_HIGHTLIGHT_SIZE * 2,
+				// HUD_BLOCK_SCALE * Constants.SIZE
+				// + HUD_BLOCK_HIGHTLIGHT_SIZE * 2);
+				// unprojectedRenderer.end();
+				// }
+
+				unprojectedBatch.draw(TextureHandler.hud_blocks[i],
+						drawHudBlock.x, drawHudBlock.y, 0, 0, Constants.SIZE,
+						Constants.SIZE, HUD_BLOCK_SCALE, HUD_BLOCK_SCALE, 0);
+
+				drawHudBlock.x += 10 + HUD_BLOCK_SCALE * Constants.SIZE;
+
+				hudStr = "x" + world.getAllowedBlocks()[i];
+				hudFont.draw(unprojectedBatch, hudStr, drawHudBlock.x,
+						HUD_HEIGHT / 2 + hudFont.getBounds(hudStr).height / 2);
+
+				drawHudBlock.x += hudFont.getBounds(hudStr).width + 20;
+
+				unprojectedBatch.end();
+
+			}
+		}
+
+		unprojectedBatch.begin();
+		hudStr = "Time: " + time;
+
+		hudFont.draw(unprojectedBatch, hudStr, Gdx.graphics.getWidth()
+				- hudFont.getBounds(hudStr).width - 20, HUD_HEIGHT / 2
+				+ hudFont.getBounds(hudStr).height / 2);
 		unprojectedBatch.end();
 
 	}
@@ -211,6 +263,11 @@ public class WorldRenderer {
 	}
 
 	private void renderHelpBlock(float delta) {
+
+		if (world.getAllowedBlocks()[world.getPlayer().getSelectedBlockType()
+				.ordinal()] <= 0)
+			return;
+
 		setOpacity(0.3f);
 		if (helpBlock == null)
 			return;
@@ -380,32 +437,44 @@ public class WorldRenderer {
 
 	public void drawGetReady() {
 		unprojectedBatch.begin();
-		font = FontHandler.courier[13];
-		font.draw(unprojectedBatch, "Get ready!", 110, 650);
-		font = FontHandler.courier[3];
-		font.draw(unprojectedBatch, "Press space to start", 100, 100);
+		hudFont = FontHandler.courier[13];
+		hudFont.draw(unprojectedBatch, "Get ready!", 110, 650);
+		hudFont = FontHandler.courier[3];
+		hudFont.draw(unprojectedBatch, "Press space to start", 100, 100);
 		unprojectedBatch.end();
 	}
 
 	public void drawPause() {
 		unprojectedBatch.begin();
-		font = FontHandler.courier[13];
-		font.draw(unprojectedBatch, "Paused", 120, 650);
-		font = FontHandler.courier[3];
-		font.draw(unprojectedBatch, "Press space to continue playing", 150, 150);
-		font = FontHandler.courier[3];
-		font.draw(unprojectedBatch, "Press ESC to enter menu", 150, 100);
+		hudFont = FontHandler.courier[13];
+		hudFont.draw(unprojectedBatch, "Paused", 120, 650);
+		hudFont = FontHandler.courier[3];
+		hudFont.draw(unprojectedBatch, "Press space to continue playing", 150,
+				150);
+		hudFont = FontHandler.courier[3];
+		hudFont.draw(unprojectedBatch, "Press ESC to enter menu", 150, 100);
+		unprojectedBatch.end();
+	}
+
+	public void drawDeath() {
+		unprojectedBatch.begin();
+		hudFont = FontHandler.courier[13];
+		hudFont.draw(unprojectedBatch, "You died", 120, 650);
+		hudFont = FontHandler.courier[3];
+		hudFont.draw(unprojectedBatch, "Press space to restart level", 150, 150);
+		hudFont = FontHandler.courier[3];
+		hudFont.draw(unprojectedBatch, "Press ESC to enter menu", 150, 100);
 		unprojectedBatch.end();
 	}
 
 	public void drawNextMap() {
 		unprojectedBatch.begin();
-		font = FontHandler.courier[13];
-		font.draw(unprojectedBatch, "Finished!", 120, 650);
-		font = FontHandler.courier[3];
-		font.draw(unprojectedBatch, "Time: " + time, 130, 550);
-		font = FontHandler.courier[3];
-		font.draw(unprojectedBatch, "Press SPACE to load next map", 110, 100);
+		hudFont = FontHandler.courier[13];
+		hudFont.draw(unprojectedBatch, "Finished!", 120, 650);
+		hudFont = FontHandler.courier[3];
+		hudFont.draw(unprojectedBatch, "Time: " + time, 130, 550);
+		hudFont = FontHandler.courier[3];
+		hudFont.draw(unprojectedBatch, "Press SPACE to load next map", 110, 100);
 		unprojectedBatch.end();
 	}
 

@@ -30,29 +30,28 @@ public class GameInput implements InputProcessor {
 		switch (keycode) {
 
 		case Key.A:
-			if (!world.getPlayer().isHidden())
-				walkLeft = true;
+			walkLeft = true;
 			return processMove();
 		case Key.D:
-			if (!world.getPlayer().isHidden())
-				walkRight = true;
+			walkRight = true;
 			return processMove();
 		case Key.SPACE:
-			if (!world.getPlayer().isHidden()) {
-				if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
-					game.getGameScreen().setState(GameState.GAME_RUNNING);
-					return processMove();
-				}
-				if (game.getGameScreen().getState() == GameState.GAME_READY) {
-					game.getGameScreen().setState(GameState.GAME_RUNNING);
-					return processMove();
-				}
-				if (game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP)
-					game.getGameScreen().loadNextMap();
-				player.jump();
+			if (game.getGameScreen().getState() == GameState.GAME_PAUSED) {
+				game.getGameScreen().setState(GameState.GAME_RUNNING);
 				return processMove();
 			}
-			break;
+			if (game.getGameScreen().getState() == GameState.GAME_READY) {
+				game.getGameScreen().setState(GameState.GAME_RUNNING);
+				return processMove();
+			}
+			if (game.getGameScreen().getState() == GameState.GAME_OVER) {
+				game.getGameScreen().resetMap();
+				return processMove();
+			}
+			if (game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP)
+				game.getGameScreen().loadNextMap();
+			player.jump();
+			return processMove();
 		case Key.ESC:
 			if (game.getGameScreen().getState() == GameState.GAME_RUNNING) {
 				game.getGameScreen().setState(GameState.GAME_PAUSED);

@@ -2,21 +2,29 @@
 <map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
  <properties>
   <property name="height" value="30"/>
-  <property name="max_block_dirt" value="30"/>
-  <property name="max_block_jump" value="30"/>
-  <property name="max_blocks" value="20"/>
+  <property name="max_blocks" value="100:200:3"/>
   <property name="width" value="30"/>
  </properties>
  <tileset firstgid="1" source="blocks.tsx"/>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1kEKACEIBVBpDLr/iWfTQiKirPwQPxAysLcwoSQiCRTRi+58zU6fvO4op0vX6yrIHeV0z7sKcns53XMu5xfrliB3Zn6/C669Y+Xf+kp/I12vGe1ae7Wm90a1RjZ7bc5bFxE/EHoBpw==
+   eJzt1rEKACAIBFAph/7/i1sjJMzKg7jgBgd7gwkVESmgZB+6/p6TOUXdVU2XbtRVkLuq6d53FeRaNd17LvcX67Yk17O/9YE73rHzb/1lvplu1Mx2R3u3x3qj6sjsItIBD1IBpQ==
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
   <object x="224" y="96" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="288" y="384" width="64" height="64">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="368" y="384" width="64" height="64">
+   <properties>
+    <property name="gravity" value=""/>
    </properties>
   </object>
  </objectgroup>

@@ -17,6 +17,7 @@ import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.DeathTrigger;
+import com.tddd23.blokz.triggers.DeathTrigger.Facing;
 import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.GoalTrigger;
 import com.tddd23.blokz.triggers.GravityTrigger;
@@ -40,7 +41,13 @@ public class WorldFactory {
 		World world = new World(mapWidth * Constants.SIZE, (int) mapHeight
 				* Constants.SIZE, screen, gmap);
 
-		world.setMaxNrOfBlocks(Integer.parseInt((String) prop.get("max_blocks")));
+		String[] nrOfBlocks = ((String) prop.get("max_blocks")).split(":");
+		int[] intBlocks = new int[3];
+		for (int i = 0; i < 3; i++) {
+			intBlocks[i] = Integer.parseInt(nrOfBlocks[i]);
+		}
+
+		world.setMaxNrOfBlocks(intBlocks);
 
 		RectangleMapObject rectObj = null;
 		MapProperties properties = null;
@@ -65,58 +72,28 @@ public class WorldFactory {
 							blockType = BlockType.STONE;
 						} else if (type.equals("fire")) {
 							blockType = BlockType.FIRE;
-							
-							//SÄTT NEDANSTÅENDE KOD I BLOCK CONSTRUCTORN
-							connectedTriggers.add(new FireTrigger(null,//Vänster
-									new Rectangle((x * Constants.SIZE - Constants.SIZE*2), (y
-											* Constants.SIZE),
-											Constants.SIZE*2,
-											Constants.SIZE ),screen));
-							connectedTriggers.add(new FireTrigger(null,//Höger
-									new Rectangle((x+1) * Constants.SIZE, (y
-											* Constants.SIZE),
-											Constants.SIZE*2,
-											Constants.SIZE ),screen));
-							connectedTriggers.add(new FireTrigger(null,//Upp
-									new Rectangle(x * Constants.SIZE, (y
-											* Constants.SIZE+Constants.SIZE),
-											Constants.SIZE,
-											Constants.SIZE*2 ),screen));
-							connectedTriggers.add(new FireTrigger(null,//Ner
-									new Rectangle(x * Constants.SIZE, ((y-2)
-											* Constants.SIZE),
-											Constants.SIZE,
-											Constants.SIZE*2 ),screen));
+
+							// SÄTT NEDANSTÅENDE KOD I BLOCK CONSTRUCTORN
+							connectedTriggers.add(new FireTrigger(null, x, y,
+									Facing.LEFT, screen));
+							connectedTriggers.add(new FireTrigger(null, x, y,
+									Facing.RIGHT, screen));
+							connectedTriggers.add(new FireTrigger(null, x, y,
+									Facing.UP, screen));
+							connectedTriggers.add(new FireTrigger(null, x, y,
+									Facing.DOWN, screen));
 						} else if (type.equals("spike")) {
 							blockType = BlockType.SPIKE;
-							connectedTriggers.add(new DeathTrigger(null,
-									new Rectangle((x * Constants.SIZE) +1,
-											(y * Constants.SIZE)
-													+ Constants.SIZE,
-											Constants.SIZE - 2, 3),screen));
-						} else if (type.equals("gravity")) {
-							blockType = BlockType.GRAVITY;
-							connectedTriggers.add(new GravityTrigger(null,
-									new Rectangle((x * Constants.SIZE) - 2
-											* Constants.SIZE,
-											(y * Constants.SIZE)
-													- (2 * Constants.SIZE),
-											Constants.SIZE * 5,
-											Constants.SIZE * 5 - 1),screen));
+							connectedTriggers.add(new DeathTrigger(null, x, y,
+									Facing.UP, screen));
 						} else if (type.equals("goal")) {
 							blockType = BlockType.GOAL;
-							connectedTriggers.add(new GoalTrigger(null,
-									new Rectangle((x * Constants.SIZE) - 1,
-											(y * Constants.SIZE) - 1,
-											Constants.SIZE + 2,
-											Constants.SIZE + 2),screen));
+							connectedTriggers.add(new GoalTrigger(null, x, y,
+									screen));
 						} else if (type.equals("jump")) {
 							blockType = BlockType.JUMP;
-							connectedTriggers.add(new JumpTrigger(null,
-									new Rectangle((x * Constants.SIZE) + 1,
-											(y * Constants.SIZE)
-													+ Constants.SIZE,
-											Constants.SIZE - 2, 3),screen));
+							connectedTriggers.add(new JumpTrigger(null, x, y,
+									screen));
 						}
 						world.getBlocks()[x][y] = new Block(new Vector2(x
 								* Constants.SIZE, y * Constants.SIZE), world,
@@ -144,6 +121,11 @@ public class WorldFactory {
 				world.setSpawnPoint(new Point((int) rectObj.getRectangle().x,
 						(int) rectObj.getRectangle().y));
 				world.createPlayer();
+			} else if (properties.containsKey("gravity")) {
+				world.addTrigger(new GravityTrigger((int) rectObj
+						.getRectangle().x, (int) rectObj.getRectangle().y,
+						(int) rectObj.getRectangle().width, (int) rectObj
+								.getRectangle().height, null, screen));
 			}
 
 		}

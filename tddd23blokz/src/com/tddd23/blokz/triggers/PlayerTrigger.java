@@ -11,9 +11,8 @@ public abstract class PlayerTrigger implements Triggerable {
 	protected boolean active;
 	protected GameScreen screen;
 
-	public PlayerTrigger(Player player, Rectangle bounds, GameScreen screen) {
+	public PlayerTrigger(Player player, GameScreen screen) {
 		this.player = player;
-		this.bounds = bounds;
 		this.screen = screen;
 		this.active = true;
 	}

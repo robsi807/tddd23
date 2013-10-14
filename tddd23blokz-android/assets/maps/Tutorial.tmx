@@ -2,22 +2,40 @@
 <map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="16" tileheight="16">
  <properties>
   <property name="height" value="30"/>
-  <property name="max_block_dirt" value="30"/>
-  <property name="max_block_jump" value="30"/>
-  <property name="max_blocks" value="30"/>
+  <property name="max_blocks" value="-1:-1:-1"/>
   <property name="width" value="100"/>
  </properties>
  <tileset firstgid="1" source="blocks.tsx"/>
  <tileset firstgid="21" source="blocks.tsx"/>
  <layer name="blocks" width="100" height="20">
   <data encoding="base64" compression="zlib">
-   eJztl1sLhCAQhcXap96jYKH//y+XHgQ5jJfUaY/lgWEkL830aU3WGGOHURmDeomzpZjzlGJijLOl/Ny+hivPN/Gw4P3rLHliLEukr3fdxaNmvXE+dHjUzH0yDyu0NXnUrsNYX2ndswceT9EMXlLoWQ0ebXUy8Pd+iIk2D00Wu+LaJToifdL7JzUO2+w8JK2ZMbCe2R55bILdrSU9pEgpHldqmha1z1poNWKq3/x7feD6P3hIkp79G3gwnA9JuTy2gMc6E/2VXCeILbSfS9UTD6cj0Bfy+I8leY3zgfMmz3LmsPNInQ82HiWq+X7MYLFc3J5wY1M6x7jaiYEH5qplFtpOOTEOu9d+HdULPA==
+   eJztmMEKxCAMRMX2sNBr//9byx4ECVGjSWRsHQiRdtXJvlqyG0MIcQdUIGgVn5ZCrpPzhOjTUnltv4BV55d4RJLz6yh1Ui9X5d7qmsVDs94+Hz48NHPfzCMyY08e2nUQ+yuvPVfg8RadJHMqfVebh63+DPJnv8TEm4cni9tx7RFdlXvc+6f1OTpG5yHdT3oNQSvyOJmYrdpZ0KjFo6enseh9JPta91dI/Rsaj5JHz98fm0e/RwkP2k9Kc0+tB+ONG49qJR5Jpf+vNNnjfNB5RxaSOeg8WucDjceINDxoj1OrJT0T0n6oti7nLyhzb61eEck4SeJxx9x4ACHPBXo=
   </data>
  </layer>
  <objectgroup name="objects" width="100" height="20">
   <object x="48" y="48">
    <properties>
     <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="608" y="128" width="80" height="64">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="1184" y="208" width="80" height="80">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="1504" y="160" width="32" height="128">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="1552" y="144" width="32" height="160">
+   <properties>
+    <property name="gravity" value=""/>
    </properties>
   </object>
  </objectgroup>
