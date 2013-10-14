@@ -9,8 +9,10 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class SoundCache {
 
 	public static Sound jump;
+	public static Sound place_block;
 
 	public static void load() {
-		jump = Gdx.audio.newSound(Gdx.files.internal("sounds/jump.mp3"));
+		jump = Gdx.audio.newSound(Gdx.files.internal("sounds/jump.wav"));
+		place_block = Gdx.audio.newSound(Gdx.files.internal("sounds/place_block.wav"));
 	}
 }

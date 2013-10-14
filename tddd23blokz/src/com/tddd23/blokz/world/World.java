@@ -12,6 +12,7 @@ import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.MovableObject;
 import com.tddd23.blokz.Player;
 import com.tddd23.blokz.GameScreen.GameState;
+import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.blocks.Block;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.PlayerTrigger;
@@ -65,6 +66,7 @@ public class World {
 					new Vector2(posX, posY), this,
 					player.getSelectedBlockType());
 			allowedBlocks[player.getSelectedBlockType().ordinal()]--;
+			SoundCache.place_block.play();
 		}
 	}
 
