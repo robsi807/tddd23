@@ -27,6 +27,10 @@ public abstract class AbstractMenuItem implements MenuItem {
 		return title;
 	}
 
+	public void setTitle2(String title2) {
+		this.title2 = title2;
+	}
+
 	public boolean isUnlocked() {
 		return unlocked;
 	}

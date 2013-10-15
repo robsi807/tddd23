@@ -8,11 +8,10 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "tddd23blokz";
 		cfg.useGL20 = true;
-		cfg.width = 1024;
-		cfg.height = 768;
+		cfg.width = 1280;
+		cfg.height = 720;
 
-		// cfg.fullscreen = true;
-		// cfg.vSyncEnabled = true;
+		 cfg.vSyncEnabled = true;
 		new LwjglApplication(new Blokz(), cfg);
 	}
 }

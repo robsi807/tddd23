@@ -74,10 +74,12 @@ public class Blokz extends Game {
 	public void resume() {
 		super.resume();
 	}
-	
-	public void unlockNextMap(){
-		if (!worldmanager.getNextMap(gameScreen.getCurrentMap()).isMapUnlocked())
-			worldmanager.unlockMap(worldmanager.getNextMap(gameScreen.getCurrentMap()));
+
+	public void unlockNextMap() {
+		if (!worldmanager.getNextMap(gameScreen.getCurrentMap())
+				.isMapUnlocked())
+			worldmanager.unlockMap(worldmanager.getNextMap(gameScreen
+					.getCurrentMap()));
 	}
 
 	public void loadNextMap() {
@@ -91,4 +93,9 @@ public class Blokz extends Game {
 					.getRenderer().getTime());
 
 	}
+
+	public void switchScreenMode() {
+		Gdx.graphics.setDisplayMode(1280, 720, !Gdx.graphics.isFullscreen());
+	}
+
 }

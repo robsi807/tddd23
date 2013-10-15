@@ -73,4 +73,14 @@ public class WorldManager {
 		return mapInfo.get(mapInfo.indexOf(currentMap) + 1);
 	}
 
+	public void resetStats() {
+		for(GameMap m : mapInfo){
+			m.setTime(new Time(-1));
+			m.setMapUnlocked(false);
+		}
+		mapInfo.get(0).setMapUnlocked(true);
+		saveCurrentData();
+		
+	}
+
 }

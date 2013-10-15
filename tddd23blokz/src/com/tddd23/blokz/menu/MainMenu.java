@@ -16,9 +16,9 @@ public class MainMenu extends Menu {
 				game.setScreen(new MapSelectionMenu(game, worldmanager));
 			}
 		});
-		addMenuItem(new AbstractMenuItem("Credits",false) {
+		addMenuItem(new AbstractMenuItem("Options",true) {
 			public void trigger() {
-				//Fin credits
+				game.setScreen(new OptionsMenu(game, worldmanager));
 			}
 		});
 		addMenuItem(new AbstractMenuItem("Exit",true) {
