@@ -46,12 +46,14 @@ public abstract class Menu implements Screen {
 
 	public void triggerMenuItem(float x, float y) {
 		for (AbstractMenuItem item : menuItemsToShow) {
-			if (item.getBounds().contains(x, y))
+			if (item.isUnlocked() && item.getBounds().contains(x, y))
 				item.trigger();
 		}
 	}
 
 	public void triggerMenuItem() {
+		if (!menuItems.get(pointer).isUnlocked())
+			return;
 		menuItems.get(pointer).trigger();
 	}
 
@@ -77,13 +79,19 @@ public abstract class Menu implements Screen {
 				rectRenderer.begin(ShapeType.Filled);
 				rectRenderer.rect(item.getBounds().x, item.getBounds().y,
 						item.getBounds().width, item.getBounds().height,
-						new Color(Color.DARK_GRAY), Color.DARK_GRAY, Color.DARK_GRAY, Color.DARK_GRAY);
+						new Color(Color.DARK_GRAY), Color.DARK_GRAY,
+						Color.DARK_GRAY, Color.DARK_GRAY);
 				rectRenderer.end();
 			}
 			batch.begin();
+			if (item.isUnlocked()) {
+				font.setColor(1, 1, 1, 1);
+			} else {
+				font.setColor(1, 1, 1, 0.2f);
+			}
 			font.draw(batch, item.getTitle(), 50,
 					(float) (400 - menuItemsToShow.indexOf(item) * 75));
-			if(item.getTitle2() != null)
+			if (item.getTitle2() != null)
 				font.draw(batch, item.getTitle2(), 500,
 						(float) (400 - menuItemsToShow.indexOf(item) * 75));
 			batch.end();

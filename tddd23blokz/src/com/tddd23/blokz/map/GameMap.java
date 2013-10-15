@@ -27,6 +27,14 @@ public class GameMap {
 		return allowPlacingBlocks;
 	}
 
+	public boolean isMapUnlocked() {
+		return mapUnlocked;
+	}
+
+	public void setMapUnlocked(boolean mapUnlocked) {
+		this.mapUnlocked = mapUnlocked;
+	}
+
 	public String getLocation() {
 		return location;
 	}
@@ -43,5 +51,6 @@ public class GameMap {
 		float timeInSec = timeInMillis / 1000;
 		return new Time(timeInSec).toString();
 	}
+
 
 }

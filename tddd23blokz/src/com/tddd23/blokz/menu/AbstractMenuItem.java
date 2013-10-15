@@ -7,11 +7,14 @@ public abstract class AbstractMenuItem implements MenuItem {
 	private String title;
 	private Rectangle bounds;
 	private String title2;
+	private boolean unlocked;
 
-	public AbstractMenuItem(String title) {
+	public AbstractMenuItem(String title, boolean unlocked) {
+		this. unlocked = unlocked;
 		this.title = title;
 	}
-	public AbstractMenuItem(String title, String title2) {
+	public AbstractMenuItem(String title, String title2, boolean unlocked) {
+		this. unlocked = unlocked;
 		this.title = title;
 		this.title2 = title2;
 	}
@@ -19,6 +22,12 @@ public abstract class AbstractMenuItem implements MenuItem {
 		return title;
 	}
 
+	public boolean isUnlocked() {
+		return unlocked;
+	}
+	public void setUnlocked(boolean unlocked) {
+		this.unlocked = unlocked;
+	}
 	public String getTitle2() {
 		return title2;
 	}

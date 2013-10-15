@@ -11,17 +11,17 @@ public class MainMenu extends Menu {
 		super(game);
 		
 		
-		addMenuItem(new AbstractMenuItem("Map selection") {
+		addMenuItem(new AbstractMenuItem("Map selection",true) {
 			public void trigger() {
 				game.setScreen(new MapSelectionMenu(game, worldmanager));
 			}
 		});
-		addMenuItem(new AbstractMenuItem("Credits") {
+		addMenuItem(new AbstractMenuItem("Credits",false) {
 			public void trigger() {
 				//Fin credits
 			}
 		});
-		addMenuItem(new AbstractMenuItem("Exit") {
+		addMenuItem(new AbstractMenuItem("Exit",true) {
 			public void trigger() {
 				game.exitGame();
 			}

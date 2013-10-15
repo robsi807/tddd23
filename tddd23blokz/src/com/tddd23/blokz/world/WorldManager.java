@@ -13,26 +13,25 @@ public class WorldManager {
 
 	public WorldManager() {
 
-		file = Gdx.files.local("maps/mapinfo.txt");
-
+		file = Gdx.files.local("maps/mapData.txt");
 		mapInfo = new ArrayList<GameMap>();
 		Scanner br = null;
 		String[] splitString = null; // index: 0 = Map name, 1 = maplocation, 2
 										// = score, 3 = time
-
 		try {
 			br = new Scanner(file.read());
 			String line = "";
 			while (br.hasNext()) {
 				line = br.nextLine();
+				System.out.println(line);
 				if (line.charAt(0) == '%')
 					continue;
 				splitString = line.split(";");
 				mapInfo.add(new GameMap(splitString[0], splitString[1], Integer
 						.parseInt(splitString[2]), Integer
-						.parseInt(splitString[3]), Integer.parseInt(splitString[4])));
+						.parseInt(splitString[3]), Integer
+						.parseInt(splitString[4])));
 			}
-
 		} finally {
 			br.close();
 		}

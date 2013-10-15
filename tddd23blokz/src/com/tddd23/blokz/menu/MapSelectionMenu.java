@@ -12,42 +12,15 @@ public class MapSelectionMenu extends Menu {
 		this.worldmanager = worldmanager;
 
 		for (final GameMap map : worldmanager.getMapInfo()) {
-			addMenuItem(new AbstractMenuItem(map.getName(), ""+ map.getTimeString()) {
+			addMenuItem(new AbstractMenuItem(map.getName(), ""
+					+ map.getTimeString(), map.isMapUnlocked()) {
 				public void trigger() {
 					game.startGame(map);
 				}
 			});
 		}
-		addMenuItem(new AbstractMenuItem("Empty item1") {
-			public void trigger() {
-			}
-		});
 
-		addMenuItem(new AbstractMenuItem("Empty item2") {
-			public void trigger() {
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Empty item3") {
-			public void trigger() {
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Empty item4") {
-			public void trigger() {
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Empty item5") {
-			public void trigger() {
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Empty item6") {
-			public void trigger() {
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Empty item7") {
-			public void trigger() {
-			}
-		});
-		addMenuItem(new AbstractMenuItem("Tillbaka") {
+		addMenuItem(new AbstractMenuItem("Tillbaka", true) {
 			public void trigger() {
 				game.goToMainMenu();
 			}
