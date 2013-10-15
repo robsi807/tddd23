@@ -137,7 +137,7 @@ public class GameScreen implements Screen {
 	}
 
 	public void loadNextMap() {
-		game.loadNextMap(currentMap);
+		game.loadNextMap();
 	}
 
 }

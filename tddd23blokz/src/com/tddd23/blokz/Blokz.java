@@ -74,12 +74,15 @@ public class Blokz extends Game {
 	public void resume() {
 		super.resume();
 	}
+	
+	public void unlockNextMap(){
+		if (!worldmanager.getNextMap(gameScreen.getCurrentMap()).isMapUnlocked())
+			worldmanager.unlockMap(worldmanager.getNextMap(gameScreen.getCurrentMap()));
+	}
 
-	public void loadNextMap(GameMap currentMap) {
-		if (!worldmanager.getNextMap(currentMap).isMapUnlocked())
-			worldmanager.unlockMap(worldmanager.getNextMap(currentMap));
-		startGame(worldmanager.getNextMap(currentMap));
-
+	public void loadNextMap() {
+		unlockNextMap();
+		startGame(worldmanager.getNextMap(gameScreen.getCurrentMap()));
 	}
 
 	public void updateTimeRecord() {

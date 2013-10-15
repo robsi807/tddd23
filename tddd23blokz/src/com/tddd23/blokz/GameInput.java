@@ -36,6 +36,7 @@ public class GameInput implements InputProcessor {
 			}
 			if (game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP) {
 				game.updateTimeRecord();
+				game.unlockNextMap();
 				game.getGameScreen().resetMap();
 			}
 			break;
@@ -83,6 +84,12 @@ public class GameInput implements InputProcessor {
 				return true;
 			}
 			if (game.getGameScreen().getState() == GameState.GAME_OVER) {
+				game.goToMapMenu();
+				return true;
+			}
+			if (game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP) {
+				game.updateTimeRecord();
+				game.unlockNextMap();
 				game.goToMapMenu();
 				return true;
 			}

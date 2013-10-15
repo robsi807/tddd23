@@ -20,7 +20,7 @@ public class MapSelectionMenu extends Menu {
 			});
 		}
 
-		addMenuItem(new AbstractMenuItem("Tillbaka", true) {
+		addMenuItem(new AbstractMenuItem("Back", true) {
 			public void trigger() {
 				game.goToMainMenu();
 			}

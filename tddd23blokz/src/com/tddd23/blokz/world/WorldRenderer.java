@@ -489,7 +489,8 @@ public class WorldRenderer {
 		drawText("Time: " + getTime() + oldRecord, 550, 3,
 				((record) ? Color.GREEN : Color.RED));
 		drawText("Press R to restart map", 500, 3);
-		drawText("Press SPACE to load next map", 450, 3);
+		drawText("Press ESC to enter menu", 450, 3);
+		drawText("Press SPACE to load next map", 400, 3);
 	}
 
 	private void drawText(String str, int y, int fontSize, Color c) {
