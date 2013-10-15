@@ -86,7 +86,7 @@ public class WorldRenderer {
 		this.world = world;
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
 				Gdx.graphics.getHeight());
-		cam.zoom = 0.33f;
+		cam.zoom = 0.45f;
 
 		time = new Time();
 		this.screen = screen;
@@ -108,7 +108,6 @@ public class WorldRenderer {
 		triggerRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 
-		// init visualEff
 
 		this.cam.update();
 
@@ -214,13 +213,13 @@ public class WorldRenderer {
 	}
 
 	public void zoomIn() {
-		if (cam.zoom > 0.01)
-			cam.zoom -= 0.01f;
+//		if (cam.zoom > 0.33)
+//			cam.zoom -= 0.1f;
 	}
 
 	public void zoomOut() {
-		if (cam.zoom < 0.33)
-			cam.zoom += 0.01f;
+//		if (cam.zoom < 0.5)
+//			cam.zoom += 0.01f;
 	}
 
 	private void renderBlocks(float delta) {
