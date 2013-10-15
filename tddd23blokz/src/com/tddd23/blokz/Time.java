@@ -5,34 +5,39 @@ import java.util.concurrent.TimeUnit;
 
 public class Time {
 
-	float sec;
+	long millis;
 
 	public Time() {
-		sec = 0;
+		millis = 0;
 	}
 	
-	public Time(float sec) {
-		this.sec = sec;
+	public Time(long l) {//Millis
+		this.millis = l;
+	}
+
+	public void setTime(long millis) {
+		this.millis = millis;
 	}
 
 	public void addTime(float sec) {
-		this.sec += sec;
+		this.millis += sec;
 	}
 
-	public float getSeconds() {
-		return sec;
+	public long getMillis() {
+		return millis;
 	}
 
 	public String toString() {
-		long sec = (long) (this.sec * 1000);
+		if(millis <0)
+			return "";
 		return String.format(
 				"%d:%02d:%03d",
-				TimeUnit.MILLISECONDS.toMinutes(sec),
-				TimeUnit.MILLISECONDS.toSeconds(sec)%60,
-				TimeUnit.MILLISECONDS.toMillis(sec)%1000);
+				TimeUnit.MILLISECONDS.toMinutes(millis),
+				TimeUnit.MILLISECONDS.toSeconds(millis)%60,
+				TimeUnit.MILLISECONDS.toMillis(millis)%1000);
 	}
 	
-	public Time getStopTime(){
-		return new Time(sec);
+	public Time getCopyTime(){
+		return new Time(millis);
 	}
 }

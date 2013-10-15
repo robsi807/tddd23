@@ -29,13 +29,17 @@ public class GameScreen implements Screen {
 		state = GameState.GAME_READY;
 		this.currentMap = map;
 		world = WorldFactory.createMap(map, this);
-		renderer = new WorldRenderer(world,this);
+		renderer = new WorldRenderer(world, this);
 		this.game = game;
 		updateGame = true;
 		if (!MusicCache.level1.isPlaying())
 			MusicCache.level1.play();
 		MusicCache.level1.setLooping(true);
 		Gdx.input.setInputProcessor(new GameInput(world, game));
+	}
+
+	public GameMap getCurrentMap() {
+		return currentMap;
 	}
 
 	@Override
@@ -50,7 +54,7 @@ public class GameScreen implements Screen {
 		case GAME_RUNNING:
 			renderer.setRunning(true);
 			renderer.setOpacity(1f);
-			updateGame(delta); 
+			updateGame(delta);
 			renderer.render(delta);
 			break;
 		case GAME_PAUSED:
@@ -60,10 +64,12 @@ public class GameScreen implements Screen {
 			renderer.drawPause();
 			break;
 		case WAITING_FOR_NEXT_MAP:
+			boolean record = isNewRecord(currentMap.getTime().getCopyTime());
+			System.out.println(record);
+			renderer.setRunning(false);
 			renderer.setOpacity(0.2f);
 			renderer.render(delta);
-			renderer.setRunning(false);
-			renderer.drawNextMap();
+			renderer.drawNextMap(record, currentMap.getTime().getCopyTime());
 			break;
 		case GAME_OVER:
 			renderer.setRunning(false);
@@ -72,6 +78,12 @@ public class GameScreen implements Screen {
 			renderer.drawDeath();
 			break;
 		}
+	}
+
+	public boolean isNewRecord(Time time) {
+		if(time.getMillis() == -1)
+			return true;
+		return (time.getMillis() > renderer.getTime().getMillis()) ? true : false;
 	}
 
 	public GameState getState() {

@@ -63,8 +63,10 @@ public class GameInput implements InputProcessor {
 				game.getGameScreen().resetMap();
 				return processMove();
 			}
-			if (game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP)
+			if (game.getGameScreen().getState() == GameState.WAITING_FOR_NEXT_MAP) {
+				game.updateTimeRecord();
 				game.getGameScreen().loadNextMap();
+			}
 			player.jump();
 			return processMove();
 		case Key.ESC:

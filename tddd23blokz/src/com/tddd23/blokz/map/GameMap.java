@@ -7,14 +7,14 @@ import com.tddd23.blokz.Time;
 public class GameMap {
 
 	private String name, location;
-	private int timeInMillis;
+	private Time time;
 	private boolean allowPlacingBlocks, mapUnlocked;
 
-	public GameMap(String name, String location, int timeInMillis,
+	public GameMap(String name, String location, long millis,
 			int allowPlacingBlocks, int mapUnlocked) {
 		this.name = name;
 		this.location = location;
-		this.timeInMillis = timeInMillis;
+		this.time = new Time(millis);
 		this.allowPlacingBlocks = (allowPlacingBlocks == 1) ? true : false;
 		this.mapUnlocked = (mapUnlocked == 1) ? true : false;
 	}
@@ -39,18 +39,25 @@ public class GameMap {
 		return location;
 	}
 
-	public int getTimeInMillis() {
-		return timeInMillis;
+	public Time getTime() {
+		return time;
 	}
 
-	public void setTimeInMillis(int timeInMillis) {
-		this.timeInMillis = timeInMillis;
+	public void setTime(Time t) {
+		this.time = t;
 	}
 
 	public String getTimeString() {
-		float timeInSec = timeInMillis / 1000;
-		return new Time(timeInSec).toString();
+		return time.toString();
 	}
 
+	public String getTextForFile() {
+		return name + ";" + location + ";" + time.getMillis() + ";"
+				+ ((allowPlacingBlocks) ? "1" : "0") + ";"
+				+ ((mapUnlocked) ? "1" : "0");
+	}
 
+	public boolean isRecordSet(){
+		return (time.getMillis() >=0);
+	}
 }

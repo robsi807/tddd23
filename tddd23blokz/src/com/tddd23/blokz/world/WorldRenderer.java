@@ -74,10 +74,13 @@ public class WorldRenderer {
 	private Rectangle fireTriggerRect;
 
 	private Time time;
+	private Time finishedTime;
 
-	float nrOfUpdates;
+	private float nrOfUpdates;
 
-	boolean running = false;
+	private boolean running = false;
+	
+	
 
 	/** for debug rendering **/
 
@@ -113,9 +116,17 @@ public class WorldRenderer {
 
 	}
 
+	public Time getFinishedTime() {
+		return finishedTime;
+	}
+
+	public void setFinishedTime(Time finishedTime) {
+		this.finishedTime = finishedTime;
+	}
+
 	public void render(float delta) {
 		if (running)
-			time.addTime(delta);
+			time.addTime(delta*1000);
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -474,19 +485,28 @@ public class WorldRenderer {
 		drawText("Press ESC to enter menu", 500, 3);
 	}
 
-	public void drawNextMap() {
+	public void drawNextMap(boolean record, Time oldTime) {
+		String oldRecord = (record) ? "New record!" : "Record: "+oldTime.toString();
 		drawText("Finished", 650, 13);
-		drawText("Time: " + time, 550, 3);
+		Color color = (record) ? Color.GREEN: Color.RED;
+		drawText("Time: " + getTime()+ " ("+oldRecord+")", 550, 3, color);
 		drawText("Press SPACE to load next map", 500, 3);
 	}
 
-	private void drawText(String str,int y, int fontSize){
+	private void drawText(String str,int y, int fontSize, Color c){
+		hudFont.setColor(c);
 		unprojectedBatch.begin();
 		hudFont = FontHandler.courier[fontSize];
 		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth()/2-hudFont.getBounds(str).width/2, y);
 		unprojectedBatch.end();
 	}
-	
+	private void drawText(String str,int y, int fontSize){
+		hudFont.setColor(Color.WHITE);
+		unprojectedBatch.begin();
+		hudFont = FontHandler.courier[fontSize];
+		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth()/2-hudFont.getBounds(str).width/2, y);
+		unprojectedBatch.end();
+	}
 	public void setOpacity(float amount) {
 		renderBatch.setColor(1f, 1f, 1f, amount);
 	}

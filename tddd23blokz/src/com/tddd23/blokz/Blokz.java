@@ -30,10 +30,10 @@ public class Blokz extends Game {
 	public void goToMapMenu() {
 		setScreen(new MapSelectionMenu(this, worldmanager));
 	}
+
 	public void goToMainMenu() {
 		setScreen(new MainMenu(this, worldmanager));
 	}
-
 
 	// Här skall vi skicka med vilken level som skall spelas som argument till
 	// gamescreen
@@ -76,7 +76,18 @@ public class Blokz extends Game {
 	}
 
 	public void loadNextMap(GameMap currentMap) {
-		startGame(worldmanager.getMextMap(currentMap));
-		
+		if (!worldmanager.getNextMap(currentMap).isMapUnlocked())
+			worldmanager.unlockMap(worldmanager.getNextMap(currentMap));
+		startGame(worldmanager.getNextMap(currentMap));
+
+	}
+
+	public void updateTimeRecord() {
+		if (gameScreen.getRenderer().getTime().getMillis() < gameScreen
+				.getCurrentMap().getTime().getMillis()
+				|| gameScreen.getCurrentMap().getTime().getMillis() < 0)
+			worldmanager.setNewTimeOnMap(gameScreen.getCurrentMap(), gameScreen
+					.getRenderer().getTime());
+
 	}
 }
