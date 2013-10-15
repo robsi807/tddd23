@@ -10,14 +10,19 @@ public abstract class AbstractMenuItem implements MenuItem {
 	private boolean unlocked;
 
 	public AbstractMenuItem(String title, boolean unlocked) {
-		this. unlocked = unlocked;
+		this.unlocked = unlocked;
 		this.title = title;
 	}
+
 	public AbstractMenuItem(String title, String title2, boolean unlocked) {
-		this. unlocked = unlocked;
+		this.unlocked = unlocked;
 		this.title = title;
-		this.title2 = title2;
+		if (!unlocked)
+			this.title2 = "locked";
+		else
+			this.title2 = title2;
 	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -25,12 +30,15 @@ public abstract class AbstractMenuItem implements MenuItem {
 	public boolean isUnlocked() {
 		return unlocked;
 	}
+
 	public void setUnlocked(boolean unlocked) {
 		this.unlocked = unlocked;
 	}
+
 	public String getTitle2() {
 		return title2;
 	}
+
 	public void setBounds(Rectangle bounds) {
 		this.bounds = bounds;
 	}

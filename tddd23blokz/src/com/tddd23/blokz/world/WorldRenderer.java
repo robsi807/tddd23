@@ -79,8 +79,6 @@ public class WorldRenderer {
 	private float nrOfUpdates;
 
 	private boolean running = false;
-	
-	
 
 	/** for debug rendering **/
 
@@ -126,7 +124,7 @@ public class WorldRenderer {
 
 	public void render(float delta) {
 		if (running)
-			time.addTime(delta*1000);
+			time.addTime(delta * 1000);
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -486,25 +484,32 @@ public class WorldRenderer {
 	}
 
 	public void drawNextMap(boolean record, Time oldTime) {
-		String oldRecord = (record) ? "New record!" : "Record: "+oldTime.toString();
+		String oldRecord = (record) ? "    New record!" : "    Too slow";
 		drawText("Finished", 650, 13);
-		drawText("Time: " + getTime()+ " ("+oldRecord+")", 550, 3, ((record) ? Color.GREEN: Color.RED));
-		drawText("Press SPACE to load next map", 500, 3);
+		drawText("Time: " + getTime() + oldRecord, 550, 3,
+				((record) ? Color.GREEN : Color.RED));
+		drawText("Press R to restart map", 500, 3);
+		drawText("Press SPACE to load next map", 450, 3);
 	}
 
-	private void drawText(String str,int y, int fontSize, Color c){
+	private void drawText(String str, int y, int fontSize, Color c) {
 		unprojectedBatch.begin();
+		hudFont = FontHandler.courier[fontSize];
 		hudFont.setColor(c);
-		hudFont = FontHandler.courier[fontSize];
-		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth()/2-hudFont.getBounds(str).width/2, y);
+		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth() / 2
+				- hudFont.getBounds(str).width / 2, y);
 		unprojectedBatch.end();
 	}
-	private void drawText(String str,int y, int fontSize){
+
+	private void drawText(String str, int y, int fontSize) {
 		unprojectedBatch.begin();
 		hudFont = FontHandler.courier[fontSize];
-		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth()/2-hudFont.getBounds(str).width/2, y);
+		hudFont.setColor(Color.WHITE);
+		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth() / 2
+				- hudFont.getBounds(str).width / 2, y);
 		unprojectedBatch.end();
 	}
+
 	public void setOpacity(float amount) {
 		renderBatch.setColor(1f, 1f, 1f, amount);
 	}

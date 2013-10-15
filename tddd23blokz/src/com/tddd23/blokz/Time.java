@@ -28,7 +28,7 @@ public class Time {
 	}
 
 	public String toString() {
-		if(millis <0)
+		if(millis ==-1)
 			return "";
 		return String.format(
 				"%d:%02d:%03d",

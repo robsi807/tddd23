@@ -12,8 +12,8 @@ public class MapSelectionMenu extends Menu {
 		this.worldmanager = worldmanager;
 
 		for (final GameMap map : worldmanager.getMapInfo()) {
-			addMenuItem(new AbstractMenuItem(map.getName(), ""
-					+ map.getTimeString(), map.isMapUnlocked()) {
+			addMenuItem(new AbstractMenuItem(map.getName(),
+					map.getTimeString(), map.isMapUnlocked()) {
 				public void trigger() {
 					game.startGame(map);
 				}
