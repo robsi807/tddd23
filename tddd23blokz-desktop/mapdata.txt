@@ -1,5 +1,5 @@
 %Namn ; Filnamn ; Tid ; FårplaceraBlock? ; Bana upplåst
-Tutorial;Tutorial;24863;0;1
-Test 2;test2;3574;1;1
-Map 2;Map2;6538;1;1
-FUCKED UP;fuckaur;23540;1;1
+Tutorial;Tutorial;-1;0;1
+Test 2;test2;-1;1;0
+Map 2;Map2;-1;1;0
+FUCKED UP;fuckaur;-1;1;0
