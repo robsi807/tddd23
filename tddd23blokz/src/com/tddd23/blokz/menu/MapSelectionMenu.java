@@ -12,8 +12,7 @@ public class MapSelectionMenu extends Menu {
 		this.worldmanager = worldmanager;
 
 		for (final GameMap map : worldmanager.getMapInfo()) {
-			addMenuItem(new AbstractMenuItem(map.getName() + "  -  Score: "
-					+ map.getScore() + "  -  Time: " + map.getTimeInMillis()) {
+			addMenuItem(new AbstractMenuItem(map.getName(), ""+ map.getTimeString()) {
 				public void trigger() {
 					game.startGame(map);
 				}

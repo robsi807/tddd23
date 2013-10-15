@@ -83,6 +83,9 @@ public abstract class Menu implements Screen {
 			batch.begin();
 			font.draw(batch, item.getTitle(), 50,
 					(float) (400 - menuItemsToShow.indexOf(item) * 75));
+			if(item.getTitle2() != null)
+				font.draw(batch, item.getTitle2(), 500,
+						(float) (400 - menuItemsToShow.indexOf(item) * 75));
 			batch.end();
 		}
 	}

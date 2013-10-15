@@ -2,19 +2,21 @@ package com.tddd23.blokz.map;
 
 import java.util.Calendar;
 
+import com.tddd23.blokz.Time;
+
 public class GameMap {
 
 	private String name, location;
-	private int score;
 	private int timeInMillis;
-	private boolean allowPlacingBlocks;
+	private boolean allowPlacingBlocks, mapUnlocked;
 
-	public GameMap(String name, String location, int score, int timeInMillis, int allowPlacingBlocks) {
+	public GameMap(String name, String location, int timeInMillis,
+			int allowPlacingBlocks, int mapUnlocked) {
 		this.name = name;
 		this.location = location;
-		this.score = score;
 		this.timeInMillis = timeInMillis;
 		this.allowPlacingBlocks = (allowPlacingBlocks == 1) ? true : false;
+		this.mapUnlocked = (mapUnlocked == 1) ? true : false;
 	}
 
 	public String getName() {
@@ -29,10 +31,6 @@ public class GameMap {
 		return location;
 	}
 
-	public int getScore() {
-		return score;
-	}
-
 	public int getTimeInMillis() {
 		return timeInMillis;
 	}
@@ -41,8 +39,9 @@ public class GameMap {
 		this.timeInMillis = timeInMillis;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public String getTimeString() {
+		float timeInSec = timeInMillis / 1000;
+		return new Time(timeInSec).toString();
 	}
 
 }

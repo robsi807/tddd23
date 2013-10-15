@@ -30,8 +30,7 @@ public class WorldManager {
 				splitString = line.split(";");
 				mapInfo.add(new GameMap(splitString[0], splitString[1], Integer
 						.parseInt(splitString[2]), Integer
-						.parseInt(splitString[3]), Integer
-						.parseInt(splitString[4])));
+						.parseInt(splitString[3]), Integer.parseInt(splitString[4])));
 			}
 
 		} finally {

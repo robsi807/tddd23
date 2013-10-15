@@ -42,8 +42,6 @@ public class Block extends GameObject {
 	private void addTriggerDependingOnType() {
 		switch (type) {
 		case JUMP:
-			System.out.println("Skapar trigger på:");
-			System.out.println(position);
 			world.addTrigger(new JumpTrigger(world.getPlayer(),
 					(int) position.x/ Constants.SIZE, (int) position.y/ Constants.SIZE, screen));
 			addTrigger(new JumpTrigger(world.getPlayer(),
