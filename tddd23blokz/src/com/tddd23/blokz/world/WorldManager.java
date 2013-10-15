@@ -13,7 +13,7 @@ public class WorldManager {
 
 	public WorldManager() {
 
-		file = Gdx.files.local("maps/mapData.txt");
+		file = Gdx.files.internal("maps/ma2pdata.txt");
 		mapInfo = new ArrayList<GameMap>();
 		Scanner br = null;
 		String[] splitString = null; // index: 0 = Map name, 1 = maplocation, 2
@@ -23,7 +23,6 @@ public class WorldManager {
 			String line = "";
 			while (br.hasNext()) {
 				line = br.nextLine();
-				System.out.println(line);
 				if (line.charAt(0) == '%')
 					continue;
 				splitString = line.split(";");
