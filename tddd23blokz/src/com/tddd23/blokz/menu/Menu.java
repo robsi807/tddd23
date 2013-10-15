@@ -61,18 +61,12 @@ public abstract class Menu implements Screen {
 
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		font = FontHandler.courier[18];
-		font.draw(batch, "Blokz", 50, 700);
-		font = FontHandler.courier[1];
-		font.draw(batch,
-				"Use UP/DOWN/ENTER or SCROLL/CLICK on your mouse to select",
-				150, 30);
-		font.draw(batch, getDashes(46), 55, 580);
-		font = FontHandler.courier[6];
-		font.draw(batch, getTitle(), 50, 500);
-		font = FontHandler.courier[3];
-		batch.end();
+
+		drawText("Blokz", 700, 18);
+		drawText("Use UP/DOWN/ENTER or SCROLL/CLICK on your mouse to select",
+				30, 1);
+		drawText(getDashes(16), 580, 5);
+		drawText(getTitle(), 500, 6);
 		setMenuItemsToShow();
 		for (AbstractMenuItem item : menuItemsToShow) {
 			if (menuItemsToShow.indexOf(item) == highLightedItem) {
@@ -83,18 +77,17 @@ public abstract class Menu implements Screen {
 						Color.DARK_GRAY, Color.DARK_GRAY);
 				rectRenderer.end();
 			}
-			batch.begin();
 			if (item.isUnlocked()) {
 				font.setColor(1, 1, 1, 1);
 			} else {
 				font.setColor(1, 1, 1, 0.2f);
 			}
-			font.draw(batch, item.getTitle(), 50,
-					(float) (400 - menuItemsToShow.indexOf(item) * 75));
 			if (item.getTitle2() != null && !item.getTitle2().equals("-1"))
-				font.draw(batch, item.getTitle2(), 500,
-						(float) (400 - menuItemsToShow.indexOf(item) * 75));
-			batch.end();
+				drawText(item.getTitle2(),500,
+						(400 - menuItemsToShow.indexOf(item) * 75), 3);
+			drawText(item.getTitle(),
+					(400 - menuItemsToShow.indexOf(item) * 75), 3);
+
 		}
 	}
 
@@ -116,6 +109,7 @@ public abstract class Menu implements Screen {
 	}
 
 	private void setRectangles() {
+		font = FontHandler.font[3];
 		for (AbstractMenuItem item : menuItemsToShow) {
 			item.setBounds(new Rectangle(
 					50,
@@ -127,6 +121,22 @@ public abstract class Menu implements Screen {
 					font.getBounds(item.getTitle(), 0, item.getTitle().length()).width,
 					font.getBounds(item.getTitle(), 0, item.getTitle().length()).height + 10 + 30));
 		}
+	}
+
+	private void drawText(String str, int y, int fontSize) {
+		batch.begin();
+		font = FontHandler.font[fontSize];
+		font.setColor(Color.WHITE);
+		font.draw(batch, str, 50, y);
+		batch.end();
+	}
+
+	private void drawText(String str, int x, int y, int fontSize) {
+		batch.begin();
+		font = FontHandler.font[fontSize];
+		font.setColor(Color.WHITE);
+		font.draw(batch, str, x, y);
+		batch.end();
 	}
 
 	@Override

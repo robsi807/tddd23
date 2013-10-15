@@ -99,7 +99,7 @@ public class WorldRenderer {
 		renderBatch = new SpriteBatch();
 		hudBatch = new SpriteBatch();
 		hudFont = new BitmapFont();
-		hudFont = FontHandler.courier[2];
+		hudFont = FontHandler.font[2];
 		unprojectedBatch = new SpriteBatch();
 
 		TextureHandler.init();
@@ -135,10 +135,10 @@ public class WorldRenderer {
 		triggerRenderer.setProjectionMatrix(cam.combined);
 
 		updateHelpBlock(delta);
+		renderDynamicObjects(delta);
 		renderBlocks(delta);
 		renderPlayer(delta);
 		renderEffects(delta);
-		renderDynamicObjects(delta);
 		renderHelpBlock(delta);
 		renderHud(delta);
 	}
@@ -493,7 +493,7 @@ public class WorldRenderer {
 
 	private void drawText(String str, int y, int fontSize, Color c) {
 		unprojectedBatch.begin();
-		hudFont = FontHandler.courier[fontSize];
+		hudFont = FontHandler.font[fontSize];
 		hudFont.setColor(c);
 		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth() / 2
 				- hudFont.getBounds(str).width / 2, y);
@@ -502,7 +502,7 @@ public class WorldRenderer {
 
 	private void drawText(String str, int y, int fontSize) {
 		unprojectedBatch.begin();
-		hudFont = FontHandler.courier[fontSize];
+		hudFont = FontHandler.font[fontSize];
 		hudFont.setColor(Color.WHITE);
 		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth() / 2
 				- hudFont.getBounds(str).width / 2, y);
