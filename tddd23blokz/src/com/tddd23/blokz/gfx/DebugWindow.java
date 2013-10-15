@@ -1,5 +1,6 @@
 package com.tddd23.blokz.gfx;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,7 +21,7 @@ public class DebugWindow {
 	private BitmapFont font;
 
 	public DebugWindow(World world, Graphics graphics, ShapeRenderer renderer) {
-		consoleCam = new OrthographicCamera(1024, 768);
+		consoleCam = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		lines = new String[12];
 		for (int x = 0; x < 12; x++)
 			lines[x] = "";
@@ -70,7 +71,7 @@ public class DebugWindow {
 		
 		
 		font.draw(spriteBatch, "FPS: "+graphics.getFramesPerSecond(),
-				5, graphics.getHeight()-5);
+				5, Gdx.graphics.getHeight()-5);
 		spriteBatch.end();
 
 		consoleCam.update();

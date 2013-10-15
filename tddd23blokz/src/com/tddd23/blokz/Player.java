@@ -43,19 +43,6 @@ public class Player extends MovableObject {
 		}
 	}
 
-	private void playergetPositionDebugText() {
-
-		DebugWindow.addText(" ");
-		DebugWindow.addText("PlayergetAcceleration(): X: "
-				+ getAcceleration().x + " Y: " + getAcceleration().y);
-		DebugWindow.addText("PlayergetVelocity(): X: " + getVelocity().x
-				+ " Y: " + getVelocity().y);
-		DebugWindow.addText("PlayergetPosition(): X: " + getPosition().x
-				+ " Y: " + getPosition().y);
-		DebugWindow.addText("P� marken: " + grounded);
-
-	}
-
 	@Override
 	public void addGravity(float delta) {
 		if (!isInvertGravity()) {
@@ -80,7 +67,6 @@ public class Player extends MovableObject {
 		}
 
 		if (state == State.WALKING) {
-			DebugWindow.addText("" + getSpeed());
 			if (facingLeft) {
 				getVelocity().set(-getSpeed(), getAcceleration().y);
 				if (getVelocity().x < -Constants.MAX_MOVING_SPEED)

@@ -135,10 +135,10 @@ public class WorldRenderer {
 		triggerRenderer.setProjectionMatrix(cam.combined);
 
 		updateHelpBlock(delta);
-		renderDynamicObjects(delta);
 		renderBlocks(delta);
 		renderPlayer(delta);
 		renderEffects(delta);
+		renderDynamicObjects(delta);
 		renderHelpBlock(delta);
 		renderHud(delta);
 	}
@@ -337,7 +337,6 @@ public class WorldRenderer {
 
 		if (debugMode) {
 			debugWindow.render();
-
 			for (PlayerTrigger t : world.getTriggers()) {
 				if (t.isActive()) {
 					triggerRect = t.getBounds();
