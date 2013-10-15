@@ -98,7 +98,7 @@ public class Block extends GameObject {
 	}
 
 	public enum BlockType {
-		DIRT, JUMP, GRAVITY, SPIKE, STONE, GOAL, FIRE;
+		STONE, JUMP, GRAVITY, SPIKE,DIRT , GOAL, FIRE;
 	}
 
 	public void addTrigger(PlayerTrigger trigger) {

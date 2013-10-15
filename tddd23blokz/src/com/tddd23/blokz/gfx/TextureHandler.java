@@ -61,7 +61,7 @@ public class TextureHandler {
 	private static void initOther() {
 		hudbg = new Texture("images/hudbg.png");
 		hud_blocks = new Sprite[3];
-		Sprite addSprite = new Sprite(block_dirt);
+		Sprite addSprite = new Sprite(block_stone);
 		addSprite.scale(5);
 		hud_blocks[0] = addSprite;
 

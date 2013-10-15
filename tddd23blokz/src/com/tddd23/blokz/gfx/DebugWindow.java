@@ -38,26 +38,10 @@ public class DebugWindow {
 
 		consoleCam.position.set(graphics.getWidth() / 2,
 				graphics.getHeight() / 2, 0.0f);
-		// update camera
 		consoleCam.update();
-		// set the projection matrix
-		renderer.setProjectionMatrix(consoleCam.combined);
-		// draw something
-		renderer.begin(ShapeType.Filled);
-		renderer.setColor(new Color(0, 0, 0, 0));
-		renderer.rect(0, 0, graphics.getWidth(), 200);
-		renderer.end();
-
-		renderer.begin(ShapeType.Line);
-		renderer.setColor(new Color(1, 1, 1, 0));
-		renderer.line(0, 200, graphics.getWidth(), 200);
-		renderer.end();
-
 		spriteBatch.begin();
 		spriteBatch.setColor(1, 1, 1, 0);
 
-		for (int pos = 0; pos < 12; pos++)
-			font.draw(spriteBatch, lines[pos], 10, 190 - pos * 15);
 
 		spriteBatch.end();
 
@@ -75,13 +59,5 @@ public class DebugWindow {
 		spriteBatch.end();
 
 		consoleCam.update();
-	}
-
-	public static void addText(String str) {
-		for (int pos = 11; pos > 0; pos--) {
-			lines[pos] = lines[pos - 1];
-		}
-		lines[0] = str;
-
 	}
 }

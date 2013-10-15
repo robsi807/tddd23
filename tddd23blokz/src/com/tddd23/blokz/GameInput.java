@@ -41,7 +41,7 @@ public class GameInput implements InputProcessor {
 			}
 			break;
 		case Key._1:
-			player.setSelectedBlockType(BlockType.DIRT);
+			player.setSelectedBlockType(BlockType.STONE);
 			break;
 		case Key._2:
 			player.setSelectedBlockType(BlockType.JUMP);
