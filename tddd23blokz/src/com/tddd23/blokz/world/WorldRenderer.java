@@ -488,20 +488,18 @@ public class WorldRenderer {
 	public void drawNextMap(boolean record, Time oldTime) {
 		String oldRecord = (record) ? "New record!" : "Record: "+oldTime.toString();
 		drawText("Finished", 650, 13);
-		Color color = (record) ? Color.GREEN: Color.RED;
-		drawText("Time: " + getTime()+ " ("+oldRecord+")", 550, 3, color);
+		drawText("Time: " + getTime()+ " ("+oldRecord+")", 550, 3, ((record) ? Color.GREEN: Color.RED));
 		drawText("Press SPACE to load next map", 500, 3);
 	}
 
 	private void drawText(String str,int y, int fontSize, Color c){
-		hudFont.setColor(c);
 		unprojectedBatch.begin();
+		hudFont.setColor(c);
 		hudFont = FontHandler.courier[fontSize];
 		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth()/2-hudFont.getBounds(str).width/2, y);
 		unprojectedBatch.end();
 	}
 	private void drawText(String str,int y, int fontSize){
-		hudFont.setColor(Color.WHITE);
 		unprojectedBatch.begin();
 		hudFont = FontHandler.courier[fontSize];
 		hudFont.draw(unprojectedBatch, str, Gdx.graphics.getWidth()/2-hudFont.getBounds(str).width/2, y);

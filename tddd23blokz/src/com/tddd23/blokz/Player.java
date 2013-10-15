@@ -9,7 +9,7 @@ import com.tddd23.blokz.world.World;
 public class Player extends MovableObject {
 	private State state = State.IDLE;
 
-	private BlockType selectedBlockType = BlockType.GRAVITY;
+	private BlockType selectedBlockType = BlockType.DIRT;
 
 	public enum State {
 		IDLE, WALKING, JUMPING, DYING

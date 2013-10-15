@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Time {
 
-	long millis;
+	private long millis;
 
 	public Time() {
 		millis = 0;

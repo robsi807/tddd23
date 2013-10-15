@@ -64,8 +64,7 @@ public class GameScreen implements Screen {
 			renderer.drawPause();
 			break;
 		case WAITING_FOR_NEXT_MAP:
-			boolean record = isNewRecord(currentMap.getTime().getCopyTime());
-			System.out.println(record);
+			boolean record = isNewRecord();
 			renderer.setRunning(false);
 			renderer.setOpacity(0.2f);
 			renderer.render(delta);
@@ -80,10 +79,10 @@ public class GameScreen implements Screen {
 		}
 	}
 
-	public boolean isNewRecord(Time time) {
-		if(time.getMillis() == -1)
+	public boolean isNewRecord() {
+		if(currentMap.getTime().getCopyTime().getMillis() == -1)
 			return true;
-		return (time.getMillis() > renderer.getTime().getMillis()) ? true : false;
+		return (currentMap.getTime().getCopyTime().getMillis() > renderer.getTime().getMillis()) ? true : false;
 	}
 
 	public GameState getState() {

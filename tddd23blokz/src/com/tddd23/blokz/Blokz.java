@@ -83,9 +83,7 @@ public class Blokz extends Game {
 	}
 
 	public void updateTimeRecord() {
-		if (gameScreen.getRenderer().getTime().getMillis() < gameScreen
-				.getCurrentMap().getTime().getMillis()
-				|| gameScreen.getCurrentMap().getTime().getMillis() < 0)
+		if (gameScreen.isNewRecord())
 			worldmanager.setNewTimeOnMap(gameScreen.getCurrentMap(), gameScreen
 					.getRenderer().getTime());
 
