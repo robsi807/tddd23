@@ -181,6 +181,7 @@ public abstract class MovableObject extends GameObject implements Movable {
 	}
 
 	public void setInvertGravity(boolean invertGravity) {
+
 		this.invertGravity = invertGravity;
 	}
 

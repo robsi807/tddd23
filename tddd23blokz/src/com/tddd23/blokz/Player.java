@@ -24,10 +24,12 @@ public class Player extends MovableObject {
 
 	public void jump(float multiplier) {
 		SoundCache.jump.play();
-		if (!isInvertGravity()) {
-			getAcceleration().y = Constants.JUMPING_SPEED * multiplier;
-		} else {
-			getAcceleration().y = -Constants.JUMPING_SPEED * multiplier;
+		if (grounded) {
+			if (!isInvertGravity()) {
+				getAcceleration().y = Constants.JUMPING_SPEED * multiplier;
+			} else {
+				getAcceleration().y = -Constants.JUMPING_SPEED * multiplier;
+			}
 		}
 	}
 

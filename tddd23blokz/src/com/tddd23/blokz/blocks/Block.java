@@ -18,8 +18,8 @@ public class Block extends GameObject {
 	private BlockType type;
 	private float stateTime;
 	private ArrayList<PlayerTrigger> connectedTriggers;
-	private static int FLAME_REPEAT = 4;
-	private static int FLAME_LENGTH = 3;
+	private static int FLAME_REPEAT = 2;
+	private static int FLAME_LENGTH = 2;
 	private Facing facing;
 	private GameScreen screen;
 
@@ -43,9 +43,10 @@ public class Block extends GameObject {
 		switch (type) {
 		case JUMP:
 			world.addTrigger(new JumpTrigger(world.getPlayer(),
-					(int) position.x/ Constants.SIZE, (int) position.y/ Constants.SIZE, screen));
-			addTrigger(new JumpTrigger(world.getPlayer(),
-					(int) position.x/ Constants.SIZE, (int) position.y/ Constants.SIZE, screen));
+					(int) position.x / Constants.SIZE, (int) position.y
+							/ Constants.SIZE, screen));
+			addTrigger(new JumpTrigger(world.getPlayer(), (int) position.x
+					/ Constants.SIZE, (int) position.y / Constants.SIZE, screen));
 			break;
 		case GRAVITY:
 			world.addTrigger(new GravityTrigger((int) position.x,
@@ -98,7 +99,7 @@ public class Block extends GameObject {
 	}
 
 	public enum BlockType {
-		STONE, JUMP, GRAVITY, SPIKE,DIRT , GOAL, FIRE;
+		STONE, JUMP, GRAVITY, SPIKE, DIRT, GOAL, FIRE;
 	}
 
 	public void addTrigger(PlayerTrigger trigger) {

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="height" value="30"/>
+  <property name="max_blocks" value="999:999:999"/>
+  <property name="width" value="100"/>
+ </properties>
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <tileset firstgid="21" source="blocks.tsx"/>
+ <layer name="blocks" width="100" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztmdEKwCAIRaV66///d4+xoVG60uIeELaCMTxosiUiSohQAWIAH3EodL+P7P0Ck9zuYzVVuScBH2+kHGpyqwE+YgEfNr51w9XRTG3BR6MK19z9KuAjFvCxBm09wQfPzBw7kvtRP/ARC/ho/HVmW54DH2N4zFeF2efWPDjtO1SPnlvUh4zlnMZ8ZWdXT+rh6WNHDzqtz3H/CrOwjtgTD9cNAu8=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="100" height="20">
+  <object x="48" y="112">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="464" y="16" width="32" height="288">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="544" y="16" width="32" height="288">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="864" y="16" width="32" height="288">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="624" y="48" width="208" height="208">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="944" y="16" width="32" height="288">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="160" y="80" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="80" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="288" y="80" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="352" y="80" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="352" y="112" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="288" y="112" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="160" y="112" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="112" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="352" y="176" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="352" y="144" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="288" y="176" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="160" y="176" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="176" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="288" y="144" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="160" y="144" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="144" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="352" y="240" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="352" y="208" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="288" y="240" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="160" y="240" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="240" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="288" y="208" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="160" y="208" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="208" width="16" height="16">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
