@@ -41,13 +41,16 @@ public class GameInput implements InputProcessor {
 			}
 			break;
 		case Key._1:
-			player.setSelectedBlockType(BlockType.STONE);
+			if (world.getBlockOrder().size() >= 1)
+				player.setSelectedBlockType(world.getBlockOrder().get(0));
 			break;
 		case Key._2:
-			player.setSelectedBlockType(BlockType.JUMP);
+			if (world.getBlockOrder().size() >= 2)
+				player.setSelectedBlockType(world.getBlockOrder().get(1));
 			break;
 		case Key._3:
-			player.setSelectedBlockType(BlockType.GRAVITY);
+			if (world.getBlockOrder().size() == 3)
+				player.setSelectedBlockType(world.getBlockOrder().get(2));
 			break;
 		case Key.A:
 			walkLeft = true;

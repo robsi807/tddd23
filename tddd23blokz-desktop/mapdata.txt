@@ -1,7 +1,9 @@
 %Namn ; Filnamn ; Tid ; FårplaceraBlock? ; Bana upplåst
 %Test 2;test2;3836;1;1
 %Map 2;Map2;14188;1;1
-Tutorial;Tutorial;30212;0;1
-Demo;demo;807;1;1
-Hard1-Henrik;henrik1;807;1;1
-FUCKED UP;fuckaur;23699;1;1
+Intro 1;introjump;11643;0;1
+Intro 2;introjumpblock;12486;0;1
+Tutorial;Tutorial;32458;0;1
+Demo;demo;808;1;1
+Hard1-Henrik;henrik1;-1;1;1
+FUCKED UP;fuckaur;-1;1;1

@@ -2,8 +2,8 @@ fire
 - Delay -
 active: false
 - Duration - 
-lowMin: 700.0
-lowMax: 700.0
+lowMin: 400.0
+lowMax: 400.0
 - Count - 
 min: 0
 max: 300

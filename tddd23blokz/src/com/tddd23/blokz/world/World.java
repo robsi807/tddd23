@@ -8,15 +8,15 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.GameScreen;
+import com.tddd23.blokz.GameScreen.GameState;
 import com.tddd23.blokz.MinMax;
 import com.tddd23.blokz.MovableObject;
 import com.tddd23.blokz.Player;
-import com.tddd23.blokz.GameScreen.GameState;
 import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.blocks.Block;
+import com.tddd23.blokz.blocks.Block.BlockType;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.triggers.PlayerTrigger;
-import com.tddd23.blokz.triggers.Triggerable;
 
 public class World {
 
@@ -29,6 +29,7 @@ public class World {
 	private Player player;
 	private Point spawnPoint;
 	private float stateTime;
+	private ArrayList<BlockType> blockOrder;
 
 	private Dimension mapSize;
 
@@ -53,6 +54,7 @@ public class World {
 		relevantBlocks = new MinMax();
 		this.gameMap = gameMap;
 		allowedBlocks = new int[] { -1, -1, -1 };
+		blockOrder = new ArrayList<BlockType>();
 	}
 
 	public GameMap getGameMap() {
@@ -63,7 +65,7 @@ public class World {
 		if (allowedBlocks[player.getSelectedBlockType().ordinal()] > 0) {
 			blocks[(int) (posX / Constants.SIZE)][(int) (posY / Constants.SIZE)] = new Block(
 					new Vector2(posX, posY), this,
-					player.getSelectedBlockType(),gamescreen);
+					player.getSelectedBlockType(), gamescreen);
 			allowedBlocks[player.getSelectedBlockType().ordinal()]--;
 			SoundCache.place_block.play();
 		}
@@ -144,6 +146,10 @@ public class World {
 
 	public void setMaxNrOfBlocks(int[] maxNrOfBlocks) {
 		allowedBlocks = maxNrOfBlocks;
+		for (int i = 0; i < maxNrOfBlocks.length; i++)
+			if (maxNrOfBlocks[i] >= 0)
+				blockOrder.add(BlockType.values()[i]);
+
 	}
 
 	public Dimension getMapSize() {
@@ -176,20 +182,12 @@ public class World {
 		return triggers;
 	}
 
-	public void setNrOfDirt(int amount) {
-		allowedBlocks[0] = amount;
-	}
-
-	public void setNrOfJump(int amount) {
-		allowedBlocks[1] = amount;
-	}
-
-	public void setNrOfGravity(int amount) {
-		allowedBlocks[2] = amount;
-	}
-
 	public int[] getAllowedBlocks() {
 		return allowedBlocks;
+	}
+
+	public ArrayList<BlockType> getBlockOrder() {
+		return blockOrder;
 	}
 
 }

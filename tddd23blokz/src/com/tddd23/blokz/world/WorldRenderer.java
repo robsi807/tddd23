@@ -108,7 +108,6 @@ public class WorldRenderer {
 		triggerRenderer = new ShapeRenderer();
 		debugWindow = new DebugWindow(world, Gdx.graphics, debugRenderer);
 
-
 		this.cam.update();
 
 	}
@@ -134,6 +133,7 @@ public class WorldRenderer {
 		debugRenderer.setProjectionMatrix(cam.combined);
 		triggerRenderer.setProjectionMatrix(cam.combined);
 
+		renderBackground();
 		updateHelpBlock(delta);
 		renderDynamicObjects(delta);
 		renderBlocks(delta);
@@ -141,6 +141,17 @@ public class WorldRenderer {
 		renderEffects(delta);
 		renderHelpBlock(delta);
 		renderHud(delta);
+	}
+
+	private void renderBackground() {
+		renderBatch.begin();
+		for (int x = 0; x < world.getMapSize().width; x += 160) {
+			for (int y = 0; y < world.getMapSize().height; y += 160) {
+				renderBatch.draw(TextureHandler.background, x, y);
+			}
+		}
+
+		renderBatch.end();
 	}
 
 	private void renderEffects(float delta) {
@@ -213,13 +224,13 @@ public class WorldRenderer {
 	}
 
 	public void zoomIn() {
-//		if (cam.zoom > 0.33)
-//			cam.zoom -= 0.1f;
+		// if (cam.zoom > 0.33)
+		// cam.zoom -= 0.1f;
 	}
 
 	public void zoomOut() {
-//		if (cam.zoom < 0.5)
-//			cam.zoom += 0.01f;
+		// if (cam.zoom < 0.5)
+		// cam.zoom += 0.01f;
 	}
 
 	private void renderBlocks(float delta) {
@@ -286,7 +297,7 @@ public class WorldRenderer {
 	private void renderHelpBlock(float delta) {
 
 		if (world.getAllowedBlocks()[world.getPlayer().getSelectedBlockType()
-				.ordinal()] <= 0)
+				.ordinal()] < 0)
 			return;
 
 		setOpacity(0.3f);
@@ -295,8 +306,8 @@ public class WorldRenderer {
 		renderBatch.begin();
 
 		switch (helpBlock.getType()) {
-		case DIRT:
-			tempRegion = TextureHandler.block_dirt;
+		case STONE:
+			tempRegion = TextureHandler.block_stone;
 			break;
 		case JUMP:
 			tempRegion = TextureHandler.block_jump;
@@ -428,7 +439,6 @@ public class WorldRenderer {
 	}
 
 	private void moveCamera() {
-
 		cam.position.set(world.getPlayer().getPosition().x, world.getPlayer()
 				.getPosition().y, 0);
 

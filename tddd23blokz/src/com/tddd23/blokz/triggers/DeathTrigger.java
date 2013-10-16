@@ -55,8 +55,7 @@ public class DeathTrigger extends PlayerTrigger {
 			break;
 
 		case DOWN:
-			if (!player.isStillInvertGravity()) {
-				System.out.println("!inverted");
+			if (!player.isStillInvertGravity()) { //FEL
 				if (player.getPosition().y + player.getBounds().height <= bounds.y + 3
 						&& player.getVelocity().y <= 0)
 					player.getWorld().killPlayer();

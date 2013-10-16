@@ -17,7 +17,7 @@ public class JumpTrigger extends PlayerTrigger {
 
 	public void trigger() {
 		if (player.getPosition().y >= getBounds().y)
-			player.jump(1.5f);
+			player.jump(2f);
 	}
 
 }

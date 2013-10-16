@@ -10,6 +10,7 @@ public class TextureHandler {
 	private static Texture player;
 	private static Texture blocks;
 	private static Texture effects;
+	public static Texture background;
 
 	// hud
 	public static Texture hudSelection;
@@ -59,6 +60,9 @@ public class TextureHandler {
 	}
 
 	private static void initOther() {
+
+		background = new Texture("images/background.png");
+
 		hudbg = new Texture("images/hudbg.png");
 		hud_blocks = new Sprite[3];
 		Sprite addSprite = new Sprite(block_stone);
@@ -72,7 +76,7 @@ public class TextureHandler {
 		addSprite = new Sprite(block_gravity.getKeyFrame(0));
 		addSprite.scale(5);
 		hud_blocks[2] = addSprite;
-		
+
 		hudSelection = new Texture("images/hudSelector.png");
 
 	}

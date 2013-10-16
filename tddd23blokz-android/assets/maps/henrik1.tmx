@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
  <properties>
   <property name="height" value="40"/>
-  <property name="max_blocks" value="3:1:1"/>
+  <property name="max_blocks" value="3:-1:1"/>
   <property name="width" value="40"/>
  </properties>
  <tileset firstgid="1" source="blocks.tsx"/>
@@ -12,7 +12,7 @@
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
-  <object x="80" y="32" width="16" height="16">
+  <object x="272" y="192" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
    </properties>
