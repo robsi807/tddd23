@@ -10,4 +10,7 @@ public class Key {
 	public static final int _2 = 9;
 	public static final int _3 = 10;
 	public static final int R = 46;
+	public static final int UP = 19;
+	public static final int DOWN = 20;
+	public static final int ENTER = 66;
 }

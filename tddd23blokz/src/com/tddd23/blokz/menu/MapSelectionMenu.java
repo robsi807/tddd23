@@ -30,4 +30,9 @@ public class MapSelectionMenu extends Menu {
 	public String getTitle() {
 		return "Select map";
 	}
+
+	@Override
+	public void goBack() {
+		game.setScreen(new MainMenu(game, worldmanager));
+	}
 }

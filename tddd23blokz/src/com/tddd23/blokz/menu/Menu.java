@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
+import com.tddd23.blokz.Blokz;
 import com.tddd23.blokz.font.FontHandler;
 import com.tddd23.blokz.gfx.TextureHandler;
 
@@ -24,10 +25,10 @@ public abstract class Menu implements Screen {
 	private int pointer;
 	private int relPointer;
 	private int highLightedItem;
-	protected Game game;
+	protected Blokz game;
 	private BitmapFont font;
 
-	public Menu(Game game) {
+	public Menu(Blokz game) {
 		this.game = game;
 		Gdx.input.setInputProcessor(new MenuInput(this));
 		menuItems = new ArrayList<AbstractMenuItem>();
@@ -38,6 +39,8 @@ public abstract class Menu implements Screen {
 	}
 
 	public abstract String getTitle();
+	
+	public abstract void goBack();
 
 	protected void addMenuItem(AbstractMenuItem item) {
 		menuItems.add(item);

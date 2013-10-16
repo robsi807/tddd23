@@ -35,4 +35,9 @@ public class OptionsMenu extends Menu {
 	public String getTitle() {
 		return "Options";
 	}
+
+	@Override
+	public void goBack() {
+		game.setScreen(new MainMenu(game, worldmanager));
+	}
 }

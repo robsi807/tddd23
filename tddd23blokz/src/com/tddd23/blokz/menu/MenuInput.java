@@ -3,6 +3,7 @@ package com.tddd23.blokz.menu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.tddd23.blokz.audio.SoundCache;
+import com.tddd23.blokz.font.Key;
 
 public class MenuInput implements InputProcessor {
 
@@ -15,18 +16,20 @@ public class MenuInput implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		switch (keycode) {
-		case 19:
+		case Key.UP:
 			callingMenu.decreasePointer();
 			SoundCache.menu_beep.play();
 			return true;
-		case 20:
+		case Key.DOWN:
 			callingMenu.increasePointer();
 			SoundCache.menu_beep.play();
 			return true;
-		case 66:
+		case Key.ENTER:
 			callingMenu.triggerMenuItem();
 			SoundCache.menu_beep_select.play();
 			return true;
+		case Key.ESC:
+			callingMenu.goBack();
 		}
 		return false;
 	}

@@ -61,7 +61,7 @@ public class TextureHandler {
 
 	private static void initOther() {
 
-		background = new Texture("images/background.png");
+		background = new Texture("images/background2.png");
 
 		hudbg = new Texture("images/hudbg.png");
 		hud_blocks = new Sprite[3];

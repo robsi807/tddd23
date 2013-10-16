@@ -52,5 +52,5 @@ public abstract class AbstractMenuItem implements MenuItem {
 	}
 
 	public abstract void trigger();
-
+	
 }
