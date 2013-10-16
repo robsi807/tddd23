@@ -137,10 +137,21 @@ public class WorldRenderer {
 		updateHelpBlock(delta);
 		renderDynamicObjects(delta);
 		renderBlocks(delta);
+		renderWorldText();
 		renderPlayer(delta);
 		renderEffects(delta);
 		renderHelpBlock(delta);
 		renderHud(delta);
+	}
+
+	private void renderWorldText() {
+		for(WorldText text : world.getWorldText()){
+			renderBatch.begin();
+			hudFont = FontHandler.font[text.getSize()];
+			hudFont.setColor(1,1,1,0.4f);
+			hudFont.draw(renderBatch, text.getS(), text.getX(),text.getY());
+			renderBatch.end();
+		}
 	}
 
 	private void renderBackground() {
@@ -214,6 +225,8 @@ public class WorldRenderer {
 		}
 
 		unprojectedBatch.begin();
+		hudFont = FontHandler.font[4];
+		hudFont.setColor(1,1,1,.5f);
 		hudStr = "Time: " + time;
 
 		hudFont.draw(unprojectedBatch, hudStr, Gdx.graphics.getWidth()

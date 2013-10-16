@@ -5,11 +5,12 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.objects.CircleMapObject;
+import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.GameScreen;
@@ -50,6 +51,7 @@ public class WorldFactory {
 		world.setMaxNrOfBlocks(intBlocks);
 
 		RectangleMapObject rectObj = null;
+		EllipseMapObject circleObj = null;
 		MapProperties properties = null;
 
 		String type = null;
@@ -137,20 +139,31 @@ public class WorldFactory {
 		// to the world object
 		for (MapObject obj : map.getLayers().get("objects").getObjects()) {
 			properties = obj.getProperties();
-			rectObj = (RectangleMapObject) obj;
+			if (obj instanceof RectangleMapObject) {
+				rectObj = (RectangleMapObject) obj;
 
-			// all objects
-			if (properties.containsKey("spawn_point")) {
-				world.setSpawnPoint(new Point((int) rectObj.getRectangle().x,
-						(int) rectObj.getRectangle().y));
-				world.createPlayer();
-			} else if (properties.containsKey("gravity")) {
-				world.addTrigger(new GravityTrigger((int) rectObj
-						.getRectangle().x, (int) rectObj.getRectangle().y,
-						(int) rectObj.getRectangle().width, (int) rectObj
-								.getRectangle().height, null, screen));
+				// all objects
+				if (properties.containsKey("spawn_point")) {
+					world.setSpawnPoint(new Point(
+							(int) rectObj.getRectangle().x, (int) rectObj
+									.getRectangle().y));
+					world.createPlayer();
+				} else if (properties.containsKey("gravity")) {
+					world.addTrigger(new GravityTrigger((int) rectObj
+							.getRectangle().x, (int) rectObj.getRectangle().y,
+							(int) rectObj.getRectangle().width, (int) rectObj
+									.getRectangle().height, null, screen));
+				}
+
+			} else if (obj instanceof EllipseMapObject) {
+				circleObj = (EllipseMapObject) obj;
+
+				world.addWorldText(new WorldText(properties
+						.get("text").toString(), Integer.parseInt(properties.get("size").toString()),
+						(int) circleObj.getEllipse().x, (int) circleObj
+								.getEllipse().y));
+
 			}
-
 		}
 
 		for (Triggerable t : world.getTriggers()) {

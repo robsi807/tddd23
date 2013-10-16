@@ -30,6 +30,7 @@ public class World {
 	private Point spawnPoint;
 	private float stateTime;
 	private ArrayList<BlockType> blockOrder;
+	private ArrayList<WorldText> worldText;
 
 	private Dimension mapSize;
 
@@ -50,6 +51,7 @@ public class World {
 		gravity = Constants.WORLD_GRAVITY;
 		this.dynamicObjects = new ArrayList<MovableObject>();
 		this.triggers = new ArrayList<PlayerTrigger>();
+		this.worldText = new ArrayList<WorldText>();
 		blocks = new Block[nrOfBlocksWidth][nrOfBlocksHeight];
 		relevantBlocks = new MinMax();
 		this.gameMap = gameMap;
@@ -188,6 +190,14 @@ public class World {
 
 	public ArrayList<BlockType> getBlockOrder() {
 		return blockOrder;
+	}
+
+	public void addWorldText(WorldText text) {
+		worldText.add(text);
+	}
+
+	public ArrayList<WorldText> getWorldText() {
+		return worldText;
 	}
 
 }
