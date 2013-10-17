@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="60" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="height" value="60"/>
+  <property name="max_blocks" value="-1:-1:-1"/>
+  <property name="width" value="30"/>
+ </properties>
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <tileset firstgid="21" source="blocks.tsx"/>
+ <layer name="blocks" width="30" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztmFEKwyAMQKV/6wHGPmq3j7L7H3EMDASpiYkaW1F4zGatr5FUSxfn3DKZTCYCnhcDGu7jWGvvivovQ6+Pfq29uFl4P8HtG/tiL9VG9O4ZXkmrke8RsPZCvVl7NU3rLb2vu+V7NW/udaPkW8v7rQw85y3WVmA7iVnsadbeLfBG/VzvpqQ0395e6dxy52m8sM9y8+OJ8Tkv/H9E46TGrO2l0Mznnb2ae6vl3RmkXljH8fHZebW9uaQcvb1xvLX3kXC09qZqmorl1ipVQ6kxOK/USeXLPdcQi9dYjVeCdm3I8Ur21D+Sd0Wu/kprWAL1rmXlt/Rx89z7++hkMgI/F6tpwQ==
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="60">
+  <object x="48" y="752">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="96" y="720" width="176" height="64">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="320" y="656" width="48" height="96">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="608" width="48" height="112">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="144" y="560" width="32" height="80">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="64" y="496" width="32" height="96">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="416" y="384" width="32" height="368">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="240" y="304" width="32" height="96">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="96" y="160" width="32" height="272">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

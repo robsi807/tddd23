@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="60" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="height" value="60"/>
+  <property name="max_blocks" value="5:-1:-1"/>
+  <property name="width" value="30"/>
+ </properties>
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <layer name="blocks" width="30" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztllEOwBAQBYUeoNn7H7Yf4qchdJcqnZfMz8YaQoJ3znkAAAAAgIGcRrRea/DixRtzTPKWEhprmnX0zhtnnevVeOUhvbwW8K7lrQXvt7yWpDlkkjdXw6u7O63j/+S9v4G77xfvnl4p9LT2a72lnpQw0NuD2p94NS4tJAz0
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="60">
+  <object x="80" y="736">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="432" y="496" width="32" height="160">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="64" y="720">
+   <properties>
+    <property name="size" value="1"/>
+    <property name="text" value="Left mouse button"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object x="112" y="736">
+   <properties>
+    <property name="size" value="1"/>
+    <property name="text" value="is magical"/>
+   </properties>
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>

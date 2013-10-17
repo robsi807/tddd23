@@ -2,8 +2,10 @@
 %Test 2;test2;3836;1;1
 %Map 2;Map2;14188;1;1
 %sDemo;demo;-1;1;0
-Intro 1;introjump;-1;0;1
-Intro 2;introjumpblock;-1;0;1
-Tutorial;Tutorial;-1;0;1
+Intro 1;introjump;13806;0;1
+Intro 2;introjumpblock;12448;0;1
+Intro 3;introgravity;-1;0;1
+Intro 4;introplaceblock1;-1;1;1
+Tutorial;Tutorial;27810;0;1
 Hard1*-Henrik;henrik1;-1;1;1
 FUCKED UP;fuckaur;-1;1;1

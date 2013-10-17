@@ -145,11 +145,11 @@ public class WorldRenderer {
 	}
 
 	private void renderWorldText() {
-		for(WorldText text : world.getWorldText()){
+		for (WorldText text : world.getWorldText()) {
 			renderBatch.begin();
 			hudFont = FontHandler.font[text.getSize()];
-			hudFont.setColor(1,1,1,0.4f);
-			hudFont.draw(renderBatch, text.getS(), text.getX(),text.getY());
+			hudFont.setColor(1, 1, 1, 0.4f);
+			hudFont.draw(renderBatch, text.getS(), text.getX(), text.getY());
 			renderBatch.end();
 		}
 	}
@@ -185,6 +185,8 @@ public class WorldRenderer {
 		unprojectedBatch.setColor(1f, 1f, 1f, 0.6f);
 		unprojectedBatch.draw(TextureHandler.hudbg, 0, 0);
 		unprojectedBatch.end();
+		hudFont = FontHandler.font[2];
+		
 
 		Point drawHudBlock = new Point(20, HUD_HEIGHT / 2
 				- (int) ((HUD_BLOCK_SCALE * Constants.SIZE / 2)));
@@ -226,7 +228,7 @@ public class WorldRenderer {
 
 		unprojectedBatch.begin();
 		hudFont = FontHandler.font[4];
-		hudFont.setColor(1,1,1,.5f);
+		hudFont.setColor(1, 1, 1, .5f);
 		hudStr = "Time: " + time;
 
 		hudFont.draw(unprojectedBatch, hudStr, Gdx.graphics.getWidth()
@@ -338,27 +340,30 @@ public class WorldRenderer {
 
 	private void renderDynamicObjects(float delta) {
 		for (PlayerTrigger t : world.getTriggers()) {
-			if (t instanceof FireTrigger && t.isActive()) {
-			} else if (t instanceof GravityTrigger) {
-				float offset = 0;
-				for (int y = (int) t.getBounds().y; y < (int) t.getBounds().y
-						+ (int) t.getBounds().height; y += Constants.SIZE) {
 
-					for (int x = (int) t.getBounds().x; x < (int) t.getBounds().x
-							+ (int) t.getBounds().width; x += Constants.SIZE) {
-						offset++;
-						tempRegion = TextureHandler.effect_gravityfield
-								.getKeyFrame(world.getPlayer().getStateTime()
-										+ offset, true);
-						renderBatch.begin();
-						renderBatch.draw(tempRegion, x, y);
-						renderBatch.end();
+			if (world.getPlayer().getPosition()
+					.dst(new Vector2(t.getBounds().x, t.getBounds().y)) <= 20 * Constants.SIZE) {
+
+				if (t instanceof GravityTrigger) {
+					float offset = 0;
+					for (int y = (int) t.getBounds().y; y < (int) t.getBounds().y
+							+ (int) t.getBounds().height; y += Constants.SIZE) {
+
+						for (int x = (int) t.getBounds().x; x < (int) t
+								.getBounds().x + (int) t.getBounds().width; x += Constants.SIZE) {
+							offset++;
+							tempRegion = TextureHandler.effect_gravityfield
+									.getKeyFrame(world.getPlayer()
+											.getStateTime() + offset, true);
+							renderBatch.begin();
+							renderBatch.draw(tempRegion, x, y);
+							renderBatch.end();
+						}
 					}
-				}
 
+				}
 			}
 		}
-
 		if (debugMode) {
 			debugWindow.render();
 			for (PlayerTrigger t : world.getTriggers()) {
@@ -371,6 +376,7 @@ public class WorldRenderer {
 				}
 			}
 		}
+
 	}
 
 	private void renderPlayer(float delta) {

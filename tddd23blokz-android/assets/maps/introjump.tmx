@@ -24,17 +24,10 @@
    </properties>
    <ellipse/>
   </object>
-  <object x="128" y="416" width="16" height="16">
-   <properties>
-    <property name="size" value="2"/>
-    <property name="text" value="LOOOL TEXT :D"/>
-   </properties>
-   <ellipse/>
-  </object>
   <object x="32" y="352" width="16" height="16">
    <properties>
     <property name="size" value="1"/>
-    <property name="text" value="W/D"/>
+    <property name="text" value="A/D"/>
    </properties>
    <ellipse/>
   </object>
