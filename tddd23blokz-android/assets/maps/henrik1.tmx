@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" width="20" height="60" tilewidth="16" tileheight="16">
  <properties>
   <property name="height" value="60"/>
-  <property name="max_blocks" value="3:-1:1"/>
+  <property name="max_blocks" value="-1:-1:-1"/>
   <property name="width" value="20"/>
  </properties>
  <tileset firstgid="1" source="blocks.tsx"/>

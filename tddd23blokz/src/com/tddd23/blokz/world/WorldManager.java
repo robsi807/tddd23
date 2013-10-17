@@ -20,7 +20,7 @@ public class WorldManager {
 		mapInfo = new ArrayList<GameMap>();
 		comments = new ArrayList<String>();
 		Scanner br = null;
-		
+
 		String[] splitString = null; // index: 0 = Map name, 1 = maplocation, 2
 										// = score, 3 = time
 		try {
@@ -28,7 +28,7 @@ public class WorldManager {
 			String line = "";
 			while (br.hasNext()) {
 				line = br.nextLine();
-				if (line.charAt(0) == '%'){
+				if (line.charAt(0) == '%') {
 					comments.add(line);
 					continue;
 				}
@@ -42,23 +42,23 @@ public class WorldManager {
 			br.close();
 		}
 	}
-	
-	public void saveCurrentData(){
+
+	public void saveCurrentData() {
 		PrintWriter writer = new PrintWriter(file.write(false));
-		for(String str : comments)
-			writer.write(str+"\n");
-		for(GameMap gmap : mapInfo){
-			writer.write(gmap.getTextForFile()+"\n");
+		for (String str : comments)
+			writer.write(str + "\n");
+		for (GameMap gmap : mapInfo) {
+			writer.write(gmap.getTextForFile() + "\n");
 		}
 		writer.close();
 	}
-	
-	public void unlockMap(GameMap map){
+
+	public void unlockMap(GameMap map) {
 		mapInfo.get(mapInfo.indexOf(map)).setMapUnlocked(true);
 		saveCurrentData();
 	}
-	
-	public void setNewTimeOnMap(GameMap map, Time time){
+
+	public void setNewTimeOnMap(GameMap map, Time time) {
 		mapInfo.get(mapInfo.indexOf(map)).setTime(time);
 		saveCurrentData();
 	}
@@ -74,13 +74,19 @@ public class WorldManager {
 	}
 
 	public void resetStats() {
-		for(GameMap m : mapInfo){
+		for (GameMap m : mapInfo) {
 			m.setTime(new Time(-1));
 			m.setMapUnlocked(false);
 		}
 		mapInfo.get(0).setMapUnlocked(true);
 		saveCurrentData();
-		
+	}
+
+	public void unlockMaps() {
+		for (GameMap m : mapInfo) {
+			m.setMapUnlocked(true);
+		}
+		saveCurrentData();
 	}
 
 }
