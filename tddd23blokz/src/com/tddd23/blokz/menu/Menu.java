@@ -1,9 +1,7 @@
 package com.tddd23.blokz.menu;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -15,7 +13,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.tddd23.blokz.Blokz;
 import com.tddd23.blokz.font.FontHandler;
-import com.tddd23.blokz.gfx.TextureHandler;
 
 public abstract class Menu implements Screen {
 	private SpriteBatch batch;
@@ -39,7 +36,7 @@ public abstract class Menu implements Screen {
 	}
 
 	public abstract String getTitle();
-	
+
 	public abstract void goBack();
 
 	protected void addMenuItem(AbstractMenuItem item) {
@@ -65,10 +62,11 @@ public abstract class Menu implements Screen {
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		drawText("Blokz", 700, 18);
-		drawText("Use UP/DOWN/ENTER or SCROLL/CLICK on your mouse to select",
+		drawText("Wizards tower", 680, 14);
+		drawText(
+				"Use UP/DOWN/ENTER, W/S/SPACE or SCROLL/CLICK on your mouse to select",
 				30, 1);
-		drawText(getDashes(16), 580, 5);
+		drawText(getDashes(32), 580, 5);
 		drawText(getTitle(), 500, 6);
 		setMenuItemsToShow();
 		for (AbstractMenuItem item : menuItemsToShow) {
@@ -85,12 +83,19 @@ public abstract class Menu implements Screen {
 			} else {
 				font.setColor(1, 1, 1, 0.2f);
 			}
-			if (item.getTitle2() != null && !item.getTitle2().equals("-1"))
-				drawText(item.getTitle2(),500,
+			if (item.getTitle2().equalsIgnoreCase("locked")) {
+				drawText(item.getTitle2(), 500,
+						(400 - menuItemsToShow.indexOf(item) * 75), 3,
+						new Color(1, 1, 1, 0.4f));
+				drawText(item.getTitle(),
+						(400 - menuItemsToShow.indexOf(item) * 75), 3,
+						new Color(1, 1, 1, 0.4f));
+			} else {
+				drawText(item.getTitle(),
 						(400 - menuItemsToShow.indexOf(item) * 75), 3);
-			drawText(item.getTitle(),
-					(400 - menuItemsToShow.indexOf(item) * 75), 3);
-
+				drawText(item.getTitle2(), 500,
+						(400 - menuItemsToShow.indexOf(item) * 75), 3);
+			}
 		}
 	}
 
@@ -124,6 +129,22 @@ public abstract class Menu implements Screen {
 					font.getBounds(item.getTitle(), 0, item.getTitle().length()).width,
 					font.getBounds(item.getTitle(), 0, item.getTitle().length()).height + 10 + 30));
 		}
+	}
+
+	private void drawText(String str, int x, int y, int fontSize, Color c) {
+		batch.begin();
+		font = FontHandler.font[fontSize];
+		font.setColor(c);
+		font.draw(batch, str, x, y);
+		batch.end();
+	}
+
+	private void drawText(String str, int y, int fontSize, Color c) {
+		batch.begin();
+		font = FontHandler.font[fontSize];
+		font.setColor(c);
+		font.draw(batch, str, 50, y);
+		batch.end();
 	}
 
 	private void drawText(String str, int y, int fontSize) {

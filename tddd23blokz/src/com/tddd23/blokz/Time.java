@@ -29,7 +29,7 @@ public class Time {
 
 	public String toString() {
 		if(millis ==-1)
-			return "";
+			return "No record";
 		return String.format(
 				"%d:%02d:%03d",
 				TimeUnit.MILLISECONDS.toMinutes(millis),

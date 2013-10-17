@@ -12,13 +12,17 @@ public abstract class AbstractMenuItem implements MenuItem {
 	public AbstractMenuItem(String title, boolean unlocked) {
 		this.unlocked = unlocked;
 		this.title = title;
+		if (!unlocked)
+			this.title2 = "Locked";
+		else
+			this.title2 = "";
 	}
 
 	public AbstractMenuItem(String title, String title2, boolean unlocked) {
 		this.unlocked = unlocked;
 		this.title = title;
 		if (!unlocked)
-			this.title2 = "locked";
+			this.title2 = "Locked";
 		else
 			this.title2 = title2;
 	}

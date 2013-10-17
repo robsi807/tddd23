@@ -13,4 +13,6 @@ public class Key {
 	public static final int UP = 19;
 	public static final int DOWN = 20;
 	public static final int ENTER = 66;
+	public static final int W = 51;
+	public static final int S= 47;
 }

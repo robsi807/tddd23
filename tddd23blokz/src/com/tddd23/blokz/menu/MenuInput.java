@@ -15,15 +15,19 @@ public class MenuInput implements InputProcessor {
 
 	@Override
 	public boolean keyDown(int keycode) {
+		System.out.println(keycode);
 		switch (keycode) {
+		case Key.W:
 		case Key.UP:
 			callingMenu.decreasePointer();
 			SoundCache.menu_beep.play();
 			return true;
+		case Key.S:
 		case Key.DOWN:
 			callingMenu.increasePointer();
 			SoundCache.menu_beep.play();
 			return true;
+		case Key.SPACE:
 		case Key.ENTER:
 			callingMenu.triggerMenuItem();
 			SoundCache.menu_beep_select.play();
