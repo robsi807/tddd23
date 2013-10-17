@@ -25,6 +25,8 @@ public class OptionsMenu extends Menu {
 						: "Set fullscreen", true) {
 			public void trigger() {
 				game.switchScreenMode();
+				this.setTitle(Gdx.graphics.isFullscreen() ? "Set windowed mode"
+						: "Set fullscreen");
 			}
 		});
 		addMenuItem(new AbstractMenuItem("Mute sound", ""
