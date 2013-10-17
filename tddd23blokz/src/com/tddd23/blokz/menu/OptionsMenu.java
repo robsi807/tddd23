@@ -2,6 +2,8 @@ package com.tddd23.blokz.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.tddd23.blokz.Blokz;
+import com.tddd23.blokz.audio.MusicCache;
+import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.map.GameMap;
 import com.tddd23.blokz.world.WorldManager;
 
@@ -18,13 +20,27 @@ public class OptionsMenu extends Menu {
 				this.setTitle2("Stats cleared!");
 			}
 		});
-		addMenuItem(new AbstractMenuItem((Gdx.graphics.isFullscreen()) ? "Set windowed mode": "Set fullscreen", true) {
+		addMenuItem(new AbstractMenuItem(
+				(Gdx.graphics.isFullscreen()) ? "Set windowed mode"
+						: "Set fullscreen", true) {
 			public void trigger() {
 				game.switchScreenMode();
 			}
 		});
-		
-		
+		addMenuItem(new AbstractMenuItem("Mute sound", ""
+				+ SoundCache.getMuteString(), true) {
+			public void trigger() {
+				SoundCache.setMuteUnmute();
+				this.setTitle2(SoundCache.getMuteString());
+			}
+		});
+		addMenuItem(new AbstractMenuItem("Mute music", ""
+				+ MusicCache.getMuteString(), true) {
+			public void trigger() {
+				MusicCache.setMuteUnmute();
+				this.setTitle2(MusicCache.getMuteString());
+			}
+		});
 		addMenuItem(new AbstractMenuItem("Back", true) {
 			public void trigger() {
 				game.goToMainMenu();

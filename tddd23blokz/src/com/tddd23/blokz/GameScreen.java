@@ -34,6 +34,7 @@ public class GameScreen implements Screen {
 		updateGame = true;
 		if (!MusicCache.level1.isPlaying())
 			MusicCache.level1.play();
+		MusicCache.level1.setVolume(MusicCache.getVolume());
 		MusicCache.level1.setLooping(true);
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
@@ -80,9 +81,10 @@ public class GameScreen implements Screen {
 	}
 
 	public boolean isNewRecord() {
-		if(currentMap.getTime().getCopyTime().getMillis() == -1)
+		if (currentMap.getTime().getCopyTime().getMillis() == -1)
 			return true;
-		return (currentMap.getTime().getCopyTime().getMillis() > renderer.getTime().getMillis()) ? true : false;
+		return (currentMap.getTime().getCopyTime().getMillis() > renderer
+				.getTime().getMillis()) ? true : false;
 	}
 
 	public GameState getState() {

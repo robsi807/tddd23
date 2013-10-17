@@ -20,17 +20,17 @@ public class MenuInput implements InputProcessor {
 		case Key.W:
 		case Key.UP:
 			callingMenu.decreasePointer();
-			SoundCache.menu_beep.play();
+			SoundCache.menu_beep.play(SoundCache.getVolume());
 			return true;
 		case Key.S:
 		case Key.DOWN:
 			callingMenu.increasePointer();
-			SoundCache.menu_beep.play();
+			SoundCache.menu_beep.play(SoundCache.getVolume());
 			return true;
 		case Key.SPACE:
 		case Key.ENTER:
 			callingMenu.triggerMenuItem();
-			SoundCache.menu_beep_select.play();
+			SoundCache.menu_beep_select.play(SoundCache.getVolume());
 			return true;
 		case Key.ESC:
 			callingMenu.goBack();

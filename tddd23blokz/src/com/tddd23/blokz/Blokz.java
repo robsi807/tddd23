@@ -28,10 +28,12 @@ public class Blokz extends Game {
 	}
 
 	public void goToMapMenu() {
+		MusicCache.level1.stop();
 		setScreen(new MapSelectionMenu(this, worldmanager));
 	}
 
 	public void goToMainMenu() {
+
 		setScreen(new MainMenu(this, worldmanager));
 	}
 
@@ -39,6 +41,7 @@ public class Blokz extends Game {
 	// gamescreen
 	public void startGame(GameMap map) {
 		gameScreen = new GameScreen(this, map);
+
 		setScreen(gameScreen);
 	}
 
@@ -91,7 +94,6 @@ public class Blokz extends Game {
 		if (gameScreen.isNewRecord())
 			worldmanager.setNewTimeOnMap(gameScreen.getCurrentMap(), gameScreen
 					.getRenderer().getTime());
-
 	}
 
 	public void switchScreenMode() {

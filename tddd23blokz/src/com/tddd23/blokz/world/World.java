@@ -69,7 +69,7 @@ public class World {
 					new Vector2(posX, posY), this,
 					player.getSelectedBlockType(), gamescreen);
 			allowedBlocks[player.getSelectedBlockType().ordinal()]--;
-			SoundCache.place_block.play();
+			SoundCache.place_block.play(SoundCache.getVolume());
 		}
 	}
 

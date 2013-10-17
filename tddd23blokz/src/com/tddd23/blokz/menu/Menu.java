@@ -98,7 +98,6 @@ public abstract class Menu implements Screen {
 			}
 		}
 	}
-
 	private void setMenuItemsToShow() {
 		menuItemsToShow.clear();
 		if (pointer < 3) {
