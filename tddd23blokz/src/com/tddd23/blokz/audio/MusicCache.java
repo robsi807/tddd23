@@ -23,7 +23,7 @@ public class MusicCache {
 	}
 
 	public static float getVolume() {
-		return (muted) ? 0 : 1;
+		return (muted) ? 0 : .2f;
 	}
 
 	public static void setMuteUnmute() {
