@@ -185,7 +185,7 @@ public class WorldRenderer {
 		unprojectedBatch.setColor(1f, 1f, 1f, 0.6f);
 		unprojectedBatch.draw(TextureHandler.hudbg, 0, 0);
 		unprojectedBatch.end();
-		hudFont = FontHandler.font[2];
+		hudFont = FontHandler.font[3];
 		
 
 		Point drawHudBlock = new Point(20, HUD_HEIGHT / 2
@@ -315,7 +315,7 @@ public class WorldRenderer {
 				.ordinal()] < 0)
 			return;
 
-		setOpacity(0.3f);
+		setOpacity(0.5f);
 		if (helpBlock == null)
 			return;
 		renderBatch.begin();
