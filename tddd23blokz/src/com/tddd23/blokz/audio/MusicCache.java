@@ -18,7 +18,7 @@ public class MusicCache {
 			level1.setVolume(0);
 		} else {
 			muted = false;
-			level1.setVolume(1);
+			level1.setVolume(getVolume());
 		}
 	}
 
