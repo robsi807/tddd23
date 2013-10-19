@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="60" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="height" value="60"/>
+  <property name="max_blocks" value="40:-1:-1"/>
+  <property name="width" value="20"/>
+ </properties>
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <layer name="blocks" width="20" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzlltEKwCAIRSX21kv//7V7EiKyzN1mbheCNdzhmuFMRJTA6yKMmIdS6xPF4+cirFx9I8WUDg/tz5uXm/1p/rS8No/Z+xnPqr/zrHWQeE+F4NXe3/SnPTMtz6LdPKnvsvIgJmp/ttR1xFvRV/p9rZXzPCVfyfMp/lZ5q3ea46Pmi+KNeptmVo2WL8vaAz3/5xrPUevhweudp9d9iTyfevG85lOveXzmZcZDaBcPuW6pDgUu
+  </data>
+ </layer>
+ <objectgroup name="objects" width="20" height="60">
+  <object x="16" y="80" width="16" height="16">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
