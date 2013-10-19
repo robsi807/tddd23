@@ -19,22 +19,22 @@ public class FireTrigger extends PlayerTrigger {
 		facing = direction;
 		switch (direction) {
 		case UP:
-			bounds = new Rectangle(x * Constants.SIZE,
-					(y * Constants.SIZE + Constants.SIZE), Constants.SIZE,
+			bounds = new Rectangle(x * Constants.SIZE+1,
+					(y * Constants.SIZE + Constants.SIZE), Constants.SIZE-2,
 					Constants.SIZE * 2-2);
 			break;
 		case DOWN:
-			bounds = new Rectangle(x * Constants.SIZE,
-					((y - 2) * Constants.SIZE+1), Constants.SIZE,
+			bounds = new Rectangle(x * Constants.SIZE+1,
+					((y - 2) * Constants.SIZE+1), Constants.SIZE-2,
 					Constants.SIZE * 2);
 			break;
 		case RIGHT:
 			bounds = new Rectangle((x + 1) * Constants.SIZE-1,
-					(y * Constants.SIZE), Constants.SIZE * 2, Constants.SIZE);
+					(y * Constants.SIZE)+1, Constants.SIZE * 2, Constants.SIZE-2);
 			break;
 		case LEFT:
 			bounds = new Rectangle((x * Constants.SIZE - Constants.SIZE * 2)+1,
-					(y * Constants.SIZE), Constants.SIZE * 2, Constants.SIZE);
+					(y * Constants.SIZE)+1, Constants.SIZE * 2, Constants.SIZE-2);
 			break;
 		}
 	}
