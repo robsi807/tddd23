@@ -8,7 +8,7 @@
  <tileset firstgid="1" source="blocks.tsx"/>
  <layer name="blocks" width="30" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1ksKwCAMBNAgXdSt9z9sKSiEkGpGjbroQBaFkleCnwYiCgeVZ373DPfa5I4k5prhRmMRfZu9bspV3ivPxbT0sbjIzOVs5QwQtzfclP1q7i0KNbktg7gJqNasEXf0bOfzXuFqe8vbld6Iawnvr60xb5c/j66rnsh9bO2F7l/N5Zl1NrU8b1eeEXxdaa71fkOqFu85ax53Ld9au9N6fLTQ/jXXK63/q9XZ7SJ3+ox6zQfzBQjk
+   eJztltEKgCAMRYf0kK/9/8dGoDDGps5t6kMXLhSLTrvlLAFAOsiR+rlncK9NXItysQc3DxpAZs5yn+J6XT2vzJG8RriazGm2NAMNd1a4f6oW9ybWMjHbwn0U7mWt4VpnO66t4HJrK5pLedHcTI5p35FcKesVOWMu9131pF2/HBdrlGvlRXPxjJDeNZCat1uKzlliSf1y6u1pM89gnb2te2trHur9X63Wbq5mT/fwx3wBf2QJCQ==
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
@@ -17,14 +17,14 @@
     <property name="spawn_point" value=""/>
    </properties>
   </object>
-  <object x="176" y="352" width="16" height="16">
+  <object x="176" y="336" width="16" height="16">
    <properties>
     <property name="size" value="1"/>
     <property name="text" value="Space"/>
    </properties>
    <ellipse/>
   </object>
-  <object x="32" y="352" width="16" height="16">
+  <object x="32" y="336" width="16" height="16">
    <properties>
     <property name="size" value="1"/>
     <property name="text" value="A/D"/>
