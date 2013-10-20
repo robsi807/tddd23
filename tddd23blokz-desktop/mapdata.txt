@@ -3,13 +3,13 @@
 %Map 2;Map2;14188;1;1
 %sDemo;demo;-1;1;0
 Intro 1;introjump;-1;0;1
-Intro 2;introjumpblock;-1;0;0
-Intro 3;introgravity;-1;0;0
-Intro 4;introplaceblock1;-1;1;0
-Tutorial;Tutorial;-1;0;0
-Medium1;medium1;-1;1;0
-Medium2;medium2;-1;1;0
-Medium3;medium3;-1;1;0
-Hard1 1;hard1;-1;1;0
-Hard1 2;hard2;-1;1;0
-FUCKED UP;fuckaur;-1;1;0
+Intro 2;introjumpblock;-1;0;1
+Intro 3;introgravity;-1;0;1
+Intro 4;introplaceblock1;-1;1;1
+Tutorial;Tutorial;-1;0;1
+Medium1;medium1;-1;1;1
+Medium2;medium2;-1;1;1
+Medium3;medium3;-1;1;1
+Hard1 1;hard1;-1;1;1
+Hard1 2;hard2;-1;1;1
+FUCKED UP;fuckaur;-1;1;1

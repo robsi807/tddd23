@@ -76,6 +76,8 @@ public class World {
 	public void createPlayer() {
 		this.player = new Player(new Vector2(spawnPoint.x, spawnPoint.y),
 				Constants.SPEED, this);
+		if(blockOrder.size()>0)
+			player.setSelectedBlockType(blockOrder.get(0));
 	}
 
 	public boolean isPlaceable(int tileX, int tileY) {
