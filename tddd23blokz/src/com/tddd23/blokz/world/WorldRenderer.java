@@ -84,7 +84,7 @@ public class WorldRenderer {
 
 	public WorldRenderer(World world, GameScreen screen) {
 		this.world = world;
-		this.cam = new OrthographicCamera(Gdx.graphics.getWidth() / (16 / 9),
+		this.cam = new OrthographicCamera(Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 		cam.zoom = 0.45f;
 
