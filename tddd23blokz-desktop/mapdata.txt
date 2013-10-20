@@ -1,17 +1,16 @@
 %Namn ; Filnamn ; Tid ; FårplaceraBlock? ; Bana upplåst
+Easy 1;introjump;-1;0;1
+Easy 2;introjumpblock;-1;0;1
+Easy 3;introgravity;-1;0;1;
+Easy 4;introplaceblock1;14153;1;1
+Medium 1;gravity1;20596;1;1
+Medium 2;medium1;38287;1;1
+Medium 3;medium2;-1;1;1
+Medium 4;medium3;-1;1;1
+Hard 1;hard1;-1;1;1
+Hard 2;hard2;-1;1;1
+%FUCKED UP;fuckaur;-1;1;1
+%Tutorial;Tutorial;28044;0;1
 %Test 2;test2;3836;1;1
 %Map 2;Map2;14188;1;1
 %sDemo;demo;-1;1;0
-Intro 1;introjump;-1;0;1
-Intro 2;introjumpblock;-1;0;1
-Intro 3;introgravity;-1;0;1;
-Intro 4;introplaceblock1;14153;1;1
-Medium 1;gravity1;20596;1;1
-%Tutorial;Tutorial;28044;0;1
-Medium1;medium1;38287;1;1
-Medium2;medium2;-1;1;1
-Medium3;medium3;-1;1;1
-Hard 1;hard1;-1;1;1
-Hard 2;hard2;-1;1;1
-Hard 3;floater;17958;1;1
-%FUCKED UP;fuckaur;-1;1;1
