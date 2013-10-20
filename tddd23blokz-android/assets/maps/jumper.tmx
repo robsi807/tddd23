@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="60" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="height" value="60"/>
+  <property name="max_blocks" value="-1:6:-1"/>
+  <property name="width" value="30"/>
+ </properties>
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <layer name="blocks" width="30" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt18sOhCAMheGGuHCpvP/DuicV6IVW4jnJv/Vj1ElmChEVhBBCCKFB7aLdI8nN+rxv7sXk5d6Cc3ndkwxXO7hwv+hqzwl3vpP6W+GOzBXu7Dxdybxc6TxczayudhbXMq1rXe8aq0yN67Wo5xnpVqYIl/v9CvcfbrudXO77UoXX0Li9/3twc1zJu+DpWstyZ+/Rjj3bmAyn
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="60">
+  <object x="48" y="880">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="416" y="464" width="32" height="96">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="416" y="560" width="32" height="112">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
