@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="60" tilewidth="16" tileheight="16">
+ <properties>
+  <property name="height" value="60"/>
+  <property name="max_blocks" value="3:-1:-1"/>
+  <property name="width" value="30"/>
+ </properties>
+ <tileset firstgid="1" source="blocks.tsx"/>
+ <layer name="blocks" width="30" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt1sEKgCAQBNDFupRB4v9/bAQKHvTYDO3Owly6vGZRKplZUhQFmtnsJNcCuAVgrfoyXfSe5fp18+Q9UH1LC2PP48j14fbUFrT73qU7wJ6ju1tLlL6Z5LL6It2L5B4kd5yT5Oo8+3T1P+nX7Xc2Sl+5eFffBble3PGZ1751ka/dv+cBNzQNLQ==
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="60">
+  <object x="224" y="176" width="32" height="96">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="272" width="32" height="160">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="432" width="32" height="160">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="592" width="32" height="160">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="752" width="32" height="96">
+   <properties>
+    <property name="gravity" value=""/>
+   </properties>
+  </object>
+  <object x="240" y="880" width="16" height="16">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

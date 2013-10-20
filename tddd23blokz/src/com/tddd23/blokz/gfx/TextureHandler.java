@@ -49,7 +49,7 @@ public class TextureHandler {
 	private static TextureRegion[] frameCollection;
 	private static TextureRegion[] frameCollection2;
 
-	public static void init() { // varför är denna static?
+	public static void init() {
 		// placed_Block = ImageCache.getTexture("placed_block");
 
 		initPlayer();
