@@ -3,7 +3,7 @@
 %Map 2;Map2;14188;1;1
 %sDemo;demo;-1;1;0
 Intro 1;introjump;14742;0;1
-Intro 2;introjumpblock;12383;0;1
+Intro 2;introjumpblock;12364;0;1
 Intro 3;introgravity;20596;0;1
 Intro 4;introplaceblock1;14153;1;1
 Tutorial;Tutorial;28044;0;1
