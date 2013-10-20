@@ -36,4 +36,10 @@ public class MainMenu extends Menu {
 	public void goBack() {
 		game.exitGame();
 	}
+
+	@Override
+	public void renderSpecial() {
+		// TODO Auto-generated method stub
+		
+	}
 }

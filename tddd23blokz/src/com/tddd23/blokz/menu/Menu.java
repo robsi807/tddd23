@@ -16,7 +16,7 @@ import com.tddd23.blokz.font.FontHandler;
 
 public abstract class Menu implements Screen {
 	private SpriteBatch batch;
-	private ShapeRenderer rectRenderer;
+	protected ShapeRenderer rectRenderer;
 	private ArrayList<AbstractMenuItem> menuItems;
 	private ArrayList<AbstractMenuItem> menuItemsToShow;
 	private int pointer;
@@ -38,6 +38,8 @@ public abstract class Menu implements Screen {
 	public abstract String getTitle();
 
 	public abstract void goBack();
+	
+	public abstract void renderSpecial();
 
 	protected void addMenuItem(AbstractMenuItem item) {
 		menuItems.add(item);
@@ -97,6 +99,8 @@ public abstract class Menu implements Screen {
 						(400 - menuItemsToShow.indexOf(item) * 75), 3);
 			}
 		}
+		renderSpecial();
+		
 	}
 	private void setMenuItemsToShow() {
 		menuItemsToShow.clear();
@@ -130,7 +134,7 @@ public abstract class Menu implements Screen {
 		}
 	}
 
-	private void drawText(String str, int x, int y, int fontSize, Color c) {
+	protected void drawText(String str, int x, int y, int fontSize, Color c) {
 		batch.begin();
 		font = FontHandler.font[fontSize];
 		font.setColor(c);
@@ -138,7 +142,7 @@ public abstract class Menu implements Screen {
 		batch.end();
 	}
 
-	private void drawText(String str, int y, int fontSize, Color c) {
+	protected void drawText(String str, int y, int fontSize, Color c) {
 		batch.begin();
 		font = FontHandler.font[fontSize];
 		font.setColor(c);
@@ -146,7 +150,7 @@ public abstract class Menu implements Screen {
 		batch.end();
 	}
 
-	private void drawText(String str, int y, int fontSize) {
+	protected void drawText(String str, int y, int fontSize) {
 		batch.begin();
 		font = FontHandler.font[fontSize];
 		font.setColor(Color.WHITE);
@@ -154,7 +158,7 @@ public abstract class Menu implements Screen {
 		batch.end();
 	}
 
-	private void drawText(String str, int x, int y, int fontSize) {
+	protected void drawText(String str, int x, int y, int fontSize) {
 		batch.begin();
 		font = FontHandler.font[fontSize];
 		font.setColor(Color.WHITE);

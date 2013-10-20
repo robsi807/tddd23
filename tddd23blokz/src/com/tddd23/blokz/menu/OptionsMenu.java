@@ -64,4 +64,10 @@ public class OptionsMenu extends Menu {
 	public void goBack() {
 		game.setScreen(new MainMenu(game, worldmanager));
 	}
+
+	@Override
+	public void renderSpecial() {
+		// TODO Auto-generated method stub
+		
+	}
 }

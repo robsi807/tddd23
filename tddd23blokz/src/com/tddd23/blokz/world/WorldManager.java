@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import sun.rmi.runtime.NewThreadAction;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.tddd23.blokz.Time;
@@ -87,6 +89,21 @@ public class WorldManager {
 			m.setMapUnlocked(true);
 		}
 		saveCurrentData();
+	}
+
+	public int getAmountsOfFinishedMaps() {
+		int amount = 0;
+		for (GameMap m : mapInfo)
+			if (m.getTime().getMillis() > 0)
+				amount++;
+		return amount;
+	}
+	public Time getTotalTime() {
+		Time t = new Time();
+		for (GameMap m : mapInfo)
+			if (m.getTime().getMillis() > 0)
+				t.addTime(m.getTime().getMillis());
+		return t;
 	}
 
 }
