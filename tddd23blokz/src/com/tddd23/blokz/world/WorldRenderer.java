@@ -312,7 +312,7 @@ public class WorldRenderer {
 	private void renderHelpBlock(float delta) {
 
 		if (world.getAllowedBlocks()[world.getPlayer().getSelectedBlockType()
-				.ordinal()] < 0)
+				.ordinal()] < 1)
 			return;
 
 		setOpacity(0.5f);
