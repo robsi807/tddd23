@@ -158,10 +158,10 @@ public class WorldFactory {
 			} else if (obj instanceof EllipseMapObject) {
 				circleObj = (EllipseMapObject) obj;
 
-				world.addWorldText(new WorldText(properties
-						.get("text").toString(), Integer.parseInt(properties.get("size").toString()),
-						(int) circleObj.getEllipse().x, (int) circleObj
-								.getEllipse().y));
+				world.addWorldText(new WorldText(properties.get("text")
+						.toString(), Integer.parseInt(properties.get("size")
+						.toString()), (int) circleObj.getEllipse().x,
+						(int) circleObj.getEllipse().y));
 
 			}
 		}

@@ -151,7 +151,6 @@ public class World {
 		for (int i = 0; i < maxNrOfBlocks.length; i++)
 			if (maxNrOfBlocks[i] >= 0)
 				blockOrder.add(BlockType.values()[i]);
-
 	}
 
 	public Dimension getMapSize() {

@@ -1,5 +1,7 @@
 package com.tddd23.blokz;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.blocks.Block.BlockType;
@@ -17,6 +19,7 @@ public class Player extends MovableObject {
 
 	public Player(Vector2 position, float speed, World world) {
 		super(position, speed, world);
+
 		getBounds().height = 28f;
 		getBounds().width = 13;
 		setMovable(true);
@@ -34,7 +37,6 @@ public class Player extends MovableObject {
 	}
 
 	public void jump() {
-
 		if (grounded) {
 			SoundCache.jump.play(SoundCache.getVolume());
 			if (!isInvertGravity()) {
@@ -45,7 +47,6 @@ public class Player extends MovableObject {
 		}
 	}
 
-	@Override
 	public void addGravity(float delta) {
 		if (!isInvertGravity()) {
 			getAcceleration().y += world.getGravity().y;
