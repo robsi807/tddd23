@@ -8,11 +8,11 @@
  <tileset firstgid="1" source="blocks.tsx"/>
  <layer name="blocks" width="30" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt1sEKgCAQBNDFupRB4v9/bAQKHvTYDO3Owly6vGZRKplZUhQFmtnsJNcCuAVgrfoyXfSe5fp18+Q9UH1LC2PP48j14fbUFrT73qU7wJ6ju1tLlL6Z5LL6It2L5B4kd5yT5Oo8+3T1P+nX7Xc2Sl+5eFffBble3PGZ1751ka/dv+cBNzQNLQ==
+   eJzt1sEKgCAQBFCxLmWQ+P8fG4GCh/TmDO3Owly8PEeSjCGEqAwzG7S7k1xWX6SbFzuzvnLlrnJRe5Br300f+0D1zTWMc+5Hrg23pdSg3fcu3Q7O2bu71Xjpm0guqy/SvUjuQXL7OUmuvmebrt6Tdt12Z730lYt39V+Qa8Xt16z2LYOsdv+eB7oBDQE=
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="60">
-  <object x="224" y="176" width="32" height="96">
+  <object x="224" y="176" width="16" height="96">
    <properties>
     <property name="gravity" value=""/>
    </properties>
@@ -40,6 +40,11 @@
   <object x="240" y="880" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+  <object x="224" y="112" width="16" height="64">
+   <properties>
+    <property name="gravity" value=""/>
    </properties>
   </object>
  </objectgroup>
