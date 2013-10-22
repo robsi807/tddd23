@@ -28,12 +28,14 @@ public class Blokz extends Game {
 	}
 
 	public void goToMapMenu() {
-		MusicCache.level1.stop();
 		setScreen(new MapSelectionMenu(this, worldmanager));
 	}
 
 	public void goToMainMenu() {
-
+		if (!MusicCache.level1.isPlaying())
+			MusicCache.level1.play();
+		MusicCache.level1.setVolume(MusicCache.getVolume());
+		MusicCache.level1.setLooping(true);
 		setScreen(new MainMenu(this, worldmanager));
 	}
 
@@ -41,7 +43,10 @@ public class Blokz extends Game {
 	// gamescreen
 	public void startGame(GameMap map) {
 		gameScreen = new GameScreen(this, map);
-
+		if (!MusicCache.level1.isPlaying())
+			MusicCache.level1.play();
+		MusicCache.level1.setVolume(MusicCache.getVolume());
+		MusicCache.level1.setLooping(true);
 		setScreen(gameScreen);
 	}
 

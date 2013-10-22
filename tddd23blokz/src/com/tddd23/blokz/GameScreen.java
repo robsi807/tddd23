@@ -32,10 +32,6 @@ public class GameScreen implements Screen {
 		renderer = new WorldRenderer(world, this);
 		this.game = game;
 		updateGame = true;
-		if (!MusicCache.level1.isPlaying())
-			MusicCache.level1.play();
-		MusicCache.level1.setVolume(MusicCache.getVolume());
-		MusicCache.level1.setLooping(true);
 		Gdx.input.setInputProcessor(new GameInput(world, game));
 	}
 

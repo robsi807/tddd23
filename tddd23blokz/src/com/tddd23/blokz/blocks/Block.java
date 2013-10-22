@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.tddd23.blokz.Constants;
 import com.tddd23.blokz.GameObject;
 import com.tddd23.blokz.GameScreen;
+import com.tddd23.blokz.audio.SoundCache;
 import com.tddd23.blokz.triggers.DeathTrigger.Facing;
 import com.tddd23.blokz.triggers.FireTrigger;
 import com.tddd23.blokz.triggers.GravityTrigger;
@@ -22,6 +23,7 @@ public class Block extends GameObject {
 	private static int FLAME_LENGTH = 2;
 	private Facing facing;
 	private GameScreen screen;
+	private boolean fireSound;
 
 	public Block(Vector2 position, World world, BlockType type,
 			GameScreen screen) {
@@ -29,6 +31,7 @@ public class Block extends GameObject {
 		this.connectedTriggers = new ArrayList<PlayerTrigger>();
 		this.type = type;
 		this.screen = screen;
+		fireSound = false;
 		addTriggerDependingOnType();
 	}
 
@@ -83,12 +86,17 @@ public class Block extends GameObject {
 					t.setActive(true);
 					((FireTrigger) t).getEffect().start();
 				}
+				if (!fireSound) {
+					SoundCache.fire.play();
+					fireSound = true;
+				}
 
 			} else {
 				for (PlayerTrigger t : connectedTriggers) {
 					t.setActive(false);
 					((FireTrigger) t).getEffect().stop();
 				}
+				fireSound = false;
 			}
 			if (stateTime > FLAME_LENGTH + FLAME_REPEAT)
 				stateTime = 0;

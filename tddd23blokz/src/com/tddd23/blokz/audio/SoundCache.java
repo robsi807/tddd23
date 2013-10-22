@@ -12,17 +12,20 @@ public class SoundCache {
 	public static Sound menu_beep;
 	public static Sound menu_beep_select;
 	public static Sound player_death;
+	public static Sound fire;
 	public static boolean muted = false;
 
 	public static void load() {
 		jump = Gdx.audio.newSound(Gdx.files.internal("sounds/jump.mp3"));
 		place_block = Gdx.audio.newSound(Gdx.files
 				.internal("sounds/place_block.mp3"));
-		menu_beep = Gdx.audio.newSound(Gdx.files.internal("sounds/menu_beep.mp3"));
+		menu_beep = Gdx.audio.newSound(Gdx.files
+				.internal("sounds/menu_beep.mp3"));
 		menu_beep_select = Gdx.audio.newSound(Gdx.files
 				.internal("sounds/menu_beep_select.mp3"));
 		player_death = Gdx.audio.newSound(Gdx.files
 				.internal("sounds/death.mp3"));
+		fire = Gdx.audio.newSound(Gdx.files.internal("sounds/fire.wav"));
 	}
 
 	public static float getVolume() {
@@ -30,9 +33,9 @@ public class SoundCache {
 	}
 
 	public static void setMuteUnmute() {
-		if (muted){
+		if (muted) {
 			SoundCache.muted = false;
-		}else{
+		} else {
 			SoundCache.muted = true;
 		}
 	}
