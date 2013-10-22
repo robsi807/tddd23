@@ -1,5 +1,0 @@
-%Namn ; Filnamn ; Tid ; FårplaceraBlock? ; Bana upplåst
-Intro jump;introjump;0;0;0
-Tutorial;Tutorial;100000;0;1
-Test 2;test2;1242124;1;1
-Map 2;Map2;7898645;1;1
