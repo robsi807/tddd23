@@ -20,12 +20,6 @@ public class OptionsMenu extends Menu {
 				this.setTitle2("Stats cleared!");
 			}
 		});
-		addMenuItem(new AbstractMenuItem("Unlock all maps", true) {
-			public void trigger() {
-				worldmanager.unlockMaps();
-				this.setTitle2("Maps unlocked!");
-			}
-		});
 		addMenuItem(new AbstractMenuItem(
 				(Gdx.graphics.isFullscreen()) ? "Set windowed mode"
 						: "Set fullscreen", true) {

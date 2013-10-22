@@ -38,7 +38,7 @@ public abstract class Menu implements Screen {
 	public abstract String getTitle();
 
 	public abstract void goBack();
-	
+
 	public abstract void renderSpecial();
 
 	protected void addMenuItem(AbstractMenuItem item) {
@@ -100,8 +100,9 @@ public abstract class Menu implements Screen {
 			}
 		}
 		renderSpecial();
-		
+
 	}
+
 	private void setMenuItemsToShow() {
 		menuItemsToShow.clear();
 		if (pointer < 3) {
@@ -240,6 +241,10 @@ public abstract class Menu implements Screen {
 			if (item.getBounds().contains(screenX, screenY))
 				highLightedItem = menuItemsToShow.indexOf(item);
 		}
+	}
+
+	public void resetMaps() {
+		game.getWorldmanager().resetStats();
 	}
 
 }

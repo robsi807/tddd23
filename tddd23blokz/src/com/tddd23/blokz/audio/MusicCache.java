@@ -29,8 +29,18 @@ public class MusicCache {
 	public static void setMuteUnmute() {
 		if (muted) {
 			MusicCache.muted = false;
+			MusicCache.level1.play();
+			MusicCache.level1.setVolume(MusicCache.getVolume());
+			MusicCache.level1.setLooping(true);
 		} else {
 			MusicCache.muted = true;
+			MusicCache.level1.stop();
+		}
+
+		if (muted) {
+
+		} else {
+
 		}
 	}
 

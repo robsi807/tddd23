@@ -33,7 +33,12 @@ public class MenuInput implements InputProcessor {
 			return true;
 		case Key.ESC:
 			callingMenu.goBack();
+			break;
+		case Key.CONSOLE:
+			callingMenu.resetMaps();
+			break;
 		}
+
 		return false;
 	}
 
@@ -72,7 +77,7 @@ public class MenuInput implements InputProcessor {
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {
 		callingMenu.hoverMenuItem(screenX, Gdx.graphics.getHeight() - screenY);
-		
+
 		return false;
 	}
 

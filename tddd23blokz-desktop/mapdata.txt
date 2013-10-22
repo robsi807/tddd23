@@ -4,13 +4,13 @@
 %Test 2;test2;3836;1;1
 %Map 2;Map2;14188;1;1
 %sDemo;demo;28343;1;0
-Easy 1;introjump;23517;0;1
-Easy 2;introjumpblock;12326;0;1
-Easy 3;introgravity;24313;0;1
-Easy 4;introplaceblock1;15874;1;1
-Medium 1;gravity1;30449;1;1
-Medium 2;medium1;41133;1;1
-Medium 3;medium2;-1;1;1
-Medium 4;floater;14683;1;1
-Hard 1;hard1;-1;1;1
-Hard 2;hard2;-1;1;1
+Easy 1;introjump;-1;0;1
+Easy 2;introjumpblock;-1;0;0
+Easy 3;introgravity;-1;0;0
+Easy 4;introplaceblock1;-1;1;0
+Medium 1;gravity1;-1;1;0
+Medium 2;medium1;-1;1;0
+Medium 3;medium2;-1;1;0
+Medium 4;floater;-1;1;0
+Hard 1;hard1;-1;1;0
+Hard 2;hard2;-1;1;0

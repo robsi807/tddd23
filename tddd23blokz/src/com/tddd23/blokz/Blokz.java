@@ -105,4 +105,9 @@ public class Blokz extends Game {
 		Gdx.graphics.setDisplayMode(1280, 720, !Gdx.graphics.isFullscreen());
 	}
 
+	public WorldManager getWorldmanager() {
+		return worldmanager;
+	}
+	
+
 }
