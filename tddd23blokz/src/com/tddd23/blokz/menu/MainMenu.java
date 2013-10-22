@@ -20,6 +20,11 @@ public class MainMenu extends Menu {
 				game.setScreen(new OptionsMenu(game, worldmanager));
 			}
 		});
+		addMenuItem(new AbstractMenuItem("Credits", true) {
+			public void trigger() {
+				game.setScreen(new CreditsMenu(game));
+			}
+		});
 		addMenuItem(new AbstractMenuItem("Exit", true) {
 			public void trigger() {
 				game.exitGame();

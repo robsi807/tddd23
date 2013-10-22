@@ -28,6 +28,8 @@ public class MenuInput implements InputProcessor {
 			return true;
 		case Key.SPACE:
 		case Key.ENTER:
+			if (callingMenu instanceof CreditsMenu)
+				break;
 			callingMenu.triggerMenuItem();
 			SoundCache.menu_beep_select.play(SoundCache.getVolume());
 			return true;
@@ -35,7 +37,7 @@ public class MenuInput implements InputProcessor {
 			callingMenu.goBack();
 			break;
 		case Key.CONSOLE:
-			callingMenu.resetMaps();
+			callingMenu.unlockMaps();
 			break;
 		}
 

@@ -15,7 +15,7 @@ import com.tddd23.blokz.Blokz;
 import com.tddd23.blokz.font.FontHandler;
 
 public abstract class Menu implements Screen {
-	private SpriteBatch batch;
+	protected SpriteBatch batch;
 	protected ShapeRenderer rectRenderer;
 	private ArrayList<AbstractMenuItem> menuItems;
 	private ArrayList<AbstractMenuItem> menuItemsToShow;
@@ -23,11 +23,12 @@ public abstract class Menu implements Screen {
 	private int relPointer;
 	private int highLightedItem;
 	protected Blokz game;
-	private BitmapFont font;
+	protected BitmapFont font;
 
 	public Menu(Blokz game) {
 		this.game = game;
 		Gdx.input.setInputProcessor(new MenuInput(this));
+		font = new BitmapFont();
 		menuItems = new ArrayList<AbstractMenuItem>();
 		menuItemsToShow = new ArrayList<AbstractMenuItem>();
 		batch = new SpriteBatch();
@@ -65,9 +66,10 @@ public abstract class Menu implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		drawText("Wizards tower", 680, 14);
-		drawText(
-				"Use UP/DOWN/ENTER, W/S/SPACE or SCROLL/CLICK on your mouse to select",
-				30, 1);
+		if (!(this instanceof CreditsMenu))
+			drawText(
+					"Use UP/DOWN/ENTER, W/S/SPACE or SCROLL/CLICK on your mouse to select",
+					30, 1);
 		drawText(getDashes(32), 580, 5);
 		drawText(getTitle(), 500, 6);
 		setMenuItemsToShow();
@@ -245,6 +247,10 @@ public abstract class Menu implements Screen {
 
 	public void resetMaps() {
 		game.getWorldmanager().resetStats();
+	}
+
+	public void unlockMaps() {
+		game.getWorldmanager().unlockMaps();
 	}
 
 }
